@@ -11,7 +11,7 @@
             <th>ID</th>
             <th>Service Name</th>
             <th>Cost
-            <th colspan="2">Action</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -20,8 +20,10 @@
             <td>{{$service->id}}</td>
             <td>{{$service->name}}</td>
             <td>{{$service->cost}}</td>
-            <td><a href="{{url ('editServices/'.$service->id) }}">Edit</a></td>
-            <td><a href="{{url ('deleteService/'.$service->id) }}">Delete</a></td>
+            <td>
+                <a href="{{url ('editServices/'.$service->id) }}">Edit</a>
+                <a href="{{url ('deleteService/'.$service->id) }}">Delete</a>
+            </td>
         </tr>
         @endforeach
 

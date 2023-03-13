@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,6 @@ Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+
+Route::get('/services', [ServicesController::class, 'index']);
+Route::get('/employees', [UsersController::class, 'register']);

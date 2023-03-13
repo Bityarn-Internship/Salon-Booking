@@ -11,8 +11,8 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-center">Add Services</h5>
-                <form method = "POST" action = "{{ url('/services') }}">
-                   @csrf
+                <form action = "{{ url('/services') }}" method = "post">
+                    @csrf
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "serviceName">
                         <label for="floatingnameInput">Service Name</label>

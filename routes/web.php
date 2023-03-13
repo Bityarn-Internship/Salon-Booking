@@ -41,6 +41,7 @@ Route::controller(ServicesController::class)->group(function(){
     Route::get('/restoreServices', 'restoreServices');
 });
 
+
 Route::controller(UsersController::class)->group(function(){
     Route::get('/employees', 'registerEmployee');
     Route::get('/client', 'registerClient');

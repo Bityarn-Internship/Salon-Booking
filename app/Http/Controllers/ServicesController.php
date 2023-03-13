@@ -12,15 +12,20 @@ class ServicesController extends Controller
         return view('services');
     }
     public function viewServices(){
-        return view('viewServices');
+        $services = Service::all()->where('deleted_at', NULL);
+        return view('viewServices',['services'=>$services]);
+    }
+    public function editServices($id){
+        $service = Service::find($id);
+        return view('editServices',['service'=>$service]);
     }
 
     public function store(Request $request){
         $input = $request->all();
 
         $rules = [
-            'name'=>'required',
-            'cost'=>'required'
+            'serviceName'=>'required',
+            'serviceCost'=>'required'
         ];
 
         $messages = [
@@ -35,11 +40,11 @@ class ServicesController extends Controller
         }
 
         Service::create([
-            'serviceName' => $input['serviceName'],
-            'serviceCost' => $input['serviceCost']
+            'name' => $input['serviceName'],
+            'cost' => $input['serviceCost']
         ]);
 
-        // return redirect('/viewServices')->with('message', 'Service added successfully!');
+        return redirect('/viewServices')->with('message', 'Service added successfully!');
     }
 
     public function update(Request $request, $id, Service $service){
@@ -62,13 +67,17 @@ class ServicesController extends Controller
             return back()->withErrors($validator->messages());
         }
 
-        $service->serviceName = $input['serviceName'];
-        $service->serviceCost = $input['serviceCost'];
+        $service->name = $input['serviceName'];
+        $service->cost = $input['serviceCost'];
         $service->save();
 
-        // return redirect('/viewServices')->back()->with('message', 'Service edited successfully!');
+        return redirect('/viewServices')->back()->with('message', 'Service edited successfully!');
     }
-
+    public function ViewTrashedServices()
+    {
+        $services = Service::onlyTrashed()->get();
+        return view('viewTrashedServices',['services'=> $services]);
+    }
     public function destroy($id, Service $service)
     {
         $service = Service::find($id)->delete();

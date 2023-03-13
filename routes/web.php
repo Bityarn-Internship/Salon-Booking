@@ -32,13 +32,16 @@ Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang'
 Route::controller(ServicesController::class)->group(function(){
     Route::get('/services', 'index');
     Route::get('/viewServices', 'viewServices');
+    Route::get('/editServices/{id}', 'editServices');
+    Route::get('/viewTrashedServices', 'viewTrashedServices');
     Route::post('/services', 'store');
     Route::post('/updateService/{id}', 'update');
-    Route::post('/deleteService/{id}', 'destroy');
+    Route::get('/deleteService/{id}', 'destroy');
     Route::get('/restoreService/{id}', 'restoreService');
     Route::get('/restoreServices', 'restoreServices');
 });
 
 Route::controller(UsersController::class)->group(function(){
-    Route::get('/employees', 'register');
+    Route::get('/employees', 'registerEmployee');
+    Route::get('/client', 'registerClient');
 });

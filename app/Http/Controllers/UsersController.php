@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public function register(){
+    public function registerEmployee(){
         return view('employees');
+    }
+    public function registerClient(){
+        return view('clients');
     }
 }

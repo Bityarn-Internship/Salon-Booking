@@ -10,7 +10,8 @@
         <tr>
             <th>ID</th>
             <th>Service Name</th>
-            <th>Cost</th>
+            <th>Cost
+            <th colspan="2">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -19,8 +20,11 @@
             <td>{{$service->id}}</td>
             <td>{{$service->name}}</td>
             <td>{{$service->cost}}</td>
+            <td><a href="{{url ('editServices/'.$service->id) }}">Edit</a></td>
+            <td><a href="{{url ('deleteService/'.$service->id) }}">Delete</a></td>
         </tr>
         @endforeach
+
     </tbody>
 </table>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>

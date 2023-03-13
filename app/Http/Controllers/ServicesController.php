@@ -13,8 +13,12 @@ class ServicesController extends Controller
     }
     public function viewServices(){
         $services = Service::all()->where('deleted_at', NULL);
-        
+
         return view('viewServices', ['services' => $services]);
+    }
+    public function editServices($id){
+        $service = Service::find($id);
+        return view('editServices', ['service' => $service]);
     }
 
     public function store(Request $request){
@@ -68,9 +72,13 @@ class ServicesController extends Controller
         $service->cost = $input['serviceCost'];
         $service->save();
 
-        return redirect('/viewServices')->back()->with('message', 'Service edited successfully!');
+        return redirect('/viewServices')->with('message', 'Service edited successfully!');
     }
-
+    public function ViewTrashedServices()
+    {
+        $services = Service::onlyTrashed()->get();
+        return view('ViewTrashedServices',['services'=> $services]);
+    }
     public function destroy($id, Service $service)
     {
         $service = Service::find($id)->delete();

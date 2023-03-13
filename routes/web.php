@@ -29,5 +29,13 @@ Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
-Route::get('/services', [ServicesController::class, 'index']);
-Route::get('/employees', [UsersController::class, 'register']);
+Route::controller(ServicesController::class)->group(function(){
+    Route::get('/services', 'index');
+    Route::post('/services', 'store');
+    Route::post('/updateService/{id}', 'update');
+    Route::post('/deleteService/{id}', 'destroy');
+});
+
+Route::controller(UsersController::class)->group(function(){
+    Route::get('/employees', 'register');
+});

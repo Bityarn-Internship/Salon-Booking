@@ -18,7 +18,7 @@
                     </div>
                 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name = "serviceCost">
+                        <input type="number" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name = "serviceCost">
                         <label for="floatingemailInput">Service Cost</label>
                     </div>
                     <div>

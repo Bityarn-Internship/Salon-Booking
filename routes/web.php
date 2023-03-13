@@ -34,6 +34,8 @@ Route::controller(ServicesController::class)->group(function(){
     Route::post('/services', 'store');
     Route::post('/updateService/{id}', 'update');
     Route::post('/deleteService/{id}', 'destroy');
+    Route::get('/restoreService/{id}', 'restoreService');
+    Route::get('/restoreServices', 'restoreServices');
 });
 
 Route::controller(UsersController::class)->group(function(){

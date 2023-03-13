@@ -36,7 +36,7 @@ class ServicesController extends Controller
             'serviceCost' => $input['serviceCost']
         ]);
 
-        return redirect()->back()->with('message', 'Service added successfully!');
+        // return redirect('/viewServices')->with('message', 'Service added successfully!');
     }
 
     public function update(Request $request, $id, Service $service){
@@ -63,7 +63,33 @@ class ServicesController extends Controller
         $service->serviceCost = $input['serviceCost'];
         $service->save();
 
-        return redirect()->back()->with('message', 'Service edited successfully!');
+        // return redirect('/viewServices')->back()->with('message', 'Service edited successfully!');
     }
 
+    public function destroy($id, Service $service)
+    {
+        $service = Service::find($id)->delete();
+        return redirect('/viewServices')->with('message', 'Service deleted successfully!');
+    }
+
+    //restore deleted service
+    public function restoreService($id){
+        Service::whereId($id)->restore();
+        return back();
+    }
+
+    //restore all deleted services
+    public function restoreServices(){
+        Service::onlyTrashed()->restore();
+        return back();
+    }
+
+    public static function getServiceName($id){
+        if($id == NULL){
+            return "Not found";
+        }
+        $service = Service::find($id);
+
+        return $service->serviceName;
+    }
 }

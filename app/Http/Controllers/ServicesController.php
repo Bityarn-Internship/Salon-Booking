@@ -11,13 +11,16 @@ class ServicesController extends Controller
     public function index(){
         return view('services');
     }
+    public function viewServices(){
+        return view('viewServices');
+    }
 
     public function store(Request $request){
         $input = $request->all();
 
         $rules = [
-            'serviceName'=>'required',
-            'serviceCost'=>'required'
+            'name'=>'required',
+            'cost'=>'required'
         ];
 
         $messages = [
@@ -26,7 +29,7 @@ class ServicesController extends Controller
         ];
 
         $validator = Validator::make($input, $rules, $messages);
-        
+
         if ($validator->fails()) {
             return back()->withErrors($validator->messages());
         }
@@ -54,7 +57,7 @@ class ServicesController extends Controller
         ];
 
         $validator = Validator::make($input, $rules, $messages);
-        
+
         if ($validator->fails()) {
             return back()->withErrors($validator->messages());
         }

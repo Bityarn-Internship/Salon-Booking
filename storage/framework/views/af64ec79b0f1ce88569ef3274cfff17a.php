@@ -1,9 +1,6 @@
-@extends('layouts.master')
+<?php $__env->startSection('content'); ?>
 
-
-@section('content')
-
-@component('components.breadcrumb')
+<?php $__env->startComponent('components.breadcrumb'); ?>
 
 
 <div class="row">
@@ -11,8 +8,8 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-center">Add Services</h5>
-                <form method = "POST" action = "{{ url('/services') }}">
-                   @csrf
+                <form method = "POST" action = "<?php echo e(url('/services')); ?>">
+                   <?php echo csrf_field(); ?>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "serviceName">
                         <label for="floatingnameInput">Service Name</label>
@@ -39,4 +36,6 @@
 </div>
 <!-- end row -->
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/services.blade.php ENDPATH**/ ?>

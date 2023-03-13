@@ -32,11 +32,11 @@ class ServicesController extends Controller
         }
 
         Service::create([
-            'serviceName' => $input['serviceName'],
-            'serviceCost' => $input['serviceCost']
+            'name' => $input['serviceName'],
+            'cost' => $input['serviceCost']
         ]);
 
-        // return redirect('/viewServices')->with('message', 'Service added successfully!');
+        return redirect('/viewServices')->with('message', 'Service added successfully!');
     }
 
     public function update(Request $request, $id, Service $service){

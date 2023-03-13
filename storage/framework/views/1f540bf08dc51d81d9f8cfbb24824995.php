@@ -11,14 +11,15 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-center">Add Services</h5>
-                <form>
+                <form action = "<?php echo e(url('/services')); ?>" method = "post">
+                    <?php echo csrf_field(); ?>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service...">
+                        <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "serviceName">
                         <label for="floatingnameInput">Service Name</label>
                     </div>
                 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingemailInput" placeholder="Enter the cost...">
+                        <input type="number" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name = "serviceCost">
                         <label for="floatingemailInput">Service Cost</label>
                     </div>
                     <div>
@@ -35,7 +36,6 @@
 </div>
 <!-- end row -->
 
-    <!-- end col -->
 </div>
 <!-- end row -->
 

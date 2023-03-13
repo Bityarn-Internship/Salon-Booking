@@ -19,8 +19,8 @@ class ServicesController extends Controller
         $input = $request->all();
 
         $rules = [
-            'serviceName'=>'required',
-            'serviceCost'=>'required'
+            'name'=>'required',
+            'cost'=>'required'
         ];
 
         $messages = [

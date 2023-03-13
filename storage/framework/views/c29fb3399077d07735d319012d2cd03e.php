@@ -1,5 +1,5 @@
 <head>
-    @include('layouts.head-css')
+    <?php echo $__env->make('layouts.head-css', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
@@ -14,13 +14,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($services as $service)
+        <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <td>{{$service->id}}</td>
-            <td>{{$service->name}}</td>
-            <td>{{$service->cost}}</td>
+            <td><?php echo e($service->id); ?></td>
+            <td><?php echo e($service->name); ?></td>
+            <td><?php echo e($service->cost); ?></td>
         </tr>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>
 </table>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
@@ -30,3 +30,4 @@
         $('#servicesView').DataTable();
     });
 </script>
+<?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views/viewServices.blade.php ENDPATH**/ ?>

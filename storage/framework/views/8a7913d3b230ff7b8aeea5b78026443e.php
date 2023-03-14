@@ -8,7 +8,7 @@
         <div class="card d-flex justify-content-center">
             <div class="card-body">
                 <h5 class="card-title text-center">Employee Details</h5>
-                <form action = "<?php echo e(url('/employees')); ?>" method = "post">
+                <form action = "<?php echo e(url('/employees')); ?>" method = "post" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
                 <div class="row">
                     <div class="col-md-6">

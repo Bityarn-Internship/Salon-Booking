@@ -11,7 +11,7 @@
         <div class="card d-flex justify-content-center">
             <div class="card-body">
                 <h5 class="card-title text-center">Employee Details</h5>
-                <form action = "{{ url('/employees') }}" method = "post">
+                <form action = "{{ url('/employees') }}" method = "post" enctype="multipart/form-data">
                     @csrf
                 <div class="row">
                     <div class="col-md-6">

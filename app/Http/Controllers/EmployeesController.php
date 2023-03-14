@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
+// use Illuminate\Support\Facades\File;
 
 class EmployeesController extends Controller
 {
@@ -57,6 +58,9 @@ class EmployeesController extends Controller
             return back()->withErrors($validator->messages());
         }
 
+//         $profileName = time().$request->file('userProfile')->getClientOriginalName();
+//         $pathProfile = $input->file('userProfile')->storeAs('users', $profileName, 'public');
+
         Employee::create([
             'firstName' => $input['firstName'],
             'lastName' => $input['lastName'],
@@ -65,6 +69,7 @@ class EmployeesController extends Controller
             'IDNumber' => $input['IDNumber'],
             'positionID' => $input['positionID'],
             'password' => Hash::make($input['password']),
+//             'userProfile' => '/storage/'.$pathProfile
         ]);
 
         return redirect('/viewServices')->with('message', 'Employee registered successfully!');
@@ -98,7 +103,7 @@ class EmployeesController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator->messages());
         }
-        
+
         $employee->firstName = $input['firstName'];
         $employee->lastName = $input['lastName'];
         $employee->email = $input['email'];

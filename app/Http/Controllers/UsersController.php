@@ -38,6 +38,15 @@ class UsersController extends Controller
         return redirect()->back()->with('messageLogin', 'Invalid login credentials');
     }
 
+    public function logout()
+    {
+        Session::flush();
+        
+        Auth::logout();
+
+        return redirect('/login');
+    }
+
     public function store(Request $request){
 
         $input = $request->all();

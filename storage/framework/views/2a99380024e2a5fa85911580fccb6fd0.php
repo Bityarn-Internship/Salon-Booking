@@ -1,5 +1,10 @@
+<head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<link rel="stylesheet" href="<?php echo e(asset("assets/css/style.css")); ?>">
 <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+<script src="<?php echo e(asset("assets/js/booking.js")); ?>" defer></script>
+</head>
+<body>
 <form action="<?php echo e(url('/bookings')); ?>" method="POST">
 <h4>Service Name</h4>
     <select name="services" id="services" multiple>
@@ -9,15 +14,60 @@
     </select>
     <label for="date">Date</label>
     <input type="date" name="date">
-    <label for="time">Time</label>
-    <input type="time" name="time">
+
     <br>
     <input type="submit">
 </form>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
 <script>
     new MultiSelectTag('services')  // id
-
 </script>
 <?php /**PATH D:\BITYARN\Salon-Booking\resources\views/bookings.blade.php ENDPATH**/ ?>

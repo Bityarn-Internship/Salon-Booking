@@ -48,6 +48,7 @@ Route::controller(UsersController::class)->group(function(){
     Route::get('/clients', 'index');
     Route::get('/login', 'login');
     Route::post('/clients', 'store');
+    Route::post('/login', 'processLogin');
     Route::post('/updateClient/{id}', 'update');
     Route::get('/deleteClient/{id}', 'destroy');
     Route::get('/restoreClient/{id}', 'restoreClient');

@@ -74,6 +74,7 @@ class PositionsController extends Controller
 
         $position->name = $input['positionName'];
         $position->description = $input['positionDescription'];
+        $position->save();
 
         return redirect('/viewPositions')->with('message', 'Position updated successfully!');
     }

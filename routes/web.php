@@ -62,4 +62,7 @@ Route::controller(PositionsController::class)->group(function(){
 Route::controller(EmployeesController::class)->group(function(){
     Route::get('/employees', 'index');
     Route::post('/employees', 'store');
+    Route::get('/viewEmployees', 'viewEmployees');
+    Route::get('/editEmployee/{id}', 'edit');
+    Route::get('/viewTrashedEmployees', 'viewTrashedEmployees');
 });

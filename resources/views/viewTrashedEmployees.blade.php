@@ -5,24 +5,32 @@
 
 <h4 class="card-title text-center">View Trashed Positions</h4>
 <div class="col col-md-11 text-right">
-    <h3><a href="{{url('restorePositions') }}"><b>Restore All</b></a></h3>
+    <h3><a href="{{url('restoreEmployees') }}"><b>Restore All</b></a></h3>
 </div>
 <table id="positionsView" class="table mb-0">
     <thead>
     <tr>
         <th>ID</th>
-        <th>Position Name</th>
-        <th>Position Description
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Telephone Number</th>
+        <th>ID Number</th>
+        <th>Position ID</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($positions as $position)
+    @foreach($employees as $employee)
         <tr>
-            <td>{{$position->id}}</td>
-            <td>{{$position->name}}</td>
-            <td>{{$position->description}}</td>
-            <td><a href="{{url ('restorePosition/'.$position->id) }}">Restore</a></td>
+            <td>{{$employee->id}}</td>
+            <td>{{$employee->firstName}}</td>
+            <td>{{$employee->lastName}}</td>
+            <td>{{$employee->email}}</td>
+            <td>{{$employee->telephoneNumber}}</td>
+            <td>{{$employee->IDNumber}}</td>
+            <td>{{$employee->positionID}}</td>
+            <td><a href="{{url ('restoreEmployee/'.$employee->id) }}">Restore</a></td>
 
         </tr>
     @endforeach

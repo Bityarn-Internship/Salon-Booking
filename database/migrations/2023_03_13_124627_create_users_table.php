@@ -24,7 +24,6 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-        User::create(['firstName' => 'admin','lastName' => 'admin','email' => 'admin@themesbrand.com','telephoneNumber'=>'0700000000','password' => Hash::make('123456'),'created_at' => now(),]);
     }
 
 

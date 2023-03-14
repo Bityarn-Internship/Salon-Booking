@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreign('bookingID')->references('id')->on('bookings');
             $table->integer('serviceID')->unsigned();
             $table->foreign('serviceID')->references('id')->on('services');
-            $table->integer('cost');
+            $table->integer('employeeID')->unsigned();
+            $table->foreign('employeeID')->references('id')->on('employees');
             $table->softDeletes();
             $table->timestamps();
         });

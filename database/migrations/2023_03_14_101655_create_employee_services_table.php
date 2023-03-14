@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('employee_services', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('clientID')->unsigned();
-            $table->foreign('clientID')->references('id')->on('users');
-            $table->date('date');
-            $table->time('time');
-            $table->double('cost');
+            $table->integer('employeeID')->unsigned();
+            $table->foreign('employeeID')->references('id')->on('employees');
+            $table->integer('serviceID')->unsigned();
+            $table->foreign('serviceID')->references('id')->on('services');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('employee_services');
     }
 };

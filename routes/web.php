@@ -6,6 +6,7 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PositionsController;
 use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\BookingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +82,8 @@ Route::controller(EmployeesController::class)->group(function(){
     Route::get('/viewEmployees', 'viewEmployees');
     Route::get('/editEmployee/{id}', 'edit');
     Route::get('/viewTrashedEmployees', 'viewTrashedEmployees');
+});
+Route::controller(BookingsController::class)->group(function(){
+    Route::get('/bookings', 'index');
+    Route::post('/bookings', 'store');
 });

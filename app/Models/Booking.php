@@ -14,7 +14,7 @@ class Booking extends Model implements Auditable
     protected $fillable = [
         'id',
         'clientID',
-        'employeeID',
+        'cost',
         'date',
         'time',
     ];

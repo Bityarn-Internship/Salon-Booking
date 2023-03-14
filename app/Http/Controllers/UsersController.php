@@ -23,9 +23,12 @@ class UsersController extends Controller
         $credentials = $request->only('email', 'password');
 
         //Login user
-        if(Auth::attempt($credentials)){
-            //Check the roles of users and redirect to the appropriate dashboard
-            return redirect('/login')->with('message', 'Login successful');
+        if(Auth::guard('web')->attempt($credentials)){
+            return redirect('/viewServices')->with('message', 'Login successful');
+        }
+
+        if(Auth::guard('employees')->attempt($credentials)){
+            return redirect('/viewEmployees')->with('message', 'Login successful');
         }
 
         return redirect()->back()->with('messageLogin', 'Invalid login credentials');

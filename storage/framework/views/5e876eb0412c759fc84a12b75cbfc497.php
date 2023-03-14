@@ -8,7 +8,7 @@
                 <div class="card d-flex justify-content-center">
                     <div class="card-body">
                         <h5 class="card-title text-center">Edit Employee Details</h5>
-                        <form action = "<?php echo e(url('/employees')); ?>" method = "post">
+                        <form action = "<?php echo e(url('/updateEmployee/'.$employee->id)); ?>" method = "post">
                             <?php echo csrf_field(); ?>
                             <div class="row">
                                 <div class="col-md-6">
@@ -50,15 +50,6 @@
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingnameInput" value="<?php echo e($employee->IDNumber); ?>" placeholder="Enter the ID Number..." name="IDNumber">
                                 <label for="floatingnameInput">National ID Number/ Passport Number</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingnameInput" placeholder="Enter the password..." name="password">
-                                <label for="floatingnameInput">Password</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name="confirmPassword">
-                                <label for="floatingemailInput">Confirm Password</label>
                             </div>
                             <center>
                                 <div>

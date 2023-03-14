@@ -3,8 +3,10 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="card-title text-center">View Employees</h4>
-
+<h4 class="card-title text-center">View Trashed Positions</h4>
+<div class="col col-md-11 text-right">
+    <h3><a href="<?php echo e(url('restoreEmployees')); ?>"><b>Restore All</b></a></h3>
+</div>
 <table id="positionsView" class="table mb-0">
     <thead>
     <tr>
@@ -14,7 +16,7 @@
         <th>Email</th>
         <th>Telephone Number</th>
         <th>ID Number</th>
-        <th>Position</th>
+        <th>Position ID</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -27,11 +29,9 @@
             <td><?php echo e($employee->email); ?></td>
             <td><?php echo e($employee->telephoneNumber); ?></td>
             <td><?php echo e($employee->IDNumber); ?></td>
-            <td><?php echo e(\App\Http\Controllers\PositionsController::getPositionName($employee->positionID)); ?></td>
-            <td>
-                <a href="<?php echo e(url ('editEmployee/'.$employee->id)); ?>">Edit</a>
-                <a href="<?php echo e(url ('deleteEmployee/'.$employee->id)); ?>">Delete</a>
-            </td>
+            <td><?php echo e($employee->positionID); ?></td>
+            <td><a href="<?php echo e(url ('restoreEmployee/'.$employee->id)); ?>">Restore</a></td>
+
         </tr>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>
@@ -43,4 +43,4 @@
         $('#positionsView').DataTable();
     });
 </script>
-<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/viewEmployees.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/ViewTrashedEmployees.blade.php ENDPATH**/ ?>

@@ -5,9 +5,9 @@
 
 <h4 class="card-title text-center">View Trashed Positions</h4>
 <div class="col col-md-11 text-right">
-    <h3><a href="{{url('restoreEmployees') }}"><b>Restore All</b></a></h3>
+    <h3><a href="{{url('restoreClients') }}"><b>Restore All</b></a></h3>
 </div>
-<table id="employeesView" class="table mb-0">
+<table id="clientsView" class="table mb-0">
     <thead>
     <tr>
         <th>ID</th>
@@ -15,22 +15,18 @@
         <th>Last Name</th>
         <th>Email</th>
         <th>Telephone Number</th>
-        <th>ID Number</th>
-        <th>Position ID</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($employees as $employee)
+    @foreach($clients as $client)
         <tr>
-            <td>{{$employee->id}}</td>
-            <td>{{$employee->firstName}}</td>
-            <td>{{$employee->lastName}}</td>
-            <td>{{$employee->email}}</td>
-            <td>{{$employee->telephoneNumber}}</td>
-            <td>{{$employee->IDNumber}}</td>
-            <td>{{$employee->positionID}}</td>
-            <td><a href="{{url ('restoreEmployee/'.$employee->id) }}">Restore</a></td>
+            <td>{{$client->id}}</td>
+            <td>{{$client->firstName}}</td>
+            <td>{{$client->lastName}}</td>
+            <td>{{$client->email}}</td>
+            <td>{{$client->telephoneNumber}}</td>
+            <td><a href="{{url ('restoreClient/'.$client->id) }}">Restore</a></td>
 
         </tr>
     @endforeach
@@ -40,6 +36,6 @@
 <script src = "//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function (){
-        $('#employeesView').DataTable();
+        $('#clientsView').DataTable();
     });
 </script>

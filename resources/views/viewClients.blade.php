@@ -5,7 +5,7 @@
 
 <h4 class="card-title text-center">View Employees</h4>
 
-<table id="employeesView" class="table mb-0">
+<table id="clientsView" class="table mb-0">
     <thead>
     <tr>
         <th>ID</th>
@@ -13,24 +13,20 @@
         <th>Last Name</th>
         <th>Email</th>
         <th>Telephone Number</th>
-        <th>ID Number</th>
-        <th>Position</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($employees as $employee)
+    @foreach($clients as $client)
         <tr>
-            <td>{{$employee->id}}</td>
-            <td>{{$employee->firstName}}</td>
-            <td>{{$employee->lastName}}</td>
-            <td>{{$employee->email}}</td>
-            <td>{{$employee->telephoneNumber}}</td>
-            <td>{{$employee->IDNumber}}</td>
-            <td>{{\App\Http\Controllers\PositionsController::getPositionName($employee->positionID)}}</td>
+            <td>{{$client->id}}</td>
+            <td>{{$client->firstName}}</td>
+            <td>{{$client->lastName}}</td>
+            <td>{{$client->email}}</td>
+            <td>{{$client->telephoneNumber}}</td>
             <td>
-                <a href="{{url ('editEmployee/'.$employee->id) }}">Edit</a>
-                <a href="{{url ('deleteEmployee/'.$employee->id) }}">Delete</a>
+                <a href="{{url ('editClient/'.$client->id) }}">Edit</a>
+                <a href="{{url ('deleteClient/'.$client->id) }}">Delete</a>
             </td>
         </tr>
     @endforeach
@@ -40,6 +36,6 @@
 <script src = "//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function (){
-        $('#employeesView').DataTable();
+        $('#clientsView').DataTable();
     });
 </script>

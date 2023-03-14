@@ -46,7 +46,10 @@ Route::controller(ServicesController::class)->group(function(){
 
 Route::controller(UsersController::class)->group(function(){
 
-    Route::get('/client', 'registerClient');
+    Route::get('/client', 'index');
+    Route::get('/viewClients', 'viewClients');
+    Route::get('/editClients/{id}', 'edit');
+    Route::get('/viewTrashedClients', 'viewTrashedClients');
 });
 Route::controller(PositionsController::class)->group(function(){
     Route::get('/positions', 'index');

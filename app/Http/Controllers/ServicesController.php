@@ -48,7 +48,7 @@ class ServicesController extends Controller
         return redirect('/viewServices')->with('message', 'Service added successfully!');
     }
 
-    public function update(Request $request, $id, Service $service){
+    public function update(Request $request, $id){
         $input = $request->all();
         $service = Service::find($id);
 
@@ -79,7 +79,7 @@ class ServicesController extends Controller
         $services = Service::onlyTrashed()->get();
         return view('ViewTrashedServices',['services'=> $services]);
     }
-    public function destroy($id, Service $service)
+    public function destroy($id)
     {
         $service = Service::find($id)->delete();
         return redirect('/viewServices')->with('message', 'Service deleted successfully!');
@@ -103,6 +103,6 @@ class ServicesController extends Controller
         }
         $service = Service::find($id);
 
-        return $service->serviceName;
+        return $service->name;
     }
 }

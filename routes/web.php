@@ -51,6 +51,10 @@ Route::controller(UsersController::class)->group(function(){
 Route::controller(PositionsController::class)->group(function(){
     Route::get('/positions', 'index');
     Route::post('/positions', 'store');
+    Route::post('/updatePosition/{id}', 'update');
+    Route::get('/deletePosition/{id}', 'destroy');
+    Route::get('/restorePosition/{id}', 'restorePosition');
+    Route::get('/restorePositions', 'restorePositions');
 });
 Route::controller(EmployeesController::class)->group(function(){
     Route::get('/employees', 'index');

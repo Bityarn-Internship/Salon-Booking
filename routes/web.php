@@ -51,6 +51,10 @@ Route::controller(UsersController::class)->group(function(){
     Route::get('/deleteClient/{id}', 'destroy');
     Route::get('/restoreClient/{id}', 'restoreClient');
     Route::get('/restoreClients', 'restoreClients');
+    Route::get('/client', 'index');
+    Route::get('/viewClients', 'viewClients');
+    Route::get('/editClients/{id}', 'edit');
+    Route::get('/viewTrashedClients', 'viewTrashedClients');
 });
 
 Route::controller(PositionsController::class)->group(function(){

@@ -117,5 +117,21 @@ class UsersController extends Controller
         $user = User::find($id);
 
         return $user->firstName.' '.$user->lastName;
+
+    }
+
+    public function viewClients(){
+        $clients = User::all();
+        return view('viewClients', ['clients' => $clients]);
+    }
+
+    public function edit($id){
+        $client = User::find($id);
+        return view('editClient', ['client' => $client]);
+    }
+    public function ViewTrashedClients()
+    {
+        $clients = User::onlyTrashed()->get();
+        return view('ViewTrashedClients',['clients'=> $clients]);
     }
 }

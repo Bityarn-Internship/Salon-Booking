@@ -158,7 +158,8 @@ class EmployeesController extends Controller
     }
     public function edit($id){
         $employee = Employee::find($id);
-        return view('editEmployee', ['employee' => $employee]);
+        $positions = Position::all();
+        return view('editEmployee', ['employee' => $employee,'positions'=>$positions]);
     }
     public function ViewTrashedEmployees()
     {

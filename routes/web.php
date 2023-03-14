@@ -46,6 +46,7 @@ Route::controller(ServicesController::class)->group(function(){
 Route::controller(UsersController::class)->group(function(){
 
     Route::get('/clients', 'index');
+    Route::get('/login', 'login');
     Route::post('/clients', 'store');
     Route::post('/updateClient/{id}', 'update');
     Route::get('/deleteClient/{id}', 'destroy');
@@ -53,7 +54,7 @@ Route::controller(UsersController::class)->group(function(){
     Route::get('/restoreClients', 'restoreClients');
     Route::get('/client', 'index');
     Route::get('/viewClients', 'viewClients');
-    Route::get('/editClients/{id}', 'edit');
+    Route::get('/editClient/{id}', 'edit');
     Route::get('/viewTrashedClients', 'viewTrashedClients');
 });
 

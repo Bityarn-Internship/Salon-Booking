@@ -151,4 +151,18 @@ class EmployeesController extends Controller
         return $employee->firstName.' '.$employee->lastName;
     }
 
+    public function viewEmployees(){
+        $employees = Employee::all();
+
+        return view('viewEmployees', ['employees' => $employees]);
+    }
+    public function edit($id){
+        $employee = Employee::find($id);
+        return view('editEmployee', ['employee' => $employee]);
+    }
+    public function ViewTrashedEmployees()
+    {
+        $employees = Employee::onlyTrashed()->get();
+        return view('ViewTrashedEmployees',['employees'=> $employees]);
+    }
 }

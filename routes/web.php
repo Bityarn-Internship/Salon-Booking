@@ -66,4 +66,7 @@ Route::controller(EmployeesController::class)->group(function(){
     Route::get('/deleteEmployee/{id}', 'destroy');
     Route::get('/restoreEmployee/{id}', 'restoreEmployee');
     Route::get('/restoreEmployees', 'restoreEmployees');
+    Route::get('/viewEmployees', 'viewEmployees');
+    Route::get('/editEmployee/{id}', 'edit');
+    Route::get('/viewTrashedEmployees', 'viewTrashedEmployees');
 });

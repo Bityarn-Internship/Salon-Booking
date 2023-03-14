@@ -3,7 +3,7 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="card-title text-center">View Services</h4>
+<h4 class="card-title text-center">View Trashed Positions</h4>
 <div class="col col-md-11 text-right">
     <h3><a href="{{url('restorePositions') }}"><b>Restore All</b></a></h3>
 </div>

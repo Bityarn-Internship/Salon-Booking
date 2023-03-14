@@ -4,29 +4,28 @@
 </head>
 
 <h4 class="card-title text-center">View Services</h4>
-
+<div class="col col-md-11 text-right">
+   <h3><a href="<?php echo e(url('restoreServices')); ?>"><b>Restore All</b></a></h3>
+</div>
 <table id="servicesView" class="table mb-0">
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>Service Name</th>
-            <th>Cost
-            <th>Actions</th>
-        </tr>
+    <tr>
+        <th>ID</th>
+        <th>Service Name</th>
+        <th>Cost</th>
+        <th>Action</th>
+    </tr>
     </thead>
     <tbody>
-        <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
             <td><?php echo e($service->id); ?></td>
             <td><?php echo e($service->name); ?></td>
             <td><?php echo e($service->cost); ?></td>
-            <td>
-                <a href="<?php echo e(url ('editService/'.$service->id)); ?>">Edit</a>
-                <a href="<?php echo e(url ('deleteService/'.$service->id)); ?>">Delete</a>
-            </td>
-        </tr>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <td><a href="<?php echo e(url ('restoreService/'.$service->id)); ?>">Restore</a></td>
 
+        </tr>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>
 </table>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
@@ -36,4 +35,4 @@
         $('#servicesView').DataTable();
     });
 </script>
-<?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views/viewServices.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views/ViewTrashedServices.blade.php ENDPATH**/ ?>

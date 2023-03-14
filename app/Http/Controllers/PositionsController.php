@@ -53,6 +53,7 @@ class PositionsController extends Controller
     }
 
     public function update($id, Request $request){
+        
         $input = $request->all();
         $position = Position::find($id);
 
@@ -74,6 +75,7 @@ class PositionsController extends Controller
 
         $position->name = $input['positionName'];
         $position->description = $input['positionDescription'];
+        $position->save();
 
         return redirect('/viewPositions')->with('message', 'Position updated successfully!');
     }

@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingnameInput" name="telephoneNumber" placeholder="Enter Your Telephone Number">
+                                        <input type="tel" class="form-control" id="floatingnameInput" name="telephoneNumber" placeholder="Enter Your Telephone Number">
                                         <label for="floatingnameInput">Telephone Number</label>
                                     </div>
                                 </div>

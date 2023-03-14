@@ -5,7 +5,7 @@
 
 <h4 class="card-title text-center">View Employees</h4>
 
-<table id="positionsView" class="table mb-0">
+<table id="employeesView" class="table mb-0">
     <thead>
     <tr>
         <th>ID</th>
@@ -14,7 +14,7 @@
         <th>Email</th>
         <th>Telephone Number</th>
         <th>ID Number</th>
-        <th>Position ID</th>
+        <th>Position</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -27,7 +27,7 @@
             <td><?php echo e($employee->email); ?></td>
             <td><?php echo e($employee->telephoneNumber); ?></td>
             <td><?php echo e($employee->IDNumber); ?></td>
-            <td><?php echo e($employee->positionID); ?></td>
+            <td><?php echo e(\App\Http\Controllers\PositionsController::getPositionName($employee->positionID)); ?></td>
             <td>
                 <a href="<?php echo e(url ('editEmployee/'.$employee->id)); ?>">Edit</a>
                 <a href="<?php echo e(url ('deleteEmployee/'.$employee->id)); ?>">Delete</a>
@@ -40,7 +40,7 @@
 <script src = "//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function (){
-        $('#positionsView').DataTable();
+        $('#employeesView').DataTable();
     });
 </script>
 <?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views/viewEmployees.blade.php ENDPATH**/ ?>

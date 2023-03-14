@@ -17,6 +17,7 @@ class Booking extends Model implements Auditable
         'cost',
         'date',
         'time',
+        'status'
     ];
 
     protected $dates = ['deleted_at'];

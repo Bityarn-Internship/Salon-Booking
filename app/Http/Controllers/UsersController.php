@@ -6,12 +6,18 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Hash;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class UsersController extends Controller
 {
     public function index(){
         return view('clients');
+    }
+    public function login(){
+        return view('login');
     }
 
     public function processLogin(Request $request){

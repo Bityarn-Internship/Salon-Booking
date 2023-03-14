@@ -47,13 +47,14 @@ Route::controller(UsersController::class)->group(function(){
 
     Route::get('/clients', 'index');
     Route::post('/clients', 'store');
+    Route::post('/login', 'processLogin');
     Route::post('/updateClient/{id}', 'update');
     Route::get('/deleteClient/{id}', 'destroy');
     Route::get('/restoreClient/{id}', 'restoreClient');
     Route::get('/restoreClients', 'restoreClients');
     Route::get('/client', 'index');
     Route::get('/viewClients', 'viewClients');
-    Route::get('/editClients/{id}', 'edit');
+    Route::get('/editClient/{id}', 'edit');
     Route::get('/viewTrashedClients', 'viewTrashedClients');
 });
 

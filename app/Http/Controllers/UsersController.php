@@ -2,13 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Hash;
 
 class UsersController extends Controller
 {
     public function index(){
         return view('clients');
+    }
+
+    public function processLogin(Request $request){
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        //Login user
+        if(Auth::attempt($credentials)){
+            //Check the roles of users and redirect to the appropriate dashboard
+            return redirect('/login')->with('message', 'Login successful');
+        }
+
+        return redirect()->back()->with('messageLogin', 'Invalid login credentials');
     }
 
     public function store(Request $request){

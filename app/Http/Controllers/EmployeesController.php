@@ -78,21 +78,10 @@ class EmployeesController extends Controller
         $rules = [
             'firstName'=>'required',
             'lastName'=>'required',
-            'email'=>'required|email|unique:employees',
+            'email'=>'required|email',
             'telephoneNumber'=>'required',
             'IDNumber'=>'required',
-            'positionID'=>'required',
-            'password'=> [
-                'required',
-                Password::min(8)
-                        ->letters()
-                        ->mixedCase()
-                        ->numbers()
-                        ->symbols()
-                        //password submitted is not compromised on the internet with a public password data breach leak
-                        ->uncompromised()
-            ],
-            'confirmPassword'=> 'required|same:password',
+            'positionID'=>'required'
         ];
 
         $messages = [
@@ -101,9 +90,7 @@ class EmployeesController extends Controller
             'email.required' => 'Email is required',
             'telephoneNumber.required'=>'Telephone Number  is required',
             'IDNumber.required' => 'National ID / Passport Number is required',
-            'positionID.required' => 'Position is required',
-            'password.required'=>'Password is required',
-            'confirmPassword.required'=>'Confirm Password is required'
+            'positionID.required' => 'Position is required'
         ];
 
         $validator = Validator::make($input, $rules, $messages);
@@ -111,14 +98,14 @@ class EmployeesController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator->messages());
         }
-
+        
         $employee->firstName = $input['firstName'];
         $employee->lastName = $input['lastName'];
         $employee->email = $input['email'];
         $employee->telephoneNumber = $input['telephoneNumber'];
         $employee->IDNumber = $input['IDNumber'];
         $employee->positionID = $input['positionID'];
-        $employee->telephoneNumber = $input['telephoneNumber'];
+
         $employee->save();
 
         return redirect('/viewEmployees')->with('message', 'Employee updated successfully!');

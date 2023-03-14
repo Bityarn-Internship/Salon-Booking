@@ -43,11 +43,16 @@ Route::controller(ServicesController::class)->group(function(){
     Route::get('/restoreServices', 'restoreServices');
 });
 
-
 Route::controller(UsersController::class)->group(function(){
 
-    Route::get('/client', 'registerClient');
+    Route::get('/clients', 'index');
+    Route::post('/clients', 'store');
+    Route::post('/updateClient/{id}', 'update');
+    Route::get('/deleteClient/{id}', 'destroy');
+    Route::get('/restoreClient/{id}', 'restoreClient');
+    Route::get('/restoreClients', 'restoreClients');
 });
+
 Route::controller(PositionsController::class)->group(function(){
     Route::get('/positions', 'index');
     Route::post('/positions', 'store');
@@ -59,6 +64,7 @@ Route::controller(PositionsController::class)->group(function(){
     Route::get('/restorePosition/{id}', 'restorePosition');
     Route::get('/restorePositions', 'restorePositions');
 });
+
 Route::controller(EmployeesController::class)->group(function(){
     Route::get('/employees', 'index');
     Route::post('/employees', 'store');

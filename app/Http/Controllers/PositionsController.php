@@ -45,7 +45,59 @@ class PositionsController extends Controller
             'description' => $input['positionDescription']
         ]);
 
-        return redirect('/viewServices')->with('message', 'Service added successfully!');
+        return redirect('/viewPositions')->with('message', 'Position added successfully!');
     }
 
+    public function update($id, Request $request){
+        $input = $request->all();
+        $position = Position::find($id);
+
+        $rules = [
+            'positionName'=>'required',
+            'positionDescription'=>'required'
+        ];
+
+        $messages = [
+            'positionName.required' => 'Position name is required',
+            'positionDescription.required'=>'Position Description is required'
+        ];
+
+        $validator = Validator::make($input, $rules, $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->messages());
+        }
+
+        $position->name = $input['positionName'];
+        $position->description = $input['positionDescription'];
+
+        return redirect('/viewPositions')->with('message', 'Position updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $position = Position::find($id)->delete();
+        return redirect('/viewPositions')->with('message', 'Position deleted successfully!');
+    }
+
+    //restore deleted position
+    public function restorePosition($id){
+        Position::whereId($id)->restore();
+        return back();
+    }
+
+    //restore all deleted positions
+    public function restorePositions(){
+        Position::onlyTrashed()->restore();
+        return back();
+    }
+
+    public static function getPositionName($id){
+        if($id == NULL){
+            return "Not found";
+        }
+        $position = Position::find($id);
+
+        return $position->name;
+    }
 }

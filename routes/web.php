@@ -54,6 +54,10 @@ Route::controller(PositionsController::class)->group(function(){
     Route::get('/viewPositions', 'viewPositions');
     Route::get('/editPosition/{id}', 'edit');
     Route::get('/viewTrashedPositions', 'viewTrashedPositions');
+    Route::post('/updatePosition/{id}', 'update');
+    Route::get('/deletePosition/{id}', 'destroy');
+    Route::get('/restorePosition/{id}', 'restorePosition');
+    Route::get('/restorePositions', 'restorePositions');
 });
 Route::controller(EmployeesController::class)->group(function(){
     Route::get('/employees', 'index');

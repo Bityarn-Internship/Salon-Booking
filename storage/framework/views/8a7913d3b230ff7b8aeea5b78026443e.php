@@ -1,9 +1,6 @@
-@extends('layouts.master')
+<?php $__env->startSection('content'); ?>
 
-
-@section('content')
-
-@component('components.breadcrumb')
+<?php $__env->startComponent('components.breadcrumb'); ?>
 
 
 <div class="row">
@@ -11,8 +8,8 @@
         <div class="card d-flex justify-content-center">
             <div class="card-body">
                 <h5 class="card-title text-center">Employee Details</h5>
-                <form action = "{{ url('/employees') }}" method = "post">
-                    @csrf
+                <form action = "<?php echo e(url('/employees')); ?>" method = "post">
+                    <?php echo csrf_field(); ?>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
@@ -45,9 +42,9 @@
                 <div class="form-floating mb-3">
                     <label for="formrow-inputState" class="form-label">Position</label>
                     <select id="formrow-inputState" class="form-select" name = "positionID">
-                        @foreach($positions as $position)
-                            <option value="{{$position->id}}">{{$position->name}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($position->id); ?>"><?php echo e($position->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
                 <div class="form-floating mb-3">
@@ -83,4 +80,6 @@
 </div>
 <!-- end row -->
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/employees.blade.php ENDPATH**/ ?>

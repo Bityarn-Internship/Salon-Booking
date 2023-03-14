@@ -1,22 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\Position;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
-class RegisterController extends Controller
+class EmployeesController extends Controller
 {
-
+    public function index(){
+        $positions = Position::all();
+        return view('employees',['positions'=>$positions]);
+    }
      public function store(Request $request){
-        $input = $request->all();
 
+        $input = $request->all();
         $rules = [
             'firstName'=>'required',
             'lastName'=>'required',
@@ -42,7 +44,7 @@ class RegisterController extends Controller
             'lastName.required'=>'Last Name  is required',
             'email.required' => 'Email is required',
             'telephoneNumber.required'=>'Telephone Number  is required',
-           'IDNumber.required' => 'National ID / Passport Number is required',
+            'IDNumber.required' => 'National ID / Passport Number is required',
             'positionID.required' => 'Position is required',
             'password.required'=>'Password is required',
             'confirmPassword.required'=>'Confirm Password is required'
@@ -54,7 +56,7 @@ class RegisterController extends Controller
             return back()->withErrors($validator->messages());
         }
 
-        Service::create([
+        Employee::create([
             'firstName' => $input['firstName'],
             'lastName' => $input['lastName'],
             'email' => $input['email'],

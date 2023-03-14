@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PositionsController;
+use App\Http\Controllers\EmployeesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,14 @@ Route::controller(ServicesController::class)->group(function(){
 
 
 Route::controller(UsersController::class)->group(function(){
-    Route::get('/employees', 'registerEmployee');
+
     Route::get('/client', 'registerClient');
+});
+Route::controller(PositionsController::class)->group(function(){
+    Route::get('/positions', 'index');
+    Route::post('/positions', 'store');
+});
+Route::controller(EmployeesController::class)->group(function(){
+    Route::get('/employees', 'index');
+    Route::post('/employees', 'store');
 });

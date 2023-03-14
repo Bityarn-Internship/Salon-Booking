@@ -11,7 +11,7 @@
             <th>ID</th>
             <th>Service Name</th>
             <th>Cost
-            <th colspan="2">Action</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -20,8 +20,10 @@
             <td><?php echo e($service->id); ?></td>
             <td><?php echo e($service->name); ?></td>
             <td><?php echo e($service->cost); ?></td>
-            <td><a href="<?php echo e(url ('editServices/'.$service->id)); ?>">Edit</a></td>
-            <td><a href="<?php echo e(url ('deleteService/'.$service->id)); ?>">Delete</a></td>
+            <td>
+                <a href="<?php echo e(url ('editService/'.$service->id)); ?>">Edit</a>
+                <a href="<?php echo e(url ('deleteService/'.$service->id)); ?>">Delete</a>
+            </td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

@@ -7,25 +7,25 @@
 
 <table id="servicesView" class="table mb-0">
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>Service Name</th>
-            <th>Cost
-            <th>Actions</th>
-        </tr>
+    <tr>
+        <th>ID</th>
+        <th>Position Name</th>
+        <th>Position Description
+        <th>Actions</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach($services as $service)
+    @foreach($positions as $position)
         <tr>
-            <td>{{$service->id}}</td>
-            <td>{{$service->name}}</td>
-            <td>{{$service->cost}}</td>
+            <td>{{$position->id}}</td>
+            <td>{{$position->name}}</td>
+            <td>{{$position->description}}</td>
             <td>
-                <a href="{{url ('editService/'.$service->id) }}">Edit</a>
-                <a href="{{url ('deleteService/'.$service->id) }}">Delete</a>
+                <a href="{{url ('editPosition/'.$position->id) }}">Edit</a>
+                <a href="{{url ('deletePosition/'.$position->id) }}">Delete</a>
             </td>
         </tr>
-        @endforeach
+    @endforeach
 
     </tbody>
 </table>

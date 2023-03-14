@@ -34,7 +34,7 @@ Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang'
 Route::controller(ServicesController::class)->group(function(){
     Route::get('/services', 'index');
     Route::get('/viewServices', 'viewServices');
-    Route::get('/editServices/{id}', 'editServices');
+    Route::get('/editService/{id}', 'edit');
     Route::get('/viewTrashedServices', 'viewTrashedServices');
     Route::post('/services', 'store');
     Route::post('/updateService/{id}', 'update');
@@ -51,6 +51,9 @@ Route::controller(UsersController::class)->group(function(){
 Route::controller(PositionsController::class)->group(function(){
     Route::get('/positions', 'index');
     Route::post('/positions', 'store');
+    Route::get('/viewPositions', 'viewPositions');
+    Route::get('/editPosition/{id}', 'edit');
+    Route::get('/viewTrashedPositions', 'viewTrashedPositions');
 });
 Route::controller(EmployeesController::class)->group(function(){
     Route::get('/employees', 'index');

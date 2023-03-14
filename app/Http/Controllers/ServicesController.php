@@ -16,9 +16,9 @@ class ServicesController extends Controller
 
         return view('viewServices', ['services' => $services]);
     }
-    public function editServices($id){
+    public function edit($id){
         $service = Service::find($id);
-        return view('editServices', ['service' => $service]);
+        return view('editService', ['service' => $service]);
     }
 
     public function store(Request $request){

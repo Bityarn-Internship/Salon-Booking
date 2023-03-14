@@ -11,6 +11,16 @@ class PositionsController extends Controller
     public function index(){
         return view('positions');
     }
+    public function viewPositions(){
+        $positions = Position::all()->where('deleted_at', NULL);
+
+        return view('viewPositions', ['positions' => $positions]);
+    }
+    public function ViewTrashedPositions()
+    {
+        $positions = Position::onlyTrashed()->get();
+        return view('ViewTrashedPositions',['positions'=> $positions]);
+    }
     public function store(Request $request){
         $input = $request->all();
 

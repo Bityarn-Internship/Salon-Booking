@@ -1,72 +1,37 @@
-<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-<body>
-<section>
-   
-<form action="{{url('/bookEmployee')}}" method="POST">
-    @csrf
-    <input hidden value = "{{$bookingID}}" name = "bookingID">
-    @foreach($employeeServices as $employeeService)
-    <div class=" container">
-        <div class=" content">
+@extends('layouts.master')
 
-            <div class="card">
-                <div class="card-content">
 
-                    <div class="image">
-                        <img src="" alt="">
-                    </div>
-                    <div class="profession">
-                        <span class="name">
-                            Employee Name: {{\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)}}
-                        </span>
-                        <br>
-                        <span class="name">
-                            Service:  {{\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)}}
-                        </span>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="check-service" value = "{{$employeeService->id}}"name = "employeeServices[]">
-                    </div>
-                </div>
+@section('content')
 
-            </div>
-        </div>
+@component('components.breadcrumb')
 
-    </div>
-    @endforeach
-    <center>
-        <div>
-            <button type="submit" class="btn btn-primary w-md">Submit</button>
-        </div>
-    </center>
+
+<div class="card" >
+<div class="card-body">
+<h5 class="card-title text-center">Employee Details</h5>
+<form action = "{{ url('/employeeServices') }}" method = "post" enctype="multipart/form-data">
+@csrf
+<div class="form-floating mb-3">
+    <label for="formrow-inputState" class="form-label">Employees</label>
+    <select id="formrow-inputState" class="form-select" name = "employeeID">
+        @foreach($employees as $employee)
+            <option value="{{$employee->id}}">{{$employee->firstName." ".$employee->latName}}</option>
+        @endforeach
+    </select>
+</div>
+<div class="form-floating mb-3">
+    <label for="formrow-inputState" class="form-label">Services</label>
+    <select id="formrow-inputState" class="form-select" name = "serviceID">
+        @foreach($services as $service)
+            <option value="{{$service->id}}">{{$service->name}}</option>
+        @endforeach
+    </select>
+</div>
+    <input type="submit">
 </form>
-
-</section>
-
-</body>
+</div>
+</div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-{{--    @csrf--}}
-{{--    <h4>Employee Details</h4>--}}
-{{--    <select name="services[]" id="services" multiple>--}}
-{{--        @foreach($employeeServices as $employeeService)--}}
-{{--            <option value="{{$employeeService->id}}">{{\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)}}</option>--}}
-{{--        @endforeach--}}
-{{--    </select>--}}
-
-
-{{--</form>--}}

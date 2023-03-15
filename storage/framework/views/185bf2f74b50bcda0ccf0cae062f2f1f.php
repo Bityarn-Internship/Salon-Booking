@@ -3,7 +3,10 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <body>
 <section>
-<form action="<?php echo e(url('/bookings')); ?>" method="POST">
+   
+<form action="<?php echo e(url('/bookEmployee')); ?>" method="POST">
+    <?php echo csrf_field(); ?>
+    <input hidden value = "<?php echo e($bookingID); ?>" name = "bookingID">
     <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class=" container">
         <div class=" content">
@@ -26,9 +29,8 @@
                         </span>
                     </div>
                     <div>
-                        <input type="checkbox" class="check-service">
+                        <input type="checkbox" class="check-service" value = "<?php echo e($employeeService->id); ?>"name = "employeeServices[]">
                     </div>
-
                 </div>
 
             </div>
@@ -36,6 +38,11 @@
 
     </div>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <center>
+        <div>
+            <button type="submit" class="btn btn-primary w-md">Submit</button>
+        </div>
+    </center>
 </form>
 
 </section>
@@ -65,4 +72,4 @@
 
 
 
-<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/employeeServices.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views//bookEmployeeServices.blade.php ENDPATH**/ ?>

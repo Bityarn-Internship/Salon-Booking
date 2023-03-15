@@ -5,7 +5,7 @@
 
 <h4 class="card-title text-center">View Employees</h4>
 
-<table id="positionsView" class="table mb-0">
+<table id="employeesView" class="table mb-0">
     <thead>
     <tr>
         <th>ID</th>
@@ -40,7 +40,7 @@
 <script src = "//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function (){
-        $('#positionsView').DataTable();
+        $('#employeesView').DataTable();
     });
 </script>
 <?php /**PATH D:\BITYARN\Salon-Booking\resources\views/viewEmployees.blade.php ENDPATH**/ ?>

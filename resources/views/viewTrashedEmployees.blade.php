@@ -3,7 +3,7 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="card-title text-center">View Trashed Positions</h4>
+<h4 class="card-title text-center">View Trashed Employees</h4>
 <div class="col col-md-11 text-right">
     <h3><a href="{{url('restoreEmployees') }}"><b>Restore All</b></a></h3>
 </div>
@@ -31,7 +31,6 @@
             <td>{{$employee->IDNumber}}</td>
             <td>{{$employee->positionID}}</td>
             <td><a href="{{url ('restoreEmployee/'.$employee->id) }}">Restore</a></td>
-
         </tr>
     @endforeach
     </tbody>

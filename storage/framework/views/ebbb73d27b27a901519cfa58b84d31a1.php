@@ -27,6 +27,7 @@
             <td>
                 <a href="<?php echo e(url ('editClient/'.$client->id)); ?>">Edit</a>
                 <a href="<?php echo e(url ('deleteClient/'.$client->id)); ?>">Delete</a>
+                <a href="<?php echo e(url ('bookings/'.$client->id)); ?>">Make a Booking</a>
             </td>
         </tr>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

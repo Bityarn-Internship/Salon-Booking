@@ -61,6 +61,7 @@ Route::controller(UsersController::class)->group(function(){
     Route::get('/viewClients', 'viewClients');
     Route::get('/editClient/{id}', 'edit');
     Route::get('/viewTrashedClients', 'viewTrashedClients');
+
 });
 
 Route::controller(PositionsController::class)->group(function(){
@@ -97,9 +98,19 @@ Route::controller(BookingsController::class)->group(function(){
     Route::get('/restoreBooking/{id}', 'restoreBooking');
     Route::get('/restoreBookings', 'restoreBookings');
     Route::get('/viewTrashedBookings', 'viewTrashedBookings');
+    Route::get('/bookings/{id}', 'booking');
 });
 Route::controller(EmployeeServicesController::class)->group(function(){
-    Route::get('/employeeServices', 'index');
+    Route::get('/bookEmployeeServices', 'index');
+    Route::get('/employeeServices', 'assign');
+    Route::post('/employeeServices', 'store');
+    Route::get('/viewEmployeeServices', 'viewEmployeeServices');
+    Route::get('/editEmployeeService/{id}', 'edit');
+    Route::get('/viewTrashedEmployeeServices', 'viewTrashedEmployeeServices');
+    Route::post('/updateEmployeeService/{id}', 'update');
+    Route::get('/deleteEmployeeService/{id}', 'destroy');
+    Route::get('/restoreEmployeeService/{id}', 'restoreEmployeeService');
+    Route::get('/restoreEmployeeServices', 'restoreEmployeeServices');
 });
 
 Route::controller(PaymentsController::class)->group(function(){

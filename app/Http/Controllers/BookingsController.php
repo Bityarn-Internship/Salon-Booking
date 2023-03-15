@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\Booking;
+use App\Models\User;
 use App\Models\EmployeeService;
 use Illuminate\Http\Request;
 use Auth;
@@ -18,9 +19,9 @@ class BookingsController extends Controller
         return view('bookings',['services'=>$services]);
     }
     public function store(Request $request){
-        
+
         $input = $request->all();
-        
+
         date_default_timezone_set("Africa/Nairobi");
         // return($request['time']);
         $rules = [
@@ -45,7 +46,7 @@ class BookingsController extends Controller
         foreach($services as $service){
             $cost += $service->cost;
         }
-        
+
         Booking::create([
             'clientID' => Auth::user()->id,
             'cost' => $cost,
@@ -54,7 +55,12 @@ class BookingsController extends Controller
         ]);
 
         $employeesServices = EmployeeService::all()->whereIn('serviceID', $request['services']);
-        
+
         return view('/employeeServices', ['employeeServices'=>$employeesServices, 'services'=>$services]);
+    }
+    public function booking($id){
+        $client = User::find($id);
+        $services = Service::all();
+        return view('bookings',['client'=>$client,'services'=>$services]);
     }
 }

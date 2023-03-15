@@ -1,3 +1,6 @@
+
+
+
 <?php $__env->startSection('content'); ?>
 
     <?php $__env->startComponent('components.breadcrumb'); ?>
@@ -51,6 +54,10 @@
                                 <input type="text" class="form-control" id="floatingnameInput" value="<?php echo e($employee->IDNumber); ?>" placeholder="Enter the ID Number..." name="IDNumber">
                                 <label for="floatingnameInput">National ID Number/ Passport Number</label>
                             </div>
+<<<<<<< HEAD
+                            
+=======
+>>>>>>> e3ed901d28ceff426c0a01ff639c12826b017996
                             <center>
                                 <div>
                                     <button type="submit" class="btn btn-primary w-md">Register</button>

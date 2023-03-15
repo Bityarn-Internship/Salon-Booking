@@ -59,6 +59,7 @@ Route::controller(UsersController::class)->group(function(){
     Route::get('/viewClients', 'viewClients');
     Route::get('/editClient/{id}', 'edit');
     Route::get('/viewTrashedClients', 'viewTrashedClients');
+
 });
 
 Route::controller(PositionsController::class)->group(function(){
@@ -87,7 +88,17 @@ Route::controller(EmployeesController::class)->group(function(){
 Route::controller(BookingsController::class)->group(function(){
     Route::get('/bookings', 'index');
     Route::post('/bookings', 'store');
+    Route::get('/bookings/{id}', 'booking');
 });
 Route::controller(EmployeeServicesController::class)->group(function(){
     Route::get('/employeeServices', 'index');
+    Route::get('/assignServices', 'assign');
+    Route::post('/assignServices', 'store');
+    Route::get('/viewEmployeeServices', 'viewEmployeeServices');
+    Route::get('/editEmployeeService/{id}', 'edit');
+    Route::get('/viewTrashedEmployeeServices', 'viewTrashedEmployeeServices');
+    Route::post('/updateEmployeeService/{id}', 'update');
+    Route::get('/deleteEmployeeService/{id}', 'destroy');
+    Route::get('/restoreEmployeeService/{id}', 'restoreEmployeeService');
+    Route::get('/restoreEmployeeServices', 'restoreEmployeeServices');
 });

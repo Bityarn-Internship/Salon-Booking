@@ -4,13 +4,13 @@
 <body>
 <section>
 <form action="<?php echo e(url('/bookings')); ?>" method="POST">
+    <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class=" container">
         <div class=" content">
-            <div class="card">
-                <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>--}}
-                
 
+            <div class="card">
                 <div class="card-content">
+
                     <div class="image">
                         <img src="" alt="">
                     </div>
@@ -21,7 +21,8 @@
                         </span>
                         <br>
                         <span class="name">
-                            Service:
+                            Service:  <?php echo e(\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)); ?>
+
                         </span>
                     </div>
                     <div>
@@ -29,14 +30,14 @@
                     </div>
 
                 </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
             </div>
-
-
         </div>
 
     </div>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </form>
+
 </section>
 
 </body>

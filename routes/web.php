@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\EmployeeServicesController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\BookedServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,13 +105,23 @@ Route::controller(EmployeeServicesController::class)->group(function(){
     Route::get('/bookEmployeeServices', 'index');
     Route::get('/employeeServices', 'assign');
     Route::post('/employeeServices', 'store');
-    Route::get('/viewEmployeeServices', 'viewEmployeeServices');
+
     Route::get('/editEmployeeService/{id}', 'edit');
     Route::get('/viewTrashedEmployeeServices', 'viewTrashedEmployeeServices');
     Route::post('/updateEmployeeService/{id}', 'update');
     Route::get('/deleteEmployeeService/{id}', 'destroy');
     Route::get('/restoreEmployeeService/{id}', 'restoreEmployeeService');
     Route::get('/restoreEmployeeServices', 'restoreEmployeeServices');
+});
+
+Route::controller(BookedServicesController::class)->group(function(){
+    Route::get('/viewBookedServices', 'viewBookedServices');
+    Route::get('/viewTrashedBookedServices', 'viewTrashedBookedServices');
+    Route::get('/editBookedService/{id}', 'edit');
+    Route::post('/updateBookedService/{id}', 'update');
+    Route::get('/deleteBookedService/{id}', 'destroy');
+    Route::get('/restoreBookedService/{id}', 'restoreBookedService');
+    Route::get('/restoreBookedServices', 'restoreBookedServices');
 });
 
 Route::controller(PaymentsController::class)->group(function(){

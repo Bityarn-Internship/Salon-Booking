@@ -96,7 +96,7 @@ class BookingsController extends Controller
 
         // $cost = Booking::find($input['bookingID'])->cost;
 
-        return view('/depositPayment', ['cost'=>$input['cost'], 'services'=>$services])->with('message', 'Services successfully inserted');
+        return view('/depositPayment', ['cost'=>$input['cost'],'bookingID'=>$input['bookingID'], 'walkinID' => $input['walkinID'],'services'=>$services])->with('message', 'Services successfully inserted');
     }
 
     public function viewBookings(){

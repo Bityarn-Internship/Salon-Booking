@@ -28,9 +28,14 @@
                     <div>
                         <button type="submit" class="btn btn-primary w-md">Pay with paypal</button>
                     </div><br/>
-                    <div>
-                        <button type="submit" class="btn btn-primary w-md">Pay with MPESA</button>
-                    </div>
+                    <form action = "{{url('/mpesaPayment')}}" method = "POST">
+                        @csrf
+                        <input hidden value = "{{$bookingID}}" name = "bookingID">
+                        <input hidden value = "{{$cost}}" name = "cost">
+                        <div>
+                            <button type="submit" class="btn btn-success w-md">Pay with MPESA</button>
+                        </div>
+                    </form>
                 </center>
             </div>
             <!-- end card body -->

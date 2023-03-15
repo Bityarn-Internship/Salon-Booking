@@ -11,6 +11,7 @@ use App\Http\Controllers\EmployeeServicesController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\WalkInsController;
 use App\Http\Controllers\BookedServicesController;
+use App\Http\Controllers\MpesaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,7 +107,7 @@ Route::controller(EmployeeServicesController::class)->group(function(){
     Route::get('/bookEmployeeServices', 'index');
     Route::get('/employeeServices', 'assign');
     Route::post('/employeeServices', 'store');
-
+    Route::get('/viewEmployeeServices', 'viewEmployeeServices');
     Route::get('/editEmployeeService/{id}', 'edit');
     Route::get('/viewTrashedEmployeeServices', 'viewTrashedEmployeeServices');
     Route::post('/updateEmployeeService/{id}', 'update');
@@ -132,4 +133,9 @@ Route::controller(PaymentsController::class)->group(function(){
 Route::controller(WalkInsController::class)->group(function(){
     Route::get('/clientBooking', 'index');
     Route::post('/clientBooking', 'store');
+});
+
+Route::controller(MpesaController::class)->group(function(){
+    Route::post('/mpesaPayment', 'index');
+    // Route::post('/mpesaPayment', 'store');
 });

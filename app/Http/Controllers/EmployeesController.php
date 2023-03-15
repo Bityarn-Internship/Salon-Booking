@@ -72,7 +72,7 @@ class EmployeesController extends Controller
 //             'userProfile' => '/storage/'.$pathProfile
         ]);
 
-        return redirect('/viewServices')->with('message', 'Employee registered successfully!');
+        return redirect('/login')->with('message', 'Registration successful!');
     }
 
     public function update(Request $request, $id){

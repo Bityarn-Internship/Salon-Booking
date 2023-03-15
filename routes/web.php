@@ -8,6 +8,7 @@ use App\Http\Controllers\PositionsController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\EmployeeServicesController;
+use App\Http\Controllers\PaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::controller(UsersController::class)->group(function(){
     Route::get('/login', 'login');
     Route::post('/clients', 'store');
     Route::post('/login', 'processLogin');
+    Route::get('/logout', 'logout');
     Route::post('/updateClient/{id}', 'update');
     Route::get('/deleteClient/{id}', 'destroy');
     Route::get('/restoreClient/{id}', 'restoreClient');
@@ -87,7 +89,19 @@ Route::controller(EmployeesController::class)->group(function(){
 Route::controller(BookingsController::class)->group(function(){
     Route::get('/bookings', 'index');
     Route::post('/bookings', 'store');
+    Route::post('/bookEmployee', 'bookEmployee');
+    Route::get('/viewBookings', 'viewBookings');
+    Route::get('/editBooking/{id}', 'edit');
+    Route::post('/updateBooking/{id}', 'update');
+    Route::get('/deleteBooking/{id}', 'destroy');
+    Route::get('/restoreBooking/{id}', 'restoreBooking');
+    Route::get('/restoreBookings', 'restoreBookings');
+    Route::get('/viewTrashedBookings', 'viewTrashedBookings');
 });
 Route::controller(EmployeeServicesController::class)->group(function(){
     Route::get('/employeeServices', 'index');
+});
+
+Route::controller(PaymentsController::class)->group(function(){
+    Route::get('/depositPayment', 'index');
 });

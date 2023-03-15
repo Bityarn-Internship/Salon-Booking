@@ -1,8 +1,8 @@
 <head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
-<link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
+<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
-<script src="{{asset("assets/js/booking.js")}}" defer></script>
+<script src="{{asset('assets/js/booking.js')}}" defer></script>
 </head>
 <body>
 <form action="{{url('/bookings')}}" method="POST">

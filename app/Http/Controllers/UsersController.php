@@ -28,7 +28,7 @@ class UsersController extends Controller
 
         //Login user
         if(Auth::guard('web')->attempt($credentials)){
-            return redirect('/viewServices')->with('message', 'Login successful');
+            return redirect('/bookings')->with('message', 'Login successful');
         }
 
         if(Auth::guard('employees')->attempt($credentials)){
@@ -91,7 +91,7 @@ class UsersController extends Controller
             'password' => Hash::make($input['password']),
         ]);
 
-        return redirect('/viewClients')->with('message', 'Client registered successfully!');
+        return redirect('/login')->with('message', 'Registration successful!');
     }
 
     public function update(Request $request, $id){

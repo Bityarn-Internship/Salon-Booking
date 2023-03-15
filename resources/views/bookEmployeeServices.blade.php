@@ -7,6 +7,8 @@
 <form action="{{url('/bookEmployee')}}" method="POST">
     @csrf
     <input hidden value = "{{$bookingID}}" name = "bookingID">
+    <input hidden value = "{{$walkinID}}" name = "walkinID">
+    <input hidden value = "{{$cost}}" name = "cost">
     @foreach($employeeServices as $employeeService)
     <div class=" container">
         <div class=" content">

@@ -46,7 +46,7 @@ class EmployeeServicesController extends Controller
                 'serviceID' => $input['serviceID'],
             ]);
 
-            return redirect('/viewServices')->with('message', 'Employee Service recorded successfully!');
+            return redirect('/viewEmployeeServices')->with('message', 'Employee Service recorded successfully!');
     }
     public function viewEmployeeServices(){
         $employeeServices = EmployeeService::all();

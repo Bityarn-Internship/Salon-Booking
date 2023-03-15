@@ -42,6 +42,7 @@ class BookingsController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator->messages());
         }
+
         $cost = 0;
         $services = Service::all()->whereIn('id', $request['services']);
 
@@ -57,19 +58,21 @@ class BookingsController extends Controller
         ]);
         $bookingID = Booking::select('id')->where('clientID', Auth::user()->id)->where('date', $input['date'])->get()->last()->id;
         $employeesServices = EmployeeService::all()->whereIn('serviceID', $request['services']);
-        
-        return view('/bookEmployeeServices', ['employeeServices'=>$employeesServices, 'services'=>$services, 'bookingID'=>$bookingID]);
+
+        return view('/bookEmployeeServices', ['employeeServices'=>$employeesServices, 'services'=>$services, 'bookingID'=>$bookingID, 'walkinID'=>NULL, 'cost'=>$cost]);
     }
 
     public function bookEmployee(Request $request){
         $input = $request->all();
         
         $rules = [
-            'bookingID'=>'required'
+            'bookingID'=>'nullable',
+            'walkinID'=>'nullable'
         ];
 
         $messages = [
-            'bookingID.required'=>'Booking ID is required'
+            'bookingID.nullable'=>'Booking ID is optional',
+            'walkinID.nullable'=>'Walk-In ID is optional'
         ];
 
         $validator = Validator::make($input, $rules, $messages);
@@ -85,14 +88,15 @@ class BookingsController extends Controller
             $services[] = Service::find($employeeservice->serviceID);
             BookedService::create([
                 'bookingID' => $input['bookingID'],
+                'walkinID' => $input['walkinID'],
                 'serviceID' => $employeeservice->serviceID,
                 'employeeID' => $employeeservice->employeeID,
             ]);
         }
 
-        $cost = Booking::find($input['bookingID'])->cost;
+        // $cost = Booking::find($input['bookingID'])->cost;
 
-        return view('/depositPayment', ['cost'=>$cost, 'services'=>$services])->with('message', 'Services successfully inserted');
+        return view('/depositPayment', ['cost'=>$input['cost'], 'services'=>$services])->with('message', 'Services successfully inserted');
     }
 
     public function viewBookings(){
@@ -157,12 +161,5 @@ class BookingsController extends Controller
     public function restoreBookings(){
         Booking::onlyTrashed()->restore();
         return back();
-    }
-    
-
-    public function booking($id){
-        $client = User::find($id);
-        $services = Service::all();
-        return view('bookings',['client'=>$client,'services'=>$services]);
     }
 }

@@ -15,13 +15,13 @@
                 <div class = "text-center">
                     <h6 class = "card-title text-center">Your Services</h6>
                     @foreach($services as $service)
-                        {{$service->name.': '.$service->cost}}
+                        <p>{{$service->name.': '.$service->cost}}</p>
                     @endforeach
                     <p></p>
                     <p>Total Cost: {{$cost}}</p>
                 </div>
 
-                <p>To reserve a booking for your services, you need to make a 20% payment of your booked services cost.</p>
+                <p>To confirm your booking you need to make a 20% deposit payment of your booked services cost.</p>
                 <br><p>Deposit Cost: {{(0.2 * $cost)}}</p>
                 
                 <center>

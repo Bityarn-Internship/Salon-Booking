@@ -27,7 +27,6 @@
             <td>
                 <a href="{{url ('editClient/'.$client->id) }}">Edit</a>
                 <a href="{{url ('deleteClient/'.$client->id) }}">Delete</a>
-                <a href="{{url ('bookings/'.$client->id) }}">Make a Booking</a>
             </td>
         </tr>
     @endforeach

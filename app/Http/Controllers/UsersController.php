@@ -33,7 +33,7 @@ class UsersController extends Controller
         }
 
         if(Auth::guard('employees')->attempt($credentials)){
-            return redirect('/viewEmployees')->with('message', 'Login successful');
+            return redirect('/clientBooking')->with('message', 'Login successful');
         }
 
         return redirect()->back()->with('messageLogin', 'Invalid login credentials');

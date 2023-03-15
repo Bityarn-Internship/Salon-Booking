@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\EmployeeServicesController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\WalkInsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,4 +116,9 @@ Route::controller(EmployeeServicesController::class)->group(function(){
 
 Route::controller(PaymentsController::class)->group(function(){
     Route::get('/depositPayment', 'index');
+});
+
+Route::controller(WalkInsController::class)->group(function(){
+    Route::get('/clientBooking', 'index');
+    Route::post('/clientBooking', 'store');
 });

@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PositionsController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\EmployeeServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,4 +87,7 @@ Route::controller(EmployeesController::class)->group(function(){
 Route::controller(BookingsController::class)->group(function(){
     Route::get('/bookings', 'index');
     Route::post('/bookings', 'store');
+});
+Route::controller(EmployeeServicesController::class)->group(function(){
+    Route::get('/employeeServices', 'index');
 });

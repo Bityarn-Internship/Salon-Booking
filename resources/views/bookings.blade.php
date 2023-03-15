@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 <form action="{{url('/bookings')}}" method="POST">
     @csrf
-<h4>Service Name</h4>
+    <h4>Service Name</h4>
     <select name="services[]" id="services" multiple>
         @foreach($services as $service)
         <option value="{{$service->id}}">{{$service->name." - ".$service->cost}}</option>

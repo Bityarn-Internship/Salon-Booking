@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <body>
 <section>
-   
+
 <form action="{{url('/bookEmployee')}}" method="POST">
     @csrf
     <input hidden value = "{{$bookingID}}" name = "bookingID">

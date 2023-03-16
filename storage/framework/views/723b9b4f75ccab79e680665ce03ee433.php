@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <body>
 <section>
-   
+
 <form action="<?php echo e(url('/bookEmployee')); ?>" method="POST">
     <?php echo csrf_field(); ?>
     <input hidden value = "<?php echo e($bookingID); ?>" name = "bookingID">

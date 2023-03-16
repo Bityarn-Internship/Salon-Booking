@@ -135,7 +135,8 @@ Route::controller(PaymentsController::class)->group(function(){
     Route::get('/depositPayment', 'depositPayment');
     Route::get('/completePayment/{id}', 'completePayment');
     Route::post('/completeCashPayment', 'completeCashPayment');
-
+    Route::get('/viewInvoice/{id}', 'viewInvoice');
+    Route::get('/generateInvoice/{id}/generate', 'generateInvoice');
 });
 
 Route::controller(PaypalPaymentController::class)->group(function(){

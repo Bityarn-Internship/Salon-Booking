@@ -4,30 +4,30 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="text-center py-2">View Services</h4>
+<h4 class="text-center py-2">View Positions</h4>
 <div class="container ">
     <div class="row">
         <table id="servicesView" class="table table-striped" style="width:100%">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Service Name</th>
-                    <th>Cost
-                    <th>Actions</th>
-                </tr>
+            <tr>
+                <th>ID</th>
+                <th>Position Name</th>
+                <th>Position Description
+                <th>Actions</th>
+            </tr>
             </thead>
             <tbody>
-                <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td><?php echo e($service->id); ?></td>
-                    <td><?php echo e($service->name); ?></td>
-                    <td><?php echo e($service->cost); ?></td>
+                    <td><?php echo e($position->id); ?></td>
+                    <td><?php echo e($position->name); ?></td>
+                    <td><?php echo e($position->description); ?></td>
                     <td>
-                        <a class="btn btn-primary" href="<?php echo e(url ('editService/'.$service->id)); ?>">Edit</a>
-                        <a class="btn btn-danger" href="<?php echo e(url ('deleteService/'.$service->id)); ?>">Delete</a>
+                        <a class="btn btn-primary" href="<?php echo e(url ('editPosition/'.$position->id)); ?>">Edit</a>
+                        <a class="btn btn-danger" href="<?php echo e(url ('deletePosition/'.$position->id)); ?>">Delete</a>
                     </td>
                 </tr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
         </table>
@@ -40,4 +40,4 @@
         $('#servicesView').DataTable();
     });
 </script>
-<?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views/viewServices.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views/viewPositions.blade.php ENDPATH**/ ?>

@@ -14,7 +14,6 @@ class BookedService extends Model implements Auditable
     protected $fillable = [
         'id',
         'bookingID',
-        'walkinID',
         'serviceID',
         'employeeID',
     ];

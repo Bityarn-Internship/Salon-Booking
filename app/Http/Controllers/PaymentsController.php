@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\BookedService;
 use App\Models\Payment;
 use App\Models\PaypalPayment;
+use App\Models\User;
 
 class PaymentsController extends Controller
 {
@@ -47,7 +48,23 @@ class PaymentsController extends Controller
         $booking->status = 'Complete';
         $booking->save();
 
-        return redirect('/paymentSuccess');
+        $bookedServices = BookedService::all()->where('bookingID', $booking->id);
+        $user = User::find($booking->clientID);
+
+        $body = "<p>Hello ".UsersController::getClientName($booking->clientID).",</p>
+                    <p>
+                        We have received your full payment of ".$booking->cost." for Booking Number ".$booking->id." and your service(s) has been successfully done.
+                    </p>
+                    <h4>Booking Details: </h4>
+                    <p>Booking ID: ".$booking->id."</br>
+                    <p>Your booking was scheduled on ".$booking->date." at ".$booking->time."</p>";
+        \Mail::send('sendBookingEmail', ['body'=>$body, 'bookedServices'=>$bookedServices], function($message) use ($request, $user){
+            $message->from('nkatha.dev@gmail.com', 'Salon Booking System');
+            $message->to($user->email)
+            ->subject('Salon Booking System: Booking Details');
+        });
+
+        return redirect('/paymentSuccess')->with('message', 'Email successfully sent!');
 
         
     }

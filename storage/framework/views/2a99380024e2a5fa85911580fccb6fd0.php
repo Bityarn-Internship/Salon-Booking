@@ -19,7 +19,10 @@
     <input type="time" name="time">
 
     <br>
-    <input type="submit">
+    <div>
+        <button type="submit" class="btn btn-primary w-md">Register</button>
+    </div>
+
 </form>
 
 

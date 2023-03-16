@@ -12,20 +12,24 @@
                 <div class = "text-center">
                     <h6 class = "card-title text-center">Your Services</h6>
                     <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php echo e($service->name.': '.$service->cost); ?>
-
+                        <p><?php echo e($service->name.': '.$service->cost); ?></p>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <p></p>
                     <p>Total Cost: <?php echo e($cost); ?></p>
                 </div>
 
-                <p>To reserve a booking for your services, you need to make a 20% payment of your booked services cost.</p>
+                <p>To confirm your booking you need to make a 20% deposit payment of your booked services cost.</p>
                 <br><p>Deposit Cost: <?php echo e((0.2 * $cost)); ?></p>
 
                 <center>
-                    <div>
+                    <form action="<?php echo e(url('/payment')); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
+                        <input type="hidden" name="bookingID" value="<?php echo e($bookingID); ?>">
+                        <input type="hidden" name="cost" value="<?php echo e((0.2 * $cost)); ?>">
                         <button type="submit" class="btn btn-primary w-md">Pay with paypal</button>
-                    </div><br/>
+                    </form>
+
+            <br/>
                     <div>
                         <button type="submit" class="btn btn-primary w-md">Pay with MPESA</button>
                     </div>

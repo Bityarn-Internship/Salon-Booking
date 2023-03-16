@@ -1,68 +1,39 @@
-<link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-<body>
-<section>
-<form action="<?php echo e(url('/bookings')); ?>" method="POST">
-    <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <div class=" container">
-        <div class=" content">
 
-            <div class="card">
-                <div class="card-content">
 
-                    <div class="image">
-                        <img src="" alt="">
-                    </div>
-                    <div class="profession">
-                        <span class="name">
-                            Employee Name: <?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)); ?>
 
-                        </span>
-                        <br>
-                        <span class="name">
-                            Service:  <?php echo e(\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)); ?>
+<?php $__env->startSection('content'); ?>
 
-                        </span>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="check-service">
-                    </div>
+<?php $__env->startComponent('components.breadcrumb'); ?>
 
-                </div>
 
-            </div>
-        </div>
-
-    </div>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<div class="card" >
+<div class="card-body">
+<h5 class="card-title text-center">Employee Details</h5>
+<form action = "<?php echo e(url('/employeeServices')); ?>" method = "post" enctype="multipart/form-data">
+<?php echo csrf_field(); ?>
+<div class="form-floating mb-3">
+    <label for="formrow-inputState" class="form-label">Employees</label>
+    <select id="formrow-inputState" class="form-select" name = "employeeID">
+        <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($employee->id); ?>"><?php echo e($employee->firstName." ".$employee->latName); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+</div>
+<div class="form-floating mb-3">
+    <label for="formrow-inputState" class="form-label">Services</label>
+    <select id="formrow-inputState" class="form-select" name = "serviceID">
+        <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($service->id); ?>"><?php echo e($service->name); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+</div>
+    <input type="submit">
 </form>
-
-</section>
-
-</body>
+</div>
+</div>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/employeeServices.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/employeeServices.blade.php ENDPATH**/ ?>

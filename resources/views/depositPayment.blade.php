@@ -25,9 +25,14 @@
                 <br><p>Deposit Cost: {{(0.2 * $cost)}}</p>
 
                 <center>
-                    <div>
+                    <form action="{{url('/payment')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="bookingID" value="{{$bookingID}}">
+                        <input type="hidden" name="cost" value="{{(0.2 * $cost)}}">
                         <button type="submit" class="btn btn-primary w-md">Pay with paypal</button>
-                    </div><br/>
+                    </form>
+
+            <br/>
                     <div>
                         <button type="submit" class="btn btn-primary w-md">Pay with MPESA</button>
                     </div>

@@ -11,7 +11,7 @@
 </head>
 <body>
     <form action = "<?php echo e(url('/employees')); ?>" method = "post" enctype="multipart/form-data">
-    <?php echo csrf_field(); ?>
+        <?php echo csrf_field(); ?>
         <h5 class="card-title text-center">Employee Details</h5><br/>
         <div class="row">
             <div class="col-md-6">

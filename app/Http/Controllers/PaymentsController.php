@@ -8,6 +8,7 @@ use App\Models\MpesaPayment;
 use App\Models\Service;
 use App\Models\BookedService;
 use App\Models\Payment;
+use App\Models\PaypalPayment;
 
 class PaymentsController extends Controller
 {
@@ -19,7 +20,7 @@ class PaymentsController extends Controller
         $clientID = Booking::find($bookingID)->clientID;
         $amountPaid = 0;
 
-        $transactions = MpesaPayment::all()->where('bookingID', $bookingID);
+        $transactions = PaypalPayment::all()->where('bookingID', $bookingID);
         foreach($transactions as $transaction){
             $amountPaid += $transaction->amount;
         }

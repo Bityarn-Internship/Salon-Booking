@@ -16,13 +16,10 @@ return new class extends Migration
             $table->string('payment_id');
             $table->string('payer_id');
             $table->string('payer_email');
-
             $table->integer('bookingID')->unsigned();
             $table->foreign('bookingID')->references('id')->on('bookings');
-
             $table->float('amount', 10, 2);
             $table->string('currency');
-            $table->string('payment_status');
             $table->softDeletes()->nullable;
             $table->timestamps();
         });

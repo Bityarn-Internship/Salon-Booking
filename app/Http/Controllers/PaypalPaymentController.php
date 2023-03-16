@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
 use Omnipay\Omnipay;
-
+use Session;
 
 class PaypalPaymentController extends Controller
 {
@@ -25,8 +25,8 @@ class PaypalPaymentController extends Controller
     {
 
         try {
-
             $response = $this->gateway->purchase(array(
+                Session::put('bookingID', $request->bookingID),
                 'amount' => $request->cost,
                 'bookingID' => $request->bookingID,
                 'currency' => env('PAYPAL_CURRENCY'),
@@ -64,16 +64,20 @@ class PaypalPaymentController extends Controller
                 $payment->payer_email = $arr['payer']['payer_info']['email'];
                 $payment->amount = $arr['transactions'][0]['amount']['total'];
                 $payment->currency = env('PAYPAL_CURRENCY');
-                $payment->payment_status = $arr['state'];
+                $payment->bookingID = Session::get('bookingID');
 
-
-
-                return $bookingID;
-//                 $bookingID = $request->$bookingID;
-
+                $booking = Booking::find(Session::get('bookingID'));
+           
+                if($arr['transactions'][0]['amount']['total'] == (0.2 * $booking->cost)){
+                    $booking->status = 'Reserved';
+                }else{
+                    $booking->status = 'Complete';
+                }
+                $booking->save();
                 $payment->save();
-                return view('viewServices',['bookingID'=>$bookingID]);
-                return "Payment is Successful. Your Transaction Id is : " . $arr['id'];
+                // return view('viewServices',['bookingID'=>$bookingID]);
+                // return "Payment is Successful. Your Transaction Id is : " . $arr['id'];
+                return redirect('/viewBookings');
             }
             else{
                 return $response->getMessage();
@@ -101,17 +105,17 @@ class PaypalPaymentController extends Controller
         return redirect('ViewPaypalPayments');
 
     }
-        public function viewTrashedPayPalPayments()
-        {
-            $paypalpayments = PaypalPayment::onlyTrashed()->get();
-            return view('ViewTrashedPaypalPayments',['paypalpayments'=> $paypalpayments]);
-        }
-        public function restorePayPalPayments($id){
-            PaypalPayment::whereId($id)->restore();
-            return redirect('ViewTrashedPayPalPayments');
-        }
-        public function restoreAllPayPalPayments(){
-            PaypalPayment::onlyTrashed()->restore();
-            return back();
-        }
+    public function viewTrashedPayPalPayments()
+    {
+        $paypalpayments = PaypalPayment::onlyTrashed()->get();
+        return view('ViewTrashedPaypalPayments',['paypalpayments'=> $paypalpayments]);
+    }
+    public function restorePayPalPayments($id){
+        PaypalPayment::whereId($id)->restore();
+        return redirect('ViewTrashedPayPalPayments');
+    }
+    public function restoreAllPayPalPayments(){
+        PaypalPayment::onlyTrashed()->restore();
+        return back();
+    }
 }

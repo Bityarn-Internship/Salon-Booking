@@ -137,5 +137,7 @@ Route::controller(WalkInsController::class)->group(function(){
 
 Route::controller(MpesaController::class)->group(function(){
     Route::post('/mpesaPayment', 'index');
-    // Route::post('/mpesaPayment', 'store');
+    Route::get('/mpesaConfirmation/{id}', 'mpesaConfirmation');
+    Route::get('/paymentSuccess', 'paymentSuccess');
+    Route::post('/checkTransaction', 'checkTransaction');
 });

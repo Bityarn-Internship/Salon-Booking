@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('time');
             $table->double('cost');
-            $table->enum('status', ['Pending', 'Complete'])->default('Pending');
+            $table->enum('status', ['In progress', 'Complete','Reserved'])->default('In progress');
             $table->softDeletes();
             $table->timestamps();
         });

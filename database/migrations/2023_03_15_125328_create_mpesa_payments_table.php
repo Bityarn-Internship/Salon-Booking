@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('currency')->default('Kshs');
             $table->string('telephoneNumber');
             $table->integer('bookingID')->nullable()->unsigned();
-            $table->foreign('bookingID') -> references('id') -> on('bookings');
+            $table->foreign('bookingID')->references('id')->on('bookings');
+            $table->enum('status', ['Pending Payment', 'Payment Complete','Deposit Paid'])->default('Pending Payment');
             $table->softDeletes();            
             $table->timestamps();
         });

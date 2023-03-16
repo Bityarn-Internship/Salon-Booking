@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\MpesaPayment;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class MpesaController extends Controller
 {
@@ -59,7 +61,6 @@ class MpesaController extends Controller
     {
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
-        $bookingID =  $request->bookingID;
         $phone =  $request->telephoneNumber;
         $formatedPhone = substr($phone, 1); //7*******
         $code = "254";
@@ -75,7 +76,7 @@ class MpesaController extends Controller
             'PartyB' => 174379,
             'PhoneNumber' => $phoneNumber,
             //mpesa sends transaction response to this callback url
-            'CallBackURL' => 'https://e39b-105-162-62-250.in.ngrok.io/api/stk/push/callback/url',
+            'CallBackURL' => 'https://7d23-197-237-85-14.ap.ngrok.io/api/stk/push/callback/url',
             'AccountReference' => "Salon Booking System Payment",
             'TransactionDesc' => "Lipa Na M-PESA"
         ];
@@ -89,21 +90,16 @@ class MpesaController extends Controller
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
         $curl_response = curl_exec($curl);
-        
-        return $curl_response;
+
+        return redirect('/mpesaConfirmation/'.$request->bookingID);
     }
 
     //Save MPESA data to database
     public function mpesaResponse(Request $request){
-        Log::info('Request get content: '.$request->getContent());
-
+        Log::info($request->getContent());
         $response = json_decode($request->getContent());
-        Log::info("Response");
-        Log::info($response);
-
+    
         $responseData = $response->Body->stkCallback->CallbackMetadata;
-        Log::info("Response Data");
-        Log::info($responseData);
 
         $amount = $responseData->Item[0]->Value;
         $transactionID = $responseData->Item[1]->Value;
@@ -115,9 +111,44 @@ class MpesaController extends Controller
         $transaction->transactionDate = $transactionDate;
         $transaction->amount = $amount;
         $transaction->telephoneNumber = $phoneNumber;
-        Log::info('Transaction: ');
-        Log::info($transaction);
-        
+
         $transaction->save();
+    }
+
+    public function mpesaConfirmation($id){
+  
+        return view('mpesaConfirmation', ['bookingID'=>$id]);
+    }
+    public function checkTransaction(Request $request){
+        $request->validate([
+            'transaction' => 'required',
+        ]);
+
+        $transaction = $request->transaction;
+        $dbTransaction = MpesaPayment::all()->where('transactionID', $transaction)->first();
+
+        if($dbTransaction){
+            $dbTransaction->bookingID = $request->bookingID;
+            $dbTransaction->save();
+            $amount = $dbTransaction->amount;
+
+            $booking = Booking::find($request->bookingID);
+           
+            if($amount == (0.2 * $booking->cost)){
+                $booking->status = 'Reserved';
+                $dbTransaction->status = 'Deposit Paid';
+            }else{
+                $booking->status = 'Complete';
+                $dbTransaction->status = 'Payment Complete';
+            }
+           
+            return redirect('/paymentSuccess');
+        }else{
+            return redirect()->back()->with('message', 'Transaction not found. Please try again');
+        }
+    }
+
+    public function paymentSuccess(){
+        return view('paymentSuccess');
     }
 }

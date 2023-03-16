@@ -105,4 +105,13 @@ class ServicesController extends Controller
 
         return $service->name;
     }
+
+    public static function getServiceCost($id){
+        if($id == NULL){
+            return "Not found";
+        }
+        $service = Service::find($id);
+
+        return $service->cost;
+    }
 }

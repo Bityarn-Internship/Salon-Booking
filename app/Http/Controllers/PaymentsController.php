@@ -10,6 +10,8 @@ use App\Models\BookedService;
 use App\Models\Payment;
 use App\Models\PaypalPayment;
 use App\Models\User;
+use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PaymentsController extends Controller
 {
@@ -65,8 +67,30 @@ class PaymentsController extends Controller
         });
 
         return redirect('/paymentSuccess')->with('message', 'Email successfully sent!');
+    }
 
+    public function viewInvoice($id){
+        $booking = Booking::findOrFail($id);
+        $user = User::find($booking->clientID);
+        $bookedServices = BookedService::all()->where('bookingID', $booking->id);
+
+        return view('generateInvoice', ['booking'=>$booking, 'client'=>$user, 'bookedServices'=>$bookedServices]);
+    }
+
+    public function generateInvoice($id){
+        $booking = Booking::findOrFail($id);
+        $user = User::find($booking->clientID);
+        $bookedServices = BookedService::all()->where('bookingID', $booking->id);
         
+        $data = [
+            'booking'=>$booking, 
+            'client'=>$user, 
+            'bookedServices'=>$bookedServices
+        ];
+
+        $pdf = Pdf::loadView('generateInvoice', $data);
+        $todayDate = Carbon::now()->format('d-m-Y');
+        return $pdf->download('invoice'.$id.' - '.$todayDate.'.pdf');
     }
 
 }

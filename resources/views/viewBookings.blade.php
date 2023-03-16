@@ -31,7 +31,8 @@
 
                     <td>
                         <a class="btn btn-success" href="{{url ('completePayment/'.$booking->id) }}">Complete Payment</a>
-                        <a class="btn btn-primary" href="{{url ('editBooking/'.$booking->id) }}">Edit</a>
+                        <a class="btn btn-primary" target = "_blank" href="{{url ('viewInvoice/'.$booking->id) }}">View Invoice</a>
+                        <a class="btn btn-info" href="{{url ('editBooking/'.$booking->id) }}">Edit</a>
                         <a class="btn btn-danger" href="{{url ('deleteBooking/'.$booking->id) }}">Delete</a>
                     </td>
                 </tr>

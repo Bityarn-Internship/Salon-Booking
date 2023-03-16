@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('telephoneNumber');
             $table->string('password');
+            $table->string('user_type')->default('self-registered');
             $table->softDeletes();
             $table->timestamps();
         });

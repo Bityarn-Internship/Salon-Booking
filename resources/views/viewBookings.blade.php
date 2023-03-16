@@ -28,6 +28,7 @@
             <td>{{$booking->status}}</td>
             
             <td>
+                <a href="{{url ('completePayment/'.$booking->id) }}">Complete Payment</a>
                 <a href="{{url ('editBooking/'.$booking->id) }}">Edit</a>
                 <a href="{{url ('deleteBooking/'.$booking->id) }}">Delete</a>
             </td>

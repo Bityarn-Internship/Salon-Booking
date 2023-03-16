@@ -1,14 +1,14 @@
 <head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
-<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+<link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
 <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
-<script src="{{asset('assets/js/booking.js')}}" defer></script>
+<script src="<?php echo e(asset('assets/js/booking.js')); ?>" defer></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<form action="{{url('/clientBooking')}}" method="POST">
-    @csrf
+<form action="<?php echo e(url('/clientBooking')); ?>" method="POST">
+    <?php echo csrf_field(); ?>
     <div class = "row">
         <div class="col-md-6">
             <label for="formGroupExampleInput" class="form-label">First Name</label>
@@ -29,13 +29,20 @@
             <input type="tel" class="form-control" id="formGroupExampleInput2" placeholder="Enter telephone number" name = "telephoneNumber">
         </div>
     </div>
+    <div class = "row">
+        <input hidden type="text" class="form-control" id="formGroupExampleInput" value = "walk-in" name = "userType">
+        <input hidden type="password" class="form-control" id="formGroupExampleInput" value = "<?php echo e('Walkin@123'); ?>" name = "password">
+        <input hidden type="password" class="form-control" id="formGroupExampleInput2" value = "<?php echo e('Walkin@123'); ?>" name = "confirmPassword">
+    </div>
+
+    </div>
     <br/>
     <div class = "row">
         <label>Service Name</label>
         <select name="services[]" id="services" multiple>
-            @foreach($services as $service)
-            <option value="{{$service->id}}">{{$service->name." - ".$service->cost}}</option>
-            @endforeach
+            <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($service->id); ?>"><?php echo e($service->name." - ".$service->cost); ?></option>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </select>
     </div>
     <br/><br/>
@@ -63,3 +70,4 @@
 <script>
     new MultiSelectTag('services')  // id
 </script>
+<?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views/clientBooking.blade.php ENDPATH**/ ?>

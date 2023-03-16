@@ -13,12 +13,8 @@ return new class extends Migration
     {
         Schema::create('booked_services', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bookingID')->nullable()->unsigned();
+            $table->integer('bookingID')->unsigned();
             $table->foreign('bookingID')->references('id')->on('bookings');
-
-            $table->integer('walkinID')->nullable()->unsigned();
-            $table->foreign('walkinID')->references('id')->on('walk_ins');
-            
             $table->integer('serviceID')->unsigned();
             $table->foreign('serviceID')->references('id')->on('services');
             $table->integer('employeeID')->unsigned();

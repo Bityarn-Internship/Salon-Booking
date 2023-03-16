@@ -11,7 +11,7 @@ use App\Models\EmployeeService;
 use Illuminate\Http\Request;
 use Auth;
 use Validator;
-
+use Session;
 
 class BookingsController extends Controller
 {
@@ -20,7 +20,6 @@ class BookingsController extends Controller
         return view('bookings', ['services'=>$services]);
     }
     public function store(Request $request){
-
         $input = $request->all();
 
         date_default_timezone_set("Africa/Nairobi");
@@ -28,13 +27,15 @@ class BookingsController extends Controller
         $rules = [
             'services'=>'required',
             'date'=>'required | date | after_or_equal:'.date('Y-m-d'),
-            'time' => 'required | date_format:H:i'
+            'time' => 'required | date_format:H:i',
+            'clientID' => 'required'
         ];
 
         $messages = [
             'services.required' => 'Kindly select a service to proceed',
             'date.required'=>'Kindly select a date to proceed',
-            'time.required'=>'Kindly select a time to proceed'
+            'time.required'=>'Kindly select a time to proceed',
+            'clientID.required'=>'Client ID is required'
         ];
 
         $validator = Validator::make($input, $rules, $messages);
@@ -51,28 +52,26 @@ class BookingsController extends Controller
         }
 
         Booking::create([
-            'clientID' => Auth::user()->id,
+            'clientID' => $input['clientID'],
             'cost' => $cost,
             'date' => $input['date'],
             'time' =>$input['time']
         ]);
-        $bookingID = Booking::select('id')->where('clientID', Auth::user()->id)->where('date', $input['date'])->get()->last()->id;
+        $bookingID = Booking::select('id')->where('clientID', $input['clientID'])->where('date', $input['date'])->get()->last()->id;
         $employeesServices = EmployeeService::all()->whereIn('serviceID', $request['services']);
 
-        return view('/bookEmployeeServices', ['employeeServices'=>$employeesServices, 'services'=>$services, 'bookingID'=>$bookingID, 'walkinID'=>NULL, 'cost'=>$cost]);
+        return view('/bookEmployeeServices', ['employeeServices'=>$employeesServices, 'services'=>$services, 'bookingID'=>$bookingID, 'cost'=>$cost]);
     }
 
     public function bookEmployee(Request $request){
         $input = $request->all();
         
         $rules = [
-            'bookingID'=>'nullable',
-            'walkinID'=>'nullable'
+            'bookingID'=>'required',
         ];
 
         $messages = [
-            'bookingID.nullable'=>'Booking ID is optional',
-            'walkinID.nullable'=>'Walk-In ID is optional'
+            'bookingID.required'=>'Booking ID is required'
         ];
 
         $validator = Validator::make($input, $rules, $messages);
@@ -88,15 +87,14 @@ class BookingsController extends Controller
             $services[] = Service::find($employeeservice->serviceID);
             BookedService::create([
                 'bookingID' => $input['bookingID'],
-                'walkinID' => $input['walkinID'],
                 'serviceID' => $employeeservice->serviceID,
                 'employeeID' => $employeeservice->employeeID,
             ]);
         }
 
-        // $cost = Booking::find($input['bookingID'])->cost;
+        $cost = Booking::find($input['bookingID'])->cost;
 
-        return view('/depositPayment', ['cost'=>$input['cost'],'bookingID'=>$input['bookingID'], 'walkinID' => $input['walkinID'],'services'=>$services])->with('message', 'Services successfully inserted');
+        return view('/depositPayment', ['cost'=>$cost,'bookingID'=>$input['bookingID'], 'services'=>$services])->with('message', 'Services successfully inserted');
     }
 
     public function viewBookings(){
@@ -161,5 +159,10 @@ class BookingsController extends Controller
     public function restoreBookings(){
         Booking::onlyTrashed()->restore();
         return back();
+    }
+
+    public function booking($id){
+        $services = Service::all();
+        return view('/bookings', ['clientID' => $id, 'services'=>$services]);
     }
 }

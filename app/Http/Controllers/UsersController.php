@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Service;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Session;
 
 class UsersController extends Controller
 {
@@ -29,11 +30,13 @@ class UsersController extends Controller
 
         //Login user
         if(Auth::guard('web')->attempt($credentials)){
+            Session::put('user', 'client');
             return redirect('/bookings')->with('message', 'Login successful');
         }
 
         if(Auth::guard('employees')->attempt($credentials)){
-            return redirect('/clientBooking')->with('message', 'Login successful');
+            Session::put('user', 'employee');
+            return redirect('/viewClients')->with('message', 'Login successful');
         }
 
         return redirect()->back()->with('messageLogin', 'Invalid login credentials');
@@ -84,15 +87,26 @@ class UsersController extends Controller
             return back()->withErrors($validator->messages());
         }
 
+        if(Session::get('user') == 'employee'){
+            $userType = 'Walk-in';
+        }else{
+            $userType = 'self-registered';
+        }
+
         User::create([
             'firstName' => $input['firstName'],
             'lastName' => $input['lastName'],
             'email' => $input['email'],
             'telephoneNumber' => $input['telephoneNumber'],
             'password' => Hash::make($input['password']),
+            'userType' => $userType
         ]);
 
-        return redirect('/login')->with('message', 'Registration successful!');
+        if(Session::get('user') == 'employee'){
+            return redirect('/viewClients')->with('message', 'Client added successfully!');
+        }else{
+            return redirect('/login')->with('message', 'Registration successful!');
+        }
     }
 
     public function update(Request $request, $id){

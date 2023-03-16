@@ -13,10 +13,18 @@ class MpesaController extends Controller
 {
     //return the page with mpesa form
     public function index(Request $request){
-        $cost = $request->cost;
+        //deposit payment
+        $cost = (0.2 * $request->cost);
         $bookingID = $request->bookingID;
 
         return view('mpesaPayment', ['cost'=>$cost, 'bookingID'=>$bookingID]);
+    }
+
+    public function completeMpesaPayment(Request $request){
+        $balance = $request->balance;
+        $bookingID = $request->bookingID;
+
+        return view('mpesaPayment', ['cost'=>$balance, 'bookingID'=>$bookingID]);
     }
 
     //mpesa password generation
@@ -76,7 +84,7 @@ class MpesaController extends Controller
             'PartyB' => 174379,
             'PhoneNumber' => $phoneNumber,
             //mpesa sends transaction response to this callback url
-            'CallBackURL' => 'https://7d23-197-237-85-14.ap.ngrok.io/api/stk/push/callback/url',
+            'CallBackURL' => 'https://b5f2-197-237-85-14.ap.ngrok.io/api/stk/push/callback/url',
             'AccountReference' => "Salon Booking System Payment",
             'TransactionDesc' => "Lipa Na M-PESA"
         ];

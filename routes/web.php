@@ -129,11 +129,8 @@ Route::controller(BookedServicesController::class)->group(function(){
 Route::controller(PaymentsController::class)->group(function(){
     Route::get('/depositPayment', 'depositPayment');
     Route::get('/completePayment/{id}', 'completePayment');
-});
-
-Route::controller(WalkInsController::class)->group(function(){
-    Route::get('/clientBooking', 'index');
-    Route::post('/clientBooking', 'store');
+    Route::post('/completeCashPayment', 'completeCashPayment');
+    
 });
 
 Route::controller(MpesaController::class)->group(function(){

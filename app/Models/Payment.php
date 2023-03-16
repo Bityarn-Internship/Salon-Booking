@@ -14,8 +14,7 @@ class Payment extends Model implements Auditable
     protected $fillable = [
         'id',
         'bookingID',
-        'amount',
-        'paymentType',
+        'amount'
     ];
 
     protected $dates = ['deleted_at'];

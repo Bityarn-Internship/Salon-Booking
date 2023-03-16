@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('bookingID')->unsigned();
             $table->foreign('bookingID')->references('id')->on('bookings');
             $table->integer('amount');
-            $table->string('paymentType');
             $table->softDeletes();
             $table->timestamps();
         });

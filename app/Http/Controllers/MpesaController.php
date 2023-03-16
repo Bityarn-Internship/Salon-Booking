@@ -84,7 +84,7 @@ class MpesaController extends Controller
             'PartyB' => 174379,
             'PhoneNumber' => $phoneNumber,
             //mpesa sends transaction response to this callback url
-            'CallBackURL' => 'https://b5f2-197-237-85-14.ap.ngrok.io/api/stk/push/callback/url',
+            'CallBackURL' => 'https://fa4d-105-162-13-250.eu.ngrok.io/api/stk/push/callback/url',
             'AccountReference' => "Salon Booking System Payment",
             'TransactionDesc' => "Lipa Na M-PESA"
         ];
@@ -144,10 +144,8 @@ class MpesaController extends Controller
            
             if($amount == (0.2 * $booking->cost)){
                 $booking->status = 'Reserved';
-                $dbTransaction->status = 'Deposit Paid';
             }else{
                 $booking->status = 'Complete';
-                $dbTransaction->status = 'Payment Complete';
             }
            
             return redirect('/paymentSuccess');

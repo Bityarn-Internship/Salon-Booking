@@ -12,5 +12,5 @@ class MpesaPayment extends Model implements Auditable
     use HasFactory, SoftDeletes;
     use \OwenIt\Auditing\Auditable;
 
-    protected $fillable = ['id','transactionID','transactionDate', 'currency', 'amount','telephoneNumber','bookingID', 'status'];
+    protected $fillable = ['id','transactionID','transactionDate', 'currency', 'amount','telephoneNumber','bookingID'];
 }

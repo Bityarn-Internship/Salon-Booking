@@ -40,9 +40,14 @@
                             <button type="submit" class="btn btn-success w-md">Pay with MPESA</button>
                         </div>
                     </form>
-                    <div><br/>
-                        <button type="submit" class="btn btn-primary w-md">Pay with cash</button>
-                    </div><br/>
+                    <form action = "<?php echo e(url('/completeCashPayment')); ?>" method = "POST">
+                        <?php echo csrf_field(); ?>
+                        <input hidden value = "<?php echo e($bookingID); ?>" name = "bookingID">
+                        <input hidden value = "<?php echo e($balance); ?>" name = "amount">
+                        <div><br/>
+                            <button type="submit" class="btn btn-primary w-md">Paid with cash</button>
+                        </div><br/>
+                    </form>
                 </center>
             </div>
             <!-- end card body -->

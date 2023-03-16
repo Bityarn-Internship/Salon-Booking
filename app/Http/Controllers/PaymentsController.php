@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\MpesaPayment;
 use App\Models\Service;
 use App\Models\BookedService;
+use App\Models\Payment;
 
 class PaymentsController extends Controller
 {
@@ -34,4 +35,20 @@ class PaymentsController extends Controller
 
         return view('completePayment', ['balance'=>$balance, 'total'=>$total, 'clientID'=>$clientID, 'bookingID'=>$bookingID, 'services'=>$services]);
     }
+
+    public function completeCashPayment(Request $request){
+        Payment::create([
+            'bookingID' => $request->bookingID,
+            'amount' => $request->amount,
+        ]);
+
+        $booking = Booking::find($request->bookingID);
+        $booking->status = 'Complete';
+        $booking->save();
+
+        return redirect('/paymentSuccess');
+
+        
+    }
+
 }

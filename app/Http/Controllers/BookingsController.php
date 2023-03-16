@@ -65,7 +65,7 @@ class BookingsController extends Controller
 
     public function bookEmployee(Request $request){
         $input = $request->all();
-        
+
         $rules = [
             'bookingID'=>'required',
         ];
@@ -93,7 +93,6 @@ class BookingsController extends Controller
         }
 
         $cost = Booking::find($input['bookingID'])->cost;
-
         return view('/depositPayment', ['cost'=>$cost,'bookingID'=>$input['bookingID'], 'services'=>$services])->with('message', 'Services successfully inserted');
     }
 
@@ -111,7 +110,7 @@ class BookingsController extends Controller
     public function update(Request $request, $id){
         $booking = Booking::find($id);
         $input = $request->all();
-        
+
         date_default_timezone_set("Africa/Nairobi");
         // return($request['time']);
         $rules = [
@@ -133,7 +132,7 @@ class BookingsController extends Controller
         $booking->time = $input['time'];
         $booking->date = $input['date'];
         $booking->save();
-        
+
         return redirect('/viewBookings')->with('message', 'Booking updated successfully!');
     }
 

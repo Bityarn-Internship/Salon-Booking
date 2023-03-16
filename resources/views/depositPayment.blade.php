@@ -25,9 +25,19 @@
                 <br><p>Deposit Cost: {{(0.2 * $cost)}}</p>
 
                 <center>
-                    <div>
+                    <form action="{{url('/payment')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="bookingID" value="{{$bookingID}}">
+                        <input type="hidden" name="cost" value="{{(0.2 * $cost)}}">
                         <button type="submit" class="btn btn-primary w-md">Pay with paypal</button>
-                    </div><br/>
+                    </form>
+
+            <br/>
+                    <div>
+                        <button type="submit" class="btn btn-primary w-md">Pay with MPESA</button>
+                    </div>
+
+            <br/>
                     <form action = "{{url('/mpesaPayment')}}" method = "POST">
                         @csrf
                         <input hidden value = "{{$bookingID}}" name = "bookingID">
@@ -36,6 +46,7 @@
                             <button type="submit" class="btn btn-success w-md">Pay with MPESA</button>
                         </div>
                     </form>
+
                 </center>
             </div>
             <!-- end card body -->
@@ -48,7 +59,7 @@
 <!-- end row -->
 
     <!-- end col -->
-</div>
+
 <!-- end row -->
 
 @endsection

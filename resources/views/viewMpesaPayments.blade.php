@@ -4,33 +4,32 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="text-center py-2">Inactive Clients</h4>
+<h4 class="text-center py-2">View Mpesa Payments</h4>
 <div class="container ">
     <div class="row">
-    <div class="col col-md-11 text-right">
-        <h3><a class="btn btn-primary" href="{{url('restoreClients') }}"><b>Restore All</b></a></h3>
-    </div>
-        <table id="clientsView" class="table table-striped" style="width:100%">
+        <table id="mpesaView" class="table table-striped" style="width:100%">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th>Transaction ID</th>
+                <th>Transaction Date</th>
+                <th>Amount</th>
+                <th>Currency </th>
                 <th>Telephone Number</th>
-                <th>Actions</th>
+                <th>Booking ID </th>
+                <th colspan="3">Action</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($clients as $client)
+            @foreach($mpesapayments as $mpesapayment)
                 <tr>
-                    <td>{{$client->id}}</td>
-                    <td>{{$client->firstName}}</td>
-                    <td>{{$client->lastName}}</td>
-                    <td>{{$client->email}}</td>
-                    <td>{{$client->telephoneNumber}}</td>
-                    <td><a class="btn btn-primary" href="{{url ('restoreClient/'.$client->id) }}">Restore</a></td>
-
+                    <td>{{ $mpesapayment-> transactionID }}</td>
+                    <td>{{ $mpesapayment-> transactionDate }}</td>
+                    <td>{{ $mpesapayment-> amount }}</td>
+                    <td>{{ $mpesapayment-> currency }}</td>
+                    <td>{{ $mpesapayment-> telephoneNumber }}</td>
+                    <td>{{ $mpesapayment-> bookingID }}</td>
+                    <td><a class="btn btn-danger" href="{{url ('deleteMpesaPayment/'.$mpesapayment->id) }}">Delete</a></td>
                 </tr>
             @endforeach
             </tbody>
@@ -41,6 +40,6 @@
 <script src = "//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function (){
-        $('#clientsView').DataTable();
+        $('#mpesaView').DataTable();
     });
 </script>

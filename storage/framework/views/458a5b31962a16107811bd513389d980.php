@@ -4,12 +4,9 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="text-center py-2">Inactive Employees</h4>
+<h4 class="text-center py-2">View Employees</h4>
 <div class="container ">
     <div class="row">
-        <div class="col col-md-11 text-right">
-            <h3><a class="btn btn-primary" href="{{url('restoreEmployees') }}"><b>Restore All</b></a></h3>
-        </div>
         <table id="employeesView" class="table table-striped" style="width:100%">
             <thead>
             <tr>
@@ -19,23 +16,26 @@
                 <th>Email</th>
                 <th>Telephone Number</th>
                 <th>ID Number</th>
-                <th>Position ID</th>
+                <th>Position</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($employees as $employee)
+            <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td>{{$employee->id}}</td>
-                    <td>{{$employee->firstName}}</td>
-                    <td>{{$employee->lastName}}</td>
-                    <td>{{$employee->email}}</td>
-                    <td>{{$employee->telephoneNumber}}</td>
-                    <td>{{$employee->IDNumber}}</td>
-                    <td>{{$employee->positionID}}</td>
-                    <td><a href="{{url ('restoreEmployee/'.$employee->id) }}">Restore</a></td>
+                    <td><?php echo e($employee->id); ?></td>
+                    <td><?php echo e($employee->firstName); ?></td>
+                    <td><?php echo e($employee->lastName); ?></td>
+                    <td><?php echo e($employee->email); ?></td>
+                    <td><?php echo e($employee->telephoneNumber); ?></td>
+                    <td><?php echo e($employee->IDNumber); ?></td>
+                    <td><?php echo e(\App\Http\Controllers\PositionsController::getPositionName($employee->positionID)); ?></td>
+                    <td>
+                        <a class="btn btn-primary" href="<?php echo e(url ('editEmployee/'.$employee->id)); ?>">Edit</a>
+                        <a class="btn btn-danger" href="<?php echo e(url ('deleteEmployee/'.$employee->id)); ?>">Delete</a>
+                    </td>
                 </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
     </div>
@@ -47,3 +47,4 @@
         $('#employeesView').DataTable();
     });
 </script>
+<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/viewEmployees.blade.php ENDPATH**/ ?>

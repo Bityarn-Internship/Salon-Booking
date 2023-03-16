@@ -4,11 +4,11 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="text-center py-2">Inactive Positions</h4>
+<h4 class="text-center py-2">View Trashed Positions</h4>
     <div class="container ">
         <div class="row">
             <div class="col col-md-11 text-right">
-                <h3><a class="btn btn-primary" href="{{url('restorePositions') }}"><b>Restore All</b></a></h3>
+                <h3><a class="btn btn-primary" href="<?php echo e(url('restorePositions')); ?>"><b>Restore All</b></a></h3>
             </div>
                 <table id="positionsView" class="table table-striped" style="width:100%">
                     <thead>
@@ -20,15 +20,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($positions as $position)
+                    <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td>{{$position->id}}</td>
-                            <td>{{$position->name}}</td>
-                            <td>{{$position->description}}</td>
-                            <td><a class="btn btn-primary" href="{{url ('restorePosition/'.$position->id) }}">Restore</a></td>
+                            <td><?php echo e($position->id); ?></td>
+                            <td><?php echo e($position->name); ?></td>
+                            <td><?php echo e($position->description); ?></td>
+                            <td><a class="btn btn-primary" href="<?php echo e(url ('restorePosition/'.$position->id)); ?>">Restore</a></td>
 
                         </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
             </div>
@@ -40,3 +40,4 @@
         $('#positionsView').DataTable();
     });
 </script>
+<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/ViewTrashedPositions.blade.php ENDPATH**/ ?>

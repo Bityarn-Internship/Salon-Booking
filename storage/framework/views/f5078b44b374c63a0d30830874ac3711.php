@@ -4,9 +4,12 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="text-center py-2">View Employee Services</h4>
+<h4 class="text-center py-2">Inactive Employee Services</h4>
 <div class="container ">
     <div class="row">
+        <div class="col col-md-11 text-right">
+            <h3><a class="btn btn-primary" href="<?php echo e(url('restoreEmployeeServices')); ?>"><b>Restore All</b></a></h3>
+        </div>
         <table id="employeeServicesView" class="table table-striped" style="width:100%">
             <thead>
             <tr>
@@ -23,10 +26,7 @@
                     <td><?php echo e($employeeService->id); ?></td>
                     <td><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)); ?></td>
                     <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)); ?></td>
-                    <td>
-                        <a class="btn btn-primary" href="<?php echo e(url ('editEmployeeService/'.$employeeService->id)); ?>">Edit</a>
-                        <a class="btn btn-danger" href="<?php echo e(url ('deleteEmployeeService/'.$employeeService->id)); ?>">Delete</a>
-                    </td>
+                    <td><a class="btn btn-primary" href="<?php echo e(url ('restoreEmployeeService/'.$employeeService->id)); ?>">Restore</a></td>
                 </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -41,4 +41,4 @@
         $('#employeeServicesView').DataTable();
     });
 </script>
-<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/viewEmployeeServices.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/viewTrashedEmployeeServices.blade.php ENDPATH**/ ?>

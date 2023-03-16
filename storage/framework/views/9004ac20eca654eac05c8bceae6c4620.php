@@ -4,11 +4,14 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="text-center py-2">View Bookings</h4>
+<h4 class="text-center py-2">Inactive Bookings</h4>
 <div class="container ">
     <div class="row">
+        <div class="col col-md-11 text-right">
+            <h3><a class="btn btn-primary" href="<?php echo e(url('restoreBookings')); ?>"><b>Restore All</b></a></h3>
+        </div>
         <table id="bookingsView" class="table table-striped" style="width:100%">
-            <thead>
+        <thead>
             <tr>
                 <th>ID</th>
                 <th>Client Name</th>
@@ -20,22 +23,18 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($bookings as $booking)
+            <?php $__currentLoopData = $bookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $booking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td>{{$booking->id}}</td>
-                    <td>{{\App\Http\Controllers\UsersController::getClientName($booking->clientID)}}</td>
-                    <td>{{$booking->date}}</td>
-                    <td>{{$booking->time}}</td>
-                    <td>{{$booking->cost}}</td>
-                    <td>{{$booking->status}}</td>
+                    <td><?php echo e($booking->id); ?></td>
+                    <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($booking->clientID)); ?></td>
+                    <td><?php echo e($booking->date); ?></td>
+                    <td><?php echo e($booking->time); ?></td>
+                    <td><?php echo e($booking->cost); ?></td>
+                    <td><?php echo e($booking->status); ?></td>
+                    <td><a class="btn btn-primary" href="<?php echo e(url ('restoreBooking/'.$booking->id)); ?>">Restore</a></td>
 
-                    <td>
-                        <a class="btn btn-success" href="{{url ('completePayment/'.$booking->id) }}">Complete Payment</a>
-                        <a class="btn btn-primary" href="{{url ('editBooking/'.$booking->id) }}">Edit</a>
-                        <a class="btn btn-danger" href="{{url ('deleteBooking/'.$booking->id) }}">Delete</a>
-                    </td>
                 </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
     </div>
@@ -47,3 +46,4 @@
         $('#bookingsView').DataTable();
     });
 </script>
+<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/ViewTrashedBookings.blade.php ENDPATH**/ ?>

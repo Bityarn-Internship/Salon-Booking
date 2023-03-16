@@ -7,8 +7,6 @@
 <form action="<?php echo e(url('/bookEmployee')); ?>" method="POST">
     <?php echo csrf_field(); ?>
     <input hidden value = "<?php echo e($bookingID); ?>" name = "bookingID">
-    <input hidden value = "<?php echo e($walkinID); ?>" name = "walkinID">
-    <input hidden value = "<?php echo e($cost); ?>" name = "cost">
     <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class=" container">
         <div class=" content">

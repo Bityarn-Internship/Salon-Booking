@@ -17,7 +17,11 @@
     <input type="date" name="date">
     <label for="date">Time</label>
     <input type="time" name="time">
-
+    <?php if(session()->get('user') == 'employee'): ?>
+        <input hidden type="text" name="clientID" value = "<?php echo e($clientID); ?>">
+    <?php else: ?>
+        <input hidden type="text" name="clientID" value = "<?php echo e(Auth::user()->id); ?>">
+    <?php endif; ?>
     <br>
     <div>
         <button type="submit" class="btn btn-primary w-md">Register</button>

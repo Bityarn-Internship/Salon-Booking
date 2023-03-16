@@ -13,6 +13,8 @@ use App\Http\Controllers\WalkInsController;
 use App\Http\Controllers\BookedServicesController;
 use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\MpesaController;
+use App\Http\Controllers\CompletedBookingsController;
+
 
 
 /*
@@ -133,7 +135,7 @@ Route::controller(PaymentsController::class)->group(function(){
     Route::get('/depositPayment', 'depositPayment');
     Route::get('/completePayment/{id}', 'completePayment');
     Route::post('/completeCashPayment', 'completeCashPayment');
-    
+
 });
 
 Route::controller(PaypalPaymentController::class)->group(function(){
@@ -155,4 +157,9 @@ Route::controller(MpesaController::class)->group(function(){
     Route::get('/mpesaConfirmation/{id}', 'mpesaConfirmation');
     Route::get('/paymentSuccess', 'paymentSuccess');
     Route::post('/checkTransaction', 'checkTransaction');
+});
+
+Route::controller(CompletedBookingsController::class)->group(function(){
+    Route::get('/viewCompletedBookings', 'CompletedBookings');
+
 });

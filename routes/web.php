@@ -12,6 +12,8 @@ use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\WalkInsController;
 use App\Http\Controllers\BookedServicesController;
 use App\Http\Controllers\PaypalPaymentController;
+use App\Http\Controllers\MpesaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -107,7 +109,7 @@ Route::controller(EmployeeServicesController::class)->group(function(){
     Route::get('/bookEmployeeServices', 'index');
     Route::get('/employeeServices', 'assign');
     Route::post('/employeeServices', 'store');
-
+    Route::get('/viewEmployeeServices', 'viewEmployeeServices');
     Route::get('/editEmployeeService/{id}', 'edit');
      Route::get('/viewEmployeeServices', 'viewEmployeeServices');
     Route::get('/viewTrashedEmployeeServices', 'viewTrashedEmployeeServices');
@@ -135,18 +137,23 @@ Route::controller(WalkInsController::class)->group(function(){
     Route::get('/clientBooking', 'index');
     Route::post('/clientBooking', 'store');
 });
+
 Route::controller(PaypalPaymentController::class)->group(function(){
 
     Route::post('/payment','pay');
     Route::get('/success','success');
     Route::get('/errorOccurred','errorOccurred');
     Route::get('/paypalConfirm','confirm');
-
-
     Route::get('/viewPaypalPayments','viewPaypalPayments');
     Route::get('/deletePaypalPayments/{id}','destroy');
-
     Route::get('/viewTrashedPaypalPayments','viewTrashedPaypalPayments');
     Route::get('/restorePaypalPayments/{id}','restorePaypalPayment');
     Route::get('/restoreAllPaypalPayments','restorePaypalPayments');
+});
+
+Route::controller(MpesaController::class)->group(function(){
+    Route::post('/mpesaPayment', 'index');
+    Route::get('/mpesaConfirmation/{id}', 'mpesaConfirmation');
+    Route::get('/paymentSuccess', 'paymentSuccess');
+    Route::post('/checkTransaction', 'checkTransaction');
 });

@@ -31,7 +31,8 @@
 
                     <td>
                         <a class="btn btn-success" href="<?php echo e(url ('completePayment/'.$booking->id)); ?>">Complete Payment</a>
-                        <a class="btn btn-primary" href="<?php echo e(url ('editBooking/'.$booking->id)); ?>">Edit</a>
+                        <a class="btn btn-primary" target = "_blank" href="<?php echo e(url ('viewInvoice/'.$booking->id)); ?>">View Invoice</a>
+                        <a class="btn btn-info" href="<?php echo e(url ('editBooking/'.$booking->id)); ?>">Edit</a>
                         <a class="btn btn-danger" href="<?php echo e(url ('deleteBooking/'.$booking->id)); ?>">Delete</a>
                     </td>
                 </tr>

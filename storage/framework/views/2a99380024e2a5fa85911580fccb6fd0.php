@@ -37,9 +37,9 @@
             <input type="date" class="form-control" name="date">
         </div>
         <div class="col-md-6">
-            <?php if($errors->has('date')): ?>
+            <?php if($errors->has('time')): ?>
                 <div class = "alert alert-danger" role = "alert">
-                    <?php echo e($errors->first('date')); ?>
+                    <?php echo e($errors->first('time')); ?>
 
                 </div>
             <?php endif; ?>
@@ -54,9 +54,9 @@
             <input hidden type="text" name="clientID" value = "<?php echo e(Auth::user()->id); ?>">
         <?php endif; ?>
     </div>
-    
+
     <div class = "text-center">
-        <button type="submit" class="btn btn-primary w-md">Register</button>
+        <button type="submit" class="btn btn-primary w-md">Book</button>
     </div>
 
 </form>

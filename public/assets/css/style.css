@@ -1,83 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+body {
+    background-color: #eee
+}
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+.card {
+    border: none;
+    border-radius: 10px
 }
-body{
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-}
-.swiper{
-    width: 950px;
-}
-section .card .image{
-    height: 140px;
-    width: 140px;
-    border-radius:50%;
-    padding: 3px;
-    background: #7d2ae8;
-}
-section .card .image img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius:50% ;
-    border: 3px solid #fff;
-}
-.card{
-    position: relative;
-    background: #fff;
-    border-radius: 20px;
-    /*margin: 20px 0;*/
-    display: -webkit-flex;
-    justify-content: center;
-    -webkit-justify-content: center;
-    max-width: 1500px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 25px;
-    width: 100%;
-    overflow: hidden;
-    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
-    margin: 30px 25px 30px 25px;
 
+.c-details span {
+    font-weight: 300;
+    font-size: 13px
 }
-.card::before{
-    content: "";
-    position: absolute;
-    height: 30%;
-    width: 100%;
-    background: #7d2ae8;
-    border-radius: 20px 20px 0 0;
 
-}
-.card .card-content{
+.icon {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 15px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 30px;
-    position: relative;
-    z-index: 100;
+    justify-content: center;
+    font-size: 39px
 }
-.card .profession{
-    display: flex;
-    flex-direction: column;
-    float: left;
-    margin-top: 10px;
-    color: #333;
-}
-.profession .name{
-    font-size: 20px;
-    font-weight: 600;
-    float: left;
-}
-.check-service{
-    margin-top: 20px;
 
+.badge span {
+    background-color: #fffbec;
+    width: 60px;
+    height: 25px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+    display: flex;
+    color: #fed85d;
+    justify-content: center;
+    align-items: center
+}
+
+.progress {
+    height: 10px;
+    border-radius: 10px
+}
+
+.progress div {
+    background-color: red
+}
+
+.text1 {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.text2 {
+    color: #a5aec0
 }

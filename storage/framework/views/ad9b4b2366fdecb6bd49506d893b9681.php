@@ -15,15 +15,15 @@
         <div class="container2">
                 <h3 class = "text-center">Make a Deposit Payment. </h3>
             <div class="form-outline mb-4">
-                <p>Hello,<?php echo e(Auth::user()->firstName." ".Auth::user()->lastName); ?>,</br>Thank you for booking with us.</p>
+                <p>Hello <?php echo e(Auth::user()->firstName." ".Auth::user()->lastName); ?>,</br>Thank you for booking with us.</p>
                 <div class = "text-center">
                     <h6 class = "card-title text-center"><b>Your Requested Services:</b></h6>
-                  <b>  <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <p><?php echo e($service->name.': '.$service->cost); ?>KSH</p>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <p></p>
                     <p>Total Cost: <?php echo e($cost); ?>KSH</p>
-                  </b>
+
                 </div>
 
                 <p>To confirm your booking you need to make a <b>20%</b> deposit payment of your booked services cost.</p>

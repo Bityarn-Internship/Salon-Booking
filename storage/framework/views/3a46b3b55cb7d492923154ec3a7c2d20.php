@@ -8,7 +8,7 @@
 <div class="container ">
     <div class="row">
         <div class="col col-md-11 text-right">
-            <h3><a class="btn btn-primary" href="{{url('restoreEmployees') }}"><b>Restore All</b></a></h3>
+            <h3><a class="btn btn-primary" href="<?php echo e(url('restoreEmployees')); ?>"><b>Restore All</b></a></h3>
         </div>
         <table id="employeesView" class="table table-striped" style="width:100%">
             <thead>
@@ -24,18 +24,18 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($employees as $employee)
+            <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td>{{$employee->id}}</td>
-                    <td>{{$employee->firstName}}</td>
-                    <td>{{$employee->lastName}}</td>
-                    <td>{{$employee->email}}</td>
-                    <td>{{$employee->telephoneNumber}}</td>
-                    <td>{{$employee->IDNumber}}</td>
-                    <td>{{$employee->positionID}}</td>
-                    <td><a href="{{url ('restoreEmployee/'.$employee->id) }}">Restore</a></td>
+                    <td><?php echo e($employee->id); ?></td>
+                    <td><?php echo e($employee->firstName); ?></td>
+                    <td><?php echo e($employee->lastName); ?></td>
+                    <td><?php echo e($employee->email); ?></td>
+                    <td><?php echo e($employee->telephoneNumber); ?></td>
+                    <td><?php echo e($employee->IDNumber); ?></td>
+                    <td><?php echo e($employee->positionID); ?></td>
+                    <td><a href="<?php echo e(url ('restoreEmployee/'.$employee->id)); ?>">Restore</a></td>
                 </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
     </div>
@@ -47,3 +47,4 @@
         $('#employeesView').DataTable();
     });
 </script>
+<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/ViewTrashedEmployees.blade.php ENDPATH**/ ?>

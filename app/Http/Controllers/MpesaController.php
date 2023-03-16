@@ -43,7 +43,7 @@ class MpesaController extends Controller
 
     //mpesa generate access token request
     public function newAccessToken(){
-        
+
         $consumer_key = "jHAAtSyF9nsiB2VttgZDnpxbyzA767RY";
         $consumer_secret = "3eHfvCtZ8ykoWXYO";
         $credentials = base64_encode($consumer_key.":".$consumer_secret);
@@ -84,7 +84,7 @@ class MpesaController extends Controller
             'PartyB' => 174379,
             'PhoneNumber' => $phoneNumber,
             //mpesa sends transaction response to this callback url
-            'CallBackURL' => 'https://8678-105-162-13-250.eu.ngrok.io/api/stk/push/callback/url',
+            'CallBackURL' => 'https://f31f-105-162-13-250.ngrok.io/api/stk/push/callback/url',
             'AccountReference' => "Salon Booking System Payment",
             'TransactionDesc' => "Lipa Na M-PESA"
         ];
@@ -106,7 +106,7 @@ class MpesaController extends Controller
     public function mpesaResponse(Request $request){
         Log::info($request->getContent());
         $response = json_decode($request->getContent());
-    
+
         $responseData = $response->Body->stkCallback->CallbackMetadata;
 
         $amount = $responseData->Item[0]->Value;
@@ -124,7 +124,7 @@ class MpesaController extends Controller
     }
 
     public function mpesaConfirmation($id){
-  
+
         return view('mpesaConfirmation', ['bookingID'=>$id]);
     }
     public function checkTransaction(Request $request){
@@ -141,13 +141,13 @@ class MpesaController extends Controller
             $amount = $dbTransaction->amount;
 
             $booking = Booking::find($request->bookingID);
-           
+
             if($amount == (0.2 * $booking->cost)){
                 $booking->status = 'Reserved';
             }else{
                 $booking->status = 'Complete';
             }
-           
+
             return redirect('/paymentSuccess');
         }else{
             return redirect()->back()->with('message', 'Transaction not found. Please try again');
@@ -156,5 +156,26 @@ class MpesaController extends Controller
 
     public function paymentSuccess(){
         return view('paymentSuccess');
+    }
+    public function viewMpesaPayments(){
+        $mpesapayments = MpesaPayment::all();
+        return view('viewMpesaPayments',['mpesapayments'=> $mpesapayments]);
+    }
+    public function destroy($id){
+        $mpesapayments = MpesaPayment::find($id)->delete();
+        return redirect('viewMpesaPayments');
+    }
+    public function viewTrashedMpesaPayments()
+    {
+        $mpesapayments = MpesaPayment::onlyTrashed()->get();
+        return view('ViewTrashedMpesaPayments',['mpesapayments'=> $mpesapayments]);
+    }
+    public function restoreMpesaPayment($id){
+        MpesaPayment::whereId($id)->restore();
+        return redirect('ViewTrashedMpesaPayments');
+    }
+    public function restoreMpesaPayments(){
+        MpesaPayment::onlyTrashed()->restore();
+        return back();
     }
 }

@@ -145,10 +145,10 @@ Route::controller(PaypalPaymentController::class)->group(function(){
     Route::get('/errorOccurred','errorOccurred');
     Route::get('/paypalConfirm','confirm');
     Route::get('/viewPaypalPayments','viewPaypalPayments');
-    Route::get('/deletePaypalPayments/{id}','destroy');
+    Route::get('/deletePaypalPayment/{id}','destroy');
     Route::get('/viewTrashedPaypalPayments','viewTrashedPaypalPayments');
-    Route::get('/restorePaypalPayments/{id}','restorePaypalPayment');
-    Route::get('/restoreAllPaypalPayments','restorePaypalPayments');
+    Route::get('/restorePaypalPayment/{id}','restorePaypalPayment');
+    Route::get('/restorePaypalPayments','restorePaypalPayments');
 });
 
 Route::controller(MpesaController::class)->group(function(){
@@ -157,6 +157,12 @@ Route::controller(MpesaController::class)->group(function(){
     Route::get('/mpesaConfirmation/{id}', 'mpesaConfirmation');
     Route::get('/paymentSuccess', 'paymentSuccess');
     Route::post('/checkTransaction', 'checkTransaction');
+    Route::get('/viewMpesaPayments','viewMpesaPayments');
+    Route::get('/deleteMpesaPayment/{id}','destroy');
+    Route::get('/viewTrashedMpesaPayments','viewTrashedMpesaPayments');
+    Route::get('/restoreMpesaPayment/{id}','restoreMpesaPayment');
+    Route::get('/restoreMpesaPayments','restoreMpesaPayments');
+
 });
 
 Route::controller(CompletedBookingsController::class)->group(function(){

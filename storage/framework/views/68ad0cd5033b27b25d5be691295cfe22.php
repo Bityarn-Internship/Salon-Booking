@@ -4,37 +4,31 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="text-center py-2">Inactive Paypal Payments</h4>
+<h4 class="text-center py-2">View Trashed Services</h4>
     <div class="container ">
         <div class="row">
-
             <div class="col col-md-11 text-right">
-                <h3><a class="btn btn-primary" href="{{url('restorePaypalPayments') }}">Restore All</a></h3>
+               <h3><a class="btn btn-primary" href="<?php echo e(url('restoreServices')); ?>"><b>Restore All</b></a></h3>
             </div>
-            <table id="paypalView" class="table table-striped" style="width:100%">
+            <table id="servicesView" class="table table-striped" style="width:100%">
                 <thead>
                 <tr>
-                    <th>Payment ID</th>
-                    <th>Payer ID</th>
-                    <th>Payer Email</th>
-                    <th>Booking ID</th>
-                    <th>Total Cost </th>
-                    <th>Currency </th>
+                    <th>ID</th>
+                    <th>Service Name</th>
+                    <th>Cost</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($paypalpayments as $paypalpayment)
+                <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $paypalpayment-> payment_id }}</td>
-                        <td>{{ $paypalpayment-> payer_id }}</td>
-                        <td>{{ $paypalpayment-> payer_email }}</td>
-                        <td>{{ $paypalpayment-> bookingID }}</td>
-                        <td>{{ $paypalpayment-> amount }}</td>
-                        <td>{{ $paypalpayment-> currency }}</td>
-                        <td><a class="btn btn-primary" href="{{url ('restorePaypalPayment/'.$paypalpayment->id) }}">Restore</a></td>
+                        <td><?php echo e($service->id); ?></td>
+                        <td><?php echo e($service->name); ?></td>
+                        <td><?php echo e($service->cost); ?></td>
+                        <td><a class="btn btn-primary" href="<?php echo e(url ('restoreService/'.$service->id)); ?>">Restore</a></td>
+
                     </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
         </div>
@@ -43,6 +37,7 @@
 <script src = "//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function (){
-        $('#paypalView').DataTable();
+        $('#servicesView').DataTable();
     });
 </script>
+<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/ViewTrashedServices.blade.php ENDPATH**/ ?>

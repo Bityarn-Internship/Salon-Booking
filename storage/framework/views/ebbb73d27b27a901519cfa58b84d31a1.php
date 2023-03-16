@@ -4,12 +4,9 @@
     <link href = "//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel = "stylesheet">
 </head>
 
-<h4 class="text-center py-2">Inactive Clients</h4>
+<h4 class="text-center py-2">View Clients</h4>
 <div class="container ">
     <div class="row">
-    <div class="col col-md-11 text-right">
-        <h3><a class="btn btn-primary" href="{{url('restoreClients') }}"><b>Restore All</b></a></h3>
-    </div>
         <table id="clientsView" class="table table-striped" style="width:100%">
             <thead>
             <tr>
@@ -22,17 +19,20 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($clients as $client)
+            <?php $__currentLoopData = $clients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $client): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td>{{$client->id}}</td>
-                    <td>{{$client->firstName}}</td>
-                    <td>{{$client->lastName}}</td>
-                    <td>{{$client->email}}</td>
-                    <td>{{$client->telephoneNumber}}</td>
-                    <td><a class="btn btn-primary" href="{{url ('restoreClient/'.$client->id) }}">Restore</a></td>
-
+                    <td><?php echo e($client->id); ?></td>
+                    <td><?php echo e($client->firstName); ?></td>
+                    <td><?php echo e($client->lastName); ?></td>
+                    <td><?php echo e($client->email); ?></td>
+                    <td><?php echo e($client->telephoneNumber); ?></td>
+                    <td>
+                        <a class="btn btn-primary" href="<?php echo e(url ('editClient/'.$client->id)); ?>">Edit</a>
+                        <a class="btn btn-danger" href="<?php echo e(url ('deleteClient/'.$client->id)); ?>">Delete</a>
+                        <a class="btn btn-success" href="<?php echo e(url ('bookings/'.$client->id)); ?>">Make a booking</a>
+                    </td>
                 </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
     </div>
@@ -44,3 +44,4 @@
         $('#clientsView').DataTable();
     });
 </script>
+<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/viewClients.blade.php ENDPATH**/ ?>

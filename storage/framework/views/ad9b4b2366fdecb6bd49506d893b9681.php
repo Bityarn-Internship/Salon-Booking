@@ -1,3 +1,6 @@
+
+
+
 <?php $__env->startSection('content'); ?>
 
 <?php $__env->startComponent('components.breadcrumb'); ?>
@@ -29,12 +32,7 @@
                         <button type="submit" class="btn btn-primary w-md">Pay with paypal</button>
                     </form>
 
-            <br/>
-                    <div>
-                        <button type="submit" class="btn btn-primary w-md">Pay with MPESA</button>
-                    </div>
-
-            <br/>
+                    <br/>
                     <form action = "<?php echo e(url('/mpesaPayment')); ?>" method = "POST">
                         <?php echo csrf_field(); ?>
                         <input hidden value = "<?php echo e($bookingID); ?>" name = "bookingID">

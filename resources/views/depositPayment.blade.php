@@ -32,12 +32,7 @@
                         <button type="submit" class="btn btn-primary w-md">Pay with paypal</button>
                     </form>
 
-            <br/>
-                    <div>
-                        <button type="submit" class="btn btn-primary w-md">Pay with MPESA</button>
-                    </div>
-
-            <br/>
+                    <br/>
                     <form action = "{{url('/mpesaPayment')}}" method = "POST">
                         @csrf
                         <input hidden value = "{{$bookingID}}" name = "bookingID">

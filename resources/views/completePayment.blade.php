@@ -29,9 +29,12 @@
                 <br><p>Balance to be paid: {{$balance}}</p>
 
                 <center>
-                    <div>
+                    <form action="{{url('/payment')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="bookingID" value="{{$bookingID}}">
+                        <input hidden value = "{{$balance}}" name = "cost">
                         <button type="submit" class="btn btn-primary w-md">Pay with paypal</button>
-                    </div><br/>
+                    </form>
                     <form action = "{{url('/completeMpesaPayment')}}" method = "POST">
                         @csrf
                         <input hidden value = "{{$bookingID}}" name = "bookingID">

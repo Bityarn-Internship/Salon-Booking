@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\UsersController;
 use App\Models\PaypalPayment;
 use App\Models\Booking;
+use App\Models\BookedService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Users;
+use App\Models\User;
 use Omnipay\Omnipay;
-
+use Session;
 
 class PaypalPaymentController extends Controller
 {
@@ -25,8 +26,8 @@ class PaypalPaymentController extends Controller
     {
 
         try {
-
             $response = $this->gateway->purchase(array(
+                Session::put('bookingID', $request->bookingID),
                 'amount' => $request->cost,
                 'bookingID' => $request->bookingID,
                 'currency' => env('PAYPAL_CURRENCY'),
@@ -64,16 +65,45 @@ class PaypalPaymentController extends Controller
                 $payment->payer_email = $arr['payer']['payer_info']['email'];
                 $payment->amount = $arr['transactions'][0]['amount']['total'];
                 $payment->currency = env('PAYPAL_CURRENCY');
-                $payment->payment_status = $arr['state'];
+                $payment->bookingID = Session::get('bookingID');
 
-
-
-                return $bookingID;
-//                 $bookingID = $request->$bookingID;
-
+                $booking = Booking::find(Session::get('bookingID'));
+                $bookedServices = BookedService::all()->where('bookingID', $booking->id);
+           
+                if($arr['transactions'][0]['amount']['total'] == (0.2 * $booking->cost)){
+                    $booking->status = 'Reserved';
+                    $body = "<p>Hello ".UsersController::getClientName($booking->clientID).",</p>
+                            <p>
+                                We have received your deposit payment of ".$arr['transactions'][0]['amount']['total']." and your booking has been made successfully.
+                            </p>
+                            <h4>Booking Details: </h4>
+                            <p>Booking ID: ".$booking->id."</br>
+                            <p>Amount Paid: ".$arr['transactions'][0]['amount']['total']."</br>
+                            <p>Balance: ".$booking->cost - ($arr['transactions'][0]['amount']['total'])."</br>
+                            <p>Total Cost: ".$booking->cost."</br>
+                            <p>Your booking is scheduled on ".$booking->date." at ".$booking->time."</p>";
+                }else{
+                    $booking->status = 'Complete';
+                    $body = "<p>Hello ".UsersController::getClientName($booking->clientID).",</p>
+                            <p>
+                                We have received your full payment of ".$booking->cost." for Booking Number ".$booking->id." and your service(s) has been successfully done.
+                            </p>
+                            <h4>Booking Details: </h4>
+                            <p>Booking ID: ".$booking->id."</br>
+                            <p>Your booking was scheduled on ".$booking->date." at ".$booking->time."</p>";
+                }
+                $booking->save();
                 $payment->save();
-                return view('viewServices',['bookingID'=>$bookingID]);
-                return "Payment is Successful. Your Transaction Id is : " . $arr['id'];
+
+                $user = User::find($booking->clientID);
+                \Mail::send('sendBookingEmail', ['body'=>$body, 'bookedServices'=>$bookedServices], function($message) use ($request, $user){
+                    $message->from('nkatha.dev@gmail.com', 'Salon Booking System');
+                    $message->to($user->email)
+                    ->subject('Salon Booking System: Booking Details');
+                });
+                // return view('viewServices',['bookingID'=>$bookingID]);
+                // return "Payment is Successful. Your Transaction Id is : " . $arr['id'];
+                return redirect('/viewBookings')->with('message', 'Email sent');
             }
             else{
                 return $response->getMessage();
@@ -101,17 +131,17 @@ class PaypalPaymentController extends Controller
         return redirect('ViewPaypalPayments');
 
     }
-        public function viewTrashedPayPalPayments()
-        {
-            $paypalpayments = PaypalPayment::onlyTrashed()->get();
-            return view('ViewTrashedPaypalPayments',['paypalpayments'=> $paypalpayments]);
-        }
-        public function restorePayPalPayments($id){
-            PaypalPayment::whereId($id)->restore();
-            return redirect('ViewTrashedPayPalPayments');
-        }
-        public function restoreAllPayPalPayments(){
-            PaypalPayment::onlyTrashed()->restore();
-            return back();
-        }
+    public function viewTrashedPayPalPayments()
+    {
+        $paypalpayments = PaypalPayment::onlyTrashed()->get();
+        return view('ViewTrashedPaypalPayments',['paypalpayments'=> $paypalpayments]);
+    }
+    public function restorePayPalPayments($id){
+        PaypalPayment::whereId($id)->restore();
+        return redirect('ViewTrashedPayPalPayments');
+    }
+    public function restoreAllPayPalPayments(){
+        PaypalPayment::onlyTrashed()->restore();
+        return back();
+    }
 }

@@ -9,7 +9,7 @@
         <h2>Payment Successful!</h2>
         <h6>Hurray! Your payment has been made <span class = "green-color">successfully</span>.</h6>
         <div class = "btns text-center">
-            <a href = "{{ URL::to('/principaldashboard') }}"><button>Done</button></a>
+            <a href = "{{ URL::to('/viewBookings') }}"><button>Done</button></a>
         </div>
     </div>
 </main>

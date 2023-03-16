@@ -25,9 +25,14 @@
                 <br><p>Deposit Cost: <?php echo e((0.2 * $cost)); ?></p>
 
                 <center>
-                    <div>
+                    <form action="<?php echo e(url('/payment')); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
+                        <input type="hidden" name="bookingID" value="<?php echo e($bookingID); ?>">
+                        <input type="hidden" name="cost" value="<?php echo e((0.2 * $cost)); ?>">
                         <button type="submit" class="btn btn-primary w-md">Pay with paypal</button>
-                    </div><br/>
+                    </form>
+
+                    <br/>
                     <form action = "<?php echo e(url('/mpesaPayment')); ?>" method = "POST">
                         <?php echo csrf_field(); ?>
                         <input hidden value = "<?php echo e($bookingID); ?>" name = "bookingID">
@@ -36,6 +41,7 @@
                             <button type="submit" class="btn btn-success w-md">Pay with MPESA</button>
                         </div>
                     </form>
+
                 </center>
             </div>
             <!-- end card body -->
@@ -48,7 +54,7 @@
 <!-- end row -->
 
     <!-- end col -->
-</div>
+
 <!-- end row -->
 
 <?php $__env->stopSection(); ?>

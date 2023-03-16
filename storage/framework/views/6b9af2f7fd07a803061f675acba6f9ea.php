@@ -29,9 +29,12 @@
                 <br><p>Balance to be paid: <?php echo e($balance); ?></p>
 
                 <center>
-                    <div>
+                    <form action="<?php echo e(url('/payment')); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
+                        <input type="hidden" name="bookingID" value="<?php echo e($bookingID); ?>">
+                        <input hidden value = "<?php echo e($balance); ?>" name = "cost">
                         <button type="submit" class="btn btn-primary w-md">Pay with paypal</button>
-                    </div><br/>
+                    </form>
                     <form action = "<?php echo e(url('/completeMpesaPayment')); ?>" method = "POST">
                         <?php echo csrf_field(); ?>
                         <input hidden value = "<?php echo e($bookingID); ?>" name = "bookingID">

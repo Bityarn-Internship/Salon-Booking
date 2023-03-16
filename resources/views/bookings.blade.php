@@ -35,9 +35,9 @@
             <input type="date" class="form-control" name="date">
         </div>
         <div class="col-md-6">
-            @if($errors->has('date'))
+            @if($errors->has('time'))
                 <div class = "alert alert-danger" role = "alert">
-                    {{ $errors->first('date') }}
+                    {{ $errors->first('time') }}
                 </div>
             @endif
             <input type="time" name="time" class = "form-control">
@@ -51,9 +51,9 @@
             <input hidden type="text" name="clientID" value = "{{Auth::user()->id}}">
         @endif
     </div>
-    
+
     <div class = "text-center">
-        <button type="submit" class="btn btn-primary w-md">Register</button>
+        <button type="submit" class="btn btn-primary w-md">Book</button>
     </div>
 
 </form>

@@ -69,7 +69,7 @@ class PaypalPaymentController extends Controller
 
                 $booking = Booking::find(Session::get('bookingID'));
                 $bookedServices = BookedService::all()->where('bookingID', $booking->id);
-           
+
                 if($arr['transactions'][0]['amount']['total'] == (0.2 * $booking->cost)){
                     $booking->status = 'Reserved';
                     $body = "<p>Hello ".UsersController::getClientName($booking->clientID).",</p>
@@ -97,7 +97,7 @@ class PaypalPaymentController extends Controller
 
                 $user = User::find($booking->clientID);
                 \Mail::send('sendBookingEmail', ['body'=>$body, 'bookedServices'=>$bookedServices], function($message) use ($request, $user){
-                    $message->from('nkatha.dev@gmail.com', 'Salon Booking System');
+                    $message->from('noreply@gmail.com', 'Salon Booking System');
                     $message->to($user->email)
                     ->subject('Salon Booking System: Booking Details');
                 });

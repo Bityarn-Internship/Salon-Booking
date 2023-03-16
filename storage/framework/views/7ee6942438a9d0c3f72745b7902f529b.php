@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salon | Services</title>
+    <title>Salon | Positions</title>
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/forms.css')); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
-    <form action="<?php echo e(url('/services')); ?>" method="POST">
+    <form action = "<?php echo e(url('/positions')); ?>" method = "post">
         <?php echo csrf_field(); ?>
         <?php if(session()->has('message')): ?>
             <div class="alert alert-info">
@@ -18,36 +18,36 @@
 
             </div>
         <?php endif; ?>
-        <div class="container2 justify-content-center">
-            <!-- Email input -->
-            <h5 class="card-title text-center">Add Services</h5></br>
-            <?php if($errors->has('serviceName')): ?>
+        <h5 class="card-title text-center">Add Position</h5><br>
+        <div class="form-floating mb-3">
+            <?php if($errors->has('positionName')): ?>
                 <div class = "alert alert-danger" role = "alert">
-                    <?php echo e($errors->first('serviceName')); ?>
+                    <?php echo e($errors->first('positionName')); ?>
 
                 </div>
             <?php endif; ?>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "serviceName">
-                <label for="floatingnameInput">Service Name</label>
+                <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the position..." name = "positionName">
+                <label for="floatingnameInput">Position Name</label>
             </div>
+        </div>
 
-            <?php if($errors->has('serviceCost')): ?>
+        <div class="form-floating mb-3">
+            <?php if($errors->has('positionDescription')): ?>
                 <div class = "alert alert-danger" role = "alert">
-                    <?php echo e($errors->first('serviceCost')); ?>
+                    <?php echo e($errors->first('positionDescription')); ?>
 
                 </div>
             <?php endif; ?>
             <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name = "serviceCost">
-                <label for="floatingemailInput">Service Cost</label>
+                <input type="text" class="form-control" id="floatingemailInput" placeholder="Describe the position..." name = "positionDescription">
+                <label for="floatingemailInput">Position Description</label>
             </div>
-            <div class = "text-center">
-                <button type="submit" class="btn btn-primary w-md">Submit</button>
-            </div>
-
+        </div>
+        <div class = "text-center">
+            <button type="submit" class="btn btn-primary w-md">Submit</button>
         </div>
     </form>
 </body>
 </html>
-<?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views/services.blade.php ENDPATH**/ ?>
+                    <?php /**PATH C:\Users\User\Projects\Bityarn\Laravel Admin\Admin\resources\views/positions.blade.php ENDPATH**/ ?>

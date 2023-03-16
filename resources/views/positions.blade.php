@@ -1,42 +1,50 @@
-@extends('layouts.master')
-
-
-@section('content')
-
-    @component('components.breadcrumb')
-
-
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Add Position</h5>
-                        <form action = "{{ url('/positions') }}" method = "post">
-                            @csrf
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the position..." name = "positionName">
-                                <label for="floatingnameInput">Position Name</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingemailInput" placeholder="Describe the position..." name = "positionDescription">
-                                <label for="floatingemailInput">Position Description</label>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-primary w-md">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- end card body -->
-                </div>
-                <!-- end card -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon | Positions</title>
+    <link rel="stylesheet" href="{{asset('assets/css/forms.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form action = "{{ url('/positions') }}" method = "post">
+        @csrf
+        @if(session()->has('message'))
+            <div class="alert alert-info">
+                {{ session()->get('message') }}
             </div>
-            <!-- end col -->
-
+        @endif
+        <h5 class="card-title text-center">Add Position</h5><br>
+        <div class="form-floating mb-3">
+            @if($errors->has('positionName'))
+                <div class = "alert alert-danger" role = "alert">
+                    {{ $errors->first('positionName') }}
+                </div>
+            @endif
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the position..." name = "positionName">
+                <label for="floatingnameInput">Position Name</label>
+            </div>
         </div>
-        <!-- end row -->
 
+        <div class="form-floating mb-3">
+            @if($errors->has('positionDescription'))
+                <div class = "alert alert-danger" role = "alert">
+                    {{ $errors->first('positionDescription') }}
+                </div>
+            @endif
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingemailInput" placeholder="Describe the position..." name = "positionDescription">
+                <label for="floatingemailInput">Position Description</label>
+            </div>
         </div>
-        <!-- end row -->
-
-@endsection
+        <div class = "text-center">
+            <button type="submit" class="btn btn-primary w-md">Submit</button>
+        </div>
+    </form>
+</body>
+</html>
+                    

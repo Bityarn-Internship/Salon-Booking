@@ -19,7 +19,7 @@
             <div class="container-fluid p-0">
                 <div class="row g-0">
 
-                    <div class="col-xl-7">
+                    <div class="col-xl-9">
                         <div class="auth-full-bg pt-lg-5 p-4">
                             <div class="w-100">
                                 <div class="bg-overlay"></div>
@@ -80,7 +80,7 @@
                     </div>
                     <!-- end col -->
 
-                    <div class="col-xl-5">
+                    <div class="col-xl-3">
                         <div class="auth-full-page-content p-md-5 p-4">
                             <div class="w-100">
 
@@ -94,86 +94,45 @@
                                         </a>
                                     </div>
                                     <div class="my-auto">
+
                                         <div>
                                             <h5 class="text-primary">Register account</h5>
+                                            <p class="text-muted">Get your free Skote account now.</p>
                                         </div>
 
                                         <div class="mt-4">
-                                            <form action = "<?php echo e(url('/employees')); ?>" method = "post" enctype="multipart/form-data">
-                                                <?php echo csrf_field(); ?>
-                                                <div class="row">
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="firstName" class="form-label">First Name</label>
-                                                        <input type="text" class="form-control" id="firstName" name="firstName"
-                                                               placeholder="Enter Your First Name" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your First Name
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="lastName" class="form-label">Last Name</label>
-                                                        <input type="text" class="form-control" id="lastName" name="lastName"
-                                                               placeholder="Enter Your Last Name" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Last Name
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="email" class="form-label">Email</label>
-                                                        <input type="email" class="form-control" id="email" name="email"
-                                                               placeholder="Enter Your Email" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Email
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="telephoneNumber" class="form-label">Telephone Number</label>
-                                                        <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber"
-                                                               placeholder="Enter Telephone Number" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Telephone Number
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="IDNumber" class="form-label">National ID Number/ Passport Number</label>
-                                                        <input type="text" class="form-control" id="IDNumber" name="IDNumber"
-                                                               placeholder="Enter Your National ID / Passport Number" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your IDNumber
-                                                        </div>
-                                                    </div>
+                                            <form class="needs-validation" novalidate action="index">
 
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="positionID" class="form-label">Choose a position</label>
-                                                        <select id="positionID" class="form-select" name = "positionID">
-                                                            <option disabled selected value="">Select the position</option>
-                                                            <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value="<?php echo e($position->id); ?>"><?php echo e($position->name); ?></option>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        </select>
+                                                <div class="mb-3">
+                                                    <label for="useremail" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="useremail"
+                                                           placeholder="Enter email" required>
+                                                    <div class="invalid-feedback">
+                                                        Please Enter Email
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="password" class="form-label">Password</label>
-                                                        <input type="password" class="form-control" id="password" name="password"
-                                                               placeholder="Enter Your Password" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Password
-                                                        </div>
+
+                                                <div class="mb-3">
+                                                    <label for="username" class="form-label">Username</label>
+                                                    <input type="text" class="form-control" id="username"
+                                                           placeholder="Enter username" required>
+                                                    <div class="invalid-feedback">
+                                                        Please Enter Username
                                                     </div>
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                                                               placeholder="Confirm Your Password" required>
-                                                        <div class="invalid-feedback">
-                                                            Confirm Your Password
-                                                        </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="userpassword" class="form-label">Password</label>
+                                                    <input type="password" class="form-control" id="userpassword"
+                                                           placeholder="Enter password" required>
+                                                    <div class="invalid-feedback">
+                                                        Please Enter Password
                                                     </div>
+                                                </div>
+
+                                                <div>
+                                                    <p class="mb-0">By registering you agree to the Skote <a href="#"
+                                                                                                             class="text-primary">Terms of Use</a></p>
                                                 </div>
 
                                                 <div class="mt-4 d-grid">
@@ -206,9 +165,10 @@
                                                     </ul>
 
                                                 </div>
+
                                             </form>
 
-                                            <div class=" text-center">
+                                            <div class="mt-5 text-center">
                                                 <p>Already have an account ? <a href="auth-login-2"
                                                                                 class="fw-medium text-primary"> Login</a> </p>
                                             </div>
@@ -216,6 +176,13 @@
                                         </div>
                                     </div>
 
+                                    <div class="mt-4 mt-md-5 text-center">
+                                        <p class="mb-0">© <script>
+                                                document.write(new Date().getFullYear())
+
+                                            </script> Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by
+                                            Themesbrand</p>
+                                    </div>
                                 </div>
 
 
@@ -237,4 +204,4 @@
         <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/employees.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/login2.blade.php ENDPATH**/ ?>

@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('translation.Register'); ?> 2
+    <?php echo app('translator')->get('translation.Login'); ?> 2
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -19,7 +19,7 @@
             <div class="container-fluid p-0">
                 <div class="row g-0">
 
-                    <div class="col-xl-7">
+                    <div class="col-xl-8">
                         <div class="auth-full-bg pt-lg-5 p-4">
                             <div class="w-100">
                                 <div class="bg-overlay"></div>
@@ -80,7 +80,7 @@
                     </div>
                     <!-- end col -->
 
-                    <div class="col-xl-5">
+                    <div class="col-xl-4">
                         <div class="auth-full-page-content p-md-5 p-4">
                             <div class="w-100">
 
@@ -94,95 +94,51 @@
                                         </a>
                                     </div>
                                     <div class="my-auto">
+
                                         <div>
-                                            <h5 class="text-primary">Register account</h5>
+                                            <h5 class="text-primary">Welcome Back !</h5>
+                                            <p class="text-muted">Sign in to continue to Skote.</p>
                                         </div>
 
                                         <div class="mt-4">
-                                            <form action = "<?php echo e(url('/employees')); ?>" method = "post" enctype="multipart/form-data">
+                                            <form action="<?php echo e(url('/login')); ?>" method="POST">
                                                 <?php echo csrf_field(); ?>
-                                                <div class="row">
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="firstName" class="form-label">First Name</label>
-                                                        <input type="text" class="form-control" id="firstName" name="firstName"
-                                                               placeholder="Enter Your First Name" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your First Name
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="lastName" class="form-label">Last Name</label>
-                                                        <input type="text" class="form-control" id="lastName" name="lastName"
-                                                               placeholder="Enter Your Last Name" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Last Name
-                                                        </div>
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="email" name="email"
+                                                           placeholder="Enter Your Email">
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="email" class="form-label">Email</label>
-                                                        <input type="email" class="form-control" id="email" name="email"
-                                                               placeholder="Enter Your Email" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Email
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="telephoneNumber" class="form-label">Telephone Number</label>
-                                                        <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber"
-                                                               placeholder="Enter Telephone Number" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Telephone Number
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="IDNumber" class="form-label">National ID Number/ Passport Number</label>
-                                                        <input type="text" class="form-control" id="IDNumber" name="IDNumber"
-                                                               placeholder="Enter Your National ID / Passport Number" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your IDNumber
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="positionID" class="form-label">Choose a position</label>
-                                                        <select id="positionID" class="form-select" name = "positionID">
-                                                            <option disabled selected value="">Select the position</option>
-                                                            <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value="<?php echo e($position->id); ?>"><?php echo e($position->name); ?></option>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        </select>
+                                                <div class="mb-3">
+                                                    <div class="float-end">
+                                                        <a href="auth-recoverpw-2" class="text-muted">Forgot
+                                                            password?</a>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="password" class="form-label">Password</label>
-                                                        <input type="password" class="form-control" id="password" name="password"
-                                                               placeholder="Enter Your Password" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Password
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 pt-2">
-                                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                                                               placeholder="Confirm Your Password" required>
-                                                        <div class="invalid-feedback">
-                                                            Confirm Your Password
-                                                        </div>
+                                                    <label class="form-label">Password</label>
+                                                    <div class="input-group auth-pass-inputgroup">
+                                                        <input type="password" class="form-control"
+                                                               placeholder="Enter Your Password" aria-label="Password"
+                                                               aria-describedby="password-addon" name="password">
+                                                        <button class="btn btn-light " type="button" id="password-addon"><i
+                                                                class="mdi mdi-eye-outline"></i></button>
                                                     </div>
                                                 </div>
 
-                                                <div class="mt-4 d-grid">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="remember-check">
+                                                    <label class="form-check-label" for="remember-check">
+                                                        Remember me
+                                                    </label>
+                                                </div>
+
+                                                <div class="mt-3 d-grid">
                                                     <button class="btn btn-primary waves-effect waves-light"
-                                                            type="submit">Register</button>
+                                                            type="submit">Log In</button>
                                                 </div>
+
 
                                                 <div class="mt-4 text-center">
-                                                    <h5 class="font-size-14 mb-3">Sign up using</h5>
+                                                    <h5 class="font-size-14 mb-3">Sign in with</h5>
 
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
@@ -204,15 +160,13 @@
                                                             </a>
                                                         </li>
                                                     </ul>
-
                                                 </div>
+
                                             </form>
-
                                             <div class=" text-center">
-                                                <p>Already have an account ? <a href="auth-login-2"
-                                                                                class="fw-medium text-primary"> Login</a> </p>
+                                                <p>Don't have an account ? <a href="auth-register-2"
+                                                                              class="fw-medium text-primary"> Signup now </a> </p>
                                             </div>
-
                                         </div>
                                     </div>
 
@@ -237,4 +191,4 @@
         <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/employees.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/client2.blade.php ENDPATH**/ ?>

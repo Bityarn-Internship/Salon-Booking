@@ -17,7 +17,6 @@ class EmployeesController extends Controller
         $positions = Position::all();
         return view('employees',['positions'=>$positions]);
     }
-
     public function store(Request $request){
 
         $input = $request->all();

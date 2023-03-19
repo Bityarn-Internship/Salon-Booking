@@ -57,6 +57,7 @@ Route::controller(UsersController::class)->group(function(){
 
     Route::get('/clients', 'index');
     Route::get('/login', 'login');
+    Route::get('client2','client2');
     Route::post('/clients', 'store');
     Route::post('/login', 'processLogin');
     Route::get('/logout', 'logout');

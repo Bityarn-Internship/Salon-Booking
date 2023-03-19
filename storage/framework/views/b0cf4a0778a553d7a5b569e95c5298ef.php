@@ -1,62 +1,194 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salon | Login</title>
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/forms.css')); ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</head>
-<body>
-    <form action="<?php echo e(url('/login')); ?>" method="POST">
-        <?php echo csrf_field(); ?>
-        <?php if(session()->has('message')): ?>
-            <div class="alert alert-info">
-                <?php echo e(session()->get('message')); ?>
+<?php $__env->startSection('title'); ?>
+    <?php echo app('translator')->get('translation.Login'); ?> 2
+<?php $__env->stopSection(); ?>
 
-            </div>
-        <?php endif; ?>
-        <div class="container2 justify-content-center">
-            <!-- Email input -->
-            <h3 class = "text-center">LOGIN</h3>
-            <div class="form-outline mb-4">
-                <?php if($errors->has('email')): ?>
-                    <div class = "alert alert-danger" role = "alert">
-                        <?php echo e($errors->first('email')); ?>
+<?php $__env->startSection('css'); ?>
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css')); ?>">
+<?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('body'); ?>
+
+    <body class="auth-body-bg">
+    <?php $__env->stopSection(); ?>
+
+    <?php $__env->startSection('content'); ?>
+
+        <div>
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+
+                    <div class="col-xl-8">
+                        <div class="auth-full-bg pt-lg-5 p-4">
+                            <div class="w-100">
+                                <div class="bg-overlay"></div>
+                                <div class="d-flex h-100 flex-column">
+
+                                    <div class="p-4 mt-auto">
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7">
+                                                <div class="text-center">
+
+                                                    <h4 class="mb-3"><i
+                                                            class="bx bxs-quote-alt-left text-primary h1 align-middle me-3"></i><span
+                                                            class="text-primary">5k</span>+ Satisfied clients</h4>
+
+                                                    <div dir="ltr">
+                                                        <div class="owl-carousel owl-theme auth-review-carousel"
+                                                             id="auth-review-carousel">
+                                                            <div class="item">
+                                                                <div class="py-3">
+                                                                    <p class="font-size-16 mb-4">" Fantastic theme with a
+                                                                        ton of options. If you just want the HTML to
+                                                                        integrate with your project, then this is the
+                                                                        package. You can find the files in the 'dist'
+                                                                        folder...no need to install git and all the other
+                                                                        stuff the documentation talks about. "</p>
+
+                                                                    <div>
+                                                                        <h4 class="font-size-16 text-primary">Abs1981</h4>
+                                                                        <p class="font-size-14 mb-0">- Skote User</p>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="item">
+                                                                <div class="py-3">
+                                                                    <p class="font-size-16 mb-4">" If Every Vendor on Envato
+                                                                        are as supportive as Themesbrand, Development with
+                                                                        be a nice experience. You guys are Wonderful. Keep
+                                                                        us the good work. "</p>
+
+                                                                    <div>
+                                                                        <h4 class="font-size-16 text-primary">nezerious</h4>
+                                                                        <p class="font-size-14 mb-0">- Skote User</p>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                <?php endif; ?>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingnameInput" placeholder="Enter Your email" name="email">
-                    <label for="floatingnameInput">Email Address</label>
-                </div>
-            </div>
-            <div class="form-outline mb-4">
-                <?php if($errors->has('password')): ?>
-                    <div class = "alert alert-danger" role = "alert">
-                        <?php echo e($errors->first('password')); ?>
+                    <!-- end col -->
 
+                    <div class="col-xl-4">
+                        <div class="auth-full-page-content p-md-5 p-4">
+                            <div class="w-100">
+
+                                <div class="d-flex flex-column h-100">
+                                    <div class="mb-4 mb-md-5">
+                                        <a href="index" class="d-block auth-logo">
+                                            <img src="<?php echo e(URL::asset('/assets/images/logo-dark.png')); ?>" alt="" height="18"
+                                                 class="auth-logo-dark">
+                                            <img src="<?php echo e(URL::asset('/assets/images/logo-light.png')); ?>" alt="" height="18"
+                                                 class="auth-logo-light">
+                                        </a>
+                                    </div>
+                                    <div class="my-auto">
+
+                                        <div>
+                                            <h5 class="text-primary">Welcome Back !</h5>
+                                            <p class="text-muted">Sign in to continue to Skote.</p>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <form action="<?php echo e(url('/login')); ?>" method="POST">
+                                                <?php echo csrf_field(); ?>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="email" name="email"
+                                                           placeholder="Enter Your Email">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <div class="float-end">
+                                                        <a href="auth-recoverpw-2" class="text-muted">Forgot
+                                                            password?</a>
+                                                    </div>
+                                                    <label class="form-label">Password</label>
+                                                    <div class="input-group auth-pass-inputgroup">
+                                                        <input type="password" class="form-control"
+                                                               placeholder="Enter Your Password" aria-label="Password"
+                                                               aria-describedby="password-addon" name="password">
+                                                        <button class="btn btn-light " type="button" id="password-addon"><i
+                                                                class="mdi mdi-eye-outline"></i></button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="remember-check">
+                                                    <label class="form-check-label" for="remember-check">
+                                                        Remember me
+                                                    </label>
+                                                </div>
+
+                                                <div class="mt-3 d-grid">
+                                                    <button class="btn btn-primary waves-effect waves-light"
+                                                            type="submit">Log In</button>
+                                                </div>
+
+
+                                                <div class="mt-4 text-center">
+                                                    <h5 class="font-size-14 mb-3">Sign in with</h5>
+
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
+                                                            <a href="javascript::void()"
+                                                               class="social-list-item bg-primary text-white border-primary">
+                                                                <i class="mdi mdi-facebook"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="javascript::void()"
+                                                               class="social-list-item bg-info text-white border-info">
+                                                                <i class="mdi mdi-twitter"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="javascript::void()"
+                                                               class="social-list-item bg-danger text-white border-danger">
+                                                                <i class="mdi mdi-google"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </form>
+                                            <div class=" text-center">
+                                                <p>Don't have an account ? <a href="auth-register-2"
+                                                                              class="fw-medium text-primary"> Signup now </a> </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
-                <?php endif; ?>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingnameInput" placeholder="Enter Your password" name="password">
-                    <label for="floatingnameInput">Password</label>
+                    <!-- end col -->
                 </div>
+                <!-- end row -->
             </div>
-
-            <div class="col">
-                <!-- Simple link -->
-                <a style = "text-decoration:none" class="text-right" href="#!">Forgot password?</a>
-            </div>
-
-            <div class="text-center ">
-                <button type="submit" class="btn btn-primary btn-block ">Sign in</button>
-            </div>
-
+            <!-- end container-fluid -->
         </div>
-    </form>
-</body>
-</html>
-<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/login.blade.php ENDPATH**/ ?>
+
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('script'); ?>
+        <!-- owl.carousel js -->
+        <script src="<?php echo e(URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js')); ?>"></script>
+        <!-- auth-2-carousel init -->
+        <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/login.blade.php ENDPATH**/ ?>

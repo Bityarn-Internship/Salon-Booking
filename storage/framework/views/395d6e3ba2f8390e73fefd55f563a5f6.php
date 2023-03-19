@@ -129,12 +129,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 pt-2">
-                                                        <label for="telephoneNumber" class="form-label">Telephone Number</label>
-                                                        <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber"
-                                                               placeholder="Enter Telephone Number" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Telephone Number
-                                                        </div>
+                                                    <label for="telephoneNumber" class="form-label">Telephone Number</label>
+                                                    <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber"
+                                                           placeholder="Enter Telephone Number" required>
+                                                    <div class="invalid-feedback">
+                                                         Enter Your Telephone Number
+                                                    </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -150,29 +150,29 @@
                                                     <div class="col-md-6 pt-2">
                                                         <label for="positionID" class="form-label">Choose a position</label>
                                                         <select id="positionID" class="form-select" name = "positionID">
-                                                            <option disabled selected value="">Select the position</option>
-                                                            <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value="<?php echo e($position->id); ?>"><?php echo e($position->name); ?></option>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        </select>
-                                                    </div>
+                                                        <option disabled selected value="">Select the position</option>
+                                                        <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($position->id); ?>"><?php echo e($position->name); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6 pt-2">
-                                                        <label for="password" class="form-label">Password</label>
-                                                        <input type="password" class="form-control" id="password" name="password"
-                                                               placeholder="Enter Your Password" required>
+                                                    <label for="password" class="form-label">Password</label>
+                                                    <input type="password" class="form-control" id="password" name="password"
+                                                           placeholder="Enter Your Password" required>
                                                         <div class="invalid-feedback">
                                                             Enter Your Password
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 pt-2">
-                                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                                                               placeholder="Confirm Your Password" required>
-                                                        <div class="invalid-feedback">
-                                                            Confirm Your Password
-                                                        </div>
+                                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                                                           placeholder="Confirm Your Password" required>
+                                                    <div class="invalid-feedback">
+                                                        Confirm Your Password
+                                                    </div>
                                                     </div>
                                                 </div>
 
@@ -237,4 +237,4 @@
         <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/employees.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/register2.blade.php ENDPATH**/ ?>

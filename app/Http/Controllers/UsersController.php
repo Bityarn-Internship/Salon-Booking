@@ -16,6 +16,9 @@ class UsersController extends Controller
     public function index(){
         return view('clients');
     }
+    public function client2(){
+        return view('client2');
+    }
     public function login(){
         return view('login');
     }

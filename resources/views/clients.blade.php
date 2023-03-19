@@ -1,96 +1,220 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salon | Register Client</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('assets/css/forms.css')}}">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</head>
-<body>
-    <form action = "{{ url('/clients') }}" method = "post" enctype="multipart/form-data">
-    @csrf
-        <h5 class="card-title text-center">Client Details</h5><br/>
-        <div class="row">
-            <div class="col-md-6">
-                @if($errors->has('firstName'))
-                    <div class = "alert alert-danger" role = "alert">
-                        {{ $errors->first('firstName') }}
+@extends('layouts.master-without-nav')
+
+@section('title')
+    @lang('translation.Register')
+@endsection
+
+@section('css')
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css') }}">
+@endsection
+
+@section('body')
+
+    <body class="auth-body-bg">
+    @endsection
+
+    @section('content')
+
+        <div>
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+
+                    <div class="col-xl-7">
+                        <div class="auth-full-bg pt-lg-5 p-4">
+                            <div class="w-100">
+                                <div class="bg-overlay"></div>
+                                <div class="d-flex h-100 flex-column">
+
+                                    <div class="p-4 mt-auto">
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7">
+                                                <div class="text-center">
+
+                                                    <h4 class="mb-3"><i
+                                                            class="bx bxs-quote-alt-left text-primary h1 align-middle me-3"></i><span
+                                                            class="text-primary">5k</span>+ Satisfied clients</h4>
+
+                                                    <div dir="ltr">
+                                                        <div class="owl-carousel owl-theme auth-review-carousel"
+                                                             id="auth-review-carousel">
+                                                            <div class="item">
+                                                                <div class="py-3">
+                                                                    <p class="font-size-16 mb-4">" Fantastic theme with a
+                                                                        ton of options. If you just want the HTML to
+                                                                        integrate with your project, then this is the
+                                                                        package. You can find the files in the 'dist'
+                                                                        folder...no need to install git and all the other
+                                                                        stuff the documentation talks about. "</p>
+
+                                                                    <div>
+                                                                        <h4 class="font-size-16 text-primary">Abs1981</h4>
+                                                                        <p class="font-size-14 mb-0">- Skote User</p>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="item">
+                                                                <div class="py-3">
+                                                                    <p class="font-size-16 mb-4">" If Every Vendor on Envato
+                                                                        are as supportive as Themesbrand, Development with
+                                                                        be a nice experience. You guys are Wonderful. Keep
+                                                                        us the good work. "</p>
+
+                                                                    <div>
+                                                                        <h4 class="font-size-16 text-primary">nezerious</h4>
+                                                                        <p class="font-size-14 mb-0">- Skote User</p>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                @endif
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Your First Name" name="firstName">
-                    <label for="floatingnameInput">First Name</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                @if($errors->has('lastName'))
-                    <div class = "alert alert-danger" role = "alert">
-                        {{ $errors->first('lastName') }}
+                    <!-- end col -->
+
+                    <div class="col-xl-5">
+                        <div class="auth-full-page-content p-md-5 p-4">
+                            <div class="w-100">
+
+                                <div class="d-flex flex-column h-100">
+                                    <div class="mb-4 mb-md-5">
+                                        <a href="index" class="d-block auth-logo">
+                                            <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="18"
+                                                 class="auth-logo-dark">
+                                            <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="18"
+                                                 class="auth-logo-light">
+                                        </a>
+                                    </div>
+                                    <div class="my-auto">
+                                        <div>
+                                            <h5 class="text-primary">Register account</h5>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <form action = "{{ url('/clients') }}" method = "post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-6 pt-2">
+                                                        <label for="firstName" class="form-label">First Name</label>
+                                                        <input type="text" class="form-control" id="firstName" name="firstName"
+                                                               placeholder="Enter Your First Name" required>
+                                                        <div class="invalid-feedback">
+                                                            Enter Your First Name
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 pt-2">
+                                                        <label for="lastName" class="form-label">Last Name</label>
+                                                        <input type="text" class="form-control" id="lastName" name="lastName"
+                                                               placeholder="Enter Your Last Name" required>
+                                                        <div class="invalid-feedback">
+                                                            Enter Your Last Name
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 pt-2">
+                                                        <label for="email" class="form-label">Email</label>
+                                                        <input type="email" class="form-control" id="email" name="email"
+                                                               placeholder="Enter Your Email" required>
+                                                        <div class="invalid-feedback">
+                                                            Enter Your Email
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 pt-2">
+                                                        <label for="telephoneNumber" class="form-label">Telephone Number</label>
+                                                        <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber"
+                                                               placeholder="Enter Telephone Number" required>
+                                                        <div class="invalid-feedback">
+                                                            Enter Your Telephone Number
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 pt-2">
+                                                        <label for="password" class="form-label">Password</label>
+                                                        <input type="password" class="form-control" id="password" name="password"
+                                                               placeholder="Enter Your Password" required>
+                                                        <div class="invalid-feedback">
+                                                            Enter Your Password
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 pt-2">
+                                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                                                               placeholder="Confirm Your Password" required>
+                                                        <div class="invalid-feedback">
+                                                            Confirm Your Password
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-4 d-grid">
+                                                    <button class="btn btn-primary waves-effect waves-light"
+                                                            type="submit">Register</button>
+                                                </div>
+
+                                                <div class="mt-4 text-center">
+                                                    <h5 class="font-size-14 mb-3">Sign up using</h5>
+
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
+                                                            <a href="javascript::void()"
+                                                               class="social-list-item bg-primary text-white border-primary">
+                                                                <i class="mdi mdi-facebook"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="javascript::void()"
+                                                               class="social-list-item bg-info text-white border-info">
+                                                                <i class="mdi mdi-twitter"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="javascript::void()"
+                                                               class="social-list-item bg-danger text-white border-danger">
+                                                                <i class="mdi mdi-google"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </form>
+
+                                            <div class=" text-center">
+                                                <p>Already have an account ? <a href="auth-login-2"
+                                                                                class="fw-medium text-primary"> Login</a> </p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
-                @endif
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Your Last Name" name="lastName">
-                    <label for="floatingnameInput">Last Name</label>
+                    <!-- end col -->
                 </div>
+                <!-- end row -->
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                @if($errors->has('email'))
-                    <div class = "alert alert-danger" role = "alert">
-                        {{ $errors->first('email') }}
-                    </div>
-                @endif
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingnameInput" placeholder="Enter Your Email" name="email">
-                    <label for="floatingnameInput">Email</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                @if($errors->has('telephoneNumber'))
-                    <div class = "alert alert-danger" role = "alert">
-                        {{ $errors->first('telephoneNumber') }}
-                    </div>
-                @endif
-                <div class="form-floating mb-3">
-                    <input type="tel" class="form-control" id="floatingnameInput" placeholder="Enter Your Telephone Number" name="telephoneNumber">
-                    <label for="floatingnameInput">Telephone Number</label>
-                </div>
-            </div>
+            <!-- end container-fluid -->
         </div>
 
-        <div class="form-floating mb-3">
-            @if($errors->has('password'))
-                <div class = "alert alert-danger" role = "alert">
-                    {{ $errors->first('password') }}
-                </div>
-            @endif
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingnameInput" placeholder="Enter the password..." name="password">
-                <label for="floatingnameInput">Password</label>
-            </div>
-        </div>
-
-        <div class="form-floating mb-3">
-            @if($errors->has('confirmPassword'))
-                <div class = "alert alert-danger" role = "alert">
-                    {{ $errors->first('confirmPassword') }}
-                </div>
-            @endif
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name="confirmPassword">
-                <label for="floatingemailInput">Confirm Password</label>
-            </div>
-        </div>
-        <center>
-            <div>
-                <button type="submit" class="btn btn-primary w-md">Register</button>
-            </div>
-        </center>
-    </form>
-
-</body>
-</html>
+    @endsection
+    @section('script')
+        <!-- owl.carousel js -->
+        <script src="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js') }}"></script>
+        <!-- auth-2-carousel init -->
+        <script src="{{ URL::asset('/assets/js/pages/auth-2-carousel.init.js') }}"></script>
+@endsection

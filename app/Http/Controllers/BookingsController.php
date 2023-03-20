@@ -19,7 +19,7 @@ class BookingsController extends Controller
         $services = Service::all();
         return view('custom/bookings/bookings', ['services'=>$services]);
     }
-    
+
     public function store(Request $request){
         $input = $request->all();
 
@@ -102,7 +102,7 @@ class BookingsController extends Controller
     public function viewBookings(){
         $bookings = Booking::all();
 
-        return view('viewBookings', ['bookings' => $bookings]);
+        return view('custom/bookings/viewBookings', ['bookings' => $bookings]);
     }
 
     public function edit($id){
@@ -148,7 +148,7 @@ class BookingsController extends Controller
     public function ViewTrashedBookings()
     {
         $bookings = Booking::onlyTrashed()->get();
-        return view('ViewTrashedBookings',['bookings'=> $bookings]);
+        return view('custom/bookings/ViewTrashedBookings',['bookings'=> $bookings]);
     }
 
     //restore deleted booking

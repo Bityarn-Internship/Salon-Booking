@@ -37,7 +37,7 @@
         </div>
         <center>
             <div>
-                <button type="submit" class="btn btn-primary w-md">Register</button>
+                <button type="submit" class="btn btn-primary w-md">Save</button>
             </div>
         </center>
     </form>

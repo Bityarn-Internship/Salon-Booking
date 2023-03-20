@@ -14,7 +14,7 @@ class PositionsController extends Controller
     public function viewPositions(){
         $positions = Position::all()->where('deleted_at', NULL);
 
-        return view('viewPositions', ['positions' => $positions]);
+        return view('custom/positions/viewPositions', ['positions' => $positions]);
     }
     public function edit($id){
         $position = Position::find($id);
@@ -23,7 +23,7 @@ class PositionsController extends Controller
     public function ViewTrashedPositions()
     {
         $positions = Position::onlyTrashed()->get();
-        return view('ViewTrashedPositions',['positions'=> $positions]);
+        return view('custom/positions/ViewTrashedPositions',['positions'=> $positions]);
     }
     public function store(Request $request){
         $input = $request->all();
@@ -53,7 +53,7 @@ class PositionsController extends Controller
     }
 
     public function update($id, Request $request){
-        
+
         $input = $request->all();
         $position = Position::find($id);
 

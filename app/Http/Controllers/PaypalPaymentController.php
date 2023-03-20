@@ -122,25 +122,25 @@ class PaypalPaymentController extends Controller
     }
     public function viewPaypalPayments(){
         $paypalpayments = PaypalPayment::all();
-        return view('ViewPaypalPayments',['paypalpayments'=> $paypalpayments]);
+        return view('custom/payments/viewPaypalPayments',['paypalpayments'=> $paypalpayments]);
 
     }
     public function destroy($id){
 
         $paypalpayments = PaypalPayment::find($id)->delete();
-        return redirect('ViewPaypalPayments');
+        return redirect('viewPaypalPayments');
 
     }
     public function viewTrashedPayPalPayments()
     {
         $paypalpayments = PaypalPayment::onlyTrashed()->get();
-        return view('ViewTrashedPaypalPayments',['paypalpayments'=> $paypalpayments]);
+        return view('custom/payments/viewTrashedPaypalPayments',['paypalpayments'=> $paypalpayments]);
     }
-    public function restorePayPalPayments($id){
+    public function restorePaypalPayment($id){
         PaypalPayment::whereId($id)->restore();
-        return redirect('ViewTrashedPayPalPayments');
+        return redirect('viewTrashedPaypalPayments');
     }
-    public function restoreAllPayPalPayments(){
+    public function restorePaypalPayments(){
         PaypalPayment::onlyTrashed()->restore();
         return back();
     }

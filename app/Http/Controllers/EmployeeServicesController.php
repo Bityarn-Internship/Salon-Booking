@@ -51,7 +51,7 @@ class EmployeeServicesController extends Controller
     public function viewEmployeeServices(){
         $employeeServices = EmployeeService::all();
 
-        return view('viewEmployeeServices', ['employeeServices' => $employeeServices]);
+        return view('custom/employeeServices/viewEmployeeServices', ['employeeServices' => $employeeServices]);
     }
     public function edit($id){
         $employeeService = EmployeeService::find($id);
@@ -62,7 +62,7 @@ class EmployeeServicesController extends Controller
     public function ViewTrashedEmployeeServices()
     {
         $employeeServices = EmployeeService::onlyTrashed()->get();
-        return view('viewTrashedEmployeeServices',['employeeServices'=> $employeeServices]);
+        return view('custom/employeeServices/viewTrashedEmployeeServices',['employeeServices'=> $employeeServices]);
     }
     public function update(Request $request, $id){
 

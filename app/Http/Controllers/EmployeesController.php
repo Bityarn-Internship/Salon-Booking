@@ -145,7 +145,7 @@ class EmployeesController extends Controller
     public function viewEmployees(){
         $employees = Employee::all();
 
-        return view('viewEmployees', ['employees' => $employees]);
+        return view('custom/auth/viewEmployees', ['employees' => $employees]);
     }
     public function edit($id){
         $employee = Employee::find($id);
@@ -155,6 +155,6 @@ class EmployeesController extends Controller
     public function ViewTrashedEmployees()
     {
         $employees = Employee::onlyTrashed()->get();
-        return view('ViewTrashedEmployees',['employees'=> $employees]);
+        return view('custom/auth/ViewTrashedEmployees',['employees'=> $employees]);
     }
 }

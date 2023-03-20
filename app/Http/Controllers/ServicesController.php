@@ -77,7 +77,7 @@ class ServicesController extends Controller
     public function ViewTrashedServices()
     {
         $services = Service::onlyTrashed()->get();
-        return view('ViewTrashedServices',['services'=> $services]);
+        return view('custom/services/ViewTrashedServices',['services'=> $services]);
     }
     public function destroy($id)
     {

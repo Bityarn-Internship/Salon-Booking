@@ -159,7 +159,7 @@ class MpesaController extends Controller
     }
     public function viewMpesaPayments(){
         $mpesapayments = MpesaPayment::all();
-        return view('viewMpesaPayments',['mpesapayments'=> $mpesapayments]);
+        return view('custom/payments/viewMpesaPayments',['mpesapayments'=> $mpesapayments]);
     }
     public function destroy($id){
         $mpesapayments = MpesaPayment::find($id)->delete();
@@ -168,7 +168,7 @@ class MpesaController extends Controller
     public function viewTrashedMpesaPayments()
     {
         $mpesapayments = MpesaPayment::onlyTrashed()->get();
-        return view('ViewTrashedMpesaPayments',['mpesapayments'=> $mpesapayments]);
+        return view('custom/payments/ViewTrashedMpesaPayments',['mpesapayments'=> $mpesapayments]);
     }
     public function restoreMpesaPayment($id){
         MpesaPayment::whereId($id)->restore();

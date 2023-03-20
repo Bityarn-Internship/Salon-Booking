@@ -16,9 +16,6 @@ class UsersController extends Controller
     public function index(){
         return view('custom/auth/clients');
     }
-    public function client2(){
-        return view('client2');
-    }
     public function login(){
         return view('custom/auth/login');
     }
@@ -177,7 +174,7 @@ class UsersController extends Controller
 
     public function viewClients(){
         $clients = User::all();
-        return view('viewClients', ['clients' => $clients]);
+        return view('custom/auth/viewClients', ['clients' => $clients]);
     }
 
     public function edit($id){
@@ -187,6 +184,6 @@ class UsersController extends Controller
     public function ViewTrashedClients()
     {
         $clients = User::onlyTrashed()->get();
-        return view('ViewTrashedClients',['clients'=> $clients]);
+        return view('custom/auth/ViewTrashedClients',['clients'=> $clients]);
     }
 }

@@ -182,7 +182,7 @@ class UsersController extends Controller
 
     public function edit($id){
         $client = User::find($id);
-        return view('editClient', ['client' => $client]);
+        return view('custom.auth.editClient', ['client' => $client]);
     }
     public function ViewTrashedClients()
     {

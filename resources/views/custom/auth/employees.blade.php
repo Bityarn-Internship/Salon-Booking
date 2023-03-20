@@ -132,7 +132,7 @@
                                                     </div>
                                                     <div class="col-md-6 pt-2">
                                                         <label for="telephoneNumber" class="form-label">Telephone Number</label>
-                                                        <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber"
+                                                        <input type="tel" class="form-control" id="telephoneNumber" name="telephoneNumber"
                                                                placeholder="Enter Telephone Number" required>
                                                         <div class="invalid-feedback">
                                                             Enter Your Telephone Number
@@ -142,7 +142,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6 pt-2">
                                                         <label for="IDNumber" class="form-label">National ID Number/ Passport Number</label>
-                                                        <input type="text" class="form-control" id="IDNumber" name="IDNumber"
+                                                        <input type="number" class="form-control" id="IDNumber" name="IDNumber"
                                                                placeholder="Enter Your National ID / Passport Number" required>
                                                         <div class="invalid-feedback">
                                                             Enter Your IDNumber

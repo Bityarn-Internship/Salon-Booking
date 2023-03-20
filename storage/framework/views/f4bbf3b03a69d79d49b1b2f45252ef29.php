@@ -43,9 +43,12 @@
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
+            
                                             <div class="row">
+                                                
                                                 <div class="col-md-12 pt-2">
-                                                    <label for="services" class="form-label">Select all services you would like to receive: </label>
+                                                    
+                                                    <label for="services" class="form-label">Select all the services that apply: </label>
                                                     <select name="services[]" id="services" multiple>
                                                         <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <option value="<?php echo e($service->id); ?>"><?php echo e($service->name." - ".$service->cost); ?></option>
@@ -58,11 +61,13 @@
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div><br/>
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
-                                                    <label for="date" class="form-label">Date</label>
-                                                    <input type="date" name="date" class = "form-control" placeholder="Select a date">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="date" class="form-control" id="floatingemailInput" placeholder="Select a date..." name = "date">
+                                                        <label for="floatingemailInput">Date</label>
+                                                    </div>
                                                     <div class="invalid-feedback">
                                                         <?php if($errors->has('date')): ?>
                                                             <?php echo e($errors->first('date')); ?>
@@ -71,8 +76,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 pt-2">
-                                                    <label for="time" class="form-label">Time</label>
-                                                    <input type="time" name="time" class = "form-control" placeholder="Select a time">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="time" class="form-control" id="floatingemailInput" placeholder="Select a time..." name = "time">
+                                                        <label for="floatingemailInput">Time</label>
+                                                    </div>
                                                     <div class="invalid-feedback">
                                                         <?php if($errors->has('time')): ?>
                                                             <?php echo e($errors->first('time')); ?>
@@ -80,8 +87,8 @@
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>
-                                                
                                             </div>
+                                            
                                             <div class = "row">
                                                 <?php if(session()->get('user') == 'employee'): ?>
                                                     <input hidden type="text" name="clientID" value = "<?php echo e($clientID); ?>">

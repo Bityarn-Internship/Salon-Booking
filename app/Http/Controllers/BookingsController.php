@@ -107,7 +107,7 @@ class BookingsController extends Controller
 
     public function edit($id){
         $booking = Booking::find($id);
-        return view('editBooking', ['booking' => $booking]);
+        return view('custom.bookings.editBooking', ['booking' => $booking]);
     }
 
     public function update(Request $request, $id){

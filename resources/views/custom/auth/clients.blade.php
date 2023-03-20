@@ -132,7 +132,7 @@
                                                     </div>
                                                     <div class="col-md-6 pt-2">
                                                         <label for="telephoneNumber" class="form-label">Telephone Number</label>
-                                                        <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber"
+                                                        <input type="tel" class="form-control" id="telephoneNumber" name="telephoneNumber"
                                                                placeholder="Enter Telephone Number" required>
                                                         <div class="invalid-feedback">
                                                             Enter Your Telephone Number

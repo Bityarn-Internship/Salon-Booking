@@ -28,11 +28,11 @@
                                
                                 <div class="my-auto">
                                     <div>
-                                        <h5 class = "text-primary text-center">Assign Employee Service</h5>
+                                        <h5 class = "text-primary text-center">Edit Booked Service</h5>
                                     </div>
 
                                     <div class="mt-4">
-                                        <form action = "{{ url('/employeeServices') }}" method = "post" enctype="multipart/form-data">
+                                        <form action = "{{ url('/updateBookedService/'.$bookedService->id) }}" method = "post" enctype="multipart/form-data">
                                             @csrf
                                             <div class = "row"> 
                                                 <div class="valid-feedback">
@@ -42,23 +42,14 @@
                                                 </div>
                                             </div>
                                             <div class = "row">
-                                                <div class="col-md-12 pt-2">
+                                                <div class="col-md-12">
                                                     <div class="form-floating mb-3">
-                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeID">
-                                                            @foreach($employees as $employee)
-                                                                <option value="{{$employee->id}}">{{$employee->firstName." ".$employee->lastName}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <label for="floatingSelectGrid">Select an employee</label>
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('employeeID'))
-                                                                {{ $errors->first('employeeID') }}
-                                                            @endif
-                                                        </div>
+                                                        <input type="text" class="form-control" id="floatingnameInput" value="{{$bookedService->bookingID}}"  name="bookingID" readonly>
+                                                        <label for="floatingnameInput">Booking ID</label>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
@@ -67,7 +58,7 @@
                                                                 <option value="{{$service->id}}">{{$service->name}}</option>
                                                             @endforeach
                                                         </select>
-                                                        <label for="floatingSelectGrid">Select a service</label>
+                                                        <label for="floatingSelectGrid">Select service</label>
                                                         <div class="invalid-feedback">
                                                             @if($errors->has('serviceID'))
                                                                 {{ $errors->first('serviceID') }}
@@ -76,10 +67,27 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class = "row">
+                                                <div class="col-md-12">
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeID">
+                                                            @foreach($employees as $employee)
+                                                                <option value="{{$employee->id}}">{{$employee->firstName.' '.$employee->lastName}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <label for="floatingSelectGrid">Select employee</label>
+                                                        <div class="invalid-feedback">
+                                                            @if($errors->has('employeeID'))
+                                                                {{ $errors->first('employeeID') }}
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
-                                                    type="submit">Save</button>
+                                                        type="submit">Save</button>
                                             </div>
                                         </form>
                                     </div>

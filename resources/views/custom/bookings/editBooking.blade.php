@@ -29,11 +29,11 @@
                                
                                 <div class="my-auto">
                                     <div>
-                                        <h5 class = "text-primary text-center">Make a Booking</h5>
+                                        <h5 class = "text-primary text-center">Edit Booking</h5>
                                     </div>
 
                                     <div class="mt-4">
-                                        <form action = "{{ url('/bookings') }}" method = "post" enctype="multipart/form-data">
+                                        <form action = "{{ url('/updateBooking/'.$booking->id) }}" method = "post" enctype="multipart/form-data">
                                             @csrf
                                             <div class = "row"> 
                                                 <div class="valid-feedback">
@@ -42,24 +42,20 @@
                                                     @endif
                                                 </div>
                                             </div>
-            
                                             <div class="row">
-                                                
                                                 <div class="col-md-12 pt-2">
-                                                    
-                                                    <label for="services" class="form-label">Select all the services that apply: </label>
-                                                    <select name="services[]" id="services" multiple>
-                                                        @foreach($services as $service)
-                                                            <option value="{{$service->id}}">{{$service->name." - ".$service->cost}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="floatingemailInput" value = "{{$booking->id}}"name = "bookingID" readonly>
+                                                        <label for="floatingemailInput">Booking ID</label>
+                                                    </div>
                                                     <div class="invalid-feedback">
-                                                        @if($errors->has('services'))
-                                                            {{ $errors->first('services') }}
+                                                        @if($errors->has('bookingID'))
+                                                            {{ $errors->first('bookingID') }}
                                                         @endif
                                                     </div>
                                                 </div>
-                                            </div><br/>
+                                            </div>
+
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
                                                     <div class="form-floating mb-3">
@@ -85,17 +81,9 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class = "row">
-                                                @if(session()->get('user') == 'employee')
-                                                    <input hidden type="text" name="clientID" value = "{{$clientID}}">
-                                                @else
-                                                    <input hidden type="text" name="clientID" value = "{{Auth::user()->id}}">
-                                                @endif
-                                            </div>
-                                            
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
-                                                        type="submit">Book</button>
+                                                    type="submit">Save</button>
                                             </div>
                                         </form>
                                     </div>

@@ -18,7 +18,7 @@ class PositionsController extends Controller
     }
     public function edit($id){
         $position = Position::find($id);
-        return view('editPosition', ['position' => $position]);
+        return view('custom.positions.editPosition', ['position' => $position]);
     }
     public function ViewTrashedPositions()
     {

@@ -28,11 +28,11 @@
                                
                                 <div class="my-auto">
                                     <div>
-                                        <h5 class = "text-primary text-center">Assign Employee Service</h5>
+                                        <h5 class = "text-primary text-center">Edit Employee Service</h5>
                                     </div>
 
                                     <div class="mt-4">
-                                        <form action = "<?php echo e(url('/employeeServices')); ?>" method = "post" enctype="multipart/form-data">
+                                        <form action = "<?php echo e(url('/updateEmployeeService/'.$employeeService->id)); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class = "row"> 
                                                 <div class="valid-feedback">
@@ -109,4 +109,4 @@
     <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/employeeServices/employeeService.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/employeeServices/editEmployeeService.blade.php ENDPATH**/ ?>

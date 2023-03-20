@@ -16,7 +16,7 @@ use Illuminate\Validation\Rules\Password;
 class BookedServicesController extends Controller
 {
     public function index(){
-        return view('employeeServices');
+        return view('custom/employeeServices/employeeService');
     }
     public function viewBookedServices(){
         $bookedServices = BookedService::all();
@@ -28,7 +28,7 @@ class BookedServicesController extends Controller
         $bookedService = BookedService::find($id);
         $services = Service::all();
         $employees = Employee::all();
-        return view('editBookedService', ['bookedService' => $bookedService,'services'=>$services,'employees'=>$employees]);
+        return view('custom/bookedServices/editBookedService', ['bookedService' => $bookedService,'services'=>$services,'employees'=>$employees]);
     }
     public function update(Request $request, $id){
 

@@ -2,54 +2,57 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
     <title>Salon | Make a Booking</title>
-    <link rel="stylesheet" href="{{asset('assets/css/forms.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/forms.css')); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
-<form action="{{url('/bookings')}}" method="POST">
-    @csrf
+<form action="<?php echo e(url('/bookings')); ?>" method="POST">
+    <?php echo csrf_field(); ?>
     <h4 class = "text-center">Make Booking</h4>
     <div class = "mb-3">
-        @if($errors->has('services'))
+        <?php if($errors->has('services')): ?>
             <div class = "alert alert-danger" role = "alert">
-                {{ $errors->first('services') }}
+                <?php echo e($errors->first('services')); ?>
+
             </div>
-        @endif
+        <?php endif; ?>
         <div class="row mb-3">
             <label for="formrow-inputState" class="form-label">Select all services you would like to receive: </label>
             <select name="services[]" id="services" multiple>
-                @foreach($services as $service)
-                    <option value="{{$service->id}}">{{$service->name." - ".$service->cost}}</option>
-                @endforeach
+                <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($service->id); ?>"><?php echo e($service->name." - ".$service->cost); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
         </div>
     </div>
     <div class = "row mb-3">
         <div class="col-md-6">
-            @if($errors->has('date'))
+            <?php if($errors->has('date')): ?>
                 <div class = "alert alert-danger" role = "alert">
-                    {{ $errors->first('date') }}
+                    <?php echo e($errors->first('date')); ?>
+
                 </div>
-            @endif
+            <?php endif; ?>
             <input type="date" class="form-control" name="date">
         </div>
         <div class="col-md-6">
-            @if($errors->has('time'))
+            <?php if($errors->has('time')): ?>
                 <div class = "alert alert-danger" role = "alert">
-                    {{ $errors->first('time') }}
+                    <?php echo e($errors->first('time')); ?>
+
                 </div>
-            @endif
+            <?php endif; ?>
             <input type="time" name="time" class = "form-control">
         </div>
     </div>
 
     <div class = "mb-3">
-        @if(session()->get('user') == 'employee')
-            <input hidden type="text" name="clientID" value = "{{$clientID}}">
-        @else
-            <input hidden type="text" name="clientID" value = "{{Auth::user()->id}}">
-        @endif
+        <?php if(session()->get('user') == 'employee'): ?>
+            <input hidden type="text" name="clientID" value = "<?php echo e($clientID); ?>">
+        <?php else: ?>
+            <input hidden type="text" name="clientID" value = "<?php echo e(Auth::user()->id); ?>">
+        <?php endif; ?>
     </div>
 
     <div class = "text-center">
@@ -66,3 +69,4 @@
 <script>
     new MultiSelectTag('services')  // id
 </script>
+<?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/bookings.blade.php ENDPATH**/ ?>

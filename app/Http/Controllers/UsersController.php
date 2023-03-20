@@ -14,13 +14,13 @@ use Session;
 class UsersController extends Controller
 {
     public function index(){
-        return view('clients');
+        return view('custom/auth/clients');
     }
     public function client2(){
         return view('client2');
     }
     public function login(){
-        return view('login');
+        return view('custom/auth/login');
     }
 
     public function processLogin(Request $request){

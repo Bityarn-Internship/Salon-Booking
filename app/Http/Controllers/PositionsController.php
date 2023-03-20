@@ -9,7 +9,7 @@ use Validator;
 class PositionsController extends Controller
 {
     public function index(){
-        return view('positions');
+        return view('custom/positions/positions');
     }
     public function viewPositions(){
         $positions = Position::all()->where('deleted_at', NULL);

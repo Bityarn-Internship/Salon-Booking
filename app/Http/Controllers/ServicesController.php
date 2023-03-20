@@ -9,16 +9,16 @@ use Validator;
 class ServicesController extends Controller
 {
     public function index(){
-        return view('services');
+        return view('custom/services/services');
     }
     public function viewServices(){
         $services = Service::all()->where('deleted_at', NULL);
 
-        return view('viewServices', ['services' => $services]);
+        return view('custom/services/viewServices', ['services' => $services]);
     }
     public function edit($id){
         $service = Service::find($id);
-        return view('editService', ['service' => $service]);
+        return view('custom/services/editService', ['service' => $service]);
     }
 
     public function store(Request $request){

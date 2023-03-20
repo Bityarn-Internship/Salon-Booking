@@ -17,17 +17,17 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($services as $service)
+                <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td>{{$service->id}}</td>
-                    <td>{{$service->name}}</td>
-                    <td>{{$service->cost}}</td>
+                    <td><?php echo e($service->id); ?></td>
+                    <td><?php echo e($service->name); ?></td>
+                    <td><?php echo e($service->cost); ?></td>
                     <td>
-                        <a class="btn btn-primary" href="{{url ('editService/'.$service->id) }}">Edit</a>
-                        <a class="btn btn-danger" href="{{url ('deleteService/'.$service->id) }}">Delete</a>
+                        <a class="btn btn-primary" href="<?php echo e(url ('editService/'.$service->id)); ?>">Edit</a>
+                        <a class="btn btn-danger" href="<?php echo e(url ('deleteService/'.$service->id)); ?>">Delete</a>
                     </td>
                 </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
         </table>
@@ -40,3 +40,4 @@
         $('#servicesView').DataTable();
     });
 </script>
+<?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/viewServices.blade.php ENDPATH**/ ?>

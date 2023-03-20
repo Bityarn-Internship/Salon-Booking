@@ -9,12 +9,9 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\EmployeeServicesController;
 use App\Http\Controllers\PaymentsController;
-use App\Http\Controllers\WalkInsController;
 use App\Http\Controllers\BookedServicesController;
 use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\MpesaController;
-use App\Http\Controllers\CompletedBookingsController;
-
 
 
 /*
@@ -114,7 +111,7 @@ Route::controller(EmployeeServicesController::class)->group(function(){
     Route::post('/employeeServices', 'store');
     Route::get('/viewEmployeeServices', 'viewEmployeeServices');
     Route::get('/editEmployeeService/{id}', 'edit');
-     Route::get('/viewEmployeeServices', 'viewEmployeeServices');
+    Route::get('/viewEmployeeServices', 'viewEmployeeServices');
     Route::get('/viewTrashedEmployeeServices', 'viewTrashedEmployeeServices');
     Route::post('/updateEmployeeService/{id}', 'update');
     Route::get('/deleteEmployeeService/{id}', 'destroy');
@@ -141,7 +138,6 @@ Route::controller(PaymentsController::class)->group(function(){
 });
 
 Route::controller(PaypalPaymentController::class)->group(function(){
-
     Route::post('/payment','pay');
     Route::get('/success','success');
     Route::get('/errorOccurred','errorOccurred');

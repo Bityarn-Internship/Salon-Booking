@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Validator;
 class EmployeeServicesController extends Controller
 {
     public function index(){
-        return view('employeeServices');
+        return view('custom/employeeServices/employeeService');
     }
     public function assign(){
         $employees = Employee::all();
         $services = Service::all();
-        return view('employeeServices',['employees'=>$employees,'services'=>$services]);
+        return view('custom/employeeServices/employeeService',['employees'=>$employees,'services'=>$services]);
     }
     public function store(Request $request){
 

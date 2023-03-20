@@ -96,7 +96,7 @@ class PaypalPaymentController extends Controller
                 $payment->save();
 
                 $user = User::find($booking->clientID);
-                \Mail::send('sendBookingEmail', ['body'=>$body, 'bookedServices'=>$bookedServices], function($message) use ($request, $user){
+                \Mail::send('custom/payments/sendBookingEmail', ['body'=>$body, 'bookedServices'=>$bookedServices], function($message) use ($request, $user){
                     $message->from('noreply@gmail.com', 'Salon Booking System');
                     $message->to($user->email)
                     ->subject('Salon Booking System: Booking Details');

@@ -17,7 +17,7 @@ class MpesaController extends Controller
         $cost = (0.2 * $request->cost);
         $bookingID = $request->bookingID;
 
-        return view('mpesaPayment', ['cost'=>$cost, 'bookingID'=>$bookingID]);
+        return view('custom/payments/mpesaPayment', ['cost'=>$cost, 'bookingID'=>$bookingID]);
     }
 
     public function completeMpesaPayment(Request $request){
@@ -125,7 +125,7 @@ class MpesaController extends Controller
 
     public function mpesaConfirmation($id){
 
-        return view('mpesaConfirmation', ['bookingID'=>$id]);
+        return view('custom/payments/mpesaConfirmation', ['bookingID'=>$id]);
     }
     public function checkTransaction(Request $request){
         $request->validate([

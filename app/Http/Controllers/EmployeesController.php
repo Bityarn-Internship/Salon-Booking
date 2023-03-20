@@ -15,7 +15,7 @@ class EmployeesController extends Controller
 {
     public function index(){
         $positions = Position::all();
-        return view('employees',['positions'=>$positions]);
+        return view('custom/auth/employees',['positions'=>$positions]);
     }
     public function store(Request $request){
 

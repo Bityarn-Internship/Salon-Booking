@@ -17,8 +17,9 @@ class BookingsController extends Controller
 {
     public function index(){
         $services = Service::all();
-        return view('bookings', ['services'=>$services]);
+        return view('custom/bookings/bookings', ['services'=>$services]);
     }
+    
     public function store(Request $request){
         $input = $request->all();
 
@@ -93,7 +94,9 @@ class BookingsController extends Controller
         }
 
         $cost = Booking::find($input['bookingID'])->cost;
-        return view('/depositPayment', ['cost'=>$cost,'bookingID'=>$input['bookingID'], 'services'=>$services])->with('message', 'Services successfully inserted');
+        $clientID = Booking::find($input['bookingID'])->clientID;
+
+        return view('/custom/payments/depositPayment', ['cost'=>$cost,'bookingID'=>$input['bookingID'], 'services'=>$services, 'clientID'=>$clientID])->with('message', 'Services successfully added');
     }
 
     public function viewBookings(){

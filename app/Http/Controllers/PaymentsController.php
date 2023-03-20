@@ -16,7 +16,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class PaymentsController extends Controller
 {
     public function depositPayment(){
-        return view('depositPayment');
+        return view('custom/payments/depositPayment');
     }
     public function completePayment($bookingID){
         $total = Booking::find($bookingID)->cost;
@@ -37,7 +37,7 @@ class PaymentsController extends Controller
         }
         $services = Service::all()->whereIn('id', $serviceIDs);
 
-        return view('completePayment', ['balance'=>$balance, 'total'=>$total, 'clientID'=>$clientID, 'bookingID'=>$bookingID, 'services'=>$services]);
+        return view('custom.payments.completePayment', ['balance'=>$balance, 'total'=>$total, 'clientID'=>$clientID, 'bookingID'=>$bookingID, 'services'=>$services]);
     }
 
     public function completeCashPayment(Request $request){
@@ -60,7 +60,7 @@ class PaymentsController extends Controller
                     <h4>Booking Details: </h4>
                     <p>Booking ID: ".$booking->id."</br>
                     <p>Your booking was scheduled on ".$booking->date." at ".$booking->time."</p>";
-        \Mail::send('sendBookingEmail', ['body'=>$body, 'bookedServices'=>$bookedServices], function($message) use ($request, $user){
+        \Mail::send('custom/payments/sendBookingEmail', ['body'=>$body, 'bookedServices'=>$bookedServices], function($message) use ($request, $user){
             $message->from('nkatha.dev@gmail.com', 'Salon Booking System');
             $message->to($user->email)
             ->subject('Salon Booking System: Booking Details');

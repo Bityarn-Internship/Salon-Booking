@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.Dashboards'); ?> <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -128,7 +126,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium">Payments</p>
-                                    <h4 class="mb-0">$16.2</h4>
+                                    <h4 class="mb-0"><?php echo e($payments); ?></h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">

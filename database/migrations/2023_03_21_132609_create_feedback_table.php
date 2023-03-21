@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('firstName')->nullable();
-            $table->string('lastName')->nullable();
+            $table->string('firstName')->default('Anonymous');
+            $table->string('lastName')->default('User');
             $table->string('email')->nullable();
             $table->string('message');
             $table->string('status')->default('Poor');

@@ -9,16 +9,19 @@ use App\Models\User;
 use App\Models\Service;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Employee;
+use App\Models\Feedback;
 use Auth;
 use Session;
 
 class UsersController extends Controller
 {
     public function index(){
-        return view('custom/auth/clients');
+        $feedbacks = Feedback::all()->where('status','Good');
+        return view('custom/auth/clients',['feedbacks'=>$feedbacks]);
     }
     public function login(){
-        return view('custom/auth/login');
+        $feedbacks = Feedback::all()->where('status','Good');
+        return view('custom/auth/login',['feedbacks'=>$feedbacks]);
     }
 
     public function processLogin(Request $request){
@@ -32,6 +35,8 @@ class UsersController extends Controller
         //Login user
         if(Auth::guard('web')->attempt($credentials)){
             Session::put('user', 'client');
+            Session::put('clientID', User::select('id')->where('email', $request['email'])->get()->first()->id);
+
             return redirect('/bookings')->with('message', 'Login successful');
         }
 

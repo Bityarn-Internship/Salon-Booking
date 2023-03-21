@@ -1,21 +1,19 @@
-@extends('custom.common.master-without-nav')
+<?php $__env->startSection('title'); ?>
+    <?php echo app('translator')->get('translation.Register'); ?> 2
+<?php $__env->stopSection(); ?>
 
-@section('title')
-    @lang('translation.Register')
-@endsection
-
-@section('css')
+<?php $__env->startSection('css'); ?>
     <!-- owl.carousel css -->
-    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css') }}">
-@endsection
+    <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-@section('body')
+<?php $__env->startSection('body'); ?>
 
     <body class="auth-body-bg">
-    @endsection
+    <?php $__env->stopSection(); ?>
 
-    @section('content')
+    <?php $__env->startSection('content'); ?>
 
         <div>
             <div class="container-fluid p-0">
@@ -40,18 +38,18 @@
                                                     <div dir="ltr">
                                                         <div class="owl-carousel owl-theme auth-review-carousel"
                                                              id="auth-review-carousel">
-                                                            @foreach($feedbacks as $feedback)
+                                                            <?php $__currentLoopData = $feedbacks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feedback): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                 <div class="item">
                                                                     <div class="py-3">
-                                                                        <p class="font-size-16 mb-4">" {{$feedback->message}} "</p>
+                                                                        <p class="font-size-16 mb-4">" <?php echo e($feedback->message); ?> "</p>
 
                                                                         <div>
-                                                                            <p class="font-size-14 mb-0">- {{$feedback->firstName}}</p>
+                                                                            <p class="font-size-14 mb-0">- <?php echo e($feedback->firstName); ?></p>
                                                                         </div>
                                                                     </div>
 
                                                                 </div>
-                                                            @endforeach
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </div>
                                                     </div>
 
@@ -74,9 +72,9 @@
                                 <div class="d-flex flex-column h-100">
                                     <div class="mb-4 mb-md-5">
                                         <a href="index" class="d-block auth-logo">
-                                            <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="18"
+                                            <img src="<?php echo e(URL::asset('/assets/images/logo-dark.png')); ?>" alt="" height="18"
                                                  class="auth-logo-dark">
-                                            <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="18"
+                                            <img src="<?php echo e(URL::asset('/assets/images/logo-light.png')); ?>" alt="" height="18"
                                                  class="auth-logo-light">
                                         </a>
                                     </div>
@@ -86,8 +84,8 @@
                                         </div>
 
                                         <div class="mt-4">
-                                            <form action = "{{ url('/clients') }}" method = "post" enctype="multipart/form-data">
-                                                @csrf
+                                            <form action = "<?php echo e(url('/employees')); ?>" method = "post" enctype="multipart/form-data">
+                                                <?php echo csrf_field(); ?>
                                                 <div class="row">
                                                     <div class="col-md-6 pt-2">
                                                         <label for="firstName" class="form-label">First Name</label>
@@ -122,6 +120,26 @@
                                                         <div class="invalid-feedback">
                                                             Enter Your Telephone Number
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 pt-2">
+                                                        <label for="IDNumber" class="form-label">National ID Number/ Passport Number</label>
+                                                        <input type="number" class="form-control" id="IDNumber" name="IDNumber"
+                                                               placeholder="Enter Your National ID / Passport Number" required>
+                                                        <div class="invalid-feedback">
+                                                            Enter Your IDNumber
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 pt-2">
+                                                        <label for="positionID" class="form-label">Choose a position</label>
+                                                        <select id="positionID" class="form-select" name = "positionID">
+                                                            <option disabled selected value="">Select the position</option>
+                                                            <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($position->id); ?>"><?php echo e($position->name); ?></option>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -176,7 +194,7 @@
                                             </form>
 
                                             <div class=" text-center">
-                                                <p>Already have an account ? <a href="{{ URL::to('/login') }}"
+                                                <p>Already have an account ? <a href="auth-login-2"
                                                                                 class="fw-medium text-primary"> Login</a> </p>
                                             </div>
 
@@ -196,10 +214,12 @@
             <!-- end container-fluid -->
         </div>
 
-    @endsection
-    @section('script')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('script'); ?>
         <!-- owl.carousel js -->
-        <script src="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js') }}"></script>
+        <script src="<?php echo e(URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js')); ?>"></script>
         <!-- auth-2-carousel init -->
-        <script src="{{ URL::asset('/assets/js/pages/auth-2-carousel.init.js') }}"></script>
-@endsection
+        <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/auth/employees.blade.php ENDPATH**/ ?>

@@ -82,8 +82,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <textarea type="tel" class="form-control" id="floatingnameInput" value = "{{$feedback->message}}" name = "message">
-                                                        </textarea>
+                                                        <input type="tel" class="form-control" id="floatingnameInput" value = "{{$feedback->message}}" name = "message" readonly>
                                                         <label for="floatingnameInput">Feedback</label>
                                                     </div>
 
@@ -99,7 +98,7 @@
                                                     <div class="form-floating mb-3">
                                                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "status">
                                                                 <option value="Poor">Poor</option>
-                                                                <option value="Poor">Good</option>
+                                                                <option value="Good">Good</option>
                                                         </select>
                                                         <label for="floatingSelectGrid">Update Status</label>
                                                         <div class="invalid-feedback">

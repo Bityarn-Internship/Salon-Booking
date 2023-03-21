@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
-// use Illuminate\Support\Facades\File;
+use App\Models\Feedback;
 
 class EmployeesController extends Controller
 {
     public function index(){
         $positions = Position::all();
-        return view('custom/auth/employees',['positions'=>$positions]);
+         $feedbacks = Feedback::all()->where('status','Good');
+        return view('custom/auth/employees',['positions'=>$positions,'feedbacks'=>$feedbacks]);
     }
     public function store(Request $request){
 

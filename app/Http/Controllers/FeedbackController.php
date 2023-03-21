@@ -77,6 +77,7 @@ class FeedbackController extends Controller
         }
 
         $feedback->status = $input['status'];
+
         $feedback->save();
 
         return redirect('/viewFeedback')->with('message', 'Feedback updated successfully!');

@@ -23,7 +23,7 @@
                                         <h5 class="text-primary text-center">Edit Feedback</h5>
                                     </div>
                                     <div class="mt-4">
-                                        <form action = "/feedback" method = "post" enctype="multipart/form-data">
+                                        <form action = "<?php echo e(url('/updateFeedback/'.$feedback->id)); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class="row">
                                                 <?php if(session()->has('message')): ?>
@@ -36,7 +36,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($client->firstName); ?>" name = "firstName" readonly>
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($feedback->firstName); ?>" name = "firstName" readonly>
                                                         <label for="floatingnameInput">First Name</label>
                                                     </div>
 
@@ -52,7 +52,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($client->lastName); ?>" name = "lastName" readonly>
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($feedback->lastName); ?>" name = "lastName" readonly>
                                                         <label for="floatingnameInput">Last Name</label>
                                                     </div>
 
@@ -68,7 +68,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="email" class="form-control" id="floatingnameInput" value = "<?php echo e($client->email); ?>" name = "email" readonly>
+                                                        <input type="email" class="form-control" id="floatingnameInput" value = "<?php echo e($feedback->email); ?>" name = "email" readonly>
                                                         <label for="floatingnameInput">Email Address</label>
                                                     </div>
 
@@ -84,8 +84,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <textarea type="tel" class="form-control" id="floatingnameInput" value = "<?php echo e($client->message); ?>" name = "message">
-                                                        </textarea>
+                                                        <input type="tel" class="form-control" id="floatingnameInput" value = "<?php echo e($feedback->message); ?>" name = "message" readonly>
                                                         <label for="floatingnameInput">Feedback</label>
                                                     </div>
 
@@ -102,7 +101,7 @@
                                                     <div class="form-floating mb-3">
                                                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "status">
                                                                 <option value="Poor">Poor</option>
-                                                                <option value="Poor">Good</option>
+                                                                <option value="Good">Good</option>
                                                         </select>
                                                         <label for="floatingSelectGrid">Update Status</label>
                                                         <div class="invalid-feedback">

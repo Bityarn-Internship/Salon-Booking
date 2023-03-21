@@ -128,7 +128,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium">Payments</p>
-                                    <h4 class="mb-0">$16.2</h4>
+                                    <h4 class="mb-0">{{$payments}}</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">

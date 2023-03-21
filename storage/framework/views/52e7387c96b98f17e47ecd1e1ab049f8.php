@@ -117,8 +117,8 @@
                         <span key="t-contacts"><?php echo app('translator')->get('User Feedback'); ?></span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-user-grid"><?php echo app('translator')->get('View Feedback'); ?></a></li>
-                        <li><a href="#" key="t-user-list"><?php echo app('translator')->get('Inactive Feedback'); ?></a></li>
+                        <li><a href="/viewFeedback" key="t-user-grid"><?php echo app('translator')->get('View Feedback'); ?></a></li>
+                        <li><a href="/viewTrashedFeedback" key="t-user-list"><?php echo app('translator')->get('Inactive Feedback'); ?></a></li>
                     </ul>
                 </li>
                 <li>

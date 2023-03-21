@@ -1,4 +1,4 @@
-@extends('layouts.master-without-nav')
+@extends('custom.common.master-client')
 
 @section('title')
     @lang('Booking')
@@ -26,7 +26,7 @@
                     <div class="auth-full-page-content p-md-5 p-4">
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
-                               
+
                                 <div class="my-auto">
                                     <div>
                                         <h5 class = "text-primary text-center">Make a Booking</h5>
@@ -35,18 +35,18 @@
                                     <div class="mt-4">
                                         <form action = "{{ url('/bookings') }}" method = "post" enctype="multipart/form-data">
                                             @csrf
-                                            <div class = "row"> 
+                                            <div class = "row">
                                                 <div class="valid-feedback">
                                                     @if(session()->has('message'))
                                                         {{ session()->get('message') }}
                                                     @endif
                                                 </div>
                                             </div>
-            
+
                                             <div class="row">
-                                                
+
                                                 <div class="col-md-12 pt-2">
-                                                    
+
                                                     <label for="services" class="form-label">Select all the services that apply: </label>
                                                     <select name="services[]" id="services" multiple>
                                                         @foreach($services as $service)
@@ -84,7 +84,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class = "row">
                                                 @if(session()->get('user') == 'employee')
                                                     <input hidden type="text" name="clientID" value = "{{$clientID}}">
@@ -92,7 +92,7 @@
                                                     <input hidden type="text" name="clientID" value = "{{Auth::user()->id}}">
                                                 @endif
                                             </div>
-                                            
+
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
                                                         type="submit">Book</button>

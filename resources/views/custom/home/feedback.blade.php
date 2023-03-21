@@ -1,4 +1,4 @@
-@extends('layouts.master-without-nav')
+@extends('custom.common.master-without-nav')
 
 @section('title')
     @lang('Services')
@@ -82,7 +82,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <textarea type="tel" class="form-control" id="floatingnameInput" value = "" name = "message">
+                                                        <textarea type="text" class="form-control" id="floatingnameInput" value = "" name = "message">
                                                         </textarea>
                                                         <label for="floatingnameInput">Feedback</label>
                                                     </div>

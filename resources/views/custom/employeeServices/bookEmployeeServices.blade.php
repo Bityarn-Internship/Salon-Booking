@@ -1,4 +1,4 @@
-@extends('layouts.master-without-nav')
+@extends('custom.common.master-without-nav')
 
 @section('content')
 

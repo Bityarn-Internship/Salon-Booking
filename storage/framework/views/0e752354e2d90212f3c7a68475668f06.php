@@ -38,19 +38,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $__currentLoopData = $clients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $client): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $feedbacks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feedback): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><?php echo e($client->id); ?></td>
-                                    <td><?php echo e($client->firstName); ?></td>
-                                    <td><?php echo e($client->lastName); ?></td>
-                                    <td><?php echo e($client->email); ?></td>
-                                    <td><?php echo e($client->message); ?></td>
-                                    <td><?php echo e($client->status); ?></td>
+                                    <td><?php echo e($feedback->id); ?></td>
+                                    <td><?php echo e($feedback->firstName); ?></td>
+                                    <td><?php echo e($feedback->lastName); ?></td>
+                                    <td><?php echo e($feedback->email); ?></td>
+                                    <td><?php echo e($feedback->message); ?></td>
+                                    <td><?php echo e($feedback->status); ?></td>
                                     <td>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editFeedback/'.$client->id)); ?>" title="Edit">
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editFeedback/'.$feedback->id)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteFeedback/'.$client->id)); ?>" title="Delete">
+                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteFeedback/'.$feedback->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

@@ -117,8 +117,8 @@
                         <span key="t-contacts">@lang('User Feedback')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-user-grid">@lang('View Feedback')</a></li>
-                        <li><a href="#" key="t-user-list">@lang('Inactive Feedback')</a></li>
+                        <li><a href="/viewFeedback" key="t-user-grid">@lang('View Feedback')</a></li>
+                        <li><a href="/viewTrashedFeedback" key="t-user-list">@lang('Inactive Feedback')</a></li>
                     </ul>
                 </li>
                 <li>

@@ -23,7 +23,7 @@
                                         <h5 class="text-primary text-center">User Feedback</h5>
                                     </div>
                                     <div class="mt-4">
-                                        <form action = "" method = "post" enctype="multipart/form-data">
+                                        <form action = "/feedback" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class="row">
                                                 <?php if(session()->has('message')): ?>
@@ -84,7 +84,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <textarea type="tel" class="form-control" id="floatingnameInput" value = "" name = "message">
+                                                        <textarea type="text" class="form-control" id="floatingnameInput" value = "" name = "message">
                                                         </textarea>
                                                         <label for="floatingnameInput">Feedback</label>
                                                     </div>

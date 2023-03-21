@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('Services'); ?>
 <?php $__env->stopSection(); ?>
@@ -8,11 +7,6 @@
     <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css')); ?>">
 <?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('body'); ?>
-
-    <body class="auth-body-bg">
-    <?php $__env->stopSection(); ?>
 
     <?php $__env->startSection('content'); ?>
 
@@ -132,4 +126,5 @@
         <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/auth/editClient.blade.php ENDPATH**/ ?>
+
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/auth/editClient.blade.php ENDPATH**/ ?>

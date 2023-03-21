@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css')); ?>">
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('body'); ?>
-
-    <body class="auth-body-bg">
-    <?php $__env->stopSection(); ?>
 
     <?php $__env->startSection('content'); ?>
 

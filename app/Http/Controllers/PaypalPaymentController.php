@@ -101,8 +101,8 @@ class PaypalPaymentController extends Controller
                     $message->to($user->email)
                     ->subject('Salon Booking System: Booking Details');
                 });
-                
-                return redirect('/viewClientBookings/'.$booking->clientID)->with('message', 'Email sent');
+
+                return redirect('/bookings')->with('message', 'Email sent');
             }
             else{
                 return $response->getMessage();

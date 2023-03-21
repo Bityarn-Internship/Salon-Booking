@@ -18,6 +18,6 @@ class DashboardController extends Controller
         $mpesapayments = MpesaPayment::all()->count('id');
         $upcomingBookings = Booking::select('*')->where('status','Reserved');
         $payments = $paypalpayments + $mpesapayments;
-        return view('custom/common/dashboard',['bookings'=>$bookings,'services'=>$services,'upcomingBookings'=>$upcomingBookings,'payments'=>$payments]);
+        return view('custom/home/dashboard',['bookings'=>$bookings,'services'=>$services,'upcomingBookings'=>$upcomingBookings,'payments'=>$payments]);
     }
 }

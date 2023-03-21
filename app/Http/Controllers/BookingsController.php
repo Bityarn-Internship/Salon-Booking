@@ -61,7 +61,7 @@ class BookingsController extends Controller
         $bookingID = Booking::select('id')->where('clientID', $input['clientID'])->where('date', $input['date'])->get()->last()->id;
         $employeesServices = EmployeeService::all()->whereIn('serviceID', $request['services']);
 
-        return view('/bookEmployeeServices', ['employeeServices'=>$employeesServices, 'services'=>$services, 'bookingID'=>$bookingID, 'cost'=>$cost]);
+        return view('custom/employeeServices/bookEmployeeServices', ['employeeServices'=>$employeesServices, 'services'=>$services, 'bookingID'=>$bookingID, 'cost'=>$cost]);
     }
 
     public function bookEmployee(Request $request){

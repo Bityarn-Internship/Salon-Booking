@@ -1,6 +1,6 @@
-@extends('custom.common.master-without-nav')
+@extends('custom.common.master-client')
 
-@section('content')
+    @section('content')
 
 
     <form action="{{url('/bookEmployee')}}" method="POST">

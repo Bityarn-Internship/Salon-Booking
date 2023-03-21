@@ -32,7 +32,7 @@ class MpesaController extends Controller
         //generate timestamp
         $timestamp = Carbon::rawParse('now')->format('YmdHms');
         //use passkey
-        $passKey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+        $passKey = env('MPESA_PASS_KEY');
         //businessShortcode
         $businessShortCode = 174379;
         //generate password
@@ -44,8 +44,8 @@ class MpesaController extends Controller
     //mpesa generate access token request
     public function newAccessToken(){
 
-        $consumer_key = "jHAAtSyF9nsiB2VttgZDnpxbyzA767RY";
-        $consumer_secret = "3eHfvCtZ8ykoWXYO";
+        $consumer_key = env('MPESA_CONSUMER_KEY');
+        $consumer_secret = env('MPESA_CONSUMER_SECRET');
         $credentials = base64_encode($consumer_key.":".$consumer_secret);
         $url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
 

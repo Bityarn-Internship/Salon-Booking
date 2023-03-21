@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('View Employee Services'); ?>
+    <?php echo app('translator')->get('Inactive Booked Services'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -22,31 +22,32 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-primary text-center">View Employee Services</h4>
+                    <h4 class="card-title text-primary text-center">Inactive Booked Services</h4>
 
                     <div class="table-responsive">
+                        <div class="col col-md-11 text-right">
+                           <span style="display: inline-block"><h3><a class="btn btn-primary" href="<?php echo e(url('restoreBookedServices')); ?>"><b>Restore All</b>
+                            <i class="fas fa-trash-restore"></i></a></h3></span>
+                        </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Employee Name</th>
+                                <th>Booking ID</th>
                                 <th>Service Name</th>
-                                <th>Actions</th>
+                                <th>Employee Name</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $bookedServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bookedService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-
-                                    <td><?php echo e($employeeService->id); ?></td>
-                                    <td><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)); ?></td>
-                                    <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)); ?></td>
-                                    <td>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editEmployeeService/'.$employeeService->id)); ?>" title="Edit">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteEmployeeService/'.$employeeService->id)); ?>" title="Delete">
-                                            <i class="fa fa-trash"></i>
+                                    <td><?php echo e($bookedService->id); ?></td>
+                                    <td><?php echo e($bookedService->bookingID); ?></td>
+                                    <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($bookedService->serviceID)); ?></td>
+                                    <td><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($bookedService->employeeID)); ?></td>
+                                    <td><a class="btn btn-primary" href="<?php echo e(url ('restoreBookedService/'.$bookedService->id)); ?>" title="Restore">
+                                            <i class="fas fa-trash-restore"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -84,4 +85,6 @@
 
 
 
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/employeeServices/viewEmployeeServices.blade.php ENDPATH**/ ?>
+
+
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/bookedServices/ViewTrashedBookedServices.blade.php ENDPATH**/ ?>

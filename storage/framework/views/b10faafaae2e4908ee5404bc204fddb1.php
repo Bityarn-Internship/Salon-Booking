@@ -96,4 +96,4 @@
 
 
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/auth/ViewTrashedClients.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/auth/ViewTrashedClients.blade.php ENDPATH**/ ?>

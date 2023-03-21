@@ -12,6 +12,8 @@ use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\BookedServicesController;
 use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\MpesaController;
+use App\Http\Controllers\DashboardController;
+
 
 
 /*
@@ -163,7 +165,8 @@ Route::controller(MpesaController::class)->group(function(){
 
 });
 
-Route::controller(CompletedBookingsController::class)->group(function(){
-    Route::get('/viewCompletedBookings', 'CompletedBookings');
+
+Route::controller(DashboardController::class)->group(function(){
+    Route::get('/dashboard', 'index');
 
 });

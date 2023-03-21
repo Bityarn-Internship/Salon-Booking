@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('View Services'); ?>
 <?php $__env->stopSection(); ?>
@@ -17,7 +15,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    
+
 
     <div class="row">
         <div class="col-12">
@@ -52,7 +50,7 @@
                                     </td>
                                 </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    
+
                             </tbody>
                         </table>
                     </div>
@@ -83,4 +81,5 @@
     <!-- Datatable init js -->
     <script src="<?php echo e(URL::asset('/assets/js/pages/datatables.init.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/services/viewServices.blade.php ENDPATH**/ ?>
+
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/services/viewServices.blade.php ENDPATH**/ ?>

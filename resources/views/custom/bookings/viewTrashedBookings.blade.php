@@ -1,6 +1,4 @@
-
-@extends('layouts.master-without-nav')
-
+@extends('custom.common.master')
 @section('title')
     @lang('Inactive Bookings')
 @endsection

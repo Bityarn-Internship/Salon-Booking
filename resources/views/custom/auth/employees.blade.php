@@ -1,7 +1,7 @@
 @extends('layouts.master-without-nav')
 
 @section('title')
-    @lang('translation.Register') 2
+    @lang('Employees')
 @endsection
 
 @section('css')

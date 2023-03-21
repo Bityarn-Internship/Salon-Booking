@@ -1,7 +1,7 @@
-@extends('layouts.master-without-nav')
+@extends('custom.common.master')
 
 @section('title')
-    @lang('Services')
+    @lang('Positions')
 @endsection
 
 @section('css')
@@ -9,11 +9,6 @@
     <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css') }}">
 @endsection
-
-@section('body')
-
-    <body class="auth-body-bg">
-    @endsection
 
     @section('content')
 

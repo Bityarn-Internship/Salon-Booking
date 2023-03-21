@@ -23,6 +23,10 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li>
+                            <a href="/clients"
+                               key="t-vertical">@lang('Add Client')</a>
+                        </li>
+                        <li>
                             <a href="/viewClients"
                                key="t-vertical">@lang('View Clients')</a>
                         </li>
@@ -39,6 +43,7 @@
                         <span key="t-dashboards">@lang('Employees')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/employees" key="t-tui-calendar">@lang('Add Employee')</a></li>
                         <li><a href="/viewEmployees" key="t-tui-calendar">@lang('View Employees')</a></li>
                         <li><a href="/viewTrashedEmployees" key="t-full-calendar">@lang('Inactive Employees')</a></li>
                     </ul>
@@ -50,6 +55,7 @@
                         <span key="t-chat">@lang('Bookings')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/viewClients" key="t-tui-calendar">@lang('Make a Booking')</a></li>
                         <li><a href="/viewBookings" key="t-tui-calendar">@lang('View Bookings')</a></li>
                         <li><a href="/viewTrashedBookings" key="t-full-calendar">@lang('Inactive Bookings')</a></li>
                     </ul>
@@ -71,6 +77,7 @@
                         <span key="t-file-manager">@lang('Employee Services')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/employeeServices" key="t-tui-calendar">@lang('Add Employee Service')</a></li>
                         <li><a href="/viewEmployeeServices" key="t-tui-calendar">@lang('View Employee Services')</a></li>
                         <li><a href="/viewTrashedEmployeeServices" key="t-full-calendar">@lang('Inactive Employee Services')</a></li>
                     </ul>
@@ -82,6 +89,7 @@
                         <span key="t-crypto">@lang('Positions')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/positions" key="t-wallet">@lang('Add Position')</a></li>
                         <li><a href="/viewPositions" key="t-wallet">@lang('View Positions')</a></li>
                         <li><a href="/viewTrashedPositions" key="t-buy">@lang('Inactive Positions')</a></li>
                     </ul>
@@ -93,6 +101,7 @@
                         <span key="t-email">@lang('Services')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/services" key="t-inbox">@lang('Add Service')</a></li>
                         <li><a href="/viewServices" key="t-inbox">@lang('View Services')</a></li>
                         <li><a href="/viewTrashedServices" key="t-read-email">@lang('Inactive Services')</a></li>
                     </ul>
@@ -117,8 +126,9 @@
                         <span key="t-contacts">@lang('User Feedback')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-user-grid">@lang('View Feedback')</a></li>
-                        <li><a href="#" key="t-user-list">@lang('Inactive Feedback')</a></li>
+                        <li><a href="/feedback" key="t-user-grid">@lang('Add Feedback')</a></li>
+                        <li><a href="/viewFeedback" key="t-user-grid">@lang('View Feedback')</a></li>
+                        <li><a href="/viewTrashedFeedback" key="t-user-list">@lang('Inactive Feedback')</a></li>
                     </ul>
                 </li>
                 <li>

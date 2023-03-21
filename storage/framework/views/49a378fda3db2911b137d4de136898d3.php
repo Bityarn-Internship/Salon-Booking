@@ -1,7 +1,7 @@
 
 
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('Services'); ?>
+    <?php echo app('translator')->get('Positions'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -9,11 +9,6 @@
     <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css')); ?>">
 <?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('body'); ?>
-
-    <body class="auth-body-bg">
-    <?php $__env->stopSection(); ?>
 
     <?php $__env->startSection('content'); ?>
 
@@ -102,4 +97,4 @@
         <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/positions/positions.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/positions/positions.blade.php ENDPATH**/ ?>

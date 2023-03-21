@@ -1,7 +1,7 @@
 
 
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('translation.Register'); ?> 2
+    <?php echo app('translator')->get('Employees'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>

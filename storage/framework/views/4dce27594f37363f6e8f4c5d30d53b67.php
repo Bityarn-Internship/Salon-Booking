@@ -23,6 +23,10 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li>
+                            <a href="/clients"
+                               key="t-vertical"><?php echo app('translator')->get('Add Client'); ?></a>
+                        </li>
+                        <li>
                             <a href="/viewClients"
                                key="t-vertical"><?php echo app('translator')->get('View Clients'); ?></a>
                         </li>
@@ -39,6 +43,7 @@
                         <span key="t-dashboards"><?php echo app('translator')->get('Employees'); ?></span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/employees" key="t-tui-calendar"><?php echo app('translator')->get('Add Employee'); ?></a></li>
                         <li><a href="/viewEmployees" key="t-tui-calendar"><?php echo app('translator')->get('View Employees'); ?></a></li>
                         <li><a href="/viewTrashedEmployees" key="t-full-calendar"><?php echo app('translator')->get('Inactive Employees'); ?></a></li>
                     </ul>
@@ -50,6 +55,7 @@
                         <span key="t-chat"><?php echo app('translator')->get('Bookings'); ?></span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/viewClients" key="t-tui-calendar"><?php echo app('translator')->get('Make a Booking'); ?></a></li>
                         <li><a href="/viewBookings" key="t-tui-calendar"><?php echo app('translator')->get('View Bookings'); ?></a></li>
                         <li><a href="/viewTrashedBookings" key="t-full-calendar"><?php echo app('translator')->get('Inactive Bookings'); ?></a></li>
                     </ul>
@@ -71,6 +77,7 @@
                         <span key="t-file-manager"><?php echo app('translator')->get('Employee Services'); ?></span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/employeeServices" key="t-tui-calendar"><?php echo app('translator')->get('Add Employee Service'); ?></a></li>
                         <li><a href="/viewEmployeeServices" key="t-tui-calendar"><?php echo app('translator')->get('View Employee Services'); ?></a></li>
                         <li><a href="/viewTrashedEmployeeServices" key="t-full-calendar"><?php echo app('translator')->get('Inactive Employee Services'); ?></a></li>
                     </ul>
@@ -82,6 +89,7 @@
                         <span key="t-crypto"><?php echo app('translator')->get('Positions'); ?></span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/positions" key="t-wallet"><?php echo app('translator')->get('Add Position'); ?></a></li>
                         <li><a href="/viewPositions" key="t-wallet"><?php echo app('translator')->get('View Positions'); ?></a></li>
                         <li><a href="/viewTrashedPositions" key="t-buy"><?php echo app('translator')->get('Inactive Positions'); ?></a></li>
                     </ul>
@@ -93,6 +101,7 @@
                         <span key="t-email"><?php echo app('translator')->get('Services'); ?></span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/services" key="t-inbox"><?php echo app('translator')->get('Add Service'); ?></a></li>
                         <li><a href="/viewServices" key="t-inbox"><?php echo app('translator')->get('View Services'); ?></a></li>
                         <li><a href="/viewTrashedServices" key="t-read-email"><?php echo app('translator')->get('Inactive Services'); ?></a></li>
                     </ul>
@@ -117,8 +126,9 @@
                         <span key="t-contacts"><?php echo app('translator')->get('User Feedback'); ?></span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-user-grid"><?php echo app('translator')->get('View Feedback'); ?></a></li>
-                        <li><a href="#" key="t-user-list"><?php echo app('translator')->get('Inactive Feedback'); ?></a></li>
+                        <li><a href="/feedback" key="t-user-grid"><?php echo app('translator')->get('Add Feedback'); ?></a></li>
+                        <li><a href="/viewFeedback" key="t-user-grid"><?php echo app('translator')->get('View Feedback'); ?></a></li>
+                        <li><a href="/viewTrashedFeedback" key="t-user-list"><?php echo app('translator')->get('Inactive Feedback'); ?></a></li>
                     </ul>
                 </li>
                 <li>

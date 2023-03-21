@@ -55,7 +55,7 @@
                                         <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteClient/'.$client->id) }}" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
-                                        <a class="btn btn-success" href="{{url ('bookings/'.$client->id) }}">Make a booking</a>
+                                        <a class="btn btn-success" href="{{url ('/bookings/'.$client->id) }}">Make a booking</a>
                                     </td>
                                 </tr>
                             @endforeach

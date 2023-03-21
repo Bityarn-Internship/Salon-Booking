@@ -84,7 +84,7 @@ class MpesaController extends Controller
             'PartyB' => 174379,
             'PhoneNumber' => $phoneNumber,
             //mpesa sends transaction response to this callback url
-            'CallBackURL' => 'https://bityarn.co.ke/mpesa/index.php/api/stk/push/callback/url',
+            'CallBackURL' => 'https://1c02-105-162-5-149.in.ngrok.io/api/stk/push/callback/url',
             'AccountReference' => "Salon Booking System Payment",
             'TransactionDesc' => "Lipa Na M-PESA"
         ];
@@ -99,13 +99,14 @@ class MpesaController extends Controller
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
         $curl_response = curl_exec($curl);
 
-        return redirect('/mpesaConfirmation/'.$request->bookingID);
+        return $curl_response;
+        // return redirect('/mpesaConfirmation/'.$request->bookingID);
     }
 
     //Save MPESA data to database
     public function mpesaResponse(Request $request){
-        Log::info($request->getContent());
         $response = json_decode($request->getContent());
+        Log::info(json_encode($response));
 
         $responseData = $response->Body->stkCallback->CallbackMetadata;
 
@@ -148,7 +149,7 @@ class MpesaController extends Controller
                 $booking->status = 'Complete';
             }
 
-            return redirect('/paymentSuccess');
+            return redirect('/paymentSuccess')->with($booking->clientID);
         }else{
             return redirect()->back()->with('message', 'Transaction not found. Please try again');
         }

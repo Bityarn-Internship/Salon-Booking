@@ -99,8 +99,16 @@ class BookingsController extends Controller
         return view('/custom/payments/depositPayment', ['cost'=>$cost,'bookingID'=>$input['bookingID'], 'services'=>$services, 'clientID'=>$clientID])->with('message', 'Services successfully added');
     }
 
+    //all bookings
     public function viewBookings(){
         $bookings = Booking::all();
+
+        return view('custom/bookings/viewBookings', ['bookings' => $bookings]);
+    }
+
+    //specific client bookings
+    public function viewClientBookings($id){
+        $bookings = Booking::all()->where('clientID', $id);
 
         return view('custom/bookings/viewBookings', ['bookings' => $bookings]);
     }
@@ -165,6 +173,6 @@ class BookingsController extends Controller
 
     public function booking($id){
         $services = Service::all();
-        return view('/bookings', ['clientID' => $id, 'services'=>$services]);
+        return view('custom/bookings/bookings', ['clientID' => $id, 'services'=>$services]);
     }
 }

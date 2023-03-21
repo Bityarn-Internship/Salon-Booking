@@ -101,9 +101,8 @@ class PaypalPaymentController extends Controller
                     $message->to($user->email)
                     ->subject('Salon Booking System: Booking Details');
                 });
-                // return view('viewServices',['bookingID'=>$bookingID]);
-                // return "Payment is Successful. Your Transaction Id is : " . $arr['id'];
-                return redirect('/viewBookings')->with('message', 'Email sent');
+                
+                return redirect('/viewClientBookings/'.$booking->clientID)->with('message', 'Email sent');
             }
             else{
                 return $response->getMessage();

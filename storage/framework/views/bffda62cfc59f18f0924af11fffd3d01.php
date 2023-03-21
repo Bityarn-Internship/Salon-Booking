@@ -1,7 +1,6 @@
 
-
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('View Clients'); ?>
+    <?php echo app('translator')->get('View Paypal Payments'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -24,39 +23,40 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-primary text-center">View Clients</h4>
+                    <h4 class="card-title text-primary text-center">View Paypal Payments</h4>
 
                     <div class="table-responsive">
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Telephone Number</th>
-                                <th>Actions</th>
+                                <th>Payment ID</th>
+                                <th>Payer ID</th>
+                                <th>Payer Email</th>
+                                <th>Booking ID</th>
+                                <th>Total Cost </th>
+                                <th>Currency </th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $__currentLoopData = $clients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $client): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $paypalpayments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $paypalpayment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><?php echo e($client->id); ?></td>
-                                    <td><?php echo e($client->firstName); ?></td>
-                                    <td><?php echo e($client->lastName); ?></td>
-                                    <td><?php echo e($client->email); ?></td>
-                                    <td><?php echo e($client->telephoneNumber); ?></td>
+                                    <td><?php echo e($paypalpayment-> id); ?></td>
+                                    <td><?php echo e($paypalpayment-> payment_id); ?></td>
+                                    <td><?php echo e($paypalpayment-> payer_id); ?></td>
+                                    <td><?php echo e($paypalpayment-> payer_email); ?></td>
+                                    <td><?php echo e($paypalpayment-> bookingID); ?></td>
+                                    <td><?php echo e($paypalpayment-> amount); ?></td>
+                                    <td><?php echo e($paypalpayment-> currency); ?></td>
                                     <td>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editClient/'.$client->id)); ?>" title="Edit">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteClient/'.$client->id)); ?>" title="Delete">
+                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deletePaypalPayment/'.$paypalpayment->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
-                                        <a class="btn btn-success" href="<?php echo e(url ('/bookings/'.$client->id)); ?>">Make a booking</a>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -91,10 +91,4 @@
 
 
 
-
-
-
-
-
-
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/auth/viewClients.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/payments/viewPaypalPayments.blade.php ENDPATH**/ ?>

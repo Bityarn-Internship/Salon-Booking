@@ -1,13 +1,13 @@
-@extends('custom.common.master')
 
-@section('title') @lang('translation.Dashboards') @endsection
 
-@section('content')
+<?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.Dashboards'); ?> <?php $__env->stopSection(); ?>
 
-    @component('components.breadcrumb')
-        @slot('li_1') Dashboards @endslot
-        @slot('title') Dashboard @endslot
-    @endcomponent
+<?php $__env->startSection('content'); ?>
+
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?> Dashboards <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?> Dashboard <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
     <div class="row">
         <div class="col-xl-4">
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="col-5 align-self-end">
-                            <img src="{{ URL::asset('/assets/images/profile-img.png') }}" alt="" class="img-fluid">
+                            <img src="<?php echo e(URL::asset('/assets/images/profile-img.png')); ?>" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -29,9 +29,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="avatar-md profile-user-wid mb-4">
-                                <img src="{{ isset(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('/assets/images/users/avatar-1.jpg') }}" alt="" class="img-thumbnail rounded-circle">
+                                <img src="<?php echo e(isset(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('/assets/images/users/avatar-1.jpg')); ?>" alt="" class="img-thumbnail rounded-circle">
                             </div>
-                            <h5 class="font-size-15 text-truncate">{{ \App\Http\Controllers\EmployeesController::getEmployeeName(Session::get('employeeID')) }}</h5>
+                            <h5 class="font-size-15 text-truncate"><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName(Session::get('employeeID'))); ?></h5>
                             <p class="text-muted mb-0 text-truncate">UI/UX Designer</p>
                         </div>
 
@@ -88,7 +88,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium">Bookings</p>
-                                    <h4 class="mb-0">{{$bookings}}</h4>
+                                    <h4 class="mb-0"><?php echo e($bookings); ?></h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
@@ -108,7 +108,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium">Services</p>
-                                    <h4 class="mb-0">{{$services}}</h4>
+                                    <h4 class="mb-0"><?php echo e($services); ?></h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center ">
@@ -193,16 +193,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($upcomingBookings as $upcomingBooking)
+                            <?php $__currentLoopData = $upcomingBookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $upcomingBooking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td class="text-body fw-bold">{{$upcomingBooking->id}}</a> </td>
-                                <td>{{\App\Http\Controllers\UsersController::getClientName($upcomingBooking->clientID)}}</td>
-                                <td>{{$upcomingBooking->date}}</td>
-                                <td>{{$upcomingBooking->time}}</td>
-                                <td>{{$upcomingBooking->cost}}</td>
-                                <td>{{$upcomingBooking->status}}</td>
+                                <td class="text-body fw-bold"><?php echo e($upcomingBooking->id); ?></a> </td>
+                                <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($upcomingBooking->clientID)); ?></td>
+                                <td><?php echo e($upcomingBooking->date); ?></td>
+                                <td><?php echo e($upcomingBooking->time); ?></td>
+                                <td><?php echo e($upcomingBooking->cost); ?></td>
+                                <td><?php echo e($upcomingBooking->status); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -217,11 +217,13 @@
 
     <!-- end modal -->
 
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
     <!-- apexcharts -->
-    <script src="{{ URL::asset('/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('/assets/libs/apexcharts/apexcharts.min.js')); ?>"></script>
 
     <!-- dashboard init -->
-    <script src="{{ URL::asset('assets/js/pages/dashboard.init.js') }}"></script>
-@endsection
+    <script src="<?php echo e(URL::asset('assets/js/pages/dashboard.init.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/common/dashboard.blade.php ENDPATH**/ ?>

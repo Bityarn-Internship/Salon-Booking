@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Service;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Employee;
 use Auth;
 use Session;
 
@@ -36,6 +37,8 @@ class UsersController extends Controller
 
         if(Auth::guard('employees')->attempt($credentials)){
             Session::put('user', 'employee');
+            Session::put('employeeID', Employee::select('id')->where('email', $request['email'])->get()->first()->id);
+            
             return redirect('/viewClients')->with('message', 'Login successful');
         }
 

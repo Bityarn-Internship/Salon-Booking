@@ -113,6 +113,10 @@ Route::group(['middleware' => ['auth']], function() {
 Route::group([
     'middleware' => 'is_employee',
 ], function(){
+    Route::controller(DashboardController::class)->group(function(){
+        Route::get('/dashboard', 'index');
+    
+    });
     Route::controller(ServicesController::class)->group(function(){
         Route::get('/services', 'index');
         Route::get('/viewServices', 'viewServices');
@@ -188,6 +192,7 @@ Route::group([
         Route::get('/viewTrashedPaypalPayments','viewTrashedPaypalPayments');
         Route::get('/restorePaypalPayment/{id}','restorePaypalPayment');
         Route::get('/restorePaypalPayments','restorePaypalPayments');
+        Route::get('/viewPaypalPayments','viewPaypalPayments');
     });
     
     Route::controller(MpesaController::class)->group(function(){
@@ -195,6 +200,7 @@ Route::group([
         Route::get('/viewTrashedMpesaPayments','viewTrashedMpesaPayments');
         Route::get('/restoreMpesaPayment/{id}','restoreMpesaPayment');
         Route::get('/restoreMpesaPayments','restoreMpesaPayments');
+        Route::get('/viewMpesaPayments','viewMpesaPayments');
     }); 
 });
 
@@ -203,7 +209,6 @@ Route::controller(PaypalPaymentController::class)->group(function(){
     Route::get('/success','success');
     Route::get('/errorOccurred','errorOccurred');
     Route::get('/paypalConfirm','confirm');
-    Route::get('/viewPaypalPayments','viewPaypalPayments');
 });
 
 Route::controller(MpesaController::class)->group(function(){
@@ -212,11 +217,4 @@ Route::controller(MpesaController::class)->group(function(){
     Route::get('/mpesaConfirmation/{id}', 'mpesaConfirmation');
     Route::get('/paymentSuccess', 'paymentSuccess');
     Route::post('/checkTransaction', 'checkTransaction');
-    Route::get('/viewMpesaPayments','viewMpesaPayments');
-});
-
-
-Route::controller(DashboardController::class)->group(function(){
-    Route::get('/dashboard', 'index');
-
 });

@@ -5,4 +5,5 @@
 <!-- Icons Css -->
 <link href="<?php echo e(URL::asset('/assets/css/icons.min.css')); ?>" rel="stylesheet" type="text/css" />
 <!-- App Css-->
-<link href="<?php echo e(URL::asset('/assets/css/app.min.css')); ?>" id="app-style" rel="stylesheet" type="text/css" /><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/layouts/head-css.blade.php ENDPATH**/ ?>
+<link href="<?php echo e(URL::asset('/assets/css/app.min.css')); ?>" id="app-style" rel="stylesheet" type="text/css" />
+<?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/layouts/head-css.blade.php ENDPATH**/ ?>

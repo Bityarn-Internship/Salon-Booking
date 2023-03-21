@@ -48,8 +48,13 @@
                                     <td><?php echo e($booking->status); ?></td>
 
                                     <td>
-                                        <a class="btn btn-success" href="<?php echo e(url ('completePayment/'.$booking->id)); ?>">Complete Payment</a>
-                                        <a class="btn btn-primary" target = "_blank" href="<?php echo e(url ('viewInvoice/'.$booking->id)); ?>">View Invoice</a>
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('completePayment/'.$booking->id)); ?>" title="Complete Payment">
+                                            <i class="fas fa-dollar-sign"></i>
+                                        </a>
+
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('viewInvoice/'.$booking->id)); ?>" title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                        </a>
                                         <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editBooking/'.$booking->id)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
@@ -95,4 +100,4 @@
 
 
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/bookings/viewBookings.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/bookings/viewBookings.blade.php ENDPATH**/ ?>

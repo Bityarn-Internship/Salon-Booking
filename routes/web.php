@@ -12,6 +12,8 @@ use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\BookedServicesController;
 use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\MpesaController;
+use App\Http\Controllers\DashboardController;
+
 
 
 /*
@@ -196,3 +198,25 @@ Route::group([
     }); 
 });
 
+Route::controller(PaypalPaymentController::class)->group(function(){
+    Route::post('/payment','pay');
+    Route::get('/success','success');
+    Route::get('/errorOccurred','errorOccurred');
+    Route::get('/paypalConfirm','confirm');
+    Route::get('/viewPaypalPayments','viewPaypalPayments');
+});
+
+Route::controller(MpesaController::class)->group(function(){
+    Route::post('/mpesaPayment', 'index');
+    Route::post('/completeMpesaPayment', 'completeMpesaPayment');
+    Route::get('/mpesaConfirmation/{id}', 'mpesaConfirmation');
+    Route::get('/paymentSuccess', 'paymentSuccess');
+    Route::post('/checkTransaction', 'checkTransaction');
+    Route::get('/viewMpesaPayments','viewMpesaPayments');
+});
+
+
+Route::controller(DashboardController::class)->group(function(){
+    Route::get('/dashboard', 'index');
+
+});

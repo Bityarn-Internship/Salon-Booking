@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('Booking'); ?>
 <?php $__env->stopSection(); ?>
@@ -26,16 +24,16 @@
                     <div class="auth-full-page-content p-md-5 p-4">
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
-                               
+
                                 <div class="my-auto">
                                     <div>
-                                        <h5 class = "text-primary text-center">Make a Booking</h5>
+                                        <h5 class = "text-primary text-center">Edit Booking</h5>
                                     </div>
 
                                     <div class="mt-4">
-                                        <form action = "<?php echo e(url('/bookings')); ?>" method = "post" enctype="multipart/form-data">
+                                        <form action = "<?php echo e(url('/updateBooking/'.$booking->id)); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
-                                            <div class = "row"> 
+                                            <div class = "row">
                                                 <div class="valid-feedback">
                                                     <?php if(session()->has('message')): ?>
                                                         <?php echo e(session()->get('message')); ?>
@@ -43,25 +41,21 @@
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
-            
                                             <div class="row">
-                                                
                                                 <div class="col-md-12 pt-2">
-                                                    
-                                                    <label for="services" class="form-label">Select all the services that apply: </label>
-                                                    <select name="services[]" id="services" multiple>
-                                                        <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($service->id); ?>"><?php echo e($service->name." - ".$service->cost); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </select>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="floatingemailInput" value = "<?php echo e($booking->id); ?>"name = "bookingID" readonly>
+                                                        <label for="floatingemailInput">Booking ID</label>
+                                                    </div>
                                                     <div class="invalid-feedback">
-                                                        <?php if($errors->has('services')): ?>
-                                                            <?php echo e($errors->first('services')); ?>
+                                                        <?php if($errors->has('bookingID')): ?>
+                                                            <?php echo e($errors->first('bookingID')); ?>
 
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>
-                                            </div><br/>
+                                            </div>
+
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
                                                     <div class="form-floating mb-3">
@@ -88,18 +82,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-                                            <div class = "row">
-                                                <?php if(session()->get('user') == 'employee'): ?>
-                                                    <input hidden type="text" name="clientID" value = "<?php echo e($clientID); ?>">
-                                                <?php else: ?>
-                                                    <input hidden type="text" name="clientID" value = "<?php echo e(Auth::user()->id); ?>">
-                                                <?php endif; ?>
-                                            </div>
-                                            
+
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
-                                                        type="submit">Book</button>
+                                                    type="submit">Save</button>
                                             </div>
                                         </form>
                                     </div>
@@ -130,4 +116,4 @@
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/bookings/bookings.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/bookings/editBooking.blade.php ENDPATH**/ ?>

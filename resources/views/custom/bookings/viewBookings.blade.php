@@ -1,5 +1,4 @@
-@extends('layouts.master-without-nav')
-
+@extends('custom.common.master')
 @section('title')
     @lang('View Bookings')
 @endsection
@@ -50,8 +49,13 @@
                                     <td>{{$booking->status}}</td>
 
                                     <td>
-                                        <a class="btn btn-success" href="{{url ('completePayment/'.$booking->id) }}">Complete Payment</a>
-                                        <a class="btn btn-primary" target = "_blank" href="{{url ('viewInvoice/'.$booking->id) }}">View Invoice</a>
+                                        <a class="btn btn-outline-success btn-sm edit" href="{{url ('completePayment/'.$booking->id) }}" title="Complete Payment">
+                                            <i class="fas fa-dollar-sign"></i>
+                                        </a>
+
+                                        <a class="btn btn-outline-success btn-sm edit" href="{{url ('viewInvoice/'.$booking->id) }}" title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                        </a>
                                         <a class="btn btn-outline-success btn-sm edit" href="{{url ('editBooking/'.$booking->id) }}" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>

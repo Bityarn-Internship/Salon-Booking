@@ -1,9 +1,6 @@
-
-
-@extends('layouts.master-without-nav')
-
+@extends('custom.common.master')
 @section('title')
-    @lang('Inactive Booked Services')
+    @lang('View Booked Services')
 @endsection
 
 @section('css')
@@ -26,13 +23,9 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-primary text-center">Inactive Booked Services</h4>
+                    <h4 class="card-title text-primary text-center">View Booked Services</h4>
 
                     <div class="table-responsive">
-                        <div class="col col-md-11 text-right">
-                           <span style="display: inline-block"><h3><a class="btn btn-primary" href="{{url('restoreBookedServices') }}"><b>Restore All</b>
-                            <i class="fas fa-trash-restore"></i></a></h3></span>
-                        </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                             <tr>
@@ -50,8 +43,13 @@
                                     <td>{{$bookedService->bookingID}}</td>
                                     <td>{{\App\Http\Controllers\ServicesController::getServiceName($bookedService->serviceID)}}</td>
                                     <td>{{\App\Http\Controllers\EmployeesController::getEmployeeName($bookedService->employeeID)}}</td>
-                                    <td><a class="btn btn-primary" href="{{url ('restoreBookedService/'.$bookedService->id) }}" title="Restore">
-                                            <i class="fas fa-trash-restore"></i>
+
+                                    <td>
+                                        <a class="btn btn-outline-success btn-sm edit" href="{{url ('editBookedService/'.$bookedService->id) }}" title="Edit">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                        <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteBookedService/'.$bookedService->id) }}" title="Delete">
+                                            <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -86,7 +84,5 @@
     <!-- Datatable init js -->
     <script src="{{ URL::asset('/assets/js/pages/datatables.init.js') }}"></script>
 @endsection
-
-
 
 

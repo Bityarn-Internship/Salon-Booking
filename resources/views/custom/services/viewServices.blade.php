@@ -1,5 +1,4 @@
-@extends('layouts.master-without-nav')
-
+@extends('custom.common.master')
 @section('title')
     @lang('View Services')
 @endsection
@@ -17,7 +16,7 @@
 @endsection
 
 @section('content')
-    
+
 
     <div class="row">
         <div class="col-12">
@@ -52,7 +51,7 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                                    
+
                             </tbody>
                         </table>
                     </div>

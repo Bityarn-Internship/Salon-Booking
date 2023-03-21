@@ -1,4 +1,4 @@
-@extends('layouts.master-without-nav')
+@extends('custom.common.master')
 
 @section('title')
     @lang('Services')
@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css') }}">
 @endsection
 
-@section('body')
-
-    <body class="auth-body-bg">
-    @endsection
 
     @section('content')
 
@@ -53,7 +49,7 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
@@ -68,7 +64,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="mt-4 d-grid">
                                                     <button class="btn btn-primary waves-effect waves-light"
                                                         type="submit">Save</button>

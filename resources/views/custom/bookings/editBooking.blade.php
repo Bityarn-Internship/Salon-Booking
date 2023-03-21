@@ -1,4 +1,4 @@
-@extends('layouts.master-without-nav')
+@extends('custom.common.master')
 
 @section('title')
     @lang('Booking')
@@ -11,10 +11,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 @endsection
 
-@section('body')
-
-    <body class="auth-body-bg">
-@endsection
 
 @section('content')
 
@@ -26,7 +22,7 @@
                     <div class="auth-full-page-content p-md-5 p-4">
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
-                               
+
                                 <div class="my-auto">
                                     <div>
                                         <h5 class = "text-primary text-center">Edit Booking</h5>
@@ -35,7 +31,7 @@
                                     <div class="mt-4">
                                         <form action = "{{ url('/updateBooking/'.$booking->id) }}" method = "post" enctype="multipart/form-data">
                                             @csrf
-                                            <div class = "row"> 
+                                            <div class = "row">
                                                 <div class="valid-feedback">
                                                     @if(session()->has('message'))
                                                         {{ session()->get('message') }}
@@ -80,7 +76,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
                                                     type="submit">Save</button>

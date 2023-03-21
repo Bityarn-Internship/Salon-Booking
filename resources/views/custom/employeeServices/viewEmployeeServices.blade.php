@@ -1,5 +1,4 @@
-@extends('layouts.master-without-nav')
-
+@extends('custom.common.master')
 @section('title')
     @lang('View Employee Services')
 @endsection
@@ -83,5 +82,5 @@
     <!-- Datatable init js -->
     <script src="{{ URL::asset('/assets/js/pages/datatables.init.js') }}"></script>
 @endsection
-
+{{--@include('custom.common.sidebar')--}}
 

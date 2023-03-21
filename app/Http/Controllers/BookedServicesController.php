@@ -21,7 +21,7 @@ class BookedServicesController extends Controller
     public function viewBookedServices(){
         $bookedServices = BookedService::all();
 
-        return view('custom/bookings/viewBookedServices', ['bookedServices' => $bookedServices]);
+        return view('custom/bookedServices/viewBookedServices', ['bookedServices' => $bookedServices]);
     }
 
     public function edit($id){
@@ -81,7 +81,7 @@ class BookedServicesController extends Controller
     public function ViewTrashedBookedServices()
     {
         $bookedServices = BookedService::onlyTrashed()->get();
-        return view('custom/bookings/ViewTrashedBookedServices',['bookedServices'=> $bookedServices]);
+        return view('custom/bookedServices/ViewTrashedBookedServices',['bookedServices'=> $bookedServices]);
     }
 
 }

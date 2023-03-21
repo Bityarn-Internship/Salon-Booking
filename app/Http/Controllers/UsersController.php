@@ -38,8 +38,8 @@ class UsersController extends Controller
         if(Auth::guard('employees')->attempt($credentials)){
             Session::put('user', 'employee');
             Session::put('employeeID', Employee::select('id')->where('email', $request['email'])->get()->first()->id);
-            
-            return redirect('/viewClients')->with('message', 'Login successful');
+
+            return redirect('/dashboard')->with('message', 'Login successful');
         }
 
         return redirect()->back()->with('messageLogin', 'Invalid login credentials');

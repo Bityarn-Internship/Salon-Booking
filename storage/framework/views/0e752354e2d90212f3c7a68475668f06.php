@@ -1,7 +1,5 @@
-
-
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('View Clients'); ?>
+    <?php echo app('translator')->get('View Feedback'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -24,7 +22,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-primary text-center">View Clients</h4>
+                    <h4 class="card-title text-primary text-center">View Feedback</h4>
 
                     <div class="table-responsive">
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
@@ -34,7 +32,8 @@
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
-                                <th>Telephone Number</th>
+                                <th>Message</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -45,15 +44,15 @@
                                     <td><?php echo e($client->firstName); ?></td>
                                     <td><?php echo e($client->lastName); ?></td>
                                     <td><?php echo e($client->email); ?></td>
-                                    <td><?php echo e($client->telephoneNumber); ?></td>
+                                    <td><?php echo e($client->message); ?></td>
+                                    <td><?php echo e($client->status); ?></td>
                                     <td>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editClient/'.$client->id)); ?>" title="Edit">
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editFeedback/'.$client->id)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteClient/'.$client->id)); ?>" title="Delete">
+                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteFeedback/'.$client->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
-                                        <a class="btn btn-success" href="<?php echo e(url ('/bookings/'.$client->id)); ?>">Make a booking</a>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -97,4 +96,4 @@
 
 
 
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/auth/viewClients.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/home/viewFeedback.blade.php ENDPATH**/ ?>

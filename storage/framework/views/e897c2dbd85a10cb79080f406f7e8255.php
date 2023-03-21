@@ -1,7 +1,5 @@
-
-
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('View Clients'); ?>
+    <?php echo app('translator')->get('View Feedback'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -24,9 +22,13 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-primary text-center">View Clients</h4>
+                    <h4 class="card-title text-primary text-center">View Feedback</h4>
 
                     <div class="table-responsive">
+                        <div class="col col-md-11 text-right">
+                           <span style="display: inline-block"><h3><a class="btn btn-primary" href="<?php echo e(url('restoreFeedback')); ?>"><b>Restore All</b>
+                            <i class="fas fa-trash-restore"></i></a></h3></span>
+                        </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                             <tr>
@@ -34,26 +36,23 @@
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
-                                <th>Telephone Number</th>
+                                <th>Message</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $__currentLoopData = $clients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $client): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $feedbacks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feedback): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><?php echo e($client->id); ?></td>
-                                    <td><?php echo e($client->firstName); ?></td>
-                                    <td><?php echo e($client->lastName); ?></td>
-                                    <td><?php echo e($client->email); ?></td>
-                                    <td><?php echo e($client->telephoneNumber); ?></td>
-                                    <td>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editClient/'.$client->id)); ?>" title="Edit">
-                                            <i class="fas fa-pencil-alt"></i>
+                                    <td><?php echo e($feedback->id); ?></td>
+                                    <td><?php echo e($feedback->firstName); ?></td>
+                                    <td><?php echo e($feedback->lastName); ?></td>
+                                    <td><?php echo e($feedback->email); ?></td>
+                                    <td><?php echo e($feedback->message); ?></td>
+                                    <td><?php echo e($feedback->status); ?></td>
+                                    <td><a class="btn btn-primary" href="<?php echo e(url ('restoreFeedback/'.$feedback->id)); ?>" title="Restore">
+                                            <i class="fas fa-trash-restore"></i>
                                         </a>
-                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteClient/'.$client->id)); ?>" title="Delete">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                        <a class="btn btn-success" href="<?php echo e(url ('/bookings/'.$client->id)); ?>">Make a booking</a>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -97,4 +96,4 @@
 
 
 
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/auth/viewClients.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/home/viewTrashedFeedback.blade.php ENDPATH**/ ?>

@@ -13,7 +13,7 @@ use App\Http\Controllers\BookedServicesController;
 use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\FeedbackController;
 
 
 /*
@@ -46,7 +46,6 @@ Route::controller(UsersController::class)->group(function(){
     Route::get('/login', 'login')->name('login');
     Route::post('/clients', 'store');
     Route::post('/login', 'processLogin');
-    Route::get('/viewClients', 'viewClients');
 });
 
 Route::controller(EmployeesController::class)->group(function(){
@@ -60,6 +59,33 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/logout', 'logout');
         Route::post('/updateClient/{id}', 'update');
         Route::get('/editClient/{id}', 'edit');
+    });
+
+    Route::controller(FeedbackController::class)->group(function(){
+        Route::get('/feedback', 'index');
+        Route::get('/viewFeedback', 'viewFeedback');
+        Route::get('/editFeedback/{id}', 'edit');
+        Route::get('/viewTrashedFeedback', 'viewTrashedFeedback');
+        Route::post('/feedback', 'store');
+        Route::post('/updateFeedback/{id}', 'update');
+        Route::get('/deleteFeedback/{id}', 'destroy');
+        Route::get('/restoreFeedback/{id}', 'restoreFeedback');
+        Route::get('/restoreFeedbacks', 'restoreFeedbacks');
+    });
+
+    Route::controller(PaypalPaymentController::class)->group(function(){
+        Route::post('/payment','pay');
+        Route::get('/success','success');
+        Route::get('/errorOccurred','errorOccurred');
+        Route::get('/paypalConfirm','confirm');
+    });
+    
+    Route::controller(MpesaController::class)->group(function(){
+        Route::post('/mpesaPayment', 'index');
+        Route::post('/completeMpesaPayment', 'completeMpesaPayment');
+        Route::get('/mpesaConfirmation/{id}', 'mpesaConfirmation');
+        Route::get('/paymentSuccess', 'paymentSuccess');
+        Route::post('/checkTransaction', 'checkTransaction');
     });
 
     Route::controller(BookingsController::class)->group(function(){
@@ -167,6 +193,7 @@ Route::group([
         Route::get('/restoreClient/{id}', 'restoreClient');
         Route::get('/restoreClients', 'restoreClients');
         Route::get('/viewTrashedClients', 'viewTrashedClients');
+        Route::get('/viewClients', 'viewClients');
     });
 
     Route::controller(CompletedBookingsController::class)->group(function(){
@@ -202,19 +229,4 @@ Route::group([
         Route::get('/restoreMpesaPayments','restoreMpesaPayments');
         Route::get('/viewMpesaPayments','viewMpesaPayments');
     }); 
-});
-
-Route::controller(PaypalPaymentController::class)->group(function(){
-    Route::post('/payment','pay');
-    Route::get('/success','success');
-    Route::get('/errorOccurred','errorOccurred');
-    Route::get('/paypalConfirm','confirm');
-});
-
-Route::controller(MpesaController::class)->group(function(){
-    Route::post('/mpesaPayment', 'index');
-    Route::post('/completeMpesaPayment', 'completeMpesaPayment');
-    Route::get('/mpesaConfirmation/{id}', 'mpesaConfirmation');
-    Route::get('/paymentSuccess', 'paymentSuccess');
-    Route::post('/checkTransaction', 'checkTransaction');
 });

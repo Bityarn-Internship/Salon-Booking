@@ -49,13 +49,15 @@ class EmployeeServicesController extends Controller
             return redirect('/viewEmployeeServices')->with('message', 'Employee Service recorded successfully!');
     }
     public function viewEmployeeServices(Request $request){
+        $employees = Employee::all();
+        $services = Service::all();
         if(is_null($request->status) || $request->status == 'Active'){
             $employeeServices = EmployeeService::all();
         }else{
             $employeeServices = EmployeeService::onlyTrashed()->get();
         }
-        
-        return view('custom/employeeServices/viewEmployeeServices', ['employeeServices' => $employeeServices]);
+
+        return view('custom/employeeServices/viewEmployeeServices',['employees'=>$employees,'services'=>$services,'employeeServices' => $employeeServices]);
     }
     public function edit($id){
         $employeeService = EmployeeService::find($id);

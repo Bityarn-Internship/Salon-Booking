@@ -25,6 +25,95 @@
                     <h4 class="card-title text-primary text-center">View Services</h4>
 
                     <div class="table-responsive">
+                        <div class="row d-flex gx-10">
+                            <div class = "col">
+                                <span style="display: inline-block">
+                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <b>Add Service</b>
+                                   </button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-center w-100" id="exampleModalLabel">Add Service</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                 <form action = "<?php echo e(url('/services')); ?>" method = "post" enctype="multipart/form-data">
+                                                <?php echo csrf_field(); ?>
+                                                <div class="row">
+                                                    <?php if(session()->has('message')): ?>
+                                                        <div class="valid-feedback">
+                                                            <?php echo e(session()->get('message')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 pt-2">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "serviceName">
+                                                            <label for="floatingnameInput">Service Name</label>
+                                                        </div>
+
+                                                        <div class="invalid-feedback">
+                                                            <?php if($errors->has('serviceName')): ?>
+                                                                <?php echo e($errors->first('serviceName')); ?>
+
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 pt-2">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="number" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name = "serviceCost">
+                                                            <label for="floatingemailInput">Service Cost</label>
+                                                        </div>
+                                                        <div class="invalid-feedback">
+                                                            <?php if($errors->has('serviceCost')): ?>
+                                                                <?php echo e($errors->first('serviceCost')); ?>
+
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-4 d-grid">
+                                                    <button class="btn btn-primary waves-effect waves-light"
+                                                            type="submit">Submit</button>
+                                                </div>
+
+                                            </form>
+                                                </div>
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                <form action = "<?php echo e(url('/viewServices')); ?>" method = "GET">
+                                    <?php echo csrf_field(); ?>
+                                    <span style="display: inline-block"><label for="status" class="form-label">Filter by status</label></span>
+                                    <span style="display: inline-block">
+                                        <select class="form-select" name = "status">
+                                            <option value = "Active">Active</option>
+                                            <option value = "Inactive">Inactive</option>
+                                        </select>
+
+                                    </span>
+
+                                    <span style="display: inline-block"><h3><button class="btn btn-primary"><b>Filter</b></button></h3></span>
+                                </form>
+
+                            </div>
+                        </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                                 <tr>
@@ -41,9 +130,70 @@
                                     <td><?php echo e($service->name); ?></td>
                                     <td><?php echo e($service->cost); ?></td>
                                     <td>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editService/'.$service->id)); ?>" title="Edit">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
+                                        <i class="fas fa-pencil-alt btn btn-outline-success btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-center w-100" id="editModalLabel">Edit Service</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action = "<?php echo e(url('/updateService/'.$service->id)); ?>" method = "post" enctype="multipart/form-data">
+                                                            <?php echo csrf_field(); ?>
+                                                            <div class="row">
+                                                                <?php if(session()->has('message')): ?>
+                                                                    <div class="valid-feedback">
+                                                                        <?php echo e(session()->get('message')); ?>
+
+                                                                    </div>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12 pt-2">
+                                                                    <div class="form-floating mb-3">
+                                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($service->name); ?>" name = "serviceName">
+                                                                        <label for="floatingnameInput">Service Name</label>
+                                                                    </div>
+
+                                                                    <div class="invalid-feedback">
+                                                                        <?php if($errors->has('serviceName')): ?>
+                                                                            <?php echo e($errors->first('serviceName')); ?>
+
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12 pt-2">
+                                                                    <div class="form-floating mb-3">
+                                                                        <input type="number" class="form-control" id="floatingemailInput" value = "<?php echo e($service->cost); ?>" name = "serviceCost">
+                                                                        <label for="floatingemailInput">Service Cost</label>
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        <?php if($errors->has('serviceCost')): ?>
+                                                                            <?php echo e($errors->first('serviceCost')); ?>
+
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="mt-4 d-grid">
+                                                                <button class="btn btn-primary waves-effect waves-light"
+                                                                        type="submit">Save Changes</button>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteService/'.$service->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>

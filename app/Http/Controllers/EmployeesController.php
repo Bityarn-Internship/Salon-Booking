@@ -154,7 +154,7 @@ class EmployeesController extends Controller
             $employees = Employee::all();
         }else{
             $employees = Employee::onlyTrashed()->get();
-        }   
+        }
 
         return view('custom/auth/viewEmployees', ['employees' => $employees, 'positions'=>$positions]);
     }

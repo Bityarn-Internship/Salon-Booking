@@ -1,4 +1,4 @@
-@extends('custom.common.master-without-nav')
+@extends('custom.common.master-client')
 
 @section('title')
     @lang('Services')
@@ -15,7 +15,7 @@
     <div>
         <div class="container-fluid p-0">
             <div class="row g-0">
-                <div class="col-xl-5 mx-auto">
+                <div class="col-xl-5 mx-auto mt-3">
                     <div class="auth-full-page-content p-md-5 p-4">
                         <div class="w-100">
 

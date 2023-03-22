@@ -13,7 +13,7 @@
     <div>
         <div class="container-fluid p-0">
             <div class="row g-0">
-                <div class="col-xl-5 mx-auto">
+                <div class="col-xl-5 mx-auto mt-3">
                     <div class="auth-full-page-content p-md-5 p-4">
                         <div class="w-100">
 
@@ -128,4 +128,4 @@
 <?php $__env->stopSection(); ?>
 
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/home/feedback.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master-client', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/home/feedback.blade.php ENDPATH**/ ?>

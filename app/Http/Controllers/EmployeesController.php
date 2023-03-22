@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Models\Feedback;
+use Session;
 
 class EmployeesController extends Controller
 {
@@ -72,6 +73,9 @@ class EmployeesController extends Controller
 //             'userProfile' => '/storage/'.$pathProfile
         ]);
 
+        if(Session::get('user') == 'employee'){
+            return redirect('/viewEmployees')->with('message', 'Employee added successfully!');
+        }
         return redirect('/login')->with('message', 'Registration successful!');
     }
 
@@ -144,15 +148,17 @@ class EmployeesController extends Controller
     }
 
     public function viewEmployees(Request $request){
-         $positions = Position::all();
+        $positions = Position::all();
+        
         if(is_null($request->status) || $request->status == 'Active'){
             $employees = Employee::all();
         }else{
             $employees = Employee::onlyTrashed()->get();
         }
 
-        return view('custom/auth/viewEmployees', ['employees' => $employees,'positions'=>$positions]);
+        return view('custom/auth/viewEmployees', ['employees' => $employees, 'positions'=>$positions]);
     }
+
     public function edit($id){
         $employee = Employee::find($id);
         $positions = Position::all();

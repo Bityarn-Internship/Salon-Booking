@@ -30,6 +30,7 @@
                                     <div class="p-4 mt-auto">
                                         <div class="row justify-content-center">
                                             <div class="col-lg-7">
+
                                                 <div class="text-center">
 
                                                     <h4 class="mb-3"><i
@@ -39,43 +40,27 @@
                                                     <div dir="ltr">
                                                         <div class="owl-carousel owl-theme auth-review-carousel"
                                                              id="auth-review-carousel">
-                                                            <div class="item">
-                                                                <div class="py-3">
-                                                                    <p class="font-size-16 mb-4">" Fantastic theme with a
-                                                                        ton of options. If you just want the HTML to
-                                                                        integrate with your project, then this is the
-                                                                        package. You can find the files in the 'dist'
-                                                                        folder...no need to install git and all the other
-                                                                        stuff the documentation talks about. "</p>
+                                                            <?php $__currentLoopData = $feedbacks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feedback): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <div class="item">
+                                                                    <div class="py-3">
+                                                                        <p class="font-size-16 mb-4">" <?php echo e($feedback->message); ?> "</p>
 
-                                                                    <div>
-                                                                        <h4 class="font-size-16 text-primary">Abs1981</h4>
-                                                                        <p class="font-size-14 mb-0">- Skote User</p>
+                                                                        <div>
+                                                                            <p class="font-size-14 mb-0">- <?php echo e($feedback->firstName); ?></p>
+                                                                        </div>
                                                                     </div>
+
                                                                 </div>
-
-                                                            </div>
-
-                                                            <div class="item">
-                                                                <div class="py-3">
-                                                                    <p class="font-size-16 mb-4">" If Every Vendor on Envato
-                                                                        are as supportive as Themesbrand, Development with
-                                                                        be a nice experience. You guys are Wonderful. Keep
-                                                                        us the good work. "</p>
-
-                                                                    <div>
-                                                                        <h4 class="font-size-16 text-primary">nezerious</h4>
-                                                                        <p class="font-size-14 mb-0">- Skote User</p>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </div>
                                                     </div>
+
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

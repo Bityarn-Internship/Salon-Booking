@@ -26,7 +26,7 @@
                     <div class="auth-full-page-content p-md-5 p-4">
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
-                               
+
                                 <div class="my-auto">
                                     <div>
                                         <h5 class = "text-primary text-center">Make a Booking</h5>
@@ -35,7 +35,7 @@
                                     <div class="mt-4">
                                         <form action = "<?php echo e(url('/bookings')); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
-                                            <div class = "row"> 
+                                            <div class = "row">
                                                 <div class="valid-feedback">
                                                     <?php if(session()->has('message')): ?>
                                                         <?php echo e(session()->get('message')); ?>
@@ -43,11 +43,11 @@
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
-            
+
                                             <div class="row">
-                                                
+
                                                 <div class="col-md-12 pt-2">
-                                                    
+
                                                     <label for="services" class="form-label">Select all the services that apply: </label>
                                                     <select name="services[]" id="services" multiple>
                                                         <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -88,7 +88,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class = "row">
                                                 <?php if(session()->get('user') == 'employee'): ?>
                                                     <input hidden type="text" name="clientID" value = "<?php echo e($clientID); ?>">
@@ -96,10 +96,10 @@
                                                     <input hidden type="text" name="clientID" value = "<?php echo e(Auth::user()->id); ?>">
                                                 <?php endif; ?>
                                             </div>
-                                            
+
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
-                                                        type="submit">Book</button>
+                                                    type="submit">Book</button>
                                             </div>
                                         </form>
                                     </div>
@@ -130,4 +130,4 @@
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookings/bookings.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master-client', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookings/bookings.blade.php ENDPATH**/ ?>

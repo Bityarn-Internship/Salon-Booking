@@ -49,9 +49,11 @@
                                     <td>{{$booking->status}}</td>
 
                                     <td>
+                                        @if($booking->status != 'Complete')
                                         <a class="btn btn-outline-success btn-sm edit" href="{{url ('completePayment/'.$booking->id) }}" title="Complete Payment">
                                             <i class="fas fa-dollar-sign"></i>
                                         </a>
+                                        @endif
 
                                         <a class="btn btn-outline-success btn-sm edit" href="{{url ('viewInvoice/'.$booking->id) }}" title="View Invoice">
                                         <i class="fas fa-file-invoice"></i>

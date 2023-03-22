@@ -84,7 +84,7 @@ class MpesaController extends Controller
             'PartyB' => 174379,
             'PhoneNumber' => $phoneNumber,
             //mpesa sends transaction response to this callback url
-            'CallBackURL' => 'https://1c02-105-162-5-149.in.ngrok.io/api/stk/push/callback/url',
+            'CallBackURL' => 'https://0bd0-105-162-62-31.in.ngrok.io/api/stk/push/callback/url',
             'AccountReference' => "Salon Booking System Payment",
             'TransactionDesc' => "Lipa Na M-PESA"
         ];
@@ -100,7 +100,6 @@ class MpesaController extends Controller
         $curl_response = curl_exec($curl);
 
         return $curl_response;
-        // return redirect('/mpesaConfirmation/'.$request->bookingID);
     }
 
     //Save MPESA data to database

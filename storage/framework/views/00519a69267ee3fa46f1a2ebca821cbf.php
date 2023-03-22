@@ -1,8 +1,3 @@
-<?php $__env->startSection('body'); ?>
-
-    <body class="auth-body-bg">
-    <?php $__env->stopSection(); ?>
-
     <?php $__env->startSection('content'); ?>
 
 

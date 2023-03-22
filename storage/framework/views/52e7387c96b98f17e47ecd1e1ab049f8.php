@@ -17,48 +17,23 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewClients">
                         <i class="bx bx-user"></i>
                         <span key="t-layouts"><?php echo app('translator')->get('Clients'); ?></span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li>
-                            <a href="/clients"
-                               key="t-vertical"><?php echo app('translator')->get('Add Client'); ?></a>
-                        </li>
-                        <li>
-                            <a href="/viewClients"
-                               key="t-vertical"><?php echo app('translator')->get('View Clients'); ?></a>
-                        </li>
-
-                        <li>
-                            <a href="/viewTrashedClients"
-                               key="t-horizontal"><?php echo app('translator')->get('Inactive Clients'); ?></a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewEmployees">
                         <i class="bx bx-group"></i>
                         <span key="t-dashboards"><?php echo app('translator')->get('Employees'); ?></span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/employees" key="t-tui-calendar"><?php echo app('translator')->get('Add Employee'); ?></a></li>
-                        <li><a href="/viewEmployees" key="t-tui-calendar"><?php echo app('translator')->get('View Employees'); ?></a></li>
-                        <li><a href="/viewTrashedEmployees" key="t-full-calendar"><?php echo app('translator')->get('Inactive Employees'); ?></a></li>
-                    </ul>
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewBookings">
                         <i class="bx bx-calendar"></i>
                         <span key="t-chat"><?php echo app('translator')->get('Bookings'); ?></span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/viewClients" key="t-tui-calendar"><?php echo app('translator')->get('Make a Booking'); ?></a></li>
-                        <li><a href="/viewBookings" key="t-tui-calendar"><?php echo app('translator')->get('View Bookings'); ?></a></li>
-                        <li><a href="/viewTrashedBookings" key="t-full-calendar"><?php echo app('translator')->get('Inactive Bookings'); ?></a></li>
-                    </ul>
                 </li>
 
                 <li>
@@ -93,28 +68,24 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewMpesaPayments">
                         <i class="bx bx-dollar"></i>
-                        <span key="t-projects"><?php echo app('translator')->get('Payments'); ?></span>
+                        <span key="t-projects"><?php echo app('translator')->get('Mpesa Payments'); ?></span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/viewMpesaPayments" key="t-p-grid"><?php echo app('translator')->get('View Mpesa Payments'); ?></a></li>
-                        <li><a href="/viewTrashedMpesaPayments" key="t-p-list"><?php echo app('translator')->get('Inactive Mpesa Payments'); ?></a></li>
-                        <li><a href="/viewPaypalPayments" key="t-p-overview"><?php echo app('translator')->get('View Paypal Payments'); ?></a>
-                        </li>
-                        <li><a href="/viewTrashedPaypalPayments" key="t-create-new"><?php echo app('translator')->get('Inactive Paypal Payments'); ?></a></li>
-                    </ul>
                 </li>
+
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewPaypalPayments">
+                        <i class="bx bx-dollar"></i>
+                        <span key="t-projects"><?php echo app('translator')->get('Paypal Payments'); ?></span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/viewFeedback">
                         <i class="bx bx-like"></i>
                         <span key="t-contacts"><?php echo app('translator')->get('User Feedback'); ?></span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/feedback" key="t-user-grid"><?php echo app('translator')->get('Add Feedback'); ?></a></li>
-                        <li><a href="/viewFeedback" key="t-user-grid"><?php echo app('translator')->get('View Feedback'); ?></a></li>
-                        <li><a href="/viewTrashedFeedback" key="t-user-list"><?php echo app('translator')->get('Inactive Feedback'); ?></a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="/logout" class="waves-effect">

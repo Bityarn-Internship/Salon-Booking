@@ -40,7 +40,10 @@
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="{{ isset(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('/assets/images/users/avatar-1.jpg') }}"
                          alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{\App\Http\Controllers\UsersController::getClientName(Session::get('clientID'))}}</span>
+                    @if(session()->get('user') == 'client')
+                        <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{\App\Http\Controllers\UsersController::getClientName(Session::get('clientID'))}}</span>
+                    @endif
+                    
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">

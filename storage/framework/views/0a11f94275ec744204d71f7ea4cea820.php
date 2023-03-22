@@ -11,10 +11,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('body'); ?>
-
-    <body class="auth-body-bg">
-<?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -26,7 +22,7 @@
                     <div class="auth-full-page-content p-md-5 p-4">
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
-                               
+
                                 <div class="my-auto">
                                     <div>
                                         <h5 class = "text-primary text-center">Edit Booking</h5>
@@ -35,7 +31,7 @@
                                     <div class="mt-4">
                                         <form action = "<?php echo e(url('/updateBooking/'.$booking->id)); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
-                                            <div class = "row"> 
+                                            <div class = "row">
                                                 <div class="valid-feedback">
                                                     <?php if(session()->has('message')): ?>
                                                         <?php echo e(session()->get('message')); ?>
@@ -84,7 +80,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
                                                     type="submit">Save</button>
@@ -118,4 +114,4 @@
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookings/editBooking.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookings/editBooking.blade.php ENDPATH**/ ?>

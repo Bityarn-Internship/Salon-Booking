@@ -1,29 +1,32 @@
 @extends('custom.common.master-client')
 
-    @section('content')
+@section('content')
 
 
     <form action="{{url('/bookEmployee')}}" method="POST">
         @csrf
         <input hidden value = "{{$bookingID}}" name = "bookingID">
-    <div class="row mx-2 my-2">
+    <center>
+        <div class="row mx-5 mt-5 mb-1">
         @foreach($employeeServices as $employeeService)
-        <div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-4">
 
             <!-- Simple card -->
-            <div class="card">
+            <div class="card mt-5">
                 <img class="card-img-top img-fluid" src="{{ URL::asset('/assets/images/small/img-1.jpg') }}" alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title mt-0">Employee Name: <span>{{\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)}}</span></h4>
                     <h4 class="card-title mt-0">Service Offered: {{\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)}}</h4>
-                    <p class="card-text">To choose this employee tick the checkbox!</p>
-                    <input type="checkbox" class="check-service" value = "{{$employeeService->id}}"name = "employeeServices[]">
-
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value = "{{$employeeService->id}}"name = "employeeServices[]">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">To choose this employee toggle the checkbox!</label>
+                    </div>
                 </div>
             </div>
         </div>
         @endforeach
-    </div>
+        </div>
+    </center>
     <center>
     <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
     </center>

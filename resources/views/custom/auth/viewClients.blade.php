@@ -27,6 +27,28 @@
                     <h4 class="card-title text-primary text-center">View Clients</h4>
 
                     <div class="table-responsive">
+                        <div class="row d-flex gx-10">
+                            <div class = "col">
+                                <span style="display: inline-block"><h3><a class="btn btn-primary" href="{{url('/clients') }}"><b>Add Client</b>
+                                    </a></h3></span>
+                            </div>
+                            <div class="col-md-4">
+                                <form action = "{{url('/viewClients')}}" method = "GET">
+                                    @csrf
+                                    <span style="display: inline-block"><label for="status" class="form-label">Filter by status</label></span>
+                                    <span style="display: inline-block">
+                                        <select class="form-select" name = "status">
+                                            <option value = "Active">Active</option>
+                                            <option value = "Inactive">Inactive</option>
+                                        </select>
+                                        
+                                    </span>
+                                
+                                    <span style="display: inline-block"><h3><button class="btn btn-primary"><b>Filter</b></button></h3></span>
+                                </form>
+                                
+                            </div>
+                        </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                             <tr>

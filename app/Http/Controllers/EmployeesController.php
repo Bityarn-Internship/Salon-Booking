@@ -143,8 +143,12 @@ class EmployeesController extends Controller
         return $employee->firstName.' '.$employee->lastName;
     }
 
-    public function viewEmployees(){
-        $employees = Employee::all();
+    public function viewEmployees(Request $request){
+        if(is_null($request->status) || $request->status == 'Active'){
+            $employees = Employee::all();
+        }else{
+            $employees = Employee::onlyTrashed()->get();
+        }   
 
         return view('custom/auth/viewEmployees', ['employees' => $employees]);
     }

@@ -11,8 +11,12 @@ class FeedbackController extends Controller
     public function index(){
         return view('custom/home/feedback');
     }
-    public function viewFeedback(){
-        $feedbacks = Feedback::all();
+    public function viewFeedback(Request $request){
+        if(is_null($request->status) || $request->status == 'Active'){
+            $feedbacks = Feedback::all();
+        }else{
+            $feedbacks = Feedback::onlyTrashed()->get();
+        }
         return view('custom/home/viewFeedback',['feedbacks'=>$feedbacks]);
     }
     public function edit($id){

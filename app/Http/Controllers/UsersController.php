@@ -179,9 +179,12 @@ class UsersController extends Controller
 
     }
 
-
-    public function viewClients(){
-        $clients = User::all();
+    public function viewClients(Request $request){
+        if(is_null($request->status) || $request->status == 'Active'){
+            $clients = User::all();
+        }else{
+            $clients = User::onlyTrashed()->get();
+        }
         return view('custom/auth/viewClients', ['clients' => $clients]);
     }
 

@@ -100,8 +100,12 @@ class BookingsController extends Controller
     }
 
     //all bookings
-    public function viewBookings(){
-        $bookings = Booking::all();
+    public function viewBookings(Request $request){
+        if(is_null($request->status) || $request->status == 'Active'){
+            $bookings = Booking::all();
+        }else{
+            $bookings = Booking::onlyTrashed()->get();
+        }
 
         return view('custom/bookings/viewBookings', ['bookings' => $bookings]);
     }

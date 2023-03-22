@@ -26,14 +26,14 @@
         </div>
 
         <div class="d-flex">
-
-
-
-            <div class="dropdown d-inline-block">
-
+            <div class="d-inline-block">
+                <a href = "<?php echo e(URL::to('/feedback')); ?>">
+                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown">
+                        <span class="d-none d-xl-inline-block ms-1" key="t-henry">Feedback</span>
+                    </button>
+                </a>
 
             </div>
-
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"

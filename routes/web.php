@@ -61,14 +61,6 @@ Route::controller(UsersController::class)->group(function(){
 
 Route::controller(FeedbackController::class)->group(function(){
     Route::get('/feedback', 'index');
-    Route::get('/viewFeedback', 'viewFeedback');
-    Route::get('/editFeedback/{id}', 'edit');
-    Route::get('/viewTrashedFeedback', 'viewTrashedFeedback');
-    Route::post('/feedback', 'store');
-    Route::post('/updateFeedback/{id}', 'update');
-    Route::get('/deleteFeedback/{id}', 'destroy');
-    Route::get('/restoreFeedback/{id}', 'restoreFeedback');
-    Route::get('/restoreFeedbacks', 'restoreFeedbacks');
 });
 
 Route::controller(PaypalPaymentController::class)->group(function(){
@@ -150,6 +142,17 @@ Route::group([
         Route::get('/deleteService/{id}', 'destroy');
         Route::get('/restoreService/{id}', 'restoreService');
         Route::get('/restoreServices', 'restoreServices');
+    });
+
+    Route::controller(FeedbackController::class)->group(function(){
+        Route::get('/viewFeedback', 'viewFeedback');
+        Route::get('/editFeedback/{id}', 'edit');
+        Route::get('/viewTrashedFeedback', 'viewTrashedFeedback');
+        Route::post('/feedback', 'store');
+        Route::post('/updateFeedback/{id}', 'update');
+        Route::get('/deleteFeedback/{id}', 'destroy');
+        Route::get('/restoreFeedback/{id}', 'restoreFeedback');
+        Route::get('/restoreFeedbacks', 'restoreFeedbacks');
     });
 
     Route::controller(PositionsController::class)->group(function(){

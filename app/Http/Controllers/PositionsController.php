@@ -11,9 +11,13 @@ class PositionsController extends Controller
     public function index(){
         return view('custom/positions/positions');
     }
-    public function viewPositions(){
-        $positions = Position::all()->where('deleted_at', NULL);
-
+    public function viewPositions(Request $request){
+        if(is_null($request->status) || $request->status == 'Active'){
+            $positions = Position::all();
+        }else{
+            $positions = Position::onlyTrashed()->get();
+        }
+    
         return view('custom/positions/viewPositions', ['positions' => $positions]);
     }
     public function edit($id){

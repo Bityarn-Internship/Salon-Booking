@@ -72,39 +72,24 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewEmployeeServices">
                         <i class="bx bx-file"></i>
                         <span key="t-file-manager">@lang('Employee Services')</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/employeeServices" key="t-tui-calendar">@lang('Add Employee Service')</a></li>
-                        <li><a href="/viewEmployeeServices" key="t-tui-calendar">@lang('View Employee Services')</a></li>
-                        <li><a href="/viewTrashedEmployeeServices" key="t-full-calendar">@lang('Inactive Employee Services')</a></li>
-                    </ul>
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewPositions">
                         <i class="bx bx-user"></i>
                         <span key="t-crypto">@lang('Positions')</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/positions" key="t-wallet">@lang('Add Position')</a></li>
-                        <li><a href="/viewPositions" key="t-wallet">@lang('View Positions')</a></li>
-                        <li><a href="/viewTrashedPositions" key="t-buy">@lang('Inactive Positions')</a></li>
-                    </ul>
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewServices">
                         <i class="bx bx-envelope"></i>
                         <span key="t-email">@lang('Services')</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/services" key="t-inbox">@lang('Add Service')</a></li>
-                        <li><a href="/viewServices" key="t-inbox">@lang('View Services')</a></li>
-                        <li><a href="/viewTrashedServices" key="t-read-email">@lang('Inactive Services')</a></li>
-                    </ul>
                 </li>
 
                 <li>

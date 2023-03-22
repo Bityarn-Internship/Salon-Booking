@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('firstName')->default('Anonymous');
-            $table->string('lastName')->default('User');
-            $table->string('email')->nullable();
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('email');
             $table->string('message');
             $table->string('status')->default('Poor');
             $table->softDeletes();

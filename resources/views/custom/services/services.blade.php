@@ -20,7 +20,7 @@
                             <div class="w-100">
 
                                 <div class="d-flex flex-column h-100">
-                                    <div class="my-auto">
+                                    <div >
                                         <div>
                                             <h5 class="text-primary text-center">Add a Sevice</h5>
                                         </div>

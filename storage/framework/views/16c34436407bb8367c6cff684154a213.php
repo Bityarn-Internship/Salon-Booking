@@ -1,21 +1,21 @@
-@extends('custom.common.master')
-@section('title')
-    @lang('View Positions')
-@endsection
 
-@section('css')
+<?php $__env->startSection('title'); ?>
+    <?php echo app('translator')->get('View Positions'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('css'); ?>
     <!-- DataTables -->
-    <link href="{{ URL::asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="<?php echo e(URL::asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')); ?>" rel="stylesheet"
           type="text/css" />
-    <link href="{{ URL::asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="<?php echo e(URL::asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')); ?>" rel="stylesheet"
           type="text/css" />
 
     <!-- Responsive datatable examples -->
-    <link href="{{ URL::asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
+    <link href="<?php echo e(URL::asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')); ?>"
           rel="stylesheet" type="text/css" />
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
     <div class="row">
@@ -30,7 +30,7 @@
                             <div class = "col">
                                 <span style="display: inline-block">
                                     <!-- <h3>
-                                        <a class="btn btn-primary" href="{{url('positions') }}"><b>Add Position</b></a>
+                                        <a class="btn btn-primary" href="<?php echo e(url('positions')); ?>"><b>Add Position</b></a>
                                     </h3> -->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <b>Add Position</b>
@@ -40,18 +40,19 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title text-center w-100" id="exampleModalLabel">Add Position</h5>
+                                                <h5 class="modal-title w-100" id="exampleModalLabel">Add Position</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                            <form action = "{{ url('/positions') }}" method = "post" enctype="multipart/form-data">
-                                                @csrf
+                                            <form action = "<?php echo e(url('/positions')); ?>" method = "post" enctype="multipart/form-data">
+                                                <?php echo csrf_field(); ?>
                                                 <div class="row">
-                                                    @if(session()->has('message'))
+                                                    <?php if(session()->has('message')): ?>
                                                         <div class="valid-feedback">
-                                                            {{ session()->get('message') }}
+                                                            <?php echo e(session()->get('message')); ?>
+
                                                         </div>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
@@ -61,9 +62,10 @@
                                                         </div>
 
                                                         <div class="invalid-feedback">
-                                                            @if($errors->has('positionName'))
-                                                                {{ $errors->first('positionName') }}
-                                                            @endif
+                                                            <?php if($errors->has('positionName')): ?>
+                                                                <?php echo e($errors->first('positionName')); ?>
+
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                     
@@ -75,9 +77,10 @@
                                                             <label for="floatingemailInput">Position Description</label>
                                                         </div>
                                                         <div class="invalid-feedback">
-                                                            @if($errors->has('positionDescription'))
-                                                                {{ $errors->first('positionDescription') }}
-                                                            @endif
+                                                            <?php if($errors->has('positionDescription')): ?>
+                                                                <?php echo e($errors->first('positionDescription')); ?>
+
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -100,8 +103,8 @@
                                 </span>
                             </div>
                             <div class="col-md-4">
-                                <form action = "{{url('/viewPositions')}}" method = "GET">
-                                    @csrf
+                                <form action = "<?php echo e(url('/viewPositions')); ?>" method = "GET">
+                                    <?php echo csrf_field(); ?>
                                     <span style="display: inline-block"><label for="status" class="form-label">Filter by status</label></span>
                                     <span style="display: inline-block">
                                         <select class="form-select" name = "status">
@@ -127,21 +130,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($positions as $position)
+                            <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td>{{$position->id}}</td>
-                                    <td>{{$position->name}}</td>
-                                    <td>{{$position->description}}</td>
+                                    <td><?php echo e($position->id); ?></td>
+                                    <td><?php echo e($position->name); ?></td>
+                                    <td><?php echo e($position->description); ?></td>
                                     <td>
-                                        <a class="btn btn-outline-success btn-sm edit" href="{{url ('editPosition/'.$position->id) }}" title="Edit">
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editPosition/'.$position->id)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deletePosition/'.$position->id) }}" title="Delete">
+                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deletePosition/'.$position->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                             </tbody>
                         </table>
@@ -152,28 +155,30 @@
         </div> <!-- end col -->
     </div> <!-- end row -->
 
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
     <!-- Required datatable js -->
-    <script src="{{ URL::asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/datatables.net/js/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')); ?>"></script>
     <!-- Buttons examples -->
-    <script src="{{ URL::asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/jszip/jszip.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/pdfmake/build/pdfmake.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/pdfmake/build/vfs_fonts.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/jszip/jszip.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/pdfmake/build/pdfmake.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/pdfmake/build/vfs_fonts.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js')); ?>"></script>
 
     <!-- Responsive examples -->
-    <script src="{{ URL::asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')); ?>"></script>
     <!-- Datatable init js -->
-    <script src="{{ URL::asset('/assets/js/pages/datatables.init.js') }}"></script>
-@endsection
+    <script src="<?php echo e(URL::asset('/assets/js/pages/datatables.init.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 
 
 
 
+
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/positions/viewPositions.blade.php ENDPATH**/ ?>

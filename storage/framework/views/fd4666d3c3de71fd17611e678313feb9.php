@@ -1,6 +1,6 @@
 
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('View Employee Services'); ?>
+    <?php echo app('translator')->get('Inactive Bookings'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -23,53 +23,36 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-primary text-center">View Employee Services</h4>
+                    <h4 class="card-title text-primary text-center">Inactive Bookings</h4>
 
                     <div class="table-responsive">
-                        <div class="row d-flex gx-10">
-                            <div class = "col">
-                                <span style="display: inline-block"><h3><a class="btn btn-primary" href="<?php echo e(url('employeeServices')); ?>"><b>Add Employee Service</b>
-                                    </a></h3></span>
-                            </div>
-                            <div class="col-md-4">
-                                <form action = "<?php echo e(url('/viewEmployeeServices')); ?>" method = "GET">
-                                    <?php echo csrf_field(); ?>
-                                    <span style="display: inline-block"><label for="status" class="form-label">Filter by status</label></span>
-                                    <span style="display: inline-block">
-                                        <select class="form-select" name = "status">
-                                            <option value = "Active">Active</option>
-                                            <option value = "Inactive">Inactive</option>
-                                        </select>
-                                        
-                                    </span>
-                                
-                                    <span style="display: inline-block"><h3><button class="btn btn-primary"><b>Filter</b></button></h3></span>
-                                </form>
-                                
-                            </div>
+                        <div class="col col-md-11 text-right">
+                           <span style="display: inline-block"><h3><a class="btn btn-primary" href="<?php echo e(url('restoreBookings')); ?>"><b>Restore All</b>
+                            <i class="fas fa-trash-restore"></i></a></h3></span>
                         </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Employee Name</th>
-                                <th>Service Name</th>
-                                <th>Actions</th>
+                                <th>Client Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Cost</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $bookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $booking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-
-                                    <td><?php echo e($employeeService->id); ?></td>
-                                    <td><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)); ?></td>
-                                    <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)); ?></td>
-                                    <td>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editEmployeeService/'.$employeeService->id)); ?>" title="Edit">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteEmployeeService/'.$employeeService->id)); ?>" title="Delete">
-                                            <i class="fa fa-trash"></i>
+                                    <td><?php echo e($booking->id); ?></td>
+                                    <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($booking->clientID)); ?></td>
+                                    <td><?php echo e($booking->date); ?></td>
+                                    <td><?php echo e($booking->time); ?></td>
+                                    <td><?php echo e($booking->cost); ?></td>
+                                    <td><?php echo e($booking->status); ?></td>
+                                    <td><a class="btn btn-primary" href="<?php echo e(url ('restoreBooking/'.$booking->id)); ?>" title="Restore">
+                                            <i class="fas fa-trash-restore"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -107,4 +90,8 @@
 
 
 
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/employeeServices/viewEmployeeServices.blade.php ENDPATH**/ ?>
+
+
+
+
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookings/ViewTrashedBookings.blade.php ENDPATH**/ ?>

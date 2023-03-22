@@ -11,8 +11,12 @@ class ServicesController extends Controller
     public function index(){
         return view('custom/services/services');
     }
-    public function viewServices(){
-        $services = Service::all()->where('deleted_at', NULL);
+    public function viewServices(Request $request){
+        if(is_null($request->status) || $request->status == 'Active'){
+            $services = Service::all();
+        }else{
+            $services = Service::onlyTrashed()->get();
+        }
 
         return view('custom/services/viewServices', ['services' => $services]);
     }

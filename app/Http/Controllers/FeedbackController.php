@@ -55,7 +55,7 @@ class FeedbackController extends Controller
             'message' => $input['message']
         ]);
 
-        return redirect('/viewFeedback')->with('message', 'Feedback sent successfully!');
+        return redirect('/bookings')->with('message', 'Feedback sent successfully!');
     }
 
     public function update(Request $request, $id){

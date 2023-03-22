@@ -39,11 +39,6 @@
 
 
 
-        <div class="dropdown d-inline-block">
-
-
-        </div>
-
 
         <div class="dropdown d-inline-block">
             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
@@ -63,11 +58,7 @@
                 </form>
             </div>
         </div>
-        <div class="dropdown d-inline-block">
-            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                <i class="bx bx-cog bx-spin"></i>
-            </button>
-        </div>
+
     </div>
 </div>
 </header>

@@ -84,7 +84,7 @@ class MpesaController extends Controller
             'PartyB' => 174379,
             'PhoneNumber' => $phoneNumber,
             //mpesa sends transaction response to this callback url
-            'CallBackURL' => 'https://0bd0-105-162-62-31.in.ngrok.io/api/stk/push/callback/url',
+            'CallBackURL' => 'https://e207-105-162-62-31.in.ngrok.io/api/stk/push/callback/url',
             'AccountReference' => "Salon Booking System Payment",
             'TransactionDesc' => "Lipa Na M-PESA"
         ];

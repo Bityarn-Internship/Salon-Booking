@@ -72,39 +72,24 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewEmployeeServices">
                         <i class="bx bx-file"></i>
                         <span key="t-file-manager"><?php echo app('translator')->get('Employee Services'); ?></span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/employeeServices" key="t-tui-calendar"><?php echo app('translator')->get('Add Employee Service'); ?></a></li>
-                        <li><a href="/viewEmployeeServices" key="t-tui-calendar"><?php echo app('translator')->get('View Employee Services'); ?></a></li>
-                        <li><a href="/viewTrashedEmployeeServices" key="t-full-calendar"><?php echo app('translator')->get('Inactive Employee Services'); ?></a></li>
-                    </ul>
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewPositions">
                         <i class="bx bx-user"></i>
                         <span key="t-crypto"><?php echo app('translator')->get('Positions'); ?></span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/positions" key="t-wallet"><?php echo app('translator')->get('Add Position'); ?></a></li>
-                        <li><a href="/viewPositions" key="t-wallet"><?php echo app('translator')->get('View Positions'); ?></a></li>
-                        <li><a href="/viewTrashedPositions" key="t-buy"><?php echo app('translator')->get('Inactive Positions'); ?></a></li>
-                    </ul>
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewServices">
                         <i class="bx bx-envelope"></i>
                         <span key="t-email"><?php echo app('translator')->get('Services'); ?></span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/services" key="t-inbox"><?php echo app('translator')->get('Add Service'); ?></a></li>
-                        <li><a href="/viewServices" key="t-inbox"><?php echo app('translator')->get('View Services'); ?></a></li>
-                        <li><a href="/viewTrashedServices" key="t-read-email"><?php echo app('translator')->get('Inactive Services'); ?></a></li>
-                    </ul>
                 </li>
 
                 <li>

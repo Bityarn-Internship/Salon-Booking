@@ -28,9 +28,78 @@
                     <div class="table-responsive">
                         <div class="row d-flex gx-10">
                             <div class = "col">
-                                <span style="display: inline-block"><h3><a class="btn btn-primary" href="{{url('employeeServices') }}"><b>Add Employee Service</b>
-                                    </a></h3></span>
+                                <span style="display: inline-block">
+                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <b>Add Employee Service</b>
+                                    </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-center w-100" id="exampleModalLabel">Add Employee Service</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action = "{{ url('/employeeServices') }}" method = "post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class = "row">
+                                                <div class="valid-feedback">
+                                                    @if(session()->has('message'))
+                                                        {{ session()->get('message') }}
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class = "row">
+                                                <div class="col-md-12 pt-2">
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeID">
+                                                            @foreach($employees as $employee)
+                                                                <option value="{{$employee->id}}">{{$employee->firstName." ".$employee->lastName}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <label for="floatingSelectGrid">Select an employee</label>
+                                                        <div class="invalid-feedback">
+                                                            @if($errors->has('employeeID'))
+                                                                {{ $errors->first('employeeID') }}
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class = "row">
+                                                <div class="col-md-12 pt-2">
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "serviceID">
+                                                            @foreach($services as $service)
+                                                                <option value="{{$service->id}}">{{$service->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <label for="floatingSelectGrid">Select a service</label>
+                                                        <div class="invalid-feedback">
+                                                            @if($errors->has('serviceID'))
+                                                                {{ $errors->first('serviceID') }}
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-4 d-grid">
+                                                <button class="btn btn-primary waves-effect waves-light"
+                                                        type="submit">Submit</button>
+                                            </div>
+                                        </form>
+                                     </div>
+                                    <div class="modal-footer">
+                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </span>
+                </div>
                             <div class="col-md-4">
                                 <form action = "{{url('/viewEmployeeServices')}}" method = "GET">
                                     @csrf
@@ -40,12 +109,12 @@
                                             <option value = "Active">Active</option>
                                             <option value = "Inactive">Inactive</option>
                                         </select>
-                                        
+
                                     </span>
-                                
+
                                     <span style="display: inline-block"><h3><button class="btn btn-primary"><b>Filter</b></button></h3></span>
                                 </form>
-                                
+
                             </div>
                         </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
@@ -65,9 +134,73 @@
                                     <td>{{\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)}}</td>
                                     <td>{{\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)}}</td>
                                     <td>
-                                        <a class="btn btn-outline-success btn-sm edit" href="{{url ('editEmployeeService/'.$employeeService->id) }}" title="Edit">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
+                                        <i class="fas fa-pencil-alt btn btn-outline-success btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-center w-100" id="editModalLabel">Edit Employee Service</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action = "{{ url('/updateEmployeeService/'.$employeeService->id) }}" method = "post" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class = "row">
+                                                                <div class="valid-feedback">
+                                                                    @if(session()->has('message'))
+                                                                        {{ session()->get('message') }}
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                            <div class = "row">
+                                                                <div class="col-md-12 pt-2">
+                                                                    <div class="form-floating mb-3">
+                                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeID">
+                                                                            @foreach($employees as $employee)
+                                                                                <option value="{{$employee->id}}">{{$employee->firstName." ".$employee->lastName}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <label for="floatingSelectGrid">Select an employee</label>
+                                                                        <div class="invalid-feedback">
+                                                                            @if($errors->has('employeeID'))
+                                                                                {{ $errors->first('employeeID') }}
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class = "row">
+                                                                <div class="col-md-12 pt-2">
+                                                                    <div class="form-floating mb-3">
+                                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "serviceID">
+                                                                            @foreach($services as $service)
+                                                                                <option value="{{$service->id}}">{{$service->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <label for="floatingSelectGrid">Select a service</label>
+                                                                        <div class="invalid-feedback">
+                                                                            @if($errors->has('serviceID'))
+                                                                                {{ $errors->first('serviceID') }}
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="mt-4 d-grid">
+                                                                <button class="btn btn-primary waves-effect waves-light"
+                                                                        type="submit">Save Changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteEmployeeService/'.$employeeService->id) }}" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>

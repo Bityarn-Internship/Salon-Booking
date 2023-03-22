@@ -145,8 +145,9 @@ class EmployeesController extends Controller
 
     public function viewEmployees(){
         $employees = Employee::all();
+         $positions = Position::all();
 
-        return view('custom/auth/viewEmployees', ['employees' => $employees]);
+        return view('custom/auth/viewEmployees', ['employees' => $employees,'positions'=>$positions]);
     }
     public function edit($id){
         $employee = Employee::find($id);

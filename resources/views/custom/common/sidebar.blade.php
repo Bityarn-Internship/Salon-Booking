@@ -17,48 +17,23 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewClients">
                         <i class="bx bx-user"></i>
                         <span key="t-layouts">@lang('Clients')</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li>
-                            <a href="/clients"
-                               key="t-vertical">@lang('Add Client')</a>
-                        </li>
-                        <li>
-                            <a href="/viewClients"
-                               key="t-vertical">@lang('View Clients')</a>
-                        </li>
-
-                        <li>
-                            <a href="/viewTrashedClients"
-                               key="t-horizontal">@lang('Inactive Clients')</a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewEmployees">
                         <i class="bx bx-group"></i>
                         <span key="t-dashboards">@lang('Employees')</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/employees" key="t-tui-calendar">@lang('Add Employee')</a></li>
-                        <li><a href="/viewEmployees" key="t-tui-calendar">@lang('View Employees')</a></li>
-                        <li><a href="/viewTrashedEmployees" key="t-full-calendar">@lang('Inactive Employees')</a></li>
-                    </ul>
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewBookings">
                         <i class="bx bx-calendar"></i>
                         <span key="t-chat">@lang('Bookings')</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/viewClients" key="t-tui-calendar">@lang('Make a Booking')</a></li>
-                        <li><a href="/viewBookings" key="t-tui-calendar">@lang('View Bookings')</a></li>
-                        <li><a href="/viewTrashedBookings" key="t-full-calendar">@lang('Inactive Bookings')</a></li>
-                    </ul>
                 </li>
 
                 <li>
@@ -93,28 +68,24 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewMpesaPayments">
                         <i class="bx bx-dollar"></i>
-                        <span key="t-projects">@lang('Payments')</span>
+                        <span key="t-projects">@lang('Mpesa Payments')</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/viewMpesaPayments" key="t-p-grid">@lang('View Mpesa Payments')</a></li>
-                        <li><a href="/viewTrashedMpesaPayments" key="t-p-list">@lang('Inactive Mpesa Payments')</a></li>
-                        <li><a href="/viewPaypalPayments" key="t-p-overview">@lang('View Paypal Payments')</a>
-                        </li>
-                        <li><a href="/viewTrashedPaypalPayments" key="t-create-new">@lang('Inactive Paypal Payments')</a></li>
-                    </ul>
                 </li>
+
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="/viewPaypalPayments">
+                        <i class="bx bx-dollar"></i>
+                        <span key="t-projects">@lang('Paypal Payments')</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/viewFeedback">
                         <i class="bx bx-like"></i>
                         <span key="t-contacts">@lang('User Feedback')</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/feedback" key="t-user-grid">@lang('Add Feedback')</a></li>
-                        <li><a href="/viewFeedback" key="t-user-grid">@lang('View Feedback')</a></li>
-                        <li><a href="/viewTrashedFeedback" key="t-user-list">@lang('Inactive Feedback')</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="/logout" class="waves-effect">

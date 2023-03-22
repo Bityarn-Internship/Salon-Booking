@@ -119,8 +119,13 @@ class PaypalPaymentController extends Controller
     public function confirm(){
         return view('paypalConfirm');
     }
-    public function viewPaypalPayments(){
-        $paypalpayments = PaypalPayment::all();
+    public function viewPaypalPayments(Request $request){
+        if(is_null($request->status) || $request->status == 'Active'){
+            $paypalpayments = PaypalPayment::all();
+        }else{
+            $paypalpayments = PaypalPayment::onlyTrashed()->get();
+        }
+        
         return view('custom/payments/viewPaypalPayments',['paypalpayments'=> $paypalpayments]);
 
     }

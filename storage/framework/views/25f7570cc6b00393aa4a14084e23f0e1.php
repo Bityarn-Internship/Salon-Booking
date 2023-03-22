@@ -1,6 +1,7 @@
 
+
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('View Bookings'); ?>
+    <?php echo app('translator')->get('View Feedback'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -23,16 +24,13 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-primary text-center">View Bookings</h4>
+                    <h4 class="card-title text-primary text-center">View Feedback</h4>
 
                     <div class="table-responsive">
                         <div class="row d-flex gx-10">
-                            <div class = "col">
-                                <span style="display: inline-block"><h3><a class="btn btn-primary" href="<?php echo e(url('/viewClients')); ?>"><b>Add Booking</b>
-                                    </a></h3></span>
-                            </div>
+                            <div class="col"></div>
                             <div class="col-md-4">
-                                <form action = "<?php echo e(url('/viewBookings')); ?>" method = "GET">
+                                <form action = "<?php echo e(url('/viewFeedback')); ?>" method = "GET">
                                     <?php echo csrf_field(); ?>
                                     <span style="display: inline-block"><label for="status" class="form-label">Filter by status</label></span>
                                     <span style="display: inline-block">
@@ -52,44 +50,33 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Client Name</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Cost</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Message</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $__currentLoopData = $bookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $booking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $feedbacks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feedback): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><?php echo e($booking->id); ?></td>
-                                    <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($booking->clientID)); ?></td>
-                                    <td><?php echo e($booking->date); ?></td>
-                                    <td><?php echo e($booking->time); ?></td>
-                                    <td><?php echo e($booking->cost); ?></td>
-                                    <td><?php echo e($booking->status); ?></td>
-
+                                    <td><?php echo e($feedback->id); ?></td>
+                                    <td><?php echo e($feedback->firstName); ?></td>
+                                    <td><?php echo e($feedback->lastName); ?></td>
+                                    <td><?php echo e($feedback->email); ?></td>
+                                    <td><?php echo e($feedback->message); ?></td>
+                                    <td><?php echo e($feedback->status); ?></td>
                                     <td>
-                                        <?php if($booking->status != 'Complete'): ?>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('completePayment/'.$booking->id)); ?>" title="Complete Payment">
-                                            <i class="fas fa-dollar-sign"></i>
-                                        </a>
-                                        <?php endif; ?>
-
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('viewInvoice/'.$booking->id)); ?>" title="View Invoice">
-                                        <i class="fas fa-file-invoice"></i>
-                                        </a>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editBooking/'.$booking->id)); ?>" title="Edit">
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editFeedback/'.$feedback->id)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteBooking/'.$booking->id)); ?>" title="Delete">
+                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteFeedback/'.$feedback->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                             </tbody>
                         </table>
                     </div>
@@ -125,4 +112,9 @@
 
 
 
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookings/viewBookings.blade.php ENDPATH**/ ?>
+
+
+
+
+
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/home/viewFeedback.blade.php ENDPATH**/ ?>

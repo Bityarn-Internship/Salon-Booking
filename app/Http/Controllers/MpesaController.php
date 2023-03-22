@@ -157,8 +157,13 @@ class MpesaController extends Controller
     public function paymentSuccess(){
         return view('paymentSuccess');
     }
-    public function viewMpesaPayments(){
-        $mpesapayments = MpesaPayment::all();
+    public function viewMpesaPayments(Request $request){
+        if(is_null($request->status) || $request->status == 'Active'){
+            $mpesapayments = MpesaPayment::all();
+        }else{
+            $mpesapayments = MpesaPayment::onlyTrashed()->get();
+        }
+        
         return view('custom/payments/viewMpesaPayments',['mpesapayments'=> $mpesapayments]);
     }
     public function destroy($id){

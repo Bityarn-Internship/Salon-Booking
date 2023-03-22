@@ -65,7 +65,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="date" class="form-control" id="floatingemailInput" placeholder="Select a date..." name = "date">
+                                                        <input type="date" class="form-control" id="demo" placeholder="Select a date..." name = "date">
                                                         <label for="floatingemailInput">Date</label>
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -117,6 +117,26 @@
         </div>
         <!-- end container-fluid -->
     </div>
+    <script>
+        var date = new Date();
+        var tdate = date.getDate();
+        var month = date.getMonth() + 1;
+        if (date < 10) {
+            date = "0" + date;
+        }
+        if (month < 10) {
+            month = "0" + month
+        }
+        var year = date.getUTCFullYear() - 0;
+        var minDate = year + "-" + month + "-" + tdate;
+        document.getElementById("demo").setAttribute("min", minDate);
+        console.log(minDate);
+    </script>
+
+
+
+
+
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>

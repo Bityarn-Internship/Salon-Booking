@@ -26,7 +26,7 @@
                     <h4 class="card-title text-primary text-center">View Bookings</h4>
 
                     <div class="table-responsive">
-                        <div class="row d-flex gx-10">
+                        <div class="d-flex gx-10">
                             <div class = "col">
                                 <span style="display: inline-block"><h3><a class="btn btn-primary" href="<?php echo e(url('/viewClients')); ?>"><b>Add Booking</b>
                                     </a></h3></span>

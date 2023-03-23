@@ -27,7 +27,7 @@
                     <h4 class="card-title text-primary text-center">View Employees</h4>
 
                     <div class="table-responsive">
-                        <div class="row d-flex gx-10">
+                        <div class="d-flex gx-10">
                             <div class = "col">
                                 <!-- <span style="display: inline-block"><h3><a class="btn btn-primary" href="{{url('/employees') }}"><b>Add Employee</b>
                                     </a></h3></span> -->

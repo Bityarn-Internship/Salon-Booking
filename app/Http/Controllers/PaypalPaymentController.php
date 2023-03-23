@@ -102,7 +102,7 @@ class PaypalPaymentController extends Controller
                     ->subject('Salon Booking System: Booking Details');
                 });
 
-                return redirect('/bookings')->with('message', 'Email sent');
+                return redirect('/paymentSuccess')->with('message', 'Email sent');
             }
             else{
                 return $response->getMessage();

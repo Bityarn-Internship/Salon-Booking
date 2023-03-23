@@ -59,9 +59,6 @@ class EmployeesController extends Controller
             return back()->withErrors($validator->messages());
         }
 
-//         $profileName = time().$request->file('userProfile')->getClientOriginalName();
-//         $pathProfile = $input->file('userProfile')->storeAs('users', $profileName, 'public');
-
         Employee::create([
             'firstName' => $input['firstName'],
             'lastName' => $input['lastName'],
@@ -70,7 +67,6 @@ class EmployeesController extends Controller
             'IDNumber' => $input['IDNumber'],
             'positionID' => $input['positionID'],
             'password' => Hash::make($input['password']),
-//             'userProfile' => '/storage/'.$pathProfile
         ]);
 
         if(Session::get('user') == 'employee'){
@@ -149,7 +145,7 @@ class EmployeesController extends Controller
 
     public function viewEmployees(Request $request){
         $positions = Position::all();
-        
+
         if(is_null($request->status) || $request->status == 'Active'){
             $employees = Employee::all();
         }else{

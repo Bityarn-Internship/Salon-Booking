@@ -14,6 +14,7 @@ use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,12 @@ Route::controller(UsersController::class)->group(function(){
     Route::get('/logout', 'logout');
     Route::post('/updateClient/{id}', 'update');
     Route::get('/editClient/{id}', 'edit');
+});
+Route::controller(ProfileController::class)->group(function(){
+    Route::get('/userProfile', 'index');
+    Route::post('/changeDetails/{id}', 'update');
+    Route::post('/userProfile', 'changePassword')->name('changePassword');
+
 });
 
 Route::controller(FeedbackController::class)->group(function(){
@@ -130,7 +137,7 @@ Route::group([
 ], function(){
     Route::controller(DashboardController::class)->group(function(){
         Route::get('/dashboard', 'index');
-    
+
     });
     Route::controller(ServicesController::class)->group(function(){
         Route::get('/services', 'index');
@@ -166,7 +173,7 @@ Route::group([
         Route::get('/restorePosition/{id}', 'restorePosition');
         Route::get('/restorePositions', 'restorePositions');
     });
-    
+
     Route::controller(EmployeesController::class)->group(function(){
         Route::post('/updateEmployee/{id}', 'update');
         Route::get('/deleteEmployee/{id}', 'destroy');
@@ -198,7 +205,7 @@ Route::group([
 
     Route::controller(CompletedBookingsController::class)->group(function(){
         Route::get('/viewCompletedBookings', 'CompletedBookings');
-    
+
     });
 
     Route::controller(EmployeeServicesController::class)->group(function(){
@@ -221,12 +228,12 @@ Route::group([
         Route::get('/restorePaypalPayments','restorePaypalPayments');
         Route::get('/viewPaypalPayments','viewPaypalPayments');
     });
-    
+
     Route::controller(MpesaController::class)->group(function(){
         Route::get('/deleteMpesaPayment/{id}','destroy');
         Route::get('/viewTrashedMpesaPayments','viewTrashedMpesaPayments');
         Route::get('/restoreMpesaPayment/{id}','restoreMpesaPayment');
         Route::get('/restoreMpesaPayments','restoreMpesaPayments');
         Route::get('/viewMpesaPayments','viewMpesaPayments');
-    }); 
+    });
 });

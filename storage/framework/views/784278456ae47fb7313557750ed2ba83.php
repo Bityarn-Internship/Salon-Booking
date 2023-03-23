@@ -384,7 +384,7 @@
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="rounded-circle header-profile-user" src="<?php echo e(isset(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('/assets/images/users/avatar-1.jpg')); ?>"
                     alt="Header Avatar">
-                <span class="d-none d-xl-inline-block ms-1" key="t-henry"><?php echo e(ucfirst(Auth::user()->name)); ?></span>
+                <span class="d-none d-xl-inline-block ms-1" key="t-henry"></span>
                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-end">
@@ -421,7 +421,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-body">
                 <form method="POST" id="change-password">
                     <?php echo csrf_field(); ?>
-                    <input type="hidden" value="<?php echo e(Auth::user()->id); ?>" id="data_id">
+                    <input type="hidden" value="" id="data_id">
                     <div class="mb-3">
                         <label for="current_password">Current Password</label>
                         <input id="current-password" type="password"
@@ -461,7 +461,7 @@ unset($__errorArgs, $__bag); ?>" name="password"
                     </div>
 
                     <div class="mt-3 d-grid">
-                        <button class="btn btn-primary waves-effect waves-light UpdatePassword" data-id="<?php echo e(Auth::user()->id); ?>"
+                        <button class="btn btn-primary waves-effect waves-light UpdatePassword" data-id=""
                             type="submit">Update Password</button>
                     </div>
                 </form>

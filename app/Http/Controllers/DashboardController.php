@@ -16,7 +16,7 @@ class DashboardController extends Controller
         $services = Service::all()->count('id');
         $paypalpayments = PaypalPayment::all()->count('id');
         $mpesapayments = MpesaPayment::all()->count('id');
-        $upcomingBookings = Booking::select('*')->where('status','Reserved');
+        $upcomingBookings = Booking::select('*')->where('status','Reserved')->get();
         $payments = $paypalpayments + $mpesapayments;
         return view('custom/home/dashboard',['bookings'=>$bookings,'services'=>$services,'upcomingBookings'=>$upcomingBookings,'payments'=>$payments]);
     }

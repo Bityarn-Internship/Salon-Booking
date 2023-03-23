@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,10 @@ class ProfileController extends Controller
     public function index(){
         $employee = Employee::find(Session::get('employeeID'));
         $positions = Position::all();
-        $upcomingBookings = Booking::select('*')->where('status','Reserved')->get();
+        $upcomingBookings = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')
+                            ->where('employeeID',Session::get('employeeID'))
+                            ->where('status','Reserved')
+                            ->get();
         return view('custom/home/userProfile',['employee'=>$employee,'positions'=>$positions,'upcomingBookings'=>$upcomingBookings]);
     }
     public function update(Request $request, $id){

@@ -215,7 +215,7 @@
                                                                 <?php endif; ?>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-md-12 pt-2">
+                                                                <div class="col-md-6 pt-2">
                                                                     <div class="form-floating mb-3">
                                                                         <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($client->firstName); ?>" name = "firstName">
                                                                         <label for="floatingnameInput">First Name</label>
@@ -228,10 +228,8 @@
                                                                         <?php endif; ?>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="row">
-                                                                <div class="col-md-12 pt-2">
+                                                                <div class="col-md-6 pt-2">
                                                                     <div class="form-floating mb-3">
                                                                         <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($client->lastName); ?>" name = "lastName">
                                                                         <label for="floatingnameInput">Last Name</label>

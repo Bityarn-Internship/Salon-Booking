@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('Booking'); ?>
 <?php $__env->stopSection(); ?>
@@ -31,13 +29,13 @@
                                     <div class="mt-4">
                                         <form action = "<?php echo e(url('/updateBooking/'.$booking->bookedServiceID)); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
-                                            <div class = "row">
-                                                <div class="valid-feedback">
-                                                    <?php if(session()->has('message')): ?>
+                                            <div class="row">
+                                                <?php if(session()->has('message')): ?>
+                                                    <div class="alert alert-info" role="alert">
                                                         <?php echo e(session()->get('message')); ?>
 
-                                                    <?php endif; ?>
-                                                </div>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
@@ -45,42 +43,50 @@
                                                         <input type="text" class="form-control" id="floatingemailInput" value = "<?php echo e($booking->bookingID); ?>"name = "bookingID" readonly>
                                                         <label for="floatingemailInput">Booking ID</label>
                                                     </div>
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('bookingID')): ?>
-                                                            <?php echo e($errors->first('bookingID')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <?php if(session()->has('message')): ?>
+                                                    <div class="alert alert-info" role="alert">
+                                                        <?php echo e(session()->get('message')); ?>
 
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
+                                                    <?php if($errors->has('date')): ?>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <?php echo e($errors->first('date')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
                                                         <input type="date" class="form-control" id="floatingemailInput" value = "<?php echo e($booking->date); ?>" name = "date">
                                                         <label for="floatingemailInput">Date</label>
                                                     </div>
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('date')): ?>
-                                                            <?php echo e($errors->first('date')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-6 pt-2">
+                                                    <?php if($errors->has('time')): ?>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <?php echo e($errors->first('time')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
                                                         <input type="time" class="form-control" id="floatingemailInput" value = "<?php echo e($booking->time); ?>" name = "time">
                                                         <label for="floatingemailInput">Time</label>
                                                     </div>
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('time')): ?>
-                                                            <?php echo e($errors->first('time')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <?php if(session()->has('message')): ?>
+                                                    <div class="alert alert-info" role="alert">
+                                                        <?php echo e(session()->get('message')); ?>
 
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
                                                     <?php if($errors->has('employeeServiceID')): ?>

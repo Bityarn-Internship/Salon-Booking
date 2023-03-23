@@ -28,7 +28,7 @@
                                                 <?php echo csrf_field(); ?>
                                                 <div class="row">
                                                     <?php if(session()->has('message')): ?>
-                                                        <div class="valid-feedback">
+                                                        <div class="alert alert-info" role="alert">
                                                             <?php echo e(session()->get('message')); ?>
 
                                                         </div>
@@ -36,22 +36,35 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('firstName')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo e($errors->first('firstName')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->firstName); ?>" name = "firstName">
                                                             <label for="floatingnameInput">First Name</label>
                                                         </div>
 
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('firstName')): ?>
-                                                                <?php echo e($errors->first('firstName')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <?php if(session()->has('message')): ?>
+                                                        <div class="alert alert-info" role="alert">
+                                                            <?php echo e(session()->get('message')); ?>
 
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('lastName')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo e($errors->first('lastName')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->lastName); ?>" name = "lastName">
                                                             <label for="floatingnameInput">Last Name</label>
@@ -65,9 +78,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <?php if(session()->has('message')): ?>
+                                                        <div class="alert alert-info" role="alert">
+                                                            <?php echo e(session()->get('message')); ?>
 
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('email')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo e($errors->first('email')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="email" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->email); ?>" name = "email">
                                                             <label for="floatingnameInput">Email Address</label>
@@ -81,9 +107,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <?php if(session()->has('message')): ?>
+                                                        <div class="alert alert-info" role="alert">
+                                                            <?php echo e(session()->get('message')); ?>
 
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('telephoneNumber')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo e($errors->first('telephoneNumber')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="tel" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->telephoneNumber); ?>" name = "telephoneNumber">
                                                             <label for="floatingnameInput">Telephone Number</label>
@@ -97,25 +136,44 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <?php if(session()->has('message')): ?>
+                                                        <div class="alert alert-info" role="alert">
+                                                            <?php echo e(session()->get('message')); ?>
 
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('IDNumber')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo e($errors->first('IDNumber')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->IDNumber); ?>" name = "IDNumber">
                                                             <label for="floatingnameInput">ID Number / Passport Number</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('IDNumber')): ?>
-                                                                <?php echo e($errors->first('IDNumber')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <?php if(session()->has('message')): ?>
+                                                        <div class="alert alert-info" role="alert">
+                                                            <?php echo e(session()->get('message')); ?>
 
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class = "row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('positionID')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo e($errors->first('positionID')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "positionID">
                                                                 <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

@@ -36,51 +36,50 @@
                                         <form action = "{{ url('/bookings') }}" method = "post" enctype="multipart/form-data">
                                             @csrf
                                             <div class = "row">
-                                                <div class="valid-feedback">
-                                                    @if(session()->has('message'))
+                                                @if(session()->has('message'))
+                                                    <div class = "alert alert-info" role = "alert">
                                                         {{ session()->get('message') }}
-                                                    @endif
-                                                </div>
+                                                    </div>
+                                                @endif
                                             </div>
 
                                             <div class="row">
 
                                                 <div class="col-md-12 pt-2">
-
+                                                    @if($errors->has('services'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('services') }}
+                                                        </div>
+                                                    @endif
                                                     <label for="services" class="form-label">Select all the services that apply: </label>
                                                     <select name="services[]" id="services" multiple>
                                                         @foreach($services as $service)
                                                             <option value="{{$service->id}}">{{$service->name." - ".$service->cost}}</option>
                                                         @endforeach
                                                     </select>
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('services'))
-                                                            {{ $errors->first('services') }}
-                                                        @endif
-                                                    </div>
                                                 </div>
                                             </div><br/>
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
+                                                    @if($errors->has('date'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('date') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <input type="date" class="form-control" id="demo" placeholder="Select a date..." name = "date">
                                                         <label for="floatingemailInput">Date</label>
                                                     </div>
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('date'))
-                                                            {{ $errors->first('date') }}
-                                                        @endif
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-6 pt-2">
+                                                    @if($errors->has('time'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('time') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <input type="time" class="form-control" id="floatingemailInput" placeholder="Select a time..." name = "time">
                                                         <label for="floatingemailInput">Time</label>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('time'))
-                                                            {{ $errors->first('time') }}
-                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

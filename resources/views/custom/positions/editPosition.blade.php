@@ -21,7 +21,7 @@
                             <div class="w-100">
 
                                 <div class="d-flex flex-column h-100">
-                                    <div class="my-auto">
+                                    <div>
                                         <div>
                                             <h5 class="text-primary text-center">Edit Position</h5>
                                         </div>
@@ -30,37 +30,36 @@
                                             <form action = "{{ url('/updatePosition/'.$position->id) }}" method = "post" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="valid-feedback">
+                                                    @if($errors->has('message'))
+                                                        <div class = "alert alert-info" role = "alert">
                                                             {{ session()->get('message') }}
                                                         </div>
                                                     @endif
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('positionName'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('positionName') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "{{$position->name}}" name = "positionName">
                                                             <label for="floatingnameInput">Position Name</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('positionName'))
-                                                                {{ $errors->first('positionName') }}
-                                                            @endif
                                                         </div>
                                                     </div>
 
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('positionDescription'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('positionDescription') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingemailInput" value = "{{$position->description}}" name = "positionDescription">
                                                             <label for="floatingemailInput">Position Description</label>
-                                                        </div>
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('positionDescription'))
-                                                                {{ $errors->first('positionDescription') }}
-                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

@@ -43,37 +43,36 @@
                                                  <form action = "{{ url('/services') }}" method = "post" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="valid-feedback">
+                                                    @if($errors->has('message'))
+                                                        <div class = "alert alert-info" role = "alert">
                                                             {{ session()->get('message') }}
                                                         </div>
                                                     @endif
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('serviceName'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('serviceName') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "serviceName">
                                                             <label for="floatingnameInput">Service Name</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('serviceName'))
-                                                                {{ $errors->first('serviceName') }}
-                                                            @endif
                                                         </div>
                                                     </div>
 
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('serviceCost'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('serviceCost') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="number" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name = "serviceCost">
                                                             <label for="floatingemailInput">Service Cost</label>
-                                                        </div>
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('serviceCost'))
-                                                                {{ $errors->first('serviceCost') }}
-                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

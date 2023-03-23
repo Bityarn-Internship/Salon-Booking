@@ -32,7 +32,7 @@
                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <b>Add Employee Service</b>
                                     </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -43,14 +43,19 @@
                                                 <form action = "{{ url('/employeeServices') }}" method = "post" enctype="multipart/form-data">
                                             @csrf
                                             <div class = "row">
-                                                <div class="valid-feedback">
-                                                    @if(session()->has('message'))
+                                                @if(session()->has('message'))
+                                                    <div class = "alert alert-info" role = "alert">
                                                         {{ session()->get('message') }}
-                                                    @endif
-                                                </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
+                                                    @if($errors->has('employeeID'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('employeeID') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeID">
                                                             @foreach($employees as $employee)
@@ -58,17 +63,17 @@
                                                             @endforeach
                                                         </select>
                                                         <label for="floatingSelectGrid">Select an employee</label>
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('employeeID'))
-                                                                {{ $errors->first('employeeID') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
+                                                    @if($errors->has('serviceID'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('serviceID') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "serviceID">
                                                             @foreach($services as $service)
@@ -76,11 +81,6 @@
                                                             @endforeach
                                                         </select>
                                                         <label for="floatingSelectGrid">Select a service</label>
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('serviceID'))
-                                                                {{ $errors->first('serviceID') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +90,7 @@
                                                         type="submit">Submit</button>
                                             </div>
                                         </form>
-                                     </div>
+                                    </div>
                                     <div class="modal-footer">
                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->

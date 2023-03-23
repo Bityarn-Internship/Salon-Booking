@@ -44,8 +44,8 @@
                                             <form action = "<?php echo e(url('/positions')); ?>" method = "post" enctype="multipart/form-data">
                                                 <?php echo csrf_field(); ?>
                                                 <div class="row">
-                                                    <?php if(session()->has('message')): ?>
-                                                        <div class="valid-feedback">
+                                                    <?php if($errors->has('message')): ?>
+                                                        <div class = "alert alert-info" role = "alert">
                                                             <?php echo e(session()->get('message')); ?>
 
                                                         </div>
@@ -53,31 +53,30 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('positionName')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('positionName')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the position..." name = "positionName">
                                                             <label for="floatingnameInput">Position Name</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('positionName')): ?>
-                                                                <?php echo e($errors->first('positionName')); ?>
-
-                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
 
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('positionDescription')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('positionDescription')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingemailInput" placeholder="Describe the position..." name = "positionDescription">
                                                             <label for="floatingemailInput">Position Description</label>
-                                                        </div>
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('positionDescription')): ?>
-                                                                <?php echo e($errors->first('positionDescription')); ?>
-
-                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </div>

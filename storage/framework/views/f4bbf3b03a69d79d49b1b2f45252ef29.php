@@ -36,55 +36,54 @@
                                         <form action = "<?php echo e(url('/bookings')); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class = "row">
-                                                <div class="valid-feedback">
-                                                    <?php if(session()->has('message')): ?>
+                                                <?php if(session()->has('message')): ?>
+                                                    <div class = "alert alert-info" role = "alert">
                                                         <?php echo e(session()->get('message')); ?>
 
-                                                    <?php endif; ?>
-                                                </div>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
 
                                             <div class="row">
 
                                                 <div class="col-md-12 pt-2">
+                                                    <?php if($errors->has('services')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('services')); ?>
 
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <label for="services" class="form-label">Select all the services that apply: </label>
                                                     <select name="services[]" id="services" multiple>
                                                         <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <option value="<?php echo e($service->id); ?>"><?php echo e($service->name." - ".$service->cost); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('services')): ?>
-                                                            <?php echo e($errors->first('services')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
                                                 </div>
                                             </div><br/>
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
+                                                    <?php if($errors->has('date')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('date')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
                                                         <input type="date" class="form-control" id="demo" placeholder="Select a date..." name = "date">
                                                         <label for="floatingemailInput">Date</label>
                                                     </div>
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('date')): ?>
-                                                            <?php echo e($errors->first('date')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-6 pt-2">
+                                                    <?php if($errors->has('time')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('time')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
                                                         <input type="time" class="form-control" id="floatingemailInput" placeholder="Select a time..." name = "time">
                                                         <label for="floatingemailInput">Time</label>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('time')): ?>
-                                                            <?php echo e($errors->first('time')); ?>
-
-                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>

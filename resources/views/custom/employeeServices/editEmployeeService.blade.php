@@ -22,7 +22,7 @@
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
 
-                                <div class="my-auto">
+                                <div>
                                     <div>
                                         <h5 class = "text-primary text-center">Edit Employee Service</h5>
                                     </div>
@@ -31,14 +31,19 @@
                                         <form action = "{{ url('/updateEmployeeService/'.$employeeService->id) }}" method = "post" enctype="multipart/form-data">
                                             @csrf
                                             <div class = "row">
-                                                <div class="valid-feedback">
-                                                    @if(session()->has('message'))
+                                                @if($errors->has('message'))
+                                                    <div class = "alert alert-info" role = "alert">
                                                         {{ session()->get('message') }}
-                                                    @endif
-                                                </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
+                                                    @if($errors->has('employeeID'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('employeeID') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeID">
                                                             @foreach($employees as $employee)
@@ -46,17 +51,17 @@
                                                             @endforeach
                                                         </select>
                                                         <label for="floatingSelectGrid">Select an employee</label>
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('employeeID'))
-                                                                {{ $errors->first('employeeID') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
+                                                    @if($errors->has('serviceID'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('serviceID') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "serviceID">
                                                             @foreach($services as $service)
@@ -64,11 +69,6 @@
                                                             @endforeach
                                                         </select>
                                                         <label for="floatingSelectGrid">Select a service</label>
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('serviceID'))
-                                                                {{ $errors->first('serviceID') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

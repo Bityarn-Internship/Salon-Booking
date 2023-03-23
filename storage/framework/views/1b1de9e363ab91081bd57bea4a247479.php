@@ -46,8 +46,8 @@
                                             <form action = "<?php echo e(url('/employees')); ?>" method = "post" enctype="multipart/form-data">
                                                 <?php echo csrf_field(); ?>
                                                 <div class="row">
-                                                    <?php if(session()->has('message')): ?>
-                                                        <div class="valid-feedback">
+                                                    <?php if($errors->has('message')): ?>
+                                                        <div class = "alert alert-info" role = "alert">
                                                             <?php echo e(session()->get('message')); ?>
 
                                                         </div>
@@ -55,76 +55,77 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6 pt-2">
+                                                        <?php if($errors->has('firstName')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('firstName')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the first name..." name = "firstName">
                                                             <label for="floatingnameInput">First Name</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('firstName')): ?>
-                                                                <?php echo e($errors->first('firstName')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-6 pt-2">
+                                                        <?php if($errors->has('lastName')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('lastName')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the last name..." name = "lastName">
                                                             <label for="floatingnameInput">Last Name</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('lastName')): ?>
-                                                                <?php echo e($errors->first('lastName')); ?>
-
-                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6 pt-2">
+                                                        <?php if($errors->has('email')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('email')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="email" class="form-control" id="floatingnameInput" placeholder="Enter email..." name = "email">
                                                             <label for="floatingnameInput">Email</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('email')): ?>
-                                                                <?php echo e($errors->first('email')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-6 pt-2">
+                                                        <?php if($errors->has('telephoneNumber')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('telephoneNumber')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="tel" class="form-control" id="floatingnameInput" placeholder="Enter telephone number..." name = "telephoneNumber">
                                                             <label for="floatingnameInput">Telephone Number</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('telephoneNumber')): ?>
-                                                                <?php echo e($errors->first('telephoneNumber')); ?>
-
-                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class = "row">
                                                     <div class="col-md-6 pt-2">
+                                                        <?php if($errors->has('IDNumber')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('IDNumber')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter ID number..." name = "IDNumber">
                                                             <label for="floatingnameInput">National ID/Passport Number</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('IDNumber')): ?>
-                                                                <?php echo e($errors->first('IDNumber')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-6 pt-2">
+                                                        <?php if($errors->has('positionID')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('positionID')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "positionID">
                                                                 <option selected disabled>Choose a position</option>
@@ -133,51 +134,43 @@
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                             <label for="floatingSelectGrid">Select a position</label>
-                                                            <div class="invalid-feedback">
-                                                                <?php if($errors->has('positionID')): ?>
-                                                                    <?php echo e($errors->first('positionID')); ?>
-
-                                                                <?php endif; ?>
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-md-6 pt-2">
+                                                        <?php if($errors->has('password')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('password')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="password" class="form-control" id="floatingnameInput" placeholder="Enter the password..." name = "password">
                                                             <label for="floatingnameInput">Password</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('password')): ?>
-                                                                <?php echo e($errors->first('password')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-6 pt-2">
+                                                        <?php if($errors->has('confirmPassword')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('confirmPassword')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="password" class="form-control" id="floatingnameInput" placeholder="Enter the confirmation password..." name = "confirmPassword">
                                                             <label for="floatingnameInput">Password confirmation</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('confirmPassword')): ?>
-                                                                <?php echo e($errors->first('confirmPassword')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="mt-4 d-grid text-center">
                                                     <button class="btn btn-primary waves-effect waves-light"
                                                         type="submit">Submit</button>
                                                 </div>
 
-                                            </form>
+                                                </form>
                                             </div>
                                             <div class="modal-footer">
                                                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->

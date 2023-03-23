@@ -128,7 +128,6 @@
                                     <td>{{$service->name}}</td>
                                     <td>{{$service->cost}}</td>
                                     <td>
-                                        <i class="fas fa-pencil-alt btn btn-outline-success btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
                                         <a class="btn btn-outline-success btn-sm edit" href="{{url ('editService/'.$service->id) }}" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>

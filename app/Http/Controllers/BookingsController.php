@@ -9,6 +9,7 @@ use App\Models\BookedService;
 use App\Models\User;
 use App\Models\EmployeeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use Validator;
 use Session;
@@ -101,8 +102,11 @@ class BookingsController extends Controller
 
     //all bookings
     public function viewBookings(Request $request){
+        
         if(is_null($request->status) || $request->status == 'Active'){
-            $bookings = Booking::all();
+            // SELECT * FROM `booked_services`, bookings WHERE bookingID IN (SELECT id FROM bookings WHERE id = 1);
+            //Joining 2 tables
+            $bookings = DB::table('bookings')->select('*')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->get();
         }else{
             $bookings = Booking::onlyTrashed()->get();
         }

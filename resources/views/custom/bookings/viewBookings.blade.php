@@ -53,6 +53,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Service Name</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Cost</th>
@@ -63,8 +65,10 @@
                             <tbody>
                             @foreach($bookings as $booking)
                                 <tr>
-                                    <td>{{$booking->id}}</td>
+                                    <td>{{$booking->bookingID}}</td>
                                     <td>{{\App\Http\Controllers\UsersController::getClientName($booking->clientID)}}</td>
+                                    <td>{{\App\Http\Controllers\EmployeesController::getEmployeeName($booking->employeeID)}}</td>
+                                    <td>{{\App\Http\Controllers\ServicesController::getServiceName($booking->serviceID)}}</td>
                                     <td>{{$booking->date}}</td>
                                     <td>{{$booking->time}}</td>
                                     <td>{{$booking->cost}}</td>

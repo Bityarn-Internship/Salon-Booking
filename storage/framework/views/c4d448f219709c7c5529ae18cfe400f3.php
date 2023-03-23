@@ -53,6 +53,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Service Name</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Cost</th>
@@ -63,8 +65,10 @@
                             <tbody>
                             <?php $__currentLoopData = $bookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $booking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><?php echo e($booking->id); ?></td>
+                                    <td><?php echo e($booking->bookingID); ?></td>
                                     <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($booking->clientID)); ?></td>
+                                    <td><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($booking->employeeID)); ?></td>
+                                    <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($booking->serviceID)); ?></td>
                                     <td><?php echo e($booking->date); ?></td>
                                     <td><?php echo e($booking->time); ?></td>
                                     <td><?php echo e($booking->cost); ?></td>

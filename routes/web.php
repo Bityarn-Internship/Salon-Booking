@@ -15,6 +15,7 @@ use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClientProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +64,11 @@ Route::controller(ProfileController::class)->group(function(){
     Route::get('/userProfile', 'index');
     Route::post('/changeDetails/{id}', 'update');
     Route::post('/userProfile', 'changePassword')->name('changePassword');
-
+});
+Route::controller(ClientProfileController::class)->group(function(){
+    Route::get('/clientProfile', 'index');
+    Route::post('/changeDetails/{id}', 'update');
+    Route::post('/clientProfile', 'changePassword')->name('changePassword');
 });
 
 Route::controller(FeedbackController::class)->group(function(){

@@ -134,73 +134,9 @@
                                     <td>{{\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)}}</td>
                                     <td>{{\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)}}</td>
                                     <td>
-                                        <i class="fas fa-pencil-alt btn btn-outline-success btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
-                                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-center w-100" id="editModalLabel">Edit Employee Service</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action = "{{ url('/updateEmployeeService/'.$employeeService->id) }}" method = "post" enctype="multipart/form-data">
-                                                            @csrf
-                                                            <div class = "row">
-                                                                <div class="valid-feedback">
-                                                                    @if(session()->has('message'))
-                                                                        {{ session()->get('message') }}
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                            <div class = "row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeID">
-                                                                            @foreach($employees as $employee)
-                                                                                <option value="{{$employee->id}}">{{$employee->firstName." ".$employee->lastName}}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        <label for="floatingSelectGrid">Select an employee</label>
-                                                                        <div class="invalid-feedback">
-                                                                            @if($errors->has('employeeID'))
-                                                                                {{ $errors->first('employeeID') }}
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class = "row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "serviceID">
-                                                                            @foreach($services as $service)
-                                                                                <option value="{{$service->id}}">{{$service->name}}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        <label for="floatingSelectGrid">Select a service</label>
-                                                                        <div class="invalid-feedback">
-                                                                            @if($errors->has('serviceID'))
-                                                                                {{ $errors->first('serviceID') }}
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="mt-4 d-grid">
-                                                                <button class="btn btn-primary waves-effect waves-light"
-                                                                        type="submit">Save Changes</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <a class="btn btn-outline-success btn-sm edit" href="{{url ('editEmployeeService/'.$employeeService->id) }}" title="Delete">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
                                         <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteEmployeeService/'.$employeeService->id) }}" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>

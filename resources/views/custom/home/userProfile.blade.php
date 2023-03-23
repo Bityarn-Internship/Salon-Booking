@@ -24,13 +24,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="profile-img">
-                                <form action="" method="POST" enctype="multipart/form-data">
-                                    @csrf
-
                                     <div class="mt-4">
-                                        <a href="" class="btn btn-primary waves-effect waves-light btn-sm" data-bs-toggle="modal" data-bs-target=".update-profile">Edit Profile</a>
+                                        <a href="" class="btn btn-primary waves-effect waves-light btn-sm"  data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</a>
                                     </div>
-                                </form>
                             </div>
                         </div>
 
@@ -313,7 +309,10 @@
                     </form>
                 </div>
             </div>
-
+        </div>
+    </div>
+        <div class="col-xl-12">
+            <div class="row">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Upcoming Bookings</h4>
@@ -323,6 +322,7 @@
                             <tr>
                                 <th class="align-middle">ID</th>
                                 <th class="align-middle">Client Name</th>
+                                <th class="align-middle">Service Name</th>
                                 <th class="align-middle">Date</th>
                                 <th class="align-middle">Time</th>
                                 <th class="align-middle">Cost</th>
@@ -332,11 +332,12 @@
                             <tbody>
                             @foreach($upcomingBookings as $upcomingBooking)
                                 <tr>
-                                    <td class="text-body fw-bold">{{$upcomingBooking->id}}</a> </td>
+                                    <td class="text-body fw-bold">{{$upcomingBooking->bookingID}}</a> </td>
                                     <td>{{\App\Http\Controllers\UsersController::getClientName($upcomingBooking->clientID)}}</td>
+                                    <td>{{\App\Http\Controllers\ServicesController::getServiceName($upcomingBooking->serviceID)}}</td>
                                     <td>{{$upcomingBooking->date}}</td>
                                     <td>{{$upcomingBooking->time}}</td>
-                                    <td>{{$upcomingBooking->cost}}</td>
+                                    <td>{{$upcomingBooking->serviceCost}}</td>
                                     <td>{{$upcomingBooking->status}}</td>
                                 </tr>
                             @endforeach
@@ -345,6 +346,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     <!-- end row -->

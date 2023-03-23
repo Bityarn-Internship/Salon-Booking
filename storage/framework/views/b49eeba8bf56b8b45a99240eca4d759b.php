@@ -97,7 +97,7 @@
 
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
-                                                        type="submit">Book</button>
+                                                    type="submit">Book</button>
                                             </div>
                                         </form>
                                     </div>

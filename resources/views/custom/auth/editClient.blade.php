@@ -29,67 +29,84 @@
                                                 @csrf
                                                 <div class="row">
                                                     @if(session()->has('message'))
-                                                        <div class="valid-feedback">
+                                                        <div class="alert alert-info" role="alert">
                                                             {{ session()->get('message') }}
                                                         </div>
                                                     @endif
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('firstName'))
+                                                            <div class="alert alert-danger" role="alert">
+                                                            {{ $errors->first('firstName') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "{{$client->firstName}}" name = "firstName">
                                                             <label for="floatingnameInput">First Name</label>
                                                         </div>
 
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('firstName'))
-                                                                {{ $errors->first('firstName') }}
-                                                            @endif
-                                                        </div>
+
                                                     </div>
                                                 </div>
-
+                                                <div class="row">
+                                                    @if(session()->has('message'))
+                                                        <div class="alert alert-info" role="alert">
+                                                            {{ session()->get('message') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('lastName'))
+                                                            <div class="alert alert-danger" role="alert">
+                                                                {{ $errors->first('lastName') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "{{$client->lastName}}" name = "lastName">
                                                             <label for="floatingnameInput">Last Name</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('lastName'))
-                                                                {{ $errors->first('lastName') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="row">
+                                                    @if(session()->has('message'))
+                                                        <div class="alert alert-info" role="alert">
+                                                            {{ session()->get('message') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('email'))
+                                                            <div class="alert alert-danger" role="alert">
+                                                                {{ $errors->first('email') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="email" class="form-control" id="floatingnameInput" value = "{{$client->email}}" name = "email">
                                                             <label for="floatingnameInput">Email Address</label>
                                                         </div>
 
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('email'))
-                                                                {{ $errors->first('email') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="row">
+                                                    @if(session()->has('message'))
+                                                        <div class="alert alert-info" role="alert">
+                                                            {{ session()->get('message') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('telephoneNumber'))
+                                                            <div class="alert alert-danger" role="alert">
+                                                                {{ $errors->first('telephoneNumber') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="tel" class="form-control" id="floatingnameInput" value = "{{$client->telephoneNumber}}" name = "telephoneNumber">
                                                             <label for="floatingnameInput">Telephone Number</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('telephoneNumber'))
-                                                                {{ $errors->first('telephoneNumber') }}
-                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

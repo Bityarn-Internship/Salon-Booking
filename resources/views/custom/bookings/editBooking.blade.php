@@ -31,12 +31,12 @@
                                     <div class="mt-4">
                                         <form action = "{{ url('/updateBooking/'.$booking->bookedServiceID) }}" method = "post" enctype="multipart/form-data">
                                             @csrf
-                                            <div class = "row">
-                                                <div class="valid-feedback">
-                                                    @if(session()->has('message'))
+                                            <div class="row">
+                                                @if(session()->has('message'))
+                                                    <div class="alert alert-info" role="alert">
                                                         {{ session()->get('message') }}
-                                                    @endif
-                                                </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
@@ -44,39 +44,46 @@
                                                         <input type="text" class="form-control" id="floatingemailInput" value = "{{$booking->bookingID}}"name = "bookingID" readonly>
                                                         <label for="floatingemailInput">Booking ID</label>
                                                     </div>
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('bookingID'))
-                                                            {{ $errors->first('bookingID') }}
-                                                        @endif
-                                                    </div>
                                                 </div>
                                             </div>
-
+                                            <div class="row">
+                                                @if(session()->has('message'))
+                                                    <div class="alert alert-info" role="alert">
+                                                        {{ session()->get('message') }}
+                                                    </div>
+                                                @endif
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
+                                                    @if($errors->has('date'))
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {{ $errors->first('date') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <input type="date" class="form-control" id="floatingemailInput" value = "{{$booking->date}}" name = "date">
                                                         <label for="floatingemailInput">Date</label>
                                                     </div>
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('date'))
-                                                            {{ $errors->first('date') }}
-                                                        @endif
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-6 pt-2">
+                                                    @if($errors->has('time'))
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {{ $errors->first('time') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <input type="time" class="form-control" id="floatingemailInput" value = "{{$booking->time}}" name = "time">
                                                         <label for="floatingemailInput">Time</label>
                                                     </div>
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('time'))
-                                                            {{ $errors->first('time') }}
-                                                        @endif
-                                                    </div>
                                                 </div>
                                             </div>
-
+                                            <div class="row">
+                                                @if(session()->has('message'))
+                                                    <div class="alert alert-info" role="alert">
+                                                        {{ session()->get('message') }}
+                                                    </div>
+                                                @endif
+                                            </div>
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
                                                     @if($errors->has('employeeServiceID'))

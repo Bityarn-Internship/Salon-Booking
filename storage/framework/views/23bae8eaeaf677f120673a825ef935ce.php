@@ -1,16 +1,20 @@
 <?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.Profile'); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?> Contacts <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?> Profile <?php $__env->endSlot(); ?>
 
+    <?php echo $__env->renderComponent(); ?>
 
-    <div class="row">
-        <div class="col-xl-5">
+    <div class="row mx-4 mt-xl-4">
+        <div class="col-xl-6">
             <div class="card overflow-hidden">
                 <div class="bg-primary bg-soft">
                     <div class="row">
                         <div class="col-7">
                             <div class="text-primary p-3">
                                 <h5 class="text-primary">Welcome Back !</h5>
-                                <p>Hi, <?php echo e($employee->firstName." ".$employee->lastName); ?> </p>
+                                <p>Hi, <?php echo e(Auth::user()->firstName.' '.Auth::user()->lastName); ?> </p>
                             </div>
                         </div>
                         <div class="col-5 align-self-end">
@@ -22,16 +26,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="profile-img">
-                                    <div class="mt-4">
-                                        <a href="" class="btn btn-primary waves-effect waves-light btn-sm"  data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</a>
-                                    </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-8">
-                            <div class="pt-4">
-
-
+                                <div class="mt-4">
+                                    <a href="" class="btn btn-primary waves-effect waves-light btn-sm"  data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -52,7 +49,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action = "<?php echo e(url('/changeDetails/'.$employee->id)); ?>" method = "post" enctype="multipart/form-data">
+                                        <form action = "<?php echo e(url('/changeDetails/'.Auth::user()->id)); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class="row">
                                                 <?php if(session()->has('message')): ?>
@@ -65,7 +62,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->firstName); ?>" name = "firstName">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e(Auth::user()->firstName); ?>" name = "firstName">
                                                         <label for="floatingnameInput">First Name</label>
                                                     </div>
 
@@ -81,7 +78,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->lastName); ?>" name = "lastName">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e(Auth::user()->lastName); ?>" name = "lastName">
                                                         <label for="floatingnameInput">Last Name</label>
                                                     </div>
 
@@ -97,7 +94,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="email" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->email); ?>" name = "email">
+                                                        <input type="email" class="form-control" id="floatingnameInput" value = "<?php echo e(Auth::user()->email); ?>" name = "email">
                                                         <label for="floatingnameInput">Email Address</label>
                                                     </div>
 
@@ -113,7 +110,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="tel" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->telephoneNumber); ?>" name = "telephoneNumber">
+                                                        <input type="tel" class="form-control" id="floatingnameInput" value = "<?php echo e(Auth::user()->telephoneNumber); ?>" name = "telephoneNumber">
                                                         <label for="floatingnameInput">Telephone Number</label>
                                                     </div>
 
@@ -125,42 +122,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="row">
-                                                <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->IDNumber); ?>" name = "IDNumber">
-                                                        <label for="floatingnameInput">ID Number / Passport Number</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('IDNumber')): ?>
-                                                            <?php echo e($errors->first('IDNumber')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class = "row">
-                                                <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "positionID">
-                                                            <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value="<?php echo e($position->id); ?>"><?php echo e($position->name); ?></option>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        </select>
-                                                        <label for="floatingSelectGrid">Select a position</label>
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('positionID')): ?>
-                                                                <?php echo e($errors->first('positionID')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
                                                         type="submit">Save Changes</button>
@@ -181,27 +142,19 @@
                             <tbody>
                             <tr>
                                 <th scope="row">Full Name : </th>
-                                <td><?php echo e($employee->firstName); ?></td>
+                                <td><?php echo e(Auth::user()->firstName); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Last Name :</th>
-                                <td><?php echo e($employee->lastName); ?></td>
+                                <td><?php echo e(Auth::user()->lastName); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">E-mail :</th>
-                                <td><?php echo e($employee->email); ?></td>
+                                <td><?php echo e(Auth::user()->email); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Telephone Number :</th>
-                                <td><?php echo e($employee->telephoneNumber); ?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> National ID:</th>
-                                <td><?php echo e($employee->IDNumber); ?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Position Name :</th>
-                                <td><?php echo e(\App\Http\Controllers\PositionsController::getPositionName($employee->positionID)); ?></td>
+                                <td><?php echo e(Auth::user()->telephoneNumber); ?></td>
                             </tr>
                             </tbody>
                         </table>
@@ -213,7 +166,7 @@
             <!-- end card -->
         </div>
 
-        <div class="col-xl-7">
+        <div class="col-xl-6">
 
             <div class="row">
                 <div class="col-md-4">
@@ -221,14 +174,14 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-muted fw-medium mb-2">My Services</p>
+                                    <p class="text-muted fw-medium mb-2">In Progress</p>
                                     <h4 class="mb-0"></h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
                                     <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
                                     <span class="avatar-title">
-                                        <i class="bx bx-envelope font-size-24"></i>
+                                        <i class="bx bx-calendar font-size-20"></i>
                                     </span>
                                     </div>
                                 </div>
@@ -241,14 +194,14 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-muted fw-medium mb-2">Booked Clients</p>
+                                    <p class="text-muted fw-medium mb-2"> Reserved</p>
                                     <h4 class="mb-0"></h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
                                     <div class="avatar-sm mini-stat-icon rounded-circle bg-primary">
                                     <span class="avatar-title">
-                                        <i class="bx bx-calendar font-size-24"></i>
+                                        <i class="bx bx-calendar font-size-20"></i>
                                     </span>
                                     </div>
                                 </div>
@@ -261,14 +214,14 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-muted fw-medium mb-2">Total Cost</p>
+                                    <p class="text-muted fw-medium mb-2"> Completed</p>
                                     <h4 class="mb-0"></h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
                                     <div class="avatar-sm mini-stat-icon rounded-circle bg-primary">
                                     <span class="avatar-title">
-                                        <i class="bx bx-dollar font-size-24"></i>
+                                        <i class="bx bx-calendar font-size-20"></i>
                                     </span>
                                     </div>
                                 </div>
@@ -280,7 +233,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4 ">Change Password</h4>
-                    <form action="<?php echo e(route('changePassword')); ?>" method="POST">
+                    <form action="" method="POST">
                         <?php echo csrf_field(); ?>
                         <div class="mb-3">
                             <label for="">Old Password</label>
@@ -316,8 +269,8 @@
             </div>
         </div>
     </div>
-        <div class="col-xl-12">
-            <div class="row">
+    <div class="col-xl-12">
+        <div class="row mx-4">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Upcoming Bookings</h4>
@@ -326,7 +279,7 @@
                             <thead>
                             <tr>
                                 <th class="align-middle">ID</th>
-                                <th class="align-middle">Client Name</th>
+                                <th class="align-middle">Employee Name</th>
                                 <th class="align-middle">Service Name</th>
                                 <th class="align-middle">Date</th>
                                 <th class="align-middle">Time</th>
@@ -338,7 +291,7 @@
                             <?php $__currentLoopData = $upcomingBookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $upcomingBooking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td class="text-body fw-bold"><?php echo e($upcomingBooking->bookingID); ?></a> </td>
-                                    <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($upcomingBooking->clientID)); ?></td>
+                                    <td><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($upcomingBooking->employeeID)); ?></td>
                                     <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($upcomingBooking->serviceID)); ?></td>
                                     <td><?php echo e($upcomingBooking->date); ?></td>
                                     <td><?php echo e($upcomingBooking->time); ?></td>
@@ -352,7 +305,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
     <!-- end row -->
 
@@ -482,22 +435,22 @@ unset($__errorArgs, $__bag); ?>" id="avatar" name="avatar" autofocus>
                 }
             });
         });
-            function myFunction() {
+        function myFunction() {
             var x = document.getElementById("oldInput");
             var y = document.getElementById("newInput");
             var z = document.getElementById("confirmInput");
             if (x.type === "password" && y.type === "password" && z.type === "password") {
-            x.type = "text";
-            y.type = "text";
-            z.type = "text";
-        } else {
-            x.type = "password";
-            y.type = "password";
-            z.type = "password";
-        }
+                x.type = "text";
+                y.type = "text";
+                z.type = "text";
+            } else {
+                x.type = "password";
+                y.type = "password";
+                z.type = "password";
+            }
         }
     </script>
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/home/userProfile.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master-client', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/home/clientProfile.blade.php ENDPATH**/ ?>

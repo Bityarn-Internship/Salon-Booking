@@ -21,13 +21,13 @@
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
 
-                                <div class="my-auto">
+                                <div>
                                     <div>
-                                        <h5 class = "text-primary text-center">Edit Booked Service</h5>
+                                        <h5 class = "text-primary text-center">Book another service</h5>
                                     </div>
 
                                     <div class="mt-4">
-                                        <form action = "<?php echo e(url('/updateBookedService/'.$bookedService->id)); ?>" method = "post" enctype="multipart/form-data">
+                                        <form action = "<?php echo e(url('/bookService')); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class = "row">
                                                 <div class="valid-feedback">
@@ -39,8 +39,14 @@
                                             </div>
                                             <div class = "row">
                                                 <div class="col-md-12">
+                                                    <?php if($errors->has('bookingID')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('bookingID')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value="<?php echo e($bookedService->bookingID); ?>"  name="bookingID" readonly>
+                                                        <input type="text" class="form-control" id="floatingnameInput" value="<?php echo e($bookingID); ?>"  name="bookingID" readonly>
                                                         <label for="floatingnameInput">Booking ID</label>
                                                     </div>
                                                 </div>
@@ -48,44 +54,26 @@
 
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
+                                                    <?php if($errors->has('employeeServiceID')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('employeeServiceID')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
-                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "serviceID">
-                                                            <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value="<?php echo e($service->id); ?>"><?php echo e($service->name); ?></option>
+                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeServiceID">
+                                                            <option selected disabled>Select the employee and service</option>
+                                                            <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($employeeService->id); ?>"><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)); ?></option>
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
-                                                        <label for="floatingSelectGrid">Select service</label>
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('serviceID')): ?>
-                                                                <?php echo e($errors->first('serviceID')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
+                                                        <label for="floatingSelectGrid">Select Employee and Service</label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class = "row">
-                                                <div class="col-md-12">
-                                                    <div class="form-floating mb-3">
-                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeID">
-                                                            <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value="<?php echo e($employee->id); ?>"><?php echo e($employee->firstName.' '.$employee->lastName); ?></option>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        </select>
-                                                        <label for="floatingSelectGrid">Select employee</label>
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('employeeID')): ?>
-                                                                <?php echo e($errors->first('employeeID')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                             <div class="mt-4 d-grid">
                                                 <button class="btn btn-primary waves-effect waves-light"
-                                                        type="submit">Save</button>
+                                                        type="submit">Submit</button>
                                             </div>
                                         </form>
                                     </div>
@@ -111,5 +99,4 @@
     <!-- auth-2-carousel init -->
     <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookedServices/editBookedService.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookedServices/bookService.blade.php ENDPATH**/ ?>

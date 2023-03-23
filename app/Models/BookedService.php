@@ -16,6 +16,7 @@ class BookedService extends Model implements Auditable
         'bookingID',
         'serviceID',
         'employeeID',
+        'serviceCost'
     ];
 
     protected $dates = ['deleted_at'];

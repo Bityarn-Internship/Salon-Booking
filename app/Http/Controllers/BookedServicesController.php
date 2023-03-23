@@ -11,12 +11,45 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
-// use Illuminate\Support\Facades\File;
+use App\Models\EmployeeService;
 
 class BookedServicesController extends Controller
 {
-    public function index(){
-        return view('custom/employeeServices/employeeService');
+    public function index($id){
+        $employeeServices = EmployeeService::all();
+
+        return view('custom/bookedServices/bookService', ['bookingID' => $id, 'employeeServices' => $employeeServices]);
+    }
+
+    public function store(Request $request){
+        $input = $request->all();
+
+        $rules = [
+            'bookingID'=>'required',
+            'employeeServiceID'=>'required'
+        ];
+
+        $messages = [
+            'bookingID.required' => 'Booking ID is required',
+            'employeeServiceID.required'=>'Employee and Service Names are required'
+        ];
+
+        $validator = Validator::make($input, $rules, $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->messages());
+        }
+
+        $employeeService = EmployeeService::find($input['employeeServiceID']);
+
+        BookedService::create([
+            'bookingID' => $input['bookingID'],
+            'serviceID' => $employeeService->serviceID,
+            'employeeID' => $employeeService->employeeID,
+            'serviceCost' => Service::find($employeeService->serviceID)->cost
+        ]);
+
+        return redirect('/viewBookings')->with('message', 'Service booked successfully!');
     }
     public function viewBookedServices(){
         $bookedServices = BookedService::all();
@@ -42,7 +75,7 @@ class BookedServicesController extends Controller
         ];
 
         $messages = [
-            'bookingID.required' => 'Booking Status is required',
+            'bookingID.required' => 'Booking ID is required',
             'serviceID.required'=>'Service Name  is required',
             'employeeID.required' => 'Employee Name is required'
         ];

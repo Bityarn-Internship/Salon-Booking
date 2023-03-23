@@ -35,17 +35,7 @@
                         <span key="t-chat">@lang('Bookings')</span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-file"></i>
-                        <span key="t-file-manager">@lang('Booked Services')</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/viewBookedServices" key="t-tui-calendar">@lang('View Booked Services')</a></li>
-                        <li><a href="/viewTrashedBookedServices" key="t-full-calendar">@lang('Inactive Booked Services')</a></li>
-                    </ul>
-                </li>
+                
                 <li>
                     <a href="/viewEmployeeServices">
                         <i class="bx bx-file"></i>

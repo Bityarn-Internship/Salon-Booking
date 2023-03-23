@@ -97,6 +97,8 @@ Route::controller(EmployeeServicesController::class)->group(function(){
 });
 
 Route::controller(BookedServicesController::class)->group(function(){
+    Route::get('/bookService/{id}', 'index');
+    Route::post('/bookService', 'store');
     Route::get('/viewBookedServices', 'viewBookedServices');
     Route::get('/viewTrashedBookedServices', 'viewTrashedBookedServices');
     Route::get('/editBookedService/{id}', 'edit');

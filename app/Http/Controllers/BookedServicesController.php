@@ -7,6 +7,7 @@ use App\Models\Position;
 use App\Models\Employee;
 use App\Models\BookedService;
 use App\Models\Service;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -41,6 +42,9 @@ class BookedServicesController extends Controller
         }
 
         $employeeService = EmployeeService::find($input['employeeServiceID']);
+        $booking = Booking::find($input['bookingID']);
+        $booking->cost += Service::find($employeeService->serviceID)->cost;
+        $booking->save();
 
         BookedService::create([
             'bookingID' => $input['bookingID'],

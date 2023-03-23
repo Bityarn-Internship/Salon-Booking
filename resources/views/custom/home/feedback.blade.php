@@ -82,8 +82,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <textarea type="text" class="form-control" id="floatingnameInput" value = "" name = "message">
-                                                        </textarea>
+                                                        <textarea type="text" class="form-control" id="floatingnameInput" name = "message"></textarea>
                                                         <label for="floatingnameInput">Feedback</label>
                                                     </div>
 

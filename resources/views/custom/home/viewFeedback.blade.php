@@ -27,7 +27,7 @@
                     <h4 class="card-title text-primary text-center">View Feedback</h4>
 
                     <div class="table-responsive">
-                        <div class="row d-flex gx-10">
+                        <div class="d-flex gx-10">
                             <div class="col"></div>
                             <div class="col-md-4">
                                 <form action = "{{url('/viewFeedback')}}" method = "GET">

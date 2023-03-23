@@ -10,11 +10,6 @@
     <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css')); ?>">
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('body'); ?>
-
-    <body class="auth-body-bg">
-    <?php $__env->stopSection(); ?>
-
     <?php $__env->startSection('content'); ?>
 
         <div>
@@ -134,4 +129,4 @@
 <?php $__env->stopSection(); ?>
 
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/auth/editClient.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/auth/editClient.blade.php ENDPATH**/ ?>

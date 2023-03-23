@@ -26,7 +26,7 @@
                     <h4 class="card-title text-primary text-center">View Services</h4>
 
                     <div class="table-responsive">
-                        <div class="row d-flex gx-10">
+                        <div class="d-flex gx-10">
                             <div class = "col">
                                 <span style="display: inline-block">
                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

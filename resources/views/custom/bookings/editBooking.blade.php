@@ -23,13 +23,13 @@
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
 
-                                <div class="my-auto">
+                                <div>
                                     <div>
                                         <h5 class = "text-primary text-center">Edit Booking</h5>
                                     </div>
 
                                     <div class="mt-4">
-                                        <form action = "{{ url('/updateBooking/'.$booking->id) }}" method = "post" enctype="multipart/form-data">
+                                        <form action = "{{ url('/updateBooking/'.$booking->bookedServiceID) }}" method = "post" enctype="multipart/form-data">
                                             @csrf
                                             <div class = "row">
                                                 <div class="valid-feedback">
@@ -41,7 +41,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingemailInput" value = "{{$booking->id}}"name = "bookingID" readonly>
+                                                        <input type="text" class="form-control" id="floatingemailInput" value = "{{$booking->bookingID}}"name = "bookingID" readonly>
                                                         <label for="floatingemailInput">Booking ID</label>
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -55,7 +55,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="date" class="form-control" id="floatingemailInput" placeholder="Select a date..." name = "date">
+                                                        <input type="date" class="form-control" id="floatingemailInput" value = "{{$booking->date}}" name = "date">
                                                         <label for="floatingemailInput">Date</label>
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -66,13 +66,32 @@
                                                 </div>
                                                 <div class="col-md-6 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="time" class="form-control" id="floatingemailInput" placeholder="Select a time..." name = "time">
+                                                        <input type="time" class="form-control" id="floatingemailInput" value = "{{$booking->time}}" name = "time">
                                                         <label for="floatingemailInput">Time</label>
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         @if($errors->has('time'))
                                                             {{ $errors->first('time') }}
                                                         @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class = "row">
+                                                <div class="col-md-12 pt-2">
+                                                    @if($errors->has('employeeServiceID'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('employeeServiceID') }}
+                                                        </div>
+                                                    @endif
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeServiceID">
+                                                            <option>{{\App\Http\Controllers\EmployeesController::getEmployeeName($booking->employeeID) .' -> '.\App\Http\Controllers\ServicesController::getServiceName($booking->serviceID) }}</option>
+                                                            @foreach($employeeServices as $employeeService)
+                                                                <option value="{{$employeeService->id}}">{{ \App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID) }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <label for="floatingSelectGrid">Select Employee and Service</label>
                                                     </div>
                                                 </div>
                                             </div>

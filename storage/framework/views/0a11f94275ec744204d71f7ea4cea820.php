@@ -23,13 +23,13 @@
                         <div class="w-100">
                             <div class="d-flex flex-column h-100">
 
-                                <div class="my-auto">
+                                <div>
                                     <div>
                                         <h5 class = "text-primary text-center">Edit Booking</h5>
                                     </div>
 
                                     <div class="mt-4">
-                                        <form action = "<?php echo e(url('/updateBooking/'.$booking->id)); ?>" method = "post" enctype="multipart/form-data">
+                                        <form action = "<?php echo e(url('/updateBooking/'.$booking->bookedServiceID)); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class = "row">
                                                 <div class="valid-feedback">
@@ -42,7 +42,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingemailInput" value = "<?php echo e($booking->id); ?>"name = "bookingID" readonly>
+                                                        <input type="text" class="form-control" id="floatingemailInput" value = "<?php echo e($booking->bookingID); ?>"name = "bookingID" readonly>
                                                         <label for="floatingemailInput">Booking ID</label>
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -57,7 +57,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="date" class="form-control" id="floatingemailInput" placeholder="Select a date..." name = "date">
+                                                        <input type="date" class="form-control" id="floatingemailInput" value = "<?php echo e($booking->date); ?>" name = "date">
                                                         <label for="floatingemailInput">Date</label>
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -69,7 +69,7 @@
                                                 </div>
                                                 <div class="col-md-6 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="time" class="form-control" id="floatingemailInput" placeholder="Select a time..." name = "time">
+                                                        <input type="time" class="form-control" id="floatingemailInput" value = "<?php echo e($booking->time); ?>" name = "time">
                                                         <label for="floatingemailInput">Time</label>
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -77,6 +77,26 @@
                                                             <?php echo e($errors->first('time')); ?>
 
                                                         <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class = "row">
+                                                <div class="col-md-12 pt-2">
+                                                    <?php if($errors->has('employeeServiceID')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('employeeServiceID')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeServiceID">
+                                                            <option><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($booking->employeeID) .' -> '.\App\Http\Controllers\ServicesController::getServiceName($booking->serviceID)); ?></option>
+                                                            <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($employeeService->id); ?>"><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)); ?></option>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </select>
+                                                        <label for="floatingSelectGrid">Select Employee and Service</label>
                                                     </div>
                                                 </div>
                                             </div>

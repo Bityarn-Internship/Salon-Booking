@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('serviceID')->references('id')->on('services');
             $table->integer('employeeID')->unsigned();
             $table->foreign('employeeID')->references('id')->on('employees');
+            $table->double('serviceCost');
             $table->softDeletes();
             $table->timestamps();
         });

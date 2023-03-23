@@ -51,7 +51,7 @@
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                             <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Booking ID</th>
                                 <th>Client Name</th>
                                 <th>Employee Name</th>
                                 <th>Service Name</th>
@@ -65,29 +65,32 @@
                             <tbody>
                             <?php $__currentLoopData = $bookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $booking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><?php echo e($booking->bookingID); ?></td>
+                                    <td><?php echo e($booking->bookings_id); ?></td>
                                     <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($booking->clientID)); ?></td>
                                     <td><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($booking->employeeID)); ?></td>
                                     <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($booking->serviceID)); ?></td>
                                     <td><?php echo e($booking->date); ?></td>
                                     <td><?php echo e($booking->time); ?></td>
-                                    <td><?php echo e($booking->cost); ?></td>
+                                    <td><?php echo e($booking->serviceCost); ?></td>
                                     <td><?php echo e($booking->status); ?></td>
 
                                     <td>
+                                        <a class="btn btn-outline-primary btn-sm edit" href="<?php echo e(url ('bookService/'.$booking->bookingID)); ?>" title="Book another service">
+                                            <i class="fa fa-plus-circle"></i>
+                                        </a>
                                         <?php if($booking->status != 'Complete'): ?>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('completePayment/'.$booking->id)); ?>" title="Complete Payment">
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('completePayment/'.$booking->bookingID)); ?>" title="Complete Payment">
                                             <i class="fas fa-dollar-sign"></i>
                                         </a>
                                         <?php endif; ?>
 
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('viewInvoice/'.$booking->id)); ?>" title="View Invoice">
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('viewInvoice/'.$booking->bookingID)); ?>" title="View Invoice">
                                         <i class="fas fa-file-invoice"></i>
                                         </a>
-                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editBooking/'.$booking->id)); ?>" title="Edit">
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editBooking/'.$booking->bookedServiceID)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteBooking/'.$booking->id)); ?>" title="Delete">
+                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteBooking/'.$booking->bookingID)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

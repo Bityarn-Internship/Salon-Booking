@@ -29,7 +29,7 @@
                                                 <?php echo csrf_field(); ?>
                                                 <div class="row">
                                                     <?php if(session()->has('message')): ?>
-                                                        <div class="valid-feedback">
+                                                        <div class="alert alert-info" role="alert">
                                                             <?php echo e(session()->get('message')); ?>
 
                                                         </div>
@@ -37,64 +37,84 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('firstName')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                            <?php echo e($errors->first('firstName')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($client->firstName); ?>" name = "firstName">
                                                             <label for="floatingnameInput">First Name</label>
                                                         </div>
 
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('firstName')): ?>
-                                                                <?php echo e($errors->first('firstName')); ?>
 
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <?php if(session()->has('message')): ?>
+                                                        <div class="alert alert-info" role="alert">
+                                                            <?php echo e(session()->get('message')); ?>
 
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('lastName')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo e($errors->first('lastName')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($client->lastName); ?>" name = "lastName">
                                                             <label for="floatingnameInput">Last Name</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('lastName')): ?>
-                                                                <?php echo e($errors->first('lastName')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <?php if(session()->has('message')): ?>
+                                                        <div class="alert alert-info" role="alert">
+                                                            <?php echo e(session()->get('message')); ?>
 
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('email')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo e($errors->first('email')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="email" class="form-control" id="floatingnameInput" value = "<?php echo e($client->email); ?>" name = "email">
                                                             <label for="floatingnameInput">Email Address</label>
                                                         </div>
 
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('email')): ?>
-                                                                <?php echo e($errors->first('email')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <?php if(session()->has('message')): ?>
+                                                        <div class="alert alert-info" role="alert">
+                                                            <?php echo e(session()->get('message')); ?>
 
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('telephoneNumber')): ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo e($errors->first('telephoneNumber')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="tel" class="form-control" id="floatingnameInput" value = "<?php echo e($client->telephoneNumber); ?>" name = "telephoneNumber">
                                                             <label for="floatingnameInput">Telephone Number</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('telephoneNumber')): ?>
-                                                                <?php echo e($errors->first('telephoneNumber')); ?>
-
-                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </div>

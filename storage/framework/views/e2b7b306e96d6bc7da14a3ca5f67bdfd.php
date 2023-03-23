@@ -24,13 +24,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="profile-img">
-                                <form action="" method="POST" enctype="multipart/form-data">
-                                    <?php echo csrf_field(); ?>
-
                                     <div class="mt-4">
-                                        <a href="" class="btn btn-primary waves-effect waves-light btn-sm" data-bs-toggle="modal" data-bs-target=".update-profile">Edit Profile</a>
+                                        <a href="" class="btn btn-primary waves-effect waves-light btn-sm"  data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</a>
                                     </div>
-                                </form>
                             </div>
                         </div>
 
@@ -320,7 +316,10 @@
                     </form>
                 </div>
             </div>
-
+        </div>
+    </div>
+        <div class="col-xl-12">
+            <div class="row">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Upcoming Bookings</h4>
@@ -330,6 +329,7 @@
                             <tr>
                                 <th class="align-middle">ID</th>
                                 <th class="align-middle">Client Name</th>
+                                <th class="align-middle">Service Name</th>
                                 <th class="align-middle">Date</th>
                                 <th class="align-middle">Time</th>
                                 <th class="align-middle">Cost</th>
@@ -339,11 +339,12 @@
                             <tbody>
                             <?php $__currentLoopData = $upcomingBookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $upcomingBooking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td class="text-body fw-bold"><?php echo e($upcomingBooking->id); ?></a> </td>
+                                    <td class="text-body fw-bold"><?php echo e($upcomingBooking->bookingID); ?></a> </td>
                                     <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($upcomingBooking->clientID)); ?></td>
+                                    <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($upcomingBooking->serviceID)); ?></td>
                                     <td><?php echo e($upcomingBooking->date); ?></td>
                                     <td><?php echo e($upcomingBooking->time); ?></td>
-                                    <td><?php echo e($upcomingBooking->cost); ?></td>
+                                    <td><?php echo e($upcomingBooking->serviceCost); ?></td>
                                     <td><?php echo e($upcomingBooking->status); ?></td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -352,6 +353,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     <!-- end row -->

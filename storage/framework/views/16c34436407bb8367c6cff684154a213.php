@@ -132,71 +132,9 @@
                                     <td><?php echo e($position->name); ?></td>
                                     <td><?php echo e($position->description); ?></td>
                                     <td>
-                                        <i class="fas fa-pencil-alt btn btn-outline-success btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
-                                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-center w-100" id="editModalLabel">Edit Position</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action = "<?php echo e(url('/updatePosition/'.$position->id)); ?>" method = "post" enctype="multipart/form-data">
-                                                            <?php echo csrf_field(); ?>
-                                                            <div class="row">
-                                                                <?php if(session()->has('message')): ?>
-                                                                    <div class="valid-feedback">
-                                                                        <?php echo e(session()->get('message')); ?>
-
-                                                                    </div>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($position->name); ?>" name = "positionName">
-                                                                        <label for="floatingnameInput">Position Name</label>
-                                                                    </div>
-
-                                                                    <div class="invalid-feedback">
-                                                                        <?php if($errors->has('positionName')): ?>
-                                                                            <?php echo e($errors->first('positionName')); ?>
-
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <input type="text" class="form-control" id="floatingemailInput" value = "<?php echo e($position->description); ?>" name = "positionDescription">
-                                                                        <label for="floatingemailInput">Position Description</label>
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        <?php if($errors->has('positionDescription')): ?>
-                                                                            <?php echo e($errors->first('positionDescription')); ?>
-
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="mt-4 d-grid">
-                                                                <button class="btn btn-primary waves-effect waves-light"
-                                                                        type="submit">Save Changes</button>
-                                                            </div>
-
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editPosition/'.$position->id)); ?>" title="Edit">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
                                         <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deletePosition/'.$position->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>

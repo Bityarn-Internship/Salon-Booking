@@ -179,7 +179,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                             </div>
                             <div class="col-md-4">
                                 <form action = "<?php echo e(url('/viewEmployees')); ?>" method = "GET">
@@ -190,12 +190,12 @@
                                             <option value = "Active">Active</option>
                                             <option value = "Inactive">Inactive</option>
                                         </select>
-                                        
+
                                     </span>
-                                
+
                                     <span style="display: inline-block"><h3><button class="btn btn-primary"><b>Filter</b></button></h3></span>
                                 </form>
-                                
+
                             </div>
                         </div>
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
@@ -222,138 +222,9 @@
                                     <td><?php echo e($employee->IDNumber); ?></td>
                                     <td><?php echo e(\App\Http\Controllers\PositionsController::getPositionName($employee->positionID)); ?></td>
                                     <td>
-                                        <i class="fas fa-pencil-alt btn btn-outline-success btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
-                                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-center w-100" id="editModalLabel">Edit Employee Details</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action = "<?php echo e(url('/updateEmployee/'.$employee->id)); ?>" method = "post" enctype="multipart/form-data">
-                                                            <?php echo csrf_field(); ?>
-                                                            <div class="row">
-                                                                <?php if(session()->has('message')): ?>
-                                                                    <div class="valid-feedback">
-                                                                        <?php echo e(session()->get('message')); ?>
-
-                                                                    </div>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->firstName); ?>" name = "firstName">
-                                                                        <label for="floatingnameInput">First Name</label>
-                                                                    </div>
-
-                                                                    <div class="invalid-feedback">
-                                                                        <?php if($errors->has('firstName')): ?>
-                                                                            <?php echo e($errors->first('firstName')); ?>
-
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->lastName); ?>" name = "lastName">
-                                                                        <label for="floatingnameInput">Last Name</label>
-                                                                    </div>
-
-                                                                    <div class="invalid-feedback">
-                                                                        <?php if($errors->has('lastName')): ?>
-                                                                            <?php echo e($errors->first('lastName')); ?>
-
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <input type="email" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->email); ?>" name = "email">
-                                                                        <label for="floatingnameInput">Email Address</label>
-                                                                    </div>
-
-                                                                    <div class="invalid-feedback">
-                                                                        <?php if($errors->has('email')): ?>
-                                                                            <?php echo e($errors->first('email')); ?>
-
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <input type="tel" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->telephoneNumber); ?>" name = "telephoneNumber">
-                                                                        <label for="floatingnameInput">Telephone Number</label>
-                                                                    </div>
-
-                                                                    <div class="invalid-feedback">
-                                                                        <?php if($errors->has('telephoneNumber')): ?>
-                                                                            <?php echo e($errors->first('telephoneNumber')); ?>
-
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($employee->IDNumber); ?>" name = "IDNumber">
-                                                                        <label for="floatingnameInput">ID Number / Passport Number</label>
-                                                                    </div>
-
-                                                                    <div class="invalid-feedback">
-                                                                        <?php if($errors->has('IDNumber')): ?>
-                                                                            <?php echo e($errors->first('IDNumber')); ?>
-
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class = "row">
-                                                                <div class="col-md-12 pt-2">
-                                                                    <div class="form-floating mb-3">
-                                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "positionID">
-                                                                            <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                                <option value="<?php echo e($position->id); ?>"><?php echo e($position->name); ?></option>
-                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                        </select>
-                                                                        <label for="floatingSelectGrid">Select a position</label>
-                                                                        <div class="invalid-feedback">
-                                                                            <?php if($errors->has('positionID')): ?>
-                                                                                <?php echo e($errors->first('positionID')); ?>
-
-                                                                            <?php endif; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="mt-4 d-grid">
-                                                                <button class="btn btn-primary waves-effect waves-light"
-                                                                        type="submit">Save Changes</button>
-                                                            </div>
-
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editEmployee/'.$employee->id)); ?>" title="Edit">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
                                         <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteEmployee/'.$employee->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>

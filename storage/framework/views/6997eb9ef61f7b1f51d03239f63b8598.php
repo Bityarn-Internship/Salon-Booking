@@ -4,81 +4,36 @@
 
 <?php $__env->startSection('content'); ?>
 
-    <?php $__env->startComponent('components.breadcrumb'); ?>
-        <?php $__env->slot('li_1'); ?> Dashboards <?php $__env->endSlot(); ?>
-        <?php $__env->slot('title'); ?> Dashboard <?php $__env->endSlot(); ?>
-    <?php echo $__env->renderComponent(); ?>
 
     <div class="row">
         <div class="col-xl-4">
             <div class="card overflow-hidden">
-                <div class="bg-primary bg-soft">
-                    <div class="row">
-                        <div class="col-7">
-                            <div class="text-primary p-3">
-                                <h5 class="text-primary">Welcome Back !</h5>
-                                <p>Salon Dashboard</p>
-                            </div>
-                        </div>
-                        <div class="col-5 align-self-end">
-                            <img src="<?php echo e(URL::asset('/assets/images/profile-img.png')); ?>" alt="" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body pt-0">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="avatar-md profile-user-wid mb-4">
-                                <img src="<?php echo e(isset(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('/assets/images/users/avatar-1.jpg')); ?>" alt="" class="img-thumbnail rounded-circle">
-                            </div>
-                            <h5 class="font-size-15 text-truncate"><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName(Session::get('employeeID'))); ?></h5>
-                            <p class="text-muted mb-0 text-truncate">UI/UX Designer</p>
-                        </div>
-
-                        <div class="col-sm-8">
-                            <div class="pt-4">
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h5 class="font-size-15">125</h5>
-                                        <p class="text-muted mb-0">Projects</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <h5 class="font-size-15">$1245</h5>
-                                        <p class="text-muted mb-0">Revenue</p>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <a href="" class="btn btn-primary waves-effect waves-light btn-sm">View Profile <i class="mdi mdi-arrow-right ms-1"></i></a>
+                    <div class="bg-primary bg-soft">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="text-primary p-3">
+                                    <h5 class="text-primary">Welcome Back !</h5>
+                                    <p>Hi, <?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName(Session::get('employeeID'))); ?> </p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Monthly Earning</h4>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="text-muted">This month</p>
-                            <h3>$34,252</h3>
-                            <p class="text-muted"><span class="text-success me-2"> 12% <i class="mdi mdi-arrow-up"></i>
-                            </span> From previous period</p>
-
-                            <div class="mt-4">
-                                <a href="" class="btn btn-primary waves-effect waves-light btn-sm">View More <i class="mdi mdi-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="mt-4 mt-sm-0">
-                                <div id="radialBar-chart" data-colors='["--bs-primary"]' class="apex-charts"></div>
+                            <div class="col-5 align-self-end">
+                                <img src="" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div>
-                    <p class="text-muted mb-0">We craft digital, graphic and dimensional thinking.</p>
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col">
+                                <div class="profile-img">
+                                    <div class="mt-4">
+                                        <a href="<?php echo e(url('/userProfile')); ?>" class="btn btn-primary waves-effect waves-light btn-sm">View Profile <i class="mdi mdi-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            
         </div>
         <div class="col-xl-8">
             <div class="row">
@@ -143,30 +98,7 @@
                     </div>
                 </div>
             </div>
-            <!-- end row -->
 
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-sm-flex flex-wrap">
-                        <h4 class="card-title mb-4">Email Sent</h4>
-                        <div class="ms-auto">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Week</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Month</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#">Year</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div id="stacked-column-chart" data-colors='["--bs-primary", "--bs-warning", "--bs-success"]' class="apex-charts" dir="ltr"></div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- end row -->
@@ -186,6 +118,8 @@
                             <tr>
                                 <th class="align-middle">ID</th>
                                 <th class="align-middle">Client Name</th>
+                                <th class="align-middle">Employee Name</th>
+                                <th class="align-middle">Service Name</th>
                                 <th class="align-middle">Date</th>
                                 <th class="align-middle">Time</th>
                                 <th class="align-middle">Cost</th>
@@ -195,11 +129,13 @@
                             <tbody>
                             <?php $__currentLoopData = $upcomingBookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $upcomingBooking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td class="text-body fw-bold"><?php echo e($upcomingBooking->id); ?></a> </td>
+                                <td class="text-body fw-bold"><?php echo e($upcomingBooking->bookingID); ?></a> </td>
                                 <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($upcomingBooking->clientID)); ?></td>
+                                <td><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($upcomingBooking->employeeID)); ?></td>
+                                <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($upcomingBooking->serviceID)); ?></td>
                                 <td><?php echo e($upcomingBooking->date); ?></td>
                                 <td><?php echo e($upcomingBooking->time); ?></td>
-                                <td><?php echo e($upcomingBooking->cost); ?></td>
+                                <td><?php echo e($upcomingBooking->serviceCost); ?></td>
                                 <td><?php echo e($upcomingBooking->status); ?></td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -7,13 +7,13 @@
         @csrf
         <input hidden value = "{{$bookingID}}" name = "bookingID">
     <center>
-        <div class="row mx-5 mt-5 mb-1">
-        @foreach($employeeServices as $employeeService)
-        <div class="col-md-6 col-xl-4">
+        <div class="row mx-5 mt-5 mb-0">
+            @foreach($employeeServices as $employeeService)
+            <div class="col-md-6 col-xl-4">
 
             <!-- Simple card -->
-            <div class="card mt-5">
-                <img class="card-img-top img-fluid" src="{{ URL::asset('/assets/images/small/img-1.jpg') }}" alt="Card image cap">
+            <div class="card mt-5 ">
+                <img style="height: 300px;"  class="card-img-top img-fluid w-40 p-3 h-10" src="{{ URL::asset('/assets/images/employee.png') }}" alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title mt-0">Employee Name: <span>{{\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)}}</span></h4>
                     <h4 class="card-title mt-0">Service Offered: {{\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)}}</h4>
@@ -28,7 +28,7 @@
         </div>
     </center>
     <center>
-    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+    <button type="submit" class="btn btn-primary waves-effect waves-light mt-0 mb-2">Submit</button>
     </center>
     </form>
 @endsection

@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('View Services'); ?>
 <?php $__env->stopSection(); ?>
@@ -42,8 +43,8 @@
                                                  <form action = "<?php echo e(url('/services')); ?>" method = "post" enctype="multipart/form-data">
                                                 <?php echo csrf_field(); ?>
                                                 <div class="row">
-                                                    <?php if(session()->has('message')): ?>
-                                                        <div class="valid-feedback">
+                                                    <?php if($errors->has('message')): ?>
+                                                        <div class = "alert alert-info" role = "alert">
                                                             <?php echo e(session()->get('message')); ?>
 
                                                         </div>
@@ -51,31 +52,30 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('serviceName')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('serviceName')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "serviceName">
                                                             <label for="floatingnameInput">Service Name</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('serviceName')): ?>
-                                                                <?php echo e($errors->first('serviceName')); ?>
-
-                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
 
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        <?php if($errors->has('serviceCost')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('serviceCost')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <div class="form-floating mb-3">
                                                             <input type="number" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name = "serviceCost">
                                                             <label for="floatingemailInput">Service Cost</label>
-                                                        </div>
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('serviceCost')): ?>
-                                                                <?php echo e($errors->first('serviceCost')); ?>
-
-                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </div>

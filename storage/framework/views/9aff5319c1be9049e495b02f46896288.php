@@ -32,7 +32,7 @@
                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <b>Add Employee Service</b>
                                     </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -43,15 +43,21 @@
                                                 <form action = "<?php echo e(url('/employeeServices')); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class = "row">
-                                                <div class="valid-feedback">
-                                                    <?php if(session()->has('message')): ?>
+                                                <?php if(session()->has('message')): ?>
+                                                    <div class = "alert alert-info" role = "alert">
                                                         <?php echo e(session()->get('message')); ?>
 
-                                                    <?php endif; ?>
-                                                </div>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
+                                                    <?php if($errors->has('employeeID')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('employeeID')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
                                                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeID">
                                                             <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -59,18 +65,18 @@
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                         <label for="floatingSelectGrid">Select an employee</label>
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('employeeID')): ?>
-                                                                <?php echo e($errors->first('employeeID')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
+                                                    <?php if($errors->has('serviceID')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('serviceID')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
                                                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "serviceID">
                                                             <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -78,12 +84,6 @@
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                         <label for="floatingSelectGrid">Select a service</label>
-                                                        <div class="invalid-feedback">
-                                                            <?php if($errors->has('serviceID')): ?>
-                                                                <?php echo e($errors->first('serviceID')); ?>
-
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,7 +93,7 @@
                                                         type="submit">Submit</button>
                                             </div>
                                         </form>
-                                     </div>
+                                    </div>
                                     <div class="modal-footer">
                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->

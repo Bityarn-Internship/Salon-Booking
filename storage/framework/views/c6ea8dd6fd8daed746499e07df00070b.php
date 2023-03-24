@@ -24,7 +24,11 @@
         <h2>Payment Successful!</h2>
         <h6>Hurray! Your payment has been made <span style ="color: #198754;" >successfully</span>.</h6>
         <div class = "btns text-center">
-            <a href = "<?php echo e(URL::to('/viewBookings')); ?>"><button>Done</button></a>
+            <?php if(Session::get('user') == 'employee'): ?>
+                <a href = "<?php echo e(URL::to('/viewBookings')); ?>"><button>Done</button></a>
+            <?php else: ?>
+                <a href = "<?php echo e(URL::to('/viewClientBookings/'.Auth::user()->id)); ?>"><button>View My Bookings</button></a>
+            <?php endif; ?>
         </div>
     </div>
 </main><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/paymentSuccess.blade.php ENDPATH**/ ?>

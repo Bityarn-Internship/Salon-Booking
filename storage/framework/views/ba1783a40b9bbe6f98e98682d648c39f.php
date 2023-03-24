@@ -9,7 +9,7 @@
                     <h4 class="card-title mb-4">Booking Details
                         <span class="px-auto">
                             <i class="fas fa-pencil-alt btn btn-outline-primary btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
-                            <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url('deleteBooking/'.$booking->id)); ?>" title="Delete">
+                            <a class="btn btn-outline-danger btn edit" href="<?php echo e(url('deleteBooking/'.$booking->id)); ?>" title="Delete">
                             <i class="fa fa-trash"></i>
                             </a>
                         </span>

@@ -30,12 +30,14 @@
                                         <form action = "<?php echo e(url('/bookService')); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class = "row">
-                                                <div class="valid-feedback">
-                                                    <?php if(session()->has('message')): ?>
+                                                
+                                                <?php if(session()->has('message')): ?>
+                                                    <div class = "alert alert-info" role = "alert">
                                                         <?php echo e(session()->get('message')); ?>
 
-                                                    <?php endif; ?>
-                                                </div>
+                                                    </div>
+                                                <?php endif; ?>
+                    
                                             </div>
                                             <div class = "row">
                                                 <div class="col-md-12">

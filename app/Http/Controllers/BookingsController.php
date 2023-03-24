@@ -196,4 +196,8 @@ class BookingsController extends Controller
         $services = Service::all();
         return view('custom/bookings/bookings', ['clientID' => $id, 'services'=>$services]);
     }
+
+    public function viewBooking($id){
+        return view('custom/bookings/viewBooking');
+    }
 }

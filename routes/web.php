@@ -192,6 +192,7 @@ Route::group([
     });
 
     Route::controller(BookingsController::class)->group(function(){
+        Route::get('/viewBooking/{id}', 'viewBooking');
         Route::get('/viewBookings', 'viewBookings');
         Route::get('/editBooking/{id}', 'edit');
         Route::post('/updateBooking/{id}', 'update');

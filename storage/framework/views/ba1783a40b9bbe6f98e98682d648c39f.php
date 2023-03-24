@@ -1,7 +1,5 @@
-@extends('custom.common.master')
-
-@section('title') @lang('translation.Profile') @endsection
-@section('content')
+<?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.Profile'); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 
 
     <div class="row">
@@ -19,40 +17,43 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action = "{{ url('/updateBooking/'.$booking->bookedServiceID) }}" method = "post" enctype="multipart/form-data">
-                                            @csrf
+                                        <form action = "<?php echo e(url('/updateBooking/'.$booking->bookedServiceID)); ?>" method = "post" enctype="multipart/form-data">
+                                            <?php echo csrf_field(); ?>
                                             <div class="row">
-                                                @if(session()->has('message'))
+                                                <?php if(session()->has('message')): ?>
                                                     <div class="valid-feedback">
-                                                        {{ session()->get('message') }}
+                                                        <?php echo e(session()->get('message')); ?>
+
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{$booking->bookingID}}" name = "bookingID">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->bookingID); ?>" name = "bookingID">
                                                         <label for="floatingnameInput">Booking ID</label>
                                                     </div>
 
                                                     <div class="invalid-feedback">
-                                                        @if($errors->has('clientID'))
-                                                            {{ $errors->first('clientID') }}
-                                                        @endif
+                                                        <?php if($errors->has('clientID')): ?>
+                                                            <?php echo e($errors->first('clientID')); ?>
+
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{\App\Http\Controllers\UsersController::getClientName($booking->clientID)}}" name = "clientID">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e(\App\Http\Controllers\UsersController::getClientName($booking->clientID)); ?>" name = "clientID">
                                                         <label for="floatingnameInput">Client Name</label>
                                                     </div>
 
                                                     <div class="invalid-feedback">
-                                                        @if($errors->has('clientID'))
-                                                            {{ $errors->first('clientID') }}
-                                                        @endif
+                                                        <?php if($errors->has('clientID')): ?>
+                                                            <?php echo e($errors->first('clientID')); ?>
+
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -60,14 +61,15 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{$booking->date}}" name = "date">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->date); ?>" name = "date">
                                                         <label for="floatingnameInput">Date</label>
                                                     </div>
 
                                                     <div class="invalid-feedback">
-                                                        @if($errors->has('date'))
-                                                            {{ $errors->first('date') }}
-                                                        @endif
+                                                        <?php if($errors->has('date')): ?>
+                                                            <?php echo e($errors->first('date')); ?>
+
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,14 +77,15 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="time" class="form-control" id="floatingnameInput" value = "{{$booking->time}}" name = "time">
+                                                        <input type="time" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->time); ?>" name = "time">
                                                         <label for="floatingnameInput">Time</label>
                                                     </div>
 
                                                     <div class="invalid-feedback">
-                                                        @if($errors->has('time'))
-                                                            {{ $errors->first('time') }}
-                                                        @endif
+                                                        <?php if($errors->has('time')): ?>
+                                                            <?php echo e($errors->first('time')); ?>
+
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,14 +93,15 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{$booking->cost}}" name = "cost">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->cost); ?>" name = "cost">
                                                         <label for="floatingnameInput">Total Cost</label>
                                                     </div>
 
                                                     <div class="invalid-feedback">
-                                                        @if($errors->has('cost'))
-                                                            {{ $errors->first('cost') }}
-                                                        @endif
+                                                        <?php if($errors->has('cost')): ?>
+                                                            <?php echo e($errors->first('cost')); ?>
+
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,23 +126,23 @@
                             <tbody>
                             <tr>
                                 <th scope="row">Booking ID: </th>
-                                <td>{{$booking->id}}</td>
+                                <td><?php echo e($booking->id); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Client Name :</th>
-                                <td>{{\App\Http\Controllers\UsersController::getClientName($booking->clientID)}}</td>
+                                <td><?php echo e(\App\Http\Controllers\UsersController::getClientName($booking->clientID)); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Date :</th>
-                                <td>{{$booking->date}}</td>
+                                <td><?php echo e($booking->date); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Time :</th>
-                                <td>{{$booking->time}}</td>
+                                <td><?php echo e($booking->time); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row"> Total Cost:</th>
-                                <td>{{$booking->cost}}</td>
+                                <td><?php echo e($booking->cost); ?></td>
                             </tr>
                             </tbody>
                         </table>
@@ -154,30 +158,30 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4 ">Change Password</h4>
-                    <form action="{{route('changePassword')}}" method="POST">
-                        @csrf
+                    <form action="<?php echo e(route('changePassword')); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
                         <div class="mb-3">
                             <label for="">Old Password</label>
                             <input id="oldInput" type="password" name="oldPassword" class="form-control">
-                            @if($errors->has('oldPassword'))
-                                <span style="color: red;" class="text-danger">{{ $errors->first('oldPassword') }}</span>
-                            @endif
+                            <?php if($errors->has('oldPassword')): ?>
+                                <span style="color: red;" class="text-danger"><?php echo e($errors->first('oldPassword')); ?></span>
+                            <?php endif; ?>
                         </div>
                         <hr>
                         <div class="mb-3">
                             <label>New Password</label>
                             <input id="newInput" type="password" name="password" class="form-control" />
-                            @if($errors->has('password'))
-                                <span style="color: red;" class="text-danger">{{ $errors->first('password') }}</span>
-                            @endif
+                            <?php if($errors->has('password')): ?>
+                                <span style="color: red;" class="text-danger"><?php echo e($errors->first('password')); ?></span>
+                            <?php endif; ?>
                         </div>
                         <hr>
                         <div class="mb-3">
                             <label>Confirm Password</label>
                             <input id="confirmInput" type="password" name="confirmPassword" class="form-control">
-                            @if($errors->has('confirmPassword'))
-                                <span style="color: red;" class="text-danger">{{ $errors->first('confirmPassword') }}</span>
-                            @endif
+                            <?php if($errors->has('confirmPassword')): ?>
+                                <span style="color: red;" class="text-danger"><?php echo e($errors->first('confirmPassword')); ?></span>
+                            <?php endif; ?>
                         </div>
                         <input type="checkbox" onclick="myFunction()">Show Password
                         <div class="mb-3 text-end">
@@ -192,12 +196,14 @@
     </div>
     </div>
 
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
     <!-- apexcharts -->
-    <script src="{{ URL::asset('/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('/assets/libs/apexcharts/apexcharts.min.js')); ?>"></script>
 
     <!-- profile init -->
-    <script src="{{ URL::asset('/assets/js/pages/profile.init.js') }}"></script>
+    <script src="<?php echo e(URL::asset('/assets/js/pages/profile.init.js')); ?>"></script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/bookings/viewBooking.blade.php ENDPATH**/ ?>

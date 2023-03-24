@@ -1,17 +1,17 @@
+@extends('custom.common.master')
 
+@section('title')
+    @lang('Edit Booked Service')
+@endsection
 
-<?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('Edit Booked Service'); ?>
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('css'); ?>
+@section('css')
     <!-- owl.carousel css -->
-    <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css')); ?>">
-<?php $__env->stopSection(); ?>
+    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css') }}">
+@endsection
 
 
-    <?php $__env->startSection('content'); ?>
+    @section('content')
 
         <div>
             <div class="container-fluid p-0">
@@ -27,28 +27,26 @@
                                         </div>
 
                                         <div class="mt-4">
-                                        <form action = "<?php echo e(url('/updateBookedService/'.$bookedService->id)); ?>" method = "post" enctype="multipart/form-data">
-                                            <?php echo csrf_field(); ?>
+                                        <form action = "{{ url('/updateBookedService/'.$bookedService->id) }}" method = "post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class = "row">
                                                 
-                                                <?php if(session()->has('message')): ?>
+                                                @if(session()->has('message'))
                                                     <div class = "alert alert-info" role = "alert">
-                                                        <?php echo e(session()->get('message')); ?>
-
+                                                        {{ session()->get('message') }}
                                                     </div>
-                                                <?php endif; ?>
+                                                @endif
                     
                                             </div>
                                             <div class = "row">
                                                 <div class="col-md-12">
-                                                    <?php if($errors->has('bookingID')): ?>
+                                                    @if($errors->has('bookingID'))
                                                         <div class = "alert alert-danger" role = "alert">
-                                                            <?php echo e($errors->first('bookingID')); ?>
-
+                                                            {{ $errors->first('bookingID') }}
                                                         </div>
-                                                    <?php endif; ?>
+                                                    @endif
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value="<?php echo e($bookedService->bookingID); ?>"  name="bookingID" readonly>
+                                                        <input type="text" class="form-control" id="floatingnameInput" value="{{$bookedService->bookingID}}"  name="bookingID" readonly>
                                                         <label for="floatingnameInput">Booking ID</label>
                                                     </div>
                                                 </div>
@@ -56,18 +54,17 @@
 
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
-                                                    <?php if($errors->has('employeeServiceID')): ?>
+                                                    @if($errors->has('employeeServiceID'))
                                                         <div class = "alert alert-danger" role = "alert">
-                                                            <?php echo e($errors->first('employeeServiceID')); ?>
-
+                                                            {{ $errors->first('employeeServiceID') }}
                                                         </div>
-                                                    <?php endif; ?>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeServiceID">
-                                                            <option selected disabled><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($bookedService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($bookedService->serviceID)); ?></option>
-                                                            <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value="<?php echo e($employeeService->id); ?>"><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)); ?></option>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            <option selected disabled>{{ \App\Http\Controllers\EmployeesController::getEmployeeName($bookedService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($bookedService->serviceID) }}</option>
+                                                            @foreach($employeeServices as $employeeService)
+                                                                <option value="{{$employeeService->id}}">{{ \App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID) }}</option>
+                                                            @endforeach
                                                         </select>
                                                         <label for="floatingSelectGrid">Select Employee and Service</label>
                                                     </div>
@@ -94,12 +91,10 @@
             <!-- end container-fluid -->
         </div>
 
-    <?php $__env->stopSection(); ?>
-    <?php $__env->startSection('script'); ?>
+    @endsection
+    @section('script')
         <!-- owl.carousel js -->
-        <script src="<?php echo e(URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js')); ?>"></script>
+        <script src="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js') }}"></script>
         <!-- auth-2-carousel init -->
-        <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookedServices/editBookedService.blade.php ENDPATH**/ ?>
+        <script src="{{ URL::asset('/assets/js/pages/auth-2-carousel.init.js') }}"></script>
+@endsection

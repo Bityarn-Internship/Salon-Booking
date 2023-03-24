@@ -101,7 +101,7 @@ class BookedServicesController extends Controller
     public function destroy($id)
     {
         $bookedService = BookedService::find($id)->delete();
-        return redirect('/viewBookedServices')->with('message', 'Employee Service deleted successfully!');
+        return redirect('/viewClients')->with('message', 'Employee Service deleted successfully!');
     }
 
     //restore deleted employee

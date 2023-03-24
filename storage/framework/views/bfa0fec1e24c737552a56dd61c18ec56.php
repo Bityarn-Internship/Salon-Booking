@@ -1,7 +1,7 @@
 
 
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('MPESA Confirmation'); ?>
+    <?php echo app('translator')->get('Complete Payment'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -27,7 +27,7 @@
                                 <div class="d-flex flex-column h-100">
                                     <div class="my-auto">
                                         <div>
-                                            <h5 class="text-primary text-center">Make a Deposit Payment</h5>
+                                            <h5 class="text-primary text-center">Complete Payment</h5>
                                         </div>
 
                                         <div class="mt-4 text-center">

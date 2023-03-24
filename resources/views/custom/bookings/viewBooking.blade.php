@@ -10,10 +10,15 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Booking Details
                         <span class="px-auto">
+                            <a class="btn btn-outline-success btn-sm edit float-end" href="{{url('completePayment/'.$booking->id)}}" title="Complete Payment">
+                            <i class="bx bx-dollar"></i></a>
+
                             <i class="fas fa-pencil-alt btn btn-outline-primary btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                            
                             <a class="btn btn-outline-danger btn-sm edit" href="{{url('deleteBooking/'.$booking->id)}}" title="Delete">
                             <i class="fa fa-trash"></i>
                             </a>
+
                         </span>
                         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                             <div class="modal-dialog">

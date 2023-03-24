@@ -84,7 +84,7 @@ class BookingsController extends Controller
 
         $employeeservices = EmployeeService::whereIn('id', $input['employeeServices'])->get();
         $services = array();
-        
+
         foreach($employeeservices as $employeeservice){
             $services[] = Service::find($employeeservice->serviceID);
 
@@ -104,7 +104,7 @@ class BookingsController extends Controller
 
     //all bookings
     public function viewBookings(Request $request){
-        
+
         if(is_null($request->status) || $request->status == 'Active'){
             // SELECT * FROM `booked_services`, bookings WHERE bookingID IN (SELECT id FROM bookings WHERE id = 1);
             //Joining 2 tables
@@ -127,7 +127,6 @@ class BookingsController extends Controller
     public function edit($id){
         $employeeServices = EmployeeService::orderBy('employeeID')->get();
         $booking = DB::table('bookings')->select('*', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->where('booked_services.id', $id)->get()->first();
-
         return view('custom.bookings.editBooking', ['booking' => $booking, 'employeeServices' => $employeeServices]);
     }
 
@@ -135,7 +134,7 @@ class BookingsController extends Controller
         $input = $request->all();
 
         date_default_timezone_set("Africa/Nairobi");
-        
+
         $rules = [
             'date'=>'required | date | after_or_equal:'.date('Y-m-d'),
             'time' => 'required'
@@ -152,9 +151,8 @@ class BookingsController extends Controller
             return back()->withErrors($validator->messages());
         }
 
-        // $bookedService = BookedService::find($id);
         $booking = Booking::find($id);
-        
+
         $booking->time = $input['time'];
         $booking->date = $input['date'];
         $booking->save();
@@ -164,7 +162,7 @@ class BookingsController extends Controller
         // $bookedService->serviceID = $employeeService->serviceID;
         // $bookedService->save();
 
-        return redirect('/viewBookings')->with('message', 'Booking updated successfully!');
+        return redirect('/viewBooking/'.$booking->id)->with('message', 'Booking updated successfully!');
     }
 
     public function destroy($id)
@@ -199,8 +197,8 @@ class BookingsController extends Controller
     public function viewBooking($id){
         $booking = Booking::find($id);
         $clientID = $booking->clientID;
-        $bookedServices = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->where('clientID', $clientID)->get();
-
-        return view('custom/bookings/viewBooking', ['bookedServices'=>$bookedServices, 'booking'=>$booking]);
+        $bookedServices = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->where('clientID', $clientID)->where('booked_services.deleted_at', NULL)->where('bookingID', $id)->get();
+        $employeeServices = EmployeeService::all();
+        return view('custom/bookings/viewBooking', ['booking'=>$booking,'bookedServices'=>$bookedServices,'employeeServices'=>$employeeServices]);
     }
 }

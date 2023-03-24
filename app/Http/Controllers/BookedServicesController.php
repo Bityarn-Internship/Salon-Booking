@@ -53,7 +53,7 @@ class BookedServicesController extends Controller
             'serviceCost' => Service::find($employeeService->serviceID)->cost
         ]);
 
-        return redirect('/viewBookings')->with('message', 'Service booked successfully!');
+        return redirect('/viewBooking/'.$booking->id)->with('message', 'Service booked successfully!');
     }
     public function viewBookedServices(){
         $bookedServices = BookedService::all();
@@ -63,9 +63,9 @@ class BookedServicesController extends Controller
 
     public function edit($id){
         $bookedService = BookedService::find($id);
-        $services = Service::all();
-        $employees = Employee::all();
-        return view('custom/bookedServices/editBookedService', ['bookedService' => $bookedService,'services'=>$services,'employees'=>$employees]);
+        $employeeServices = EmployeeService::all();
+        
+        return view('custom/bookedServices/editBookedService', ['bookedService' => $bookedService,'employeeServices' => $employeeServices]);
     }
     public function update(Request $request, $id){
 
@@ -74,14 +74,12 @@ class BookedServicesController extends Controller
 
         $rules = [
             'bookingID'=>'required',
-            'serviceID'=>'required',
-            'employeeID'=>'required'
+            'employeeServiceID'=>'required'
         ];
 
         $messages = [
             'bookingID.required' => 'Booking ID is required',
-            'serviceID.required'=>'Service Name  is required',
-            'employeeID.required' => 'Employee Name is required'
+            'employeeServiceID.required'=>'Employee and Service are required'
         ];
 
         $validator = Validator::make($input, $rules, $messages);
@@ -90,18 +88,21 @@ class BookedServicesController extends Controller
             return back()->withErrors($validator->messages());
         }
 
+        $employeeService = EmployeeService::find($input['employeeServiceID']);
+
         $bookedService->bookingID = $input['bookingID'];
-        $bookedService->serviceID = $input['serviceID'];
-        $bookedService->employeeID = $input['employeeID'];
+        $bookedService->serviceID = $employeeService->serviceID;
+        $bookedService->employeeID = $employeeService->employeeID;
 
         $bookedService->save();
 
-        return redirect('/viewBookedServices')->with('message', 'Employee Service updated successfully!');
+        return redirect('/viewBooking/'.$bookedService->bookingID)->with('message', 'Employee Service updated successfully!');
     }
     public function destroy($id)
     {
-        $bookedService = BookedService::find($id)->delete();
-        return redirect('/viewBookedServices')->with('message', 'Employee Service deleted successfully!');
+        $bookedService = BookedService::find($id);
+        $bookedService->delete();
+        return redirect('/viewBooking/'.$bookedService->bookingID)->with('message', 'Employee Service deleted successfully!');
     }
 
     //restore deleted employee

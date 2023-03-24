@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.Profile'); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
@@ -247,4 +245,4 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/bookings/viewBooking.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BITYARN\Salon-Booking\resources\views/custom/bookings/viewBooking.blade.php ENDPATH**/ ?>

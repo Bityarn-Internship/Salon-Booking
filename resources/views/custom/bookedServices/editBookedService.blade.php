@@ -23,53 +23,58 @@
                                 <div class="d-flex flex-column h-100">
                                     <div>
                                         <div>
-                                            <h5 class="text-primary text-center">Edit Position</h5>
+                                            <h5 class="text-primary text-center">Edit Booked Service</h5>
                                         </div>
 
                                         <div class="mt-4">
-                                            <form action = "{{ url('/updatePosition/'.$position->id) }}" method = "post" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="row">
-                                                    @if($errors->has('message'))
-                                                        <div class = "alert alert-info" role = "alert">
-                                                            {{ session()->get('message') }}
+                                        <form action = "{{ url('/updateBookedService/'.$bookedService->id) }}" method = "post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class = "row">
+                                                
+                                                @if(session()->has('message'))
+                                                    <div class = "alert alert-info" role = "alert">
+                                                        {{ session()->get('message') }}
+                                                    </div>
+                                                @endif
+                    
+                                            </div>
+                                            <div class = "row">
+                                                <div class="col-md-12">
+                                                    @if($errors->has('bookingID'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('bookingID') }}
                                                         </div>
                                                     @endif
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 pt-2">
-                                                        @if($errors->has('positionName'))
-                                                            <div class = "alert alert-danger" role = "alert">
-                                                                {{ $errors->first('positionName') }}
-                                                            </div>
-                                                        @endif
-                                                        <div class="form-floating mb-3">
-                                                            <input type="text" class="form-control" id="floatingnameInput" value = "{{$position->name}}" name = "positionName">
-                                                            <label for="floatingnameInput">Position Name</label>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 pt-2">
-                                                        @if($errors->has('positionDescription'))
-                                                            <div class = "alert alert-danger" role = "alert">
-                                                                {{ $errors->first('positionDescription') }}
-                                                            </div>
-                                                        @endif
-                                                        <div class="form-floating mb-3">
-                                                            <input type="text" class="form-control" id="floatingemailInput" value = "{{$position->description}}" name = "positionDescription">
-                                                            <label for="floatingemailInput">Position Description</label>
-                                                        </div>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value="{{$bookedService->bookingID}}"  name="bookingID" readonly>
+                                                        <label for="floatingnameInput">Booking ID</label>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="mt-4 d-grid">
-                                                    <button class="btn btn-primary waves-effect waves-light"
-                                                        type="submit">Save</button>
+                                            <div class = "row">
+                                                <div class="col-md-12 pt-2">
+                                                    @if($errors->has('employeeServiceID'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('employeeServiceID') }}
+                                                        </div>
+                                                    @endif
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeServiceID">
+                                                            <option selected disabled>{{ \App\Http\Controllers\EmployeesController::getEmployeeName($bookedService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($bookedService->serviceID) }}</option>
+                                                            @foreach($employeeServices as $employeeService)
+                                                                <option value="{{$employeeService->id}}">{{ \App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID) }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <label for="floatingSelectGrid">Select Employee and Service</label>
+                                                    </div>
                                                 </div>
-
-                                            </form>
+                                            </div>
+                                            <div class="mt-4 d-grid">
+                                                <button class="btn btn-primary waves-effect waves-light"
+                                                    type="submit">Submit</button>
+                                            </div>
+                                        </form>
                                         </div>
                                     </div>
 

@@ -197,11 +197,7 @@ class BookingsController extends Controller
     public function viewBooking($id){
         $booking = Booking::find($id);
         $clientID = $booking->clientID;
-<<<<<<< HEAD
-        $bookedServices = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->where('clientID', $clientID)->where('bookingID',$id)->where('booked_services.deleted_at','!=', NULL)->get();
-=======
         $bookedServices = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->where('clientID', $clientID)->where('booked_services.deleted_at', NULL)->where('bookingID', $id)->get();
->>>>>>> 7652f095ff0d95afd21ad35ab60001049a1ae7dc
         $employeeServices = EmployeeService::all();
         return view('custom/bookings/viewBooking', ['booking'=>$booking,'bookedServices'=>$bookedServices,'employeeServices'=>$employeeServices]);
     }

@@ -21,7 +21,7 @@ class ProfileController extends Controller
         $positions = Position::all();
         $upcomingBookings = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')
                             ->where('employeeID',Session::get('employeeID'))
-                            ->where('status','Reserved')
+                            ->where('status','!=', 'Complete')
                             ->get();
         return view('custom/home/userProfile',['employee'=>$employee,'positions'=>$positions,'upcomingBookings'=>$upcomingBookings]);
     }

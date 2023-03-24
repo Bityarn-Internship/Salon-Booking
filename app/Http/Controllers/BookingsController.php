@@ -118,9 +118,9 @@ class BookingsController extends Controller
 
     //specific client bookings
     public function viewClientBookings($id){
-        $bookings = Booking::all()->where('clientID', $id);
+        $bookings = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->where('clientID', $id)->get();
 
-        return view('custom/bookings/viewBookings', ['bookings' => $bookings]);
+        return view('custom/bookings/viewClientBookings', ['bookings' => $bookings]);
     }
 
     public function edit($id){

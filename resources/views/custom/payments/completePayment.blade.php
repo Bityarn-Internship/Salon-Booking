@@ -1,7 +1,7 @@
 @extends('layouts.master-without-nav')
 
 @section('title')
-    @lang('MPESA Confirmation')
+    @lang('Complete Payment')
 @endsection
 
 @section('css')
@@ -27,7 +27,7 @@
                                 <div class="d-flex flex-column h-100">
                                     <div class="my-auto">
                                         <div>
-                                            <h5 class="text-primary text-center">Make a Deposit Payment</h5>
+                                            <h5 class="text-primary text-center">Complete Payment</h5>
                                         </div>
 
                                         <div class="mt-4 text-center">

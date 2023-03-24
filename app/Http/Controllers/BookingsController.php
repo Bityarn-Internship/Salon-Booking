@@ -108,7 +108,8 @@ class BookingsController extends Controller
         if(is_null($request->status) || $request->status == 'Active'){
             // SELECT * FROM `booked_services`, bookings WHERE bookingID IN (SELECT id FROM bookings WHERE id = 1);
             //Joining 2 tables
-            $bookings = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->get();
+            $bookings = Booking::all();
+            // $bookings = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->get();
         }else{
             $bookings = Booking::onlyTrashed()->get();
         }
@@ -198,6 +199,9 @@ class BookingsController extends Controller
     }
 
     public function viewBooking($id){
-        return view('custom/bookings/viewBooking');
+        $clientID = Booking::find($id)->clientID;
+        $bookings = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->where('clientID', $clientID)->get();
+
+        return view('custom/bookings/viewBooking', ['bookings'=>$bookings]);
     }
 }

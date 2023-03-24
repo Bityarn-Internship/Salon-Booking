@@ -19,7 +19,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action = "{{ url('/updateBooking/'.$booking->bookedServiceID) }}" method = "post" enctype="multipart/form-data">
+                                        <form action = "{{ url('/updateBooking/'.$booking->id) }}" method = "post" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
                                                 @if(session()->has('message'))
@@ -31,13 +31,13 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{$booking->bookingID}}" name = "bookingID">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{$booking->id}}" name = "bookingID" readonly>
                                                         <label for="floatingnameInput">Booking ID</label>
                                                     </div>
 
                                                     <div class="invalid-feedback">
-                                                        @if($errors->has('clientID'))
-                                                            {{ $errors->first('clientID') }}
+                                                        @if($errors->has('bookingID'))
+                                                            {{ $errors->first('bookingID') }}
                                                         @endif
                                                     </div>
                                                 </div>
@@ -45,22 +45,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{\App\Http\Controllers\UsersController::getClientName($booking->clientID)}}" name = "clientID">
-                                                        <label for="floatingnameInput">Client Name</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('clientID'))
-                                                            {{ $errors->first('clientID') }}
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{$booking->date}}" name = "date">
+                                                        <input type="date" class="form-control" id="floatingnameInput" value = "{{$booking->date}}" name = "date">
                                                         <label for="floatingnameInput">Date</label>
                                                     </div>
 
@@ -82,21 +67,6 @@
                                                     <div class="invalid-feedback">
                                                         @if($errors->has('time'))
                                                             {{ $errors->first('time') }}
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{$booking->cost}}" name = "cost">
-                                                        <label for="floatingnameInput">Total Cost</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('cost'))
-                                                            {{ $errors->first('cost') }}
                                                         @endif
                                                     </div>
                                                 </div>
@@ -140,6 +110,10 @@
                                 <th scope="row"> Total Cost:</th>
                                 <td>{{$booking->cost}}</td>
                             </tr>
+                            <tr>
+                                <th scope="row"> Status:</th>
+                                <td>{{$booking->status}}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -153,39 +127,103 @@
         <div class="col-xl-7">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4 ">Change Password</h4>
-                    <form action="{{route('changePassword')}}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="">Old Password</label>
-                            <input id="oldInput" type="password" name="oldPassword" class="form-control">
-                            @if($errors->has('oldPassword'))
-                                <span style="color: red;" class="text-danger">{{ $errors->first('oldPassword') }}</span>
-                            @endif
-                        </div>
-                        <hr>
-                        <div class="mb-3">
-                            <label>New Password</label>
-                            <input id="newInput" type="password" name="password" class="form-control" />
-                            @if($errors->has('password'))
-                                <span style="color: red;" class="text-danger">{{ $errors->first('password') }}</span>
-                            @endif
-                        </div>
-                        <hr>
-                        <div class="mb-3">
-                            <label>Confirm Password</label>
-                            <input id="confirmInput" type="password" name="confirmPassword" class="form-control">
-                            @if($errors->has('confirmPassword'))
-                                <span style="color: red;" class="text-danger">{{ $errors->first('confirmPassword') }}</span>
-                            @endif
-                        </div>
-                        <input type="checkbox" onclick="myFunction()">Show Password
-                        <div class="mb-3 text-end">
-                            <hr>
+                    <h4 class="card-title mb-4">Booked Services</h4>
+                    <span style="display: inline-block">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <b>Add Service</b>
+                            </button>
+                    </span>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center w-100" id="exampleModalLabel">Edit Employee Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action = "{{ url('/bookService') }}" method = "post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class = "row">
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light btn-sm">Update Password</button>
+                                            @if(session()->has('message'))
+                                                <div class = "alert alert-info" role = "alert">
+                                                    {{ session()->get('message') }}
+                                                </div>
+                                            @endif
+
+                                        </div>
+                                        <div class = "row">
+                                            <div class="col-md-12">
+                                                @if($errors->has('bookingID'))
+                                                    <div class = "alert alert-danger" role = "alert">
+                                                        {{ $errors->first('bookingID') }}
+                                                    </div>
+                                                @endif
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="floatingnameInput" value="{{$booking->id}}"  name="bookingID" readonly>
+                                                    <label for="floatingnameInput">Booking ID</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class = "row">
+                                            <div class="col-md-12 pt-2">
+                                                @if($errors->has('employeeServiceID'))
+                                                    <div class = "alert alert-danger" role = "alert">
+                                                        {{ $errors->first('employeeServiceID') }}
+                                                    </div>
+                                                @endif
+                                                <div class="form-floating mb-3">
+                                                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeServiceID">
+                                                        <option selected disabled>Select the employee and service</option>
+                                                        @foreach($employeeServices as $employeeService)
+                                                            <option value="{{$employeeService->id}}">{{ \App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID) }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <label for="floatingSelectGrid">Select Employee and Service</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 d-grid">
+                                            <button class="btn btn-primary waves-effect waves-light"
+                                                    type="submit">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+
+                    <table id="datatable" class="table table-bordered dt-responsive mt-2  nowrap w-100">
+                        <thead>
+                        <tr>
+                            <th>Service Name</th>
+                            <th>Employee Name</th>
+                            <th>Cost</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($bookedServices as $bookedService)
+                            <tr>
+                                <td>{{\App\Http\Controllers\ServicesController::getServiceName($bookedService->serviceID)}}</td>
+                                <td>{{\App\Http\Controllers\EmployeesController::getEmployeeName($bookedService->employeeID)}}</td>
+                                <td>{{$bookedService->serviceCost}}</td>
+                                <td>
+                                    <a class="btn btn-outline-success btn-sm edit" href="{{url ('editBookedService/'.$bookedService->id) }}" title="Edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteBookedService/'.$bookedService->id) }}" title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

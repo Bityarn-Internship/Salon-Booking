@@ -17,7 +17,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action = "<?php echo e(url('/updateBooking/'.$booking->bookedServiceID)); ?>" method = "post" enctype="multipart/form-data">
+                                        <form action = "<?php echo e(url('/updateBooking/'.$booking->id)); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
                                             <div class="row">
                                                 <?php if(session()->has('message')): ?>
@@ -30,13 +30,13 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->bookingID); ?>" name = "bookingID">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->id); ?>" name = "bookingID" readonly>
                                                         <label for="floatingnameInput">Booking ID</label>
                                                     </div>
 
                                                     <div class="invalid-feedback">
-                                                        <?php if($errors->has('clientID')): ?>
-                                                            <?php echo e($errors->first('clientID')); ?>
+                                                        <?php if($errors->has('bookingID')): ?>
+                                                            <?php echo e($errors->first('bookingID')); ?>
 
                                                         <?php endif; ?>
                                                     </div>
@@ -45,23 +45,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e(\App\Http\Controllers\UsersController::getClientName($booking->clientID)); ?>" name = "clientID">
-                                                        <label for="floatingnameInput">Client Name</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('clientID')): ?>
-                                                            <?php echo e($errors->first('clientID')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->date); ?>" name = "date">
+                                                        <input type="date" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->date); ?>" name = "date">
                                                         <label for="floatingnameInput">Date</label>
                                                     </div>
 
@@ -84,22 +68,6 @@
                                                     <div class="invalid-feedback">
                                                         <?php if($errors->has('time')): ?>
                                                             <?php echo e($errors->first('time')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->cost); ?>" name = "cost">
-                                                        <label for="floatingnameInput">Total Cost</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('cost')): ?>
-                                                            <?php echo e($errors->first('cost')); ?>
 
                                                         <?php endif; ?>
                                                     </div>
@@ -144,6 +112,10 @@
                                 <th scope="row"> Total Cost:</th>
                                 <td><?php echo e($booking->cost); ?></td>
                             </tr>
+                            <tr>
+                                <th scope="row"> Status:</th>
+                                <td><?php echo e($booking->status); ?></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -157,39 +129,106 @@
         <div class="col-xl-7">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4 ">Change Password</h4>
-                    <form action="<?php echo e(route('changePassword')); ?>" method="POST">
-                        <?php echo csrf_field(); ?>
-                        <div class="mb-3">
-                            <label for="">Old Password</label>
-                            <input id="oldInput" type="password" name="oldPassword" class="form-control">
-                            <?php if($errors->has('oldPassword')): ?>
-                                <span style="color: red;" class="text-danger"><?php echo e($errors->first('oldPassword')); ?></span>
-                            <?php endif; ?>
-                        </div>
-                        <hr>
-                        <div class="mb-3">
-                            <label>New Password</label>
-                            <input id="newInput" type="password" name="password" class="form-control" />
-                            <?php if($errors->has('password')): ?>
-                                <span style="color: red;" class="text-danger"><?php echo e($errors->first('password')); ?></span>
-                            <?php endif; ?>
-                        </div>
-                        <hr>
-                        <div class="mb-3">
-                            <label>Confirm Password</label>
-                            <input id="confirmInput" type="password" name="confirmPassword" class="form-control">
-                            <?php if($errors->has('confirmPassword')): ?>
-                                <span style="color: red;" class="text-danger"><?php echo e($errors->first('confirmPassword')); ?></span>
-                            <?php endif; ?>
-                        </div>
-                        <input type="checkbox" onclick="myFunction()">Show Password
-                        <div class="mb-3 text-end">
-                            <hr>
+                    <h4 class="card-title mb-4">Booked Services</h4>
+                    <span style="display: inline-block">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <b>Add Service</b>
+                            </button>
+                    </span>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center w-100" id="exampleModalLabel">Edit Employee Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action = "<?php echo e(url('/bookService')); ?>" method = "post" enctype="multipart/form-data">
+                                        <?php echo csrf_field(); ?>
+                                        <div class = "row">
 
-                            <button type="submit" class="btn btn-primary waves-effect waves-light btn-sm">Update Password</button>
+                                            <?php if(session()->has('message')): ?>
+                                                <div class = "alert alert-info" role = "alert">
+                                                    <?php echo e(session()->get('message')); ?>
+
+                                                </div>
+                                            <?php endif; ?>
+
+                                        </div>
+                                        <div class = "row">
+                                            <div class="col-md-12">
+                                                <?php if($errors->has('bookingID')): ?>
+                                                    <div class = "alert alert-danger" role = "alert">
+                                                        <?php echo e($errors->first('bookingID')); ?>
+
+                                                    </div>
+                                                <?php endif; ?>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="floatingnameInput" value="<?php echo e($booking->id); ?>"  name="bookingID" readonly>
+                                                    <label for="floatingnameInput">Booking ID</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class = "row">
+                                            <div class="col-md-12 pt-2">
+                                                <?php if($errors->has('employeeServiceID')): ?>
+                                                    <div class = "alert alert-danger" role = "alert">
+                                                        <?php echo e($errors->first('employeeServiceID')); ?>
+
+                                                    </div>
+                                                <?php endif; ?>
+                                                <div class="form-floating mb-3">
+                                                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" name = "employeeServiceID">
+                                                        <option selected disabled>Select the employee and service</option>
+                                                        <?php $__currentLoopData = $employeeServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employeeService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($employeeService->id); ?>"><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID).' -> '.\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                    <label for="floatingSelectGrid">Select Employee and Service</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 d-grid">
+                                            <button class="btn btn-primary waves-effect waves-light"
+                                                    type="submit">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+
+                    <table id="datatable" class="table table-bordered dt-responsive mt-2  nowrap w-100">
+                        <thead>
+                        <tr>
+                            <th>Service Name</th>
+                            <th>Employee Name</th>
+                            <th>Cost</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $__currentLoopData = $bookedServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bookedService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <tr>
+                                <td><?php echo e(\App\Http\Controllers\ServicesController::getServiceName($bookedService->serviceID)); ?></td>
+                                <td><?php echo e(\App\Http\Controllers\EmployeesController::getEmployeeName($bookedService->employeeID)); ?></td>
+                                <td><?php echo e($bookedService->serviceCost); ?></td>
+                                <td>
+                                    <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editBookedService/'.$bookedService->id)); ?>" title="Edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteBookedService/'.$bookedService->id)); ?>" title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

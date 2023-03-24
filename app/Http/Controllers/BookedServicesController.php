@@ -53,7 +53,7 @@ class BookedServicesController extends Controller
             'serviceCost' => Service::find($employeeService->serviceID)->cost
         ]);
 
-        return redirect('/viewBookings')->with('message', 'Service booked successfully!');
+        return redirect('/viewBooking/'.$booking->id)->with('message', 'Service booked successfully!');
     }
     public function viewBookedServices(){
         $bookedServices = BookedService::all();

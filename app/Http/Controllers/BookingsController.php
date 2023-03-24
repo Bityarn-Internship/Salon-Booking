@@ -137,14 +137,12 @@ class BookingsController extends Controller
 
         $rules = [
             'date'=>'required | date | after_or_equal:'.date('Y-m-d'),
-            'time' => 'required',
-            'employeeServiceID' => 'required'
+            'time' => 'required'
         ];
 
         $messages = [
             'date.required'=>'Kindly select a date to proceed',
-            'time.required'=>'Kindly select a time to proceed',
-            'employeeServiceID.required' => 'The employee and service are required'
+            'time.required'=>'Kindly select a time to proceed'
         ];
 
         $validator = Validator::make($input, $rules, $messages);
@@ -153,19 +151,18 @@ class BookingsController extends Controller
             return back()->withErrors($validator->messages());
         }
 
-        $bookedService = BookedService::find($id);
-        $booking = Booking::find($bookedService->bookingID);
+        $booking = Booking::find($id);
 
         $booking->time = $input['time'];
         $booking->date = $input['date'];
         $booking->save();
 
-        $employeeService = EmployeeService::find($input['employeeServiceID']);
-        $bookedService->employeeID = $employeeService->employeeID;
-        $bookedService->serviceID = $employeeService->serviceID;
-        $bookedService->save();
+//         $employeeService = EmployeeService::find($input['employeeServiceID']);
+//         $bookedService->employeeID = $employeeService->employeeID;
+//         $bookedService->serviceID = $employeeService->serviceID;
+//         $bookedService->save();
 
-        return redirect('/viewBookings')->with('message', 'Booking updated successfully!');
+        return redirect('/viewBooking/'.$booking->id)->with('message', 'Booking updated successfully!');
     }
 
     public function destroy($id)
@@ -198,10 +195,10 @@ class BookingsController extends Controller
     }
 
     public function viewBooking($id){
-//         $booking = Booking::find($id);
-        $clientID = Booking::find($id)->clientID;
-        $booking = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->where('clientID', $clientID)->get();
-
-        return view('custom/bookings/viewBooking', ['booking'=>$booking]);
+        $booking = Booking::find($id);
+        $clientID = $booking->clientID;
+        $bookedServices = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')->where('clientID', $clientID)->get();
+        $employeeServices = EmployeeService::all();
+        return view('custom/bookings/viewBooking', ['booking'=>$booking,'bookedServices'=>$bookedServices,'employeeServices'=>$employeeServices]);
     }
 }

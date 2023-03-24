@@ -27,7 +27,7 @@
             <?php if(Session::get('user') == 'employee'): ?>
                 <a href = "<?php echo e(URL::to('/viewBookings')); ?>"><button>Done</button></a>
             <?php else: ?>
-                <a href = "<?php echo e(URL::to('/bookings')); ?>"><button>Done</button></a>
+                <a href = "<?php echo e(URL::to('/viewClientBookings/'.Auth::user()->id)); ?>"><button>View My Bookings</button></a>
             <?php endif; ?>
         </div>
     </div>

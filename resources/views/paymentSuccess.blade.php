@@ -27,7 +27,7 @@
             @if(Session::get('user') == 'employee')
                 <a href = "{{ URL::to('/viewBookings') }}"><button>Done</button></a>
             @else
-                <a href = "{{ URL::to('/bookings') }}"><button>Done</button></a>
+                <a href = "{{ URL::to('/viewClientBookings/'.Auth::user()->id) }}"><button>View My Bookings</button></a>
             @endif
         </div>
     </div>

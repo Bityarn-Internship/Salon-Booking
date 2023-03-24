@@ -26,6 +26,23 @@
         </div>
 
         <div class="d-flex">
+            @if(Session::get('user') == 'client')
+            <div class="d-inline-block">
+                <a href = "{{URL::to('/bookings')}}">
+                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown">
+                        <span class="d-none d-xl-inline-block ms-1" key="t-henry">Make a Booking</span>
+                    </button>
+                </a>
+            </div>
+            <div class="d-inline-block">
+                <a href = "{{URL::to('/viewClientBookings/'.Auth::user()->id)}}">
+                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown">
+                        <span class="d-none d-xl-inline-block ms-1" key="t-henry">My Bookings</span>
+                    </button>
+                </a>
+            </div>
+            
+
             <div class="d-inline-block">
                 <a href = "{{URL::to('/feedback')}}">
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown">
@@ -56,6 +73,7 @@
                     </form>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </header>

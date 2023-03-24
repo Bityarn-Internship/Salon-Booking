@@ -42,7 +42,7 @@
                                                         </div>
                                                     @endif
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "" name = "firstName">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{Auth::user()->firstName}}" readonly name = "firstName">
                                                         <label for="floatingnameInput">First Name</label>
                                                     </div>
                                                 </div>
@@ -56,7 +56,7 @@
                                                         </div>
                                                     @endif
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "" name = "lastName">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "{{Auth::user()->lastName}}" readonly name = "lastName">
                                                         <label for="floatingnameInput">Last Name</label>
                                                     </div>
                                                 </div>
@@ -70,7 +70,7 @@
                                                         </div>
                                                     @endif
                                                     <div class="form-floating mb-3">
-                                                        <input type="email" class="form-control" id="floatingnameInput" value = "" name = "email">
+                                                        <input type="email" class="form-control" id="floatingnameInput" value = "{{Auth::user()->email}}" readonly name = "email">
                                                         <label for="floatingnameInput">Email Address</label>
                                                     </div>
                                                 </div>

@@ -64,7 +64,7 @@ class BookedServicesController extends Controller
     public function edit($id){
         $bookedService = BookedService::find($id);
         $employeeServices = EmployeeService::all();
-        
+
         return view('custom/bookedServices/editBookedService', ['bookedService' => $bookedService,'employeeServices' => $employeeServices]);
     }
     public function update(Request $request, $id){
@@ -100,14 +100,10 @@ class BookedServicesController extends Controller
     }
     public function destroy($id)
     {
-<<<<<<< HEAD
-        $bookedService = BookedService::find($id)->delete();
-        return redirect('/viewClients')->with('message', 'Employee Service deleted successfully!');
-=======
+
         $bookedService = BookedService::find($id);
         $bookedService->delete();
         return redirect('/viewBooking/'.$bookedService->bookingID)->with('message', 'Employee Service deleted successfully!');
->>>>>>> 7652f095ff0d95afd21ad35ab60001049a1ae7dc
     }
 
     //restore deleted employee

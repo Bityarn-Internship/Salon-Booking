@@ -58,6 +58,13 @@
                 </li>
 
                 <li>
+                    <a href="/viewServiceCategories">
+                        <i class="bx bx-envelope"></i>
+                        <span key="t-email">@lang('Service Categories')</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="/viewMpesaPayments">
                         <i class="bx bx-dollar"></i>
                         <span key="t-projects">@lang('Mpesa Payments')</span>

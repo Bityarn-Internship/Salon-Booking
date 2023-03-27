@@ -21,7 +21,7 @@ class ServicesController extends Controller
             $services = Service::onlyTrashed()->get();
         }
 
-        return view('custom/services/viewServices', ['services' => $services,'serviceCategories'=>$serviceCategories]);
+        return view('custom/services/viewServices', ['services' => $services,'serviceCategories'=>$serviceCategories, 'status'=>$request->status]);
     }
     public function edit($id){
         $service = Service::find($id);

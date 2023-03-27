@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-primary text-center">View Services</h4>
+                    <h4 class="card-title text-primary text-center">View Service Categories</h4>
 
                     <div class="table-responsive">
                         <div class="d-flex gx-10">
@@ -31,10 +31,10 @@
                                 <span style="display: inline-block">
                                     @if($status != 'Inactive')
                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <b>Add Service</b>
+                                        <b>Add Service Category</b>
                                    </button>
                                    @else
-                                   <a href = "/restoreServices"><button type="button" class="btn btn-primary">
+                                   <a href = "/restoreServiceCategories"><button type="button" class="btn btn-primary">
                                         <b>Restore All</b>
                                    </button></a>
                                    @endif
@@ -42,65 +42,54 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title text-center w-100" id="exampleModalLabel">Add Service</h5>
+                                                <h5 class="modal-title text-center w-100" id="exampleModalLabel">Add Service Category</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                 <form action = "{{ url('/services') }}" method = "post" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="row">
-                                                    @if($errors->has('message'))
-                                                        <div class = "alert alert-info" role = "alert">
-                                                            {{ session()->get('message') }}
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 pt-2">
-                                                        @if($errors->has('serviceName'))
-                                                            <div class = "alert alert-danger" role = "alert">
-                                                                {{ $errors->first('serviceName') }}
+                                                <form action = "{{ url('/serviceCategories') }}" method = "post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="row">
+                                                        @if(session()->has('message'))
+                                                            <div class = "alert alert-info" role = "alert">
+                                                                {{ session()->get('message') }}
                                                             </div>
                                                         @endif
-                                                        <div class="form-floating mb-3">
-                                                            <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "serviceName">
-                                                            <label for="floatingnameInput">Service Name</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        @if($errors->has('categoryName'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('categoryName') }}
+                                                            </div>
+                                                        @endif
+                                                        <div class="col-md-12 pt-2">
+                                                            <div class="form-floating mb-3">
+                                                                <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "categoryName">
+                                                                <label for="floatingnameInput">Service Category Name</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        @if($errors->has('categoryDescription'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('categoryDescription') }}
+                                                            </div>
+                                                        @endif
+                                                        <div class="col-md-12 pt-2">
+                                                            <div class="form-floating mb-3">
+                                                                <input type="text" class="form-control" id="floatingemailInput" placeholder="Enter the description..." name = "categoryDescription">
+                                                                <label for="floatingemailInput">Service Category Description</label>
+                                                            </div>
                                                         </div>
                                                     </div>
 
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 pt-2">
-                                                        @if($errors->has('serviceCost'))
-                                                            <div class = "alert alert-danger" role = "alert">
-                                                                {{ $errors->first('serviceCost') }}
-                                                            </div>
-                                                        @endif
-                                                        <div class="form-floating mb-3">
-                                                            <input type="number" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name = "serviceCost">
-                                                            <label for="floatingemailInput">Service Cost</label>
-                                                        </div>
+                                                    <div class="mt-4 d-grid">
+                                                        <button class="btn btn-primary waves-effect waves-light"
+                                                                type="submit">Submit</button>
                                                     </div>
-                                                </div>
-                                                      <div class="row">
-                                                    <div class="col-md-12 pt-2">
-                                                    <label for="serviceCategoryID" class="form-label">Choose a service category:</label>
-                                                    <select id="serviceCategoryID" class="form-select" name = "serviceCategoryID">
-                                                        <option disabled selected value="">Select the service category</option>
-                                                        @foreach($serviceCategories as $serviceCategory)
-                                                            <option value="{{$serviceCategory->id}}">{{$serviceCategory->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                </div>
 
-                                                <div class="mt-4 d-grid">
-                                                    <button class="btn btn-primary waves-effect waves-light"
-                                                            type="submit">Submit</button>
-                                                </div>
-
-                                            </form>
-                                                </div>
+                                                </form>
+                                            </div>
                                             <div class="modal-footer">
                                                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                                 <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
@@ -112,7 +101,7 @@
                                 </span>
                             </div>
                             <div class="col-md-4">
-                                <form action = "{{url('/viewServices')}}" method = "GET">
+                                <form action = "{{url('/viewServiceCategories')}}" method = "GET">
                                     @csrf
                                     <span style="display: inline-block"><label for="status" class="form-label">Filter by status</label></span>
                                     <span style="display: inline-block">
@@ -132,35 +121,31 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Service Name</th>
-                                    <th>Cost</th>
-                                    <th>Service Category</th>
+                                    <th>Service Category Name</th>
+                                    <th>Service Category Description</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($services as $service)
+                                @foreach($serviceCategories as $serviceCategory)
                                 <tr>
-                                    <td>{{$service->id}}</td>
-                                    <td>{{$service->name}}</td>
-                                    <td>{{$service->cost}}</td>
-                                    <td>{{\App\Http\Controllers\ServiceCategoriesController::getServiceCategoryName($service->serviceCategoryID)}}</td>
-                                    
+                                    <td>{{$serviceCategory->id}}</td>
+                                    <td>{{$serviceCategory->name}}</td>
+                                    <td>{{$serviceCategory->description}}</td>
                                     <td>
                                         @if($status != 'Inactive')
-                                            <a class="btn btn-outline-success btn-sm edit" href="{{url ('editService/'.$service->id) }}" title="Edit">
+                                            <a class="btn btn-outline-success btn-sm edit" href="{{url ('editServiceCategory/'.$serviceCategory->id) }}" title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteService/'.$service->id) }}" title="Delete">
+                                            <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteServiceCategory/'.$serviceCategory->id) }}" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         @else
-                                            <a class="btn btn-outline-success btn-sm edit" href="{{url ('restoreService/'.$service->id) }}" title="Restore">
+                                            <a class="btn btn-outline-success btn-sm edit" href="{{url ('restoreServiceCategory/'.$serviceCategory->id) }}" title="Restore">
                                                 <i class="fa fa-archive"></i>
                                             </a>
                                         @endif
                                     </td>
-                                   
                                 </tr>
                                 @endforeach
 

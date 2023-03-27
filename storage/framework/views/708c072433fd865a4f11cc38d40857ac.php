@@ -1,16 +1,16 @@
-@extends('custom.common.master')
 
-@section('title')
-    @lang('Services')
-@endsection
 
-@section('css')
+<?php $__env->startSection('title'); ?>
+    <?php echo app('translator')->get('Services'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('css'); ?>
     <!-- owl.carousel css -->
-    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css') }}">
-@endsection
+    <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.carousel.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('/assets/libs/owl.carousel/assets/owl.theme.default.min.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div>
         <div class="container-fluid p-0">
@@ -26,14 +26,15 @@
                                     </div>
 
                                     <div class="mt-4">
-                                        <form action = "{{ url('/serviceCategories') }}" method = "post" enctype="multipart/form-data">
-                                            @csrf
+                                        <form action = "<?php echo e(url('/serviceCategories')); ?>" method = "post" enctype="multipart/form-data">
+                                            <?php echo csrf_field(); ?>
                                             <div class="row">
-                                                @if(session()->has('message'))
+                                                <?php if(session()->has('message')): ?>
                                                     <div class="valid-feedback">
-                                                        {{ session()->get('message') }}
+                                                        <?php echo e(session()->get('message')); ?>
+
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
@@ -43,9 +44,10 @@
                                                     </div>
 
                                                     <div class="invalid-feedback">
-                                                        @if($errors->has('serviceName'))
-                                                            {{ $errors->first('serviceName') }}
-                                                        @endif
+                                                        <?php if($errors->has('serviceName')): ?>
+                                                            <?php echo e($errors->first('serviceName')); ?>
+
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
 
@@ -57,9 +59,10 @@
                                                         <label for="floatingemailInput">Service Description</label>
                                                     </div>
                                                     <div class="invalid-feedback">
-                                                        @if($errors->has('serviceCategoryDescription'))
-                                                            {{ $errors->first('serviceCategoryDescription') }}
-                                                        @endif
+                                                        <?php if($errors->has('serviceCategoryDescription')): ?>
+                                                            <?php echo e($errors->first('serviceCategoryDescription')); ?>
+
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,10 +89,12 @@
         <!-- end container-fluid -->
     </div>
 
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
     <!-- owl.carousel js -->
-    <script src="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js')); ?>"></script>
     <!-- auth-2-carousel init -->
-    <script src="{{ URL::asset('/assets/js/pages/auth-2-carousel.init.js') }}"></script>
-@endsection
+    <script src="<?php echo e(URL::asset('/assets/js/pages/auth-2-carousel.init.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/services/serviceCategory.blade.php ENDPATH**/ ?>

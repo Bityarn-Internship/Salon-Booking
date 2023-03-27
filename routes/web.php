@@ -161,6 +161,13 @@ Route::group([
     Route::controller(ServiceCategoriesController::class)->group(function(){
         Route::get('/serviceCategory', 'index');
         Route::post('/serviceCategories', 'store');
+        Route::get('/editServiceCategory/{id}', 'edit');
+        Route::post('/updateServiceCategory/{id}', 'update');
+        Route::get('/deleteServiceCategory/{id}','destroy');
+        Route::get('/viewServiceCategories','viewServiceCategories');
+        Route::get('/viewTrashedServiceCategories','viewTrashedServiceCategories');
+        Route::get('/restoreServiceCategory/{id}','restoreServiceCategory');
+        Route::get('/restoreServiceCategories','restoreServiceCategories');
     });
 
     Route::controller(FeedbackController::class)->group(function(){

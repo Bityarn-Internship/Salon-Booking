@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-primary text-center">View Services</h4>
+                    <h4 class="card-title text-primary text-center">View Service Categories</h4>
 
                     <div class="table-responsive">
                         <div class="d-flex gx-10">
@@ -31,10 +31,10 @@
                                 <span style="display: inline-block">
                                     <?php if($status != 'Inactive'): ?>
                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <b>Add Service</b>
+                                        <b>Add Service Category</b>
                                    </button>
                                    <?php else: ?>
-                                   <a href = "/restoreServices"><button type="button" class="btn btn-primary">
+                                   <a href = "/restoreServiceCategories"><button type="button" class="btn btn-primary">
                                         <b>Restore All</b>
                                    </button></a>
                                    <?php endif; ?>
@@ -42,68 +42,57 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title text-center w-100" id="exampleModalLabel">Add Service</h5>
+                                                <h5 class="modal-title text-center w-100" id="exampleModalLabel">Add Service Category</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                 <form action = "<?php echo e(url('/services')); ?>" method = "post" enctype="multipart/form-data">
-                                                <?php echo csrf_field(); ?>
-                                                <div class="row">
-                                                    <?php if($errors->has('message')): ?>
-                                                        <div class = "alert alert-info" role = "alert">
-                                                            <?php echo e(session()->get('message')); ?>
-
-                                                        </div>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 pt-2">
-                                                        <?php if($errors->has('serviceName')): ?>
-                                                            <div class = "alert alert-danger" role = "alert">
-                                                                <?php echo e($errors->first('serviceName')); ?>
+                                                <form action = "<?php echo e(url('/serviceCategories')); ?>" method = "post" enctype="multipart/form-data">
+                                                    <?php echo csrf_field(); ?>
+                                                    <div class="row">
+                                                        <?php if(session()->has('message')): ?>
+                                                            <div class = "alert alert-info" role = "alert">
+                                                                <?php echo e(session()->get('message')); ?>
 
                                                             </div>
                                                         <?php endif; ?>
-                                                        <div class="form-floating mb-3">
-                                                            <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "serviceName">
-                                                            <label for="floatingnameInput">Service Name</label>
-                                                        </div>
                                                     </div>
-
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 pt-2">
-                                                        <?php if($errors->has('serviceCost')): ?>
+                                                    <div class="row">
+                                                        <?php if($errors->has('categoryName')): ?>
                                                             <div class = "alert alert-danger" role = "alert">
-                                                                <?php echo e($errors->first('serviceCost')); ?>
+                                                                <?php echo e($errors->first('categoryName')); ?>
 
                                                             </div>
                                                         <?php endif; ?>
-                                                        <div class="form-floating mb-3">
-                                                            <input type="number" class="form-control" id="floatingemailInput" placeholder="Enter the cost..." name = "serviceCost">
-                                                            <label for="floatingemailInput">Service Cost</label>
+                                                        <div class="col-md-12 pt-2">
+                                                            <div class="form-floating mb-3">
+                                                                <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the service..." name = "categoryName">
+                                                                <label for="floatingnameInput">Service Category Name</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <?php if($errors->has('categoryDescription')): ?>
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                <?php echo e($errors->first('categoryDescription')); ?>
+
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        <div class="col-md-12 pt-2">
+                                                            <div class="form-floating mb-3">
+                                                                <input type="text" class="form-control" id="floatingemailInput" placeholder="Enter the description..." name = "categoryDescription">
+                                                                <label for="floatingemailInput">Service Category Description</label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                      <div class="row">
-                                                    <div class="col-md-12 pt-2">
-                                                    <label for="serviceCategoryID" class="form-label">Choose a service category:</label>
-                                                    <select id="serviceCategoryID" class="form-select" name = "serviceCategoryID">
-                                                        <option disabled selected value="">Select the service category</option>
-                                                        <?php $__currentLoopData = $serviceCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $serviceCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($serviceCategory->id); ?>"><?php echo e($serviceCategory->name); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </select>
-                                                </div>
-                                                </div>
 
-                                                <div class="mt-4 d-grid">
-                                                    <button class="btn btn-primary waves-effect waves-light"
-                                                            type="submit">Submit</button>
-                                                </div>
+                                                    <div class="mt-4 d-grid">
+                                                        <button class="btn btn-primary waves-effect waves-light"
+                                                                type="submit">Submit</button>
+                                                    </div>
 
-                                            </form>
-                                                </div>
+                                                </form>
+                                            </div>
                                             <div class="modal-footer">
                                                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                                 <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
@@ -115,7 +104,7 @@
                                 </span>
                             </div>
                             <div class="col-md-4">
-                                <form action = "<?php echo e(url('/viewServices')); ?>" method = "GET">
+                                <form action = "<?php echo e(url('/viewServiceCategories')); ?>" method = "GET">
                                     <?php echo csrf_field(); ?>
                                     <span style="display: inline-block"><label for="status" class="form-label">Filter by status</label></span>
                                     <span style="display: inline-block">
@@ -135,35 +124,31 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Service Name</th>
-                                    <th>Cost</th>
-                                    <th>Service Category</th>
+                                    <th>Service Category Name</th>
+                                    <th>Service Category Description</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $serviceCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $serviceCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><?php echo e($service->id); ?></td>
-                                    <td><?php echo e($service->name); ?></td>
-                                    <td><?php echo e($service->cost); ?></td>
-                                    <td><?php echo e(\App\Http\Controllers\ServiceCategoriesController::getServiceCategoryName($service->serviceCategoryID)); ?></td>
-                                    
+                                    <td><?php echo e($serviceCategory->id); ?></td>
+                                    <td><?php echo e($serviceCategory->name); ?></td>
+                                    <td><?php echo e($serviceCategory->description); ?></td>
                                     <td>
                                         <?php if($status != 'Inactive'): ?>
-                                            <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editService/'.$service->id)); ?>" title="Edit">
+                                            <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editServiceCategory/'.$serviceCategory->id)); ?>" title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteService/'.$service->id)); ?>" title="Delete">
+                                            <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteServiceCategory/'.$serviceCategory->id)); ?>" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         <?php else: ?>
-                                            <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('restoreService/'.$service->id)); ?>" title="Restore">
+                                            <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('restoreServiceCategory/'.$serviceCategory->id)); ?>" title="Restore">
                                                 <i class="fa fa-archive"></i>
                                             </a>
                                         <?php endif; ?>
                                     </td>
-                                   
                                 </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -198,4 +183,4 @@
     <script src="<?php echo e(URL::asset('/assets/js/pages/datatables.init.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/services/viewServices.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('custom.common.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\User\Projects\Bityarn\salonBooking\resources\views/custom/serviceCategories/viewServiceCategories.blade.php ENDPATH**/ ?>

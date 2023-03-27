@@ -50,7 +50,7 @@
                                                             <?php endif; ?>
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
@@ -66,7 +66,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+                                                <div class="row">
+                                                    <div class="col-md-12 pt-2">
+                                                    <label for="serviceCategoryID" class="form-label">Choose a service category:</label>
+                                                    <select id="serviceCategoryID" class="form-select" name = "serviceCategoryID">
+                                                        <option disabled selected value="">Select the service category</option>
+                                                        <?php $__currentLoopData = $serviceCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $serviceCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($serviceCategory->id); ?>"><?php echo e($serviceCategory->name); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
+                                                </div>
+
                                                 <div class="mt-4 d-grid">
                                                     <button class="btn btn-primary waves-effect waves-light"
                                                         type="submit">Submit</button>

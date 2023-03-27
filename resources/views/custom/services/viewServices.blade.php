@@ -76,6 +76,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                      <div class="row">
+                                                    <div class="col-md-12 pt-2">
+                                                    <label for="serviceCategoryID" class="form-label">Choose a service category:</label>
+                                                    <select id="serviceCategoryID" class="form-select" name = "serviceCategoryID">
+                                                        <option disabled selected value="">Select the service category</option>
+                                                        @foreach($serviceCategories as $serviceCategory)
+                                                            <option value="{{$serviceCategory->id}}">{{$serviceCategory->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                </div>
 
                                                 <div class="mt-4 d-grid">
                                                     <button class="btn btn-primary waves-effect waves-light"
@@ -116,7 +127,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Service Name</th>
-                                    <th>Cost
+                                    <th>Cost</th>
+                                    <th>Service Category</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -126,6 +138,7 @@
                                     <td>{{$service->id}}</td>
                                     <td>{{$service->name}}</td>
                                     <td>{{$service->cost}}</td>
+                                    <td>{{\App\Http\Controllers\ServiceCategoriesController::getServiceCategoryName($service->serviceCategoryID)}}</td>
                                     <td>
                                         <a class="btn btn-outline-success btn-sm edit" href="{{url ('editService/'.$service->id) }}" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>

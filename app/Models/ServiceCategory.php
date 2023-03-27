@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class Service extends Model implements Auditable
+class ServiceCategory extends Model implements Auditable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory,SoftDeletes;
     use \OwenIt\Auditing\Auditable;
-    protected $fillable = [
-      'id',
-      'name',
-      'cost',
-      'serviceCategoryID',
-    ];
+        protected $fillable = [
+           'id',
+           'name',
+           'description',
+        ];
 
-    protected $dates = ['deleted_at'];
+        protected $dates = ['deleted_at'];
 }

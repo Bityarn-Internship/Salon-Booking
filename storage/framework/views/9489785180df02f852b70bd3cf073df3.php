@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('View Services'); ?>
 <?php $__env->stopSection(); ?>
@@ -79,6 +78,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                      <div class="row">
+                                                    <div class="col-md-12 pt-2">
+                                                    <label for="serviceCategoryID" class="form-label">Choose a service category:</label>
+                                                    <select id="serviceCategoryID" class="form-select" name = "serviceCategoryID">
+                                                        <option disabled selected value="">Select the service category</option>
+                                                        <?php $__currentLoopData = $serviceCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $serviceCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($serviceCategory->id); ?>"><?php echo e($serviceCategory->name); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
+                                                </div>
 
                                                 <div class="mt-4 d-grid">
                                                     <button class="btn btn-primary waves-effect waves-light"
@@ -119,7 +129,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Service Name</th>
-                                    <th>Cost
+                                    <th>Cost</th>
+                                    <th>Service Category</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -129,6 +140,7 @@
                                     <td><?php echo e($service->id); ?></td>
                                     <td><?php echo e($service->name); ?></td>
                                     <td><?php echo e($service->cost); ?></td>
+                                    <td><?php echo e(\App\Http\Controllers\ServiceCategoriesController::getServiceCategoryName($service->serviceCategoryID)); ?></td>
                                     <td>
                                         <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editService/'.$service->id)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>

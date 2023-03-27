@@ -48,7 +48,7 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
@@ -63,7 +63,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+                                                <div class="row">
+                                                    <div class="col-md-12 pt-2">
+                                                    <label for="serviceCategoryID" class="form-label">Choose a service category:</label>
+                                                    <select id="serviceCategoryID" class="form-select" name = "serviceCategoryID">
+                                                        <option disabled selected value="">Select the service category</option>
+                                                        @foreach($serviceCategories as $serviceCategory)
+                                                            <option value="{{$serviceCategory->id}}">{{$serviceCategory->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                </div>
+
                                                 <div class="mt-4 d-grid">
                                                     <button class="btn btn-primary waves-effect waves-light"
                                                         type="submit">Submit</button>

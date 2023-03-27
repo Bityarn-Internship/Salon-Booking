@@ -16,6 +16,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientProfileController;
+use App\Http\Controllers\ServiceCategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -156,6 +157,10 @@ Route::group([
         Route::get('/deleteService/{id}', 'destroy');
         Route::get('/restoreService/{id}', 'restoreService');
         Route::get('/restoreServices', 'restoreServices');
+    });
+    Route::controller(ServiceCategoriesController::class)->group(function(){
+        Route::get('/serviceCategory', 'index');
+        Route::post('/serviceCategories', 'store');
     });
 
     Route::controller(FeedbackController::class)->group(function(){

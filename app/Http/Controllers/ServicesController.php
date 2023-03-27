@@ -4,21 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use Validator;
 
 class ServicesController extends Controller
 {
     public function index(){
-        return view('custom/services/services');
+        $serviceCategories = ServiceCategory::all();
+        return view('custom/services/services',['serviceCategories'=>$serviceCategories]);
     }
     public function viewServices(Request $request){
+        $serviceCategories = ServiceCategory::all();
         if(is_null($request->status) || $request->status == 'Active'){
             $services = Service::all();
         }else{
             $services = Service::onlyTrashed()->get();
         }
 
-        return view('custom/services/viewServices', ['services' => $services]);
+        return view('custom/services/viewServices', ['services' => $services,'serviceCategories'=>$serviceCategories]);
     }
     public function edit($id){
         $service = Service::find($id);
@@ -30,12 +33,14 @@ class ServicesController extends Controller
 
         $rules = [
             'serviceName'=>'required',
-            'serviceCost'=>'required'
+            'serviceCost'=>'required',
+            'serviceCategoryID'=>'required'
         ];
 
         $messages = [
             'serviceName.required' => 'Service name is required',
-            'serviceCost.required'=>'Service cost is required'
+            'serviceCost.required'=>'Service cost is required',
+            'serviceCategoryID.required'=>'Service Category ID is required'
         ];
 
         $validator = Validator::make($input, $rules, $messages);
@@ -46,7 +51,8 @@ class ServicesController extends Controller
 
         Service::create([
             'name' => $input['serviceName'],
-            'cost' => $input['serviceCost']
+            'cost' => $input['serviceCost'],
+            'serviceCategoryID' => $input['serviceCategoryID']
         ]);
 
         return redirect('/viewServices')->with('message', 'Service added successfully!');

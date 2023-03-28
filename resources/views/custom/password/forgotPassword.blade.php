@@ -83,6 +83,13 @@
                                             <div class="alert alert-success text-center mb-4" role="alert">
                                                 Enter your Email and instructions will be sent to you!
                                             </div>
+                                            <div class="row">
+                                                @if(session()->has('message'))
+                                                    <div class="alert alert-info" role="alert">
+                                                        {{ session()->get('message') }}
+                                                    </div>
+                                                @endif
+                                            </div>
                                             <form class="form-horizontal" action="{{url('/sendResetLink')}}" method="POST">
                                                 @csrf
                                                 <div class="mb-3">

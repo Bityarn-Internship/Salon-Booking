@@ -80,6 +80,13 @@
                                     </div>
 
                                     <div class="mt-4">
+                                        <div class="row">
+                                            @if(session()->has('message'))
+                                                <div class="alert alert-info" role="alert">
+                                                    {{ session()->get('message') }}
+                                                </div>
+                                            @endif
+                                        </div>
                                         <form action="{{url('/passwordReset')}}" method="POST">
                                             @csrf
                                             <input type="hidden" name="token" value="{{$token}}">

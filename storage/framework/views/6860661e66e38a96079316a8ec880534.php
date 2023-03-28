@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('Services'); ?>
 <?php $__env->stopSection(); ?>
@@ -35,65 +37,60 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "" name = "firstName">
-                                                        <label for="floatingnameInput">First Name</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('firstName')): ?>
+                                                    <?php if($errors->has('firstName')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
                                                             <?php echo e($errors->first('firstName')); ?>
 
-                                                        <?php endif; ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e(Auth::user()->firstName); ?>" readonly name = "firstName">
+                                                        <label for="floatingnameInput">First Name</label>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingnameInput" value = "" name = "lastName">
-                                                        <label for="floatingnameInput">Last Name</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('lastName')): ?>
+                                                    <?php if($errors->has('lastName')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
                                                             <?php echo e($errors->first('lastName')); ?>
 
-                                                        <?php endif; ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e(Auth::user()->lastName); ?>" readonly name = "lastName">
+                                                        <label for="floatingnameInput">Last Name</label>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <input type="email" class="form-control" id="floatingnameInput" value = "" name = "email">
-                                                        <label for="floatingnameInput">Email Address</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('email')): ?>
+                                                    <?php if($errors->has('email')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
                                                             <?php echo e($errors->first('email')); ?>
 
-                                                        <?php endif; ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="email" class="form-control" id="floatingnameInput" value = "<?php echo e(Auth::user()->email); ?>" readonly name = "email">
+                                                        <label for="floatingnameInput">Email Address</label>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
-                                                    <div class="form-floating mb-3">
-                                                        <textarea type="text" class="form-control" id="floatingnameInput" value = "" name = "message">
-                                                        </textarea>
-                                                        <label for="floatingnameInput">Feedback</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('message')): ?>
+                                                    <?php if($errors->has('message')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
                                                             <?php echo e($errors->first('message')); ?>
 
-                                                        <?php endif; ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <div class="form-floating mb-3">
+                                                        <textarea type="text" class="form-control" id="floatingnameInput" name = "message"></textarea>
+                                                        <label for="floatingnameInput">Feedback</label>
                                                     </div>
                                                 </div>
                                             </div>

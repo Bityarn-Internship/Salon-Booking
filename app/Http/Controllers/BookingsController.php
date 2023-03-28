@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Booking;
 use App\Models\BookedService;
 use App\Models\User;
+use App\Models\ServiceCategory;
 use App\Models\EmployeeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,8 @@ class BookingsController extends Controller
 {
     public function index(){
         $services = Service::all();
-        return view('custom/bookings/bookings', ['services'=>$services]);
+        $serviceCategories = ServiceCategory::all();
+        return view('custom/bookings/bookings', ['services'=>$services,'serviceCategories'=>$serviceCategories]);
     }
 
     public function store(Request $request){

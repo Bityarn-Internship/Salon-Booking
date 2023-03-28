@@ -89,52 +89,74 @@
                                             <form action = "{{ url('/employees') }}" method = "post" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row">
+                                                    @if(session()->has('message'))
+                                                        <div class="alert alert-info" role="alert">
+                                                            {{ session()->get('message') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-md-6 pt-2">
+                                                        @if($errors->has('firstName'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('firstName') }}
+                                                            </div>
+                                                        @endif
                                                         <label for="firstName" class="form-label">First Name</label>
                                                         <input type="text" class="form-control" id="firstName" name="firstName"
-                                                               placeholder="Enter Your First Name" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your First Name
-                                                        </div>
+                                                               placeholder="Enter Your First Name">
                                                     </div>
                                                     <div class="col-md-6 pt-2">
+                                                        @if($errors->has('lastName'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('lastName') }}
+                                                            </div>
+                                                        @endif
                                                         <label for="lastName" class="form-label">Last Name</label>
                                                         <input type="text" class="form-control" id="lastName" name="lastName"
-                                                               placeholder="Enter Your Last Name" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Last Name
-                                                        </div>
+                                                            placeholder="Enter Your Last Name">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6 pt-2">
+                                                        @if($errors->has('email'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('email') }}
+                                                            </div>
+                                                        @endif
                                                         <label for="email" class="form-label">Email</label>
                                                         <input type="email" class="form-control" id="email" name="email"
-                                                               placeholder="Enter Your Email" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Email
-                                                        </div>
+                                                               placeholder="Enter Your Email">
                                                     </div>
                                                     <div class="col-md-6 pt-2">
+                                                        @if($errors->has('telephoneNumber'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('telephoneNumber') }}
+                                                            </div>
+                                                        @endif
                                                         <label for="telephoneNumber" class="form-label">Telephone Number</label>
                                                         <input type="tel" class="form-control" id="telephoneNumber" name="telephoneNumber"
-                                                               placeholder="Enter Telephone Number" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Telephone Number
-                                                        </div>
+                                                               placeholder="Enter Telephone Number">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6 pt-2">
+                                                        @if($errors->has('IDNumber'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('IDNumber') }}
+                                                            </div>
+                                                        @endif
                                                         <label for="IDNumber" class="form-label">National ID Number/ Passport Number</label>
                                                         <input type="number" class="form-control" id="IDNumber" name="IDNumber"
-                                                               placeholder="Enter Your National ID / Passport Number" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your IDNumber
-                                                        </div>
+                                                            placeholder="Enter Your National ID / Passport Number">
                                                     </div>
 
                                                     <div class="col-md-6 pt-2">
+                                                        @if($errors->has('positionID'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('positionID') }}
+                                                            </div>
+                                                        @endif
                                                         <label for="positionID" class="form-label">Choose a position</label>
                                                         <select id="positionID" class="form-select" name = "positionID">
                                                             <option disabled selected value="">Select the position</option>
@@ -146,20 +168,24 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6 pt-2">
+                                                        @if($errors->has('password'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('password') }}
+                                                            </div>
+                                                        @endif
                                                         <label for="password" class="form-label">Password</label>
                                                         <input type="password" class="form-control" id="password" name="password"
-                                                               placeholder="Enter Your Password" required>
-                                                        <div class="invalid-feedback">
-                                                            Enter Your Password
-                                                        </div>
+                                                               placeholder="Enter Your Password">
                                                     </div>
                                                     <div class="col-md-6 pt-2">
+                                                        @if($errors->has('confirmPassword'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('confirmPassword') }}
+                                                            </div>
+                                                        @endif
                                                         <label for="confirmPassword" class="form-label">Confirm Password</label>
                                                         <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                                                               placeholder="Confirm Your Password" required>
-                                                        <div class="invalid-feedback">
-                                                            Confirm Your Password
-                                                        </div>
+                                                            placeholder="Confirm Your Password">
                                                     </div>
                                                 </div>
 

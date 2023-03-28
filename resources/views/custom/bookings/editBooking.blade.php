@@ -46,13 +46,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                @if(session()->has('message'))
-                                                    <div class="alert alert-info" role="alert">
-                                                        {{ session()->get('message') }}
-                                                    </div>
-                                                @endif
-                                            </div>
+                                           
                                             <div class="row">
                                                 <div class="col-md-6 pt-2">
                                                     @if($errors->has('date'))
@@ -77,13 +71,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                @if(session()->has('message'))
-                                                    <div class="alert alert-info" role="alert">
-                                                        {{ session()->get('message') }}
-                                                    </div>
-                                                @endif
-                                            </div>
+                                            
                                             <div class = "row">
                                                 <div class="col-md-12 pt-2">
                                                     @if($errors->has('employeeServiceID'))

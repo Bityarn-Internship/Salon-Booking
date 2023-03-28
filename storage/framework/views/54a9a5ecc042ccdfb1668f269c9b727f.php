@@ -88,15 +88,35 @@
                                         </div>
 
                                         <div class="mt-4">
+                                            <div class="row">
+                                                <?php if(session()->has('message')): ?>
+                                                    <div class="alert alert-info" role="alert">
+                                                        <?php echo e(session()->get('message')); ?>
+
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
                                             <form action="<?php echo e(url('/login')); ?>" method="POST">
                                                 <?php echo csrf_field(); ?>
                                                 <div class="mb-3">
+                                                    <?php if($errors->has('email')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('email')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <label for="email" class="form-label">Email</label>
                                                     <input type="email" class="form-control" id="email" name="email"
                                                            placeholder="Enter Your Email">
                                                 </div>
 
                                                 <div class="mb-3">
+                                                    <?php if($errors->has('password')): ?>
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            <?php echo e($errors->first('password')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="float-end">
                                                         <a href="auth-recoverpw-2" class="text-muted">Forgot
                                                             password?</a>
@@ -152,7 +172,7 @@
                                             </form>
                                             <div class=" text-center">
                                                 <p>Don't have an account ? <a href="<?php echo e(URL::to('/clients')); ?>"
-                                                                              class="fw-medium text-primary"> Signup now </a> </p>
+                                                    class="fw-medium text-primary"> Signup now </a> </p>
                                             </div>
                                         </div>
                                     </div>

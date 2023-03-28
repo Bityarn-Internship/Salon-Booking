@@ -12,14 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 class EmployeeServicesController extends Controller
 {
-    public function index(){
-        return view('custom/employeeServices/employeeService');
-    }
-    public function assign(){
-        $employees = Employee::all();
-        $services = Service::all();
-        return view('custom/employeeServices/employeeService',['employees'=>$employees,'services'=>$services]);
-    }
     public function store(Request $request){
 
         $input = $request->all();
@@ -64,11 +56,6 @@ class EmployeeServicesController extends Controller
         $employees = Employee::all();
         $services = Service::all();
         return view('custom.employeeServices.editEmployeeService', ['employeeService' => $employeeService,'employees'=>$employees, 'services'=>$services]);
-    }
-    public function ViewTrashedEmployeeServices()
-    {
-        $employeeServices = EmployeeService::onlyTrashed()->get();
-        return view('custom/employeeServices/viewTrashedEmployeeServices',['employeeServices'=> $employeeServices]);
     }
     public function update(Request $request, $id){
 

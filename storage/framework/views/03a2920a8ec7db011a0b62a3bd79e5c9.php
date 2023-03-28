@@ -10,8 +10,10 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Booking Details
                         <span class="px-auto">
+                            <?php if($booking->status != 'Complete'): ?>
                             <a class="btn btn-outline-success btn-sm edit float-end" href="<?php echo e(url('completePayment/'.$booking->id)); ?>" title="Complete Payment">
                             <i class="bx bx-dollar"></i></a>
+                            <?php endif; ?>
 
                             <i class="fas fa-pencil-alt btn btn-outline-primary btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
                             
@@ -40,47 +42,44 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
+                                                    <?php if($errors->has('bookingID')): ?>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <?php echo e($errors->first('bookingID')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
                                                         <input type="text" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->id); ?>" name = "bookingID" readonly>
                                                         <label for="floatingnameInput">Booking ID</label>
                                                     </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('bookingID')): ?>
-                                                            <?php echo e($errors->first('bookingID')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
+                                                    <?php if($errors->has('date')): ?>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <?php echo e($errors->first('date')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
                                                         <input type="date" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->date); ?>" name = "date">
                                                         <label for="floatingnameInput">Date</label>
                                                     </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('date')): ?>
-                                                            <?php echo e($errors->first('date')); ?>
-
-                                                        <?php endif; ?>
-                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
+                                                    <?php if($errors->has('time')): ?>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <?php echo e($errors->first('time')); ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="form-floating mb-3">
                                                         <input type="time" class="form-control" id="floatingnameInput" value = "<?php echo e($booking->time); ?>" name = "time">
                                                         <label for="floatingnameInput">Time</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        <?php if($errors->has('time')): ?>
-                                                            <?php echo e($errors->first('time')); ?>
-
-                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,8 +126,14 @@
                                 <th scope="row"> Status:</th>
                                 <td><?php echo e($booking->status); ?></td>
                             </tr>
+                            
                             </tbody>
-                        </table>
+                        </table><br>
+                        <center><a href = "<?php echo e(url('/viewInvoice/'.$booking->id)); ?>" target = "_blank"><button type="button" class="btn btn-sm btn-primary">
+                            <b>Generate Invoice</b>
+                        </button></a></center>
+                    </span>
+
                     </div>
                 </div>
             </div>

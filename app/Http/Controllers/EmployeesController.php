@@ -160,9 +160,4 @@ class EmployeesController extends Controller
         $positions = Position::all();
         return view('custom.auth.editEmployee', ['employee' => $employee,'positions'=>$positions]);
     }
-    public function ViewTrashedEmployees()
-    {
-        $employees = Employee::onlyTrashed()->get();
-        return view('custom/auth/ViewTrashedEmployees',['employees'=> $employees]);
-    }
 }

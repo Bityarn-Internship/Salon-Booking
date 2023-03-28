@@ -155,7 +155,7 @@ class MpesaController extends Controller
     }
 
     public function paymentSuccess(){
-        return view('paymentSuccess');
+        return view('custom/payments/paymentSuccess');
     }
     public function viewMpesaPayments(Request $request){
         if(is_null($request->status) || $request->status == 'Active'){
@@ -169,11 +169,6 @@ class MpesaController extends Controller
     public function destroy($id){
         $mpesapayments = MpesaPayment::find($id)->delete();
         return redirect('viewMpesaPayments');
-    }
-    public function viewTrashedMpesaPayments()
-    {
-        $mpesapayments = MpesaPayment::onlyTrashed()->get();
-        return view('custom/payments/ViewTrashedMpesaPayments',['mpesapayments'=> $mpesapayments]);
     }
     public function restoreMpesaPayment($id){
         MpesaPayment::whereId($id)->restore();

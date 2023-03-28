@@ -29,7 +29,7 @@
                                             @csrf
                                             <div class="row">
                                                 @if(session()->has('message'))
-                                                    <div class="valid-feedback">
+                                                    <div class = "alert alert-info" role = "alert">
                                                         {{ session()->get('message') }}
                                                     </div>
                                                 @endif

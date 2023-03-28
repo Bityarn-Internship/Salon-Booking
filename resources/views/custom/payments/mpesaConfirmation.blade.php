@@ -35,34 +35,33 @@
                                                 @csrf
                                                 <div class="row">
                                                     @if(session()->has('message'))
-                                                        <div class="valid-feedback">
+                                                        <div class = "alert alert-info" role = "alert">
                                                             {{ session()->get('message') }}
                                                         </div>
                                                     @endif
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('transaction'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('transaction') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter the transaction code..." name = "transaction">
                                                             <label for="floatingnameInput">Transaction Code</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('transaction'))
-                                                                {{ $errors->first('transaction') }}
-                                                            @endif
                                                         </div>
                                                     </div>
                                                     
                                                 </div>
                                                 <div class="row">
+                                                    @if($errors()->has('bookingID'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('bookingID') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="col-md-12 pt-2">
                                                         <input hidden value = "{{$bookingID}}" name = "bookingID">
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('bookingID'))
-                                                                {{ $errors->first('bookingID') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 

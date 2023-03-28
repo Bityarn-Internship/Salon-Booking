@@ -135,11 +135,6 @@ class PaypalPaymentController extends Controller
         return redirect('viewPaypalPayments');
 
     }
-    public function viewTrashedPayPalPayments()
-    {
-        $paypalpayments = PaypalPayment::onlyTrashed()->get();
-        return view('custom/payments/viewTrashedPaypalPayments',['paypalpayments'=> $paypalpayments]);
-    }
     public function restorePaypalPayment($id){
         PaypalPayment::whereId($id)->restore();
         return redirect('viewTrashedPaypalPayments');

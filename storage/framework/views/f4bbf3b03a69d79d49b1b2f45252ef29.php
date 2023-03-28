@@ -33,19 +33,32 @@
                                     </div>
 
                                     <div class="mt-4">
+                                        <div class = "row">
+                                            <?php if(session()->has('message')): ?>
+                                                <div class = "alert alert-info" role = "alert">
+                                                    <?php echo e(session()->get('message')); ?>
+
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 pt-2">
+                                                <form action="/bookings" method="GET">
+                                                    <label for="services" class="form-check-label">Filter by service category: </label>
+                                                    <button class="float-end btn btn-sm btn-primary"><b>Filter</b></button>
+                                                    <br>
+                                                    <?php $__currentLoopData = $serviceCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $serviceCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <input class="form-check-input" type="checkbox" name="serviceCategory[]" value="<?php echo e($serviceCategory->id); ?>">
+                                                        <label class="form-check-label" for="flexCheckDefault"><?php echo e($serviceCategory->name); ?></label>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    
                                         <form action = "<?php echo e(url('/bookings')); ?>" method = "post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
-                                            <div class = "row">
-                                                <?php if(session()->has('message')): ?>
-                                                    <div class = "alert alert-info" role = "alert">
-                                                        <?php echo e(session()->get('message')); ?>
-
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
 
                                             <div class="row">
-
                                                 <div class="col-md-12 pt-2">
                                                     <?php if($errors->has('services')): ?>
                                                         <div class = "alert alert-danger" role = "alert">

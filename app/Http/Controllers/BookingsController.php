@@ -17,10 +17,14 @@ use Session;
 
 class BookingsController extends Controller
 {
-    public function index(){
-        $services = Service::all();
+    public function index(Request $request){
+        $services = Service::when($request->serviceCategory != null, function($query) use($request){
+            return $query->whereIn('serviceCategoryID', $request->serviceCategory);
+        })
+        ->where('deleted_at', NULL)->get();
+
         $serviceCategories = ServiceCategory::all();
-        return view('custom/bookings/bookings', ['services'=>$services,'serviceCategories'=>$serviceCategories]);
+        return view('custom/bookings/bookings', ['services'=>$services,'serviceCategories'=>$serviceCategories, 'clientID'=>$request->clientID]);
     }
 
     public function store(Request $request){
@@ -173,12 +177,6 @@ class BookingsController extends Controller
         return redirect('/viewBookings')->with('message', 'Booking deleted successfully!');
     }
 
-    public function ViewTrashedBookings()
-    {
-        $bookings = Booking::onlyTrashed()->get();
-        return view('custom/bookings/ViewTrashedBookings',['bookings'=> $bookings]);
-    }
-
     //restore deleted booking
     public function restoreBooking($id){
         Booking::whereId($id)->restore();
@@ -193,7 +191,8 @@ class BookingsController extends Controller
 
     public function booking($id){
         $services = Service::all();
-        return view('custom/bookings/bookings', ['clientID' => $id, 'services'=>$services]);
+        $serviceCategories = ServiceCategory::all();
+        return view('custom/bookings/bookings', ['clientID' => $id, 'services'=>$services, 'serviceCategories'=>$serviceCategories]);
     }
 
     public function viewBooking($id){

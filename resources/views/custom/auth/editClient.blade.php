@@ -50,13 +50,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="alert alert-info" role="alert">
-                                                            {{ session()->get('message') }}
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                                <div class="row">
                                                     <div class="col-md-12 pt-2">
                                                         @if($errors->has('lastName'))
                                                             <div class="alert alert-danger" role="alert">
@@ -68,13 +61,6 @@
                                                             <label for="floatingnameInput">Last Name</label>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="alert alert-info" role="alert">
-                                                            {{ session()->get('message') }}
-                                                        </div>
-                                                    @endif
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
@@ -89,13 +75,6 @@
                                                         </div>
 
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="alert alert-info" role="alert">
-                                                            {{ session()->get('message') }}
-                                                        </div>
-                                                    @endif
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">

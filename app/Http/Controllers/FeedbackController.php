@@ -23,11 +23,6 @@ class FeedbackController extends Controller
         $feedback = Feedback::find($id);
         return view('custom/home/editFeedback', ['feedback' => $feedback]);
     }
-    public function viewTrashedFeedback()
-    {
-        $feedbacks = Feedback::onlyTrashed()->get();
-        return view('custom/home/viewTrashedFeedback',['feedbacks'=> $feedbacks]);
-    }
 
     public function store(Request $request){
         $input = $request->all();

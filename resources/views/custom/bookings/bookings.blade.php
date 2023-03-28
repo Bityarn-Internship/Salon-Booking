@@ -33,27 +33,31 @@
                                     </div>
 
                                     <div class="mt-4">
+                                        <div class = "row">
+                                            @if(session()->has('message'))
+                                                <div class = "alert alert-info" role = "alert">
+                                                    {{ session()->get('message') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 pt-2">
+                                                <form action="/bookings" method="GET">
+                                                    <label for="services" class="form-check-label">Filter by service category: </label>
+                                                    <button class="float-end btn btn-sm btn-primary"><b>Filter</b></button>
+                                                    <br>
+                                                    @foreach($serviceCategories as $serviceCategory)
+                                                        <input class="form-check-input" type="checkbox" name="serviceCategory[]" value="{{$serviceCategory->id}}">
+                                                        <label class="form-check-label" for="flexCheckDefault">{{$serviceCategory->name}}</label>
+                                                    @endforeach
+                                                </form>
+                                            </div>
+                                        </div>
+                                    
                                         <form action = "{{ url('/bookings') }}" method = "post" enctype="multipart/form-data">
                                             @csrf
-                                            <div class = "row">
-                                                @if(session()->has('message'))
-                                                    <div class = "alert alert-info" role = "alert">
-                                                        {{ session()->get('message') }}
-                                                    </div>
-                                                @endif
-                                            </div>
 
                                             <div class="row">
-                                                <div class="col-md-12 pt-2">
-                                                    <form action="/bookings" method="GET">
-                                                        <label for="services" class="form-check-label">Filter by service category: </label>
-                                                        <br>
-                                                        @foreach($serviceCategories as $serviceCategory)
-                                                            <input class="form-check-input" type="checkbox" name="serviceCategory" value="{{$serviceCategory->id}}">
-                                                            <label class="form-check-label" for="flexCheckDefault">{{$serviceCategory->name}}</label>
-                                                        @endforeach
-                                                    </form>
-                                                </div>
                                                 <div class="col-md-12 pt-2">
                                                     @if($errors->has('services'))
                                                         <div class = "alert alert-danger" role = "alert">

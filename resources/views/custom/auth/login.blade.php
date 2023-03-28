@@ -98,7 +98,7 @@
 
                                                 <div class="mb-3">
                                                     <div class="float-end">
-                                                        <a href="auth-recoverpw-2" class="text-muted">Forgot
+                                                        <a href="forgotPassword" class="text-muted">Forgot
                                                             password?</a>
                                                     </div>
                                                     <label class="form-label">Password</label>

@@ -17,6 +17,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientProfileController;
 use App\Http\Controllers\ServiceCategoriesController;
+use App\Http\Controllers\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,14 @@ Route::controller(ClientProfileController::class)->group(function(){
     Route::get('/clientProfile', 'index');
     Route::post('/changeDetails/{id}', 'update');
     Route::post('/clientProfile', 'changePassword')->name('changePassword');
+});
+Route::controller(PasswordController::class)->group(function(){
+    Route::get('/forgotPassword','index');
+    Route::post('/sendResetLink','sendResetLink');
+    Route::get('/resetPassword/{token}','resetPassword')->name('resetPassword');
+    Route::post('/passwordReset','passwordReset');
+    Route::get('/resetSuccess','resetSuccess');
+
 });
 
 Route::controller(FeedbackController::class)->group(function(){

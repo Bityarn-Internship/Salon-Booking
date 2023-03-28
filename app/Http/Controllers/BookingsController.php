@@ -177,12 +177,6 @@ class BookingsController extends Controller
         return redirect('/viewBookings')->with('message', 'Booking deleted successfully!');
     }
 
-    public function ViewTrashedBookings()
-    {
-        $bookings = Booking::onlyTrashed()->get();
-        return view('custom/bookings/ViewTrashedBookings',['bookings'=> $bookings]);
-    }
-
     //restore deleted booking
     public function restoreBooking($id){
         Booking::whereId($id)->restore();

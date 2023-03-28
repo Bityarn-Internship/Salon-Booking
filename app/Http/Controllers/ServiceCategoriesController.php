@@ -8,9 +8,6 @@ use Validator;
 
 class ServiceCategoriesController extends Controller
 {
-    public function index(){
-        return view('custom/serviceCategories/serviceCategory');
-    }
     public function store(Request $request){
         $input = $request->all();
 

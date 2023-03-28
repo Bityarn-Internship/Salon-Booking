@@ -83,25 +83,30 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                      <div class="row">
+                                                <div class="row">
                                                     <div class="col-md-12 pt-2">
-                                                    <label for="serviceCategoryID" class="form-label">Choose a service category:</label>
-                                                    <select id="serviceCategoryID" class="form-select" name = "serviceCategoryID">
-                                                        <option disabled selected value="">Select the service category</option>
-                                                        @foreach($serviceCategories as $serviceCategory)
-                                                            <option value="{{$serviceCategory->id}}">{{$serviceCategory->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                                        @if($errors->has('serviceCategoryID'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('serviceCategoryID') }}
+                                                            </div>
+                                                        @endif
+                                                        <label for="serviceCategoryID" class="form-label">Choose a service category:</label>
+                                                        <select id="serviceCategoryID" class="form-select" name = "serviceCategoryID">
+                                                            <option disabled selected value="">Select the service category</option>
+                                                            @foreach($serviceCategories as $serviceCategory)
+                                                                <option value="{{$serviceCategory->id}}">{{$serviceCategory->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
 
                                                 <div class="mt-4 d-grid">
                                                     <button class="btn btn-primary waves-effect waves-light"
-                                                            type="submit">Submit</button>
+                                                        type="submit">Submit</button>
                                                 </div>
 
                                             </form>
-                                                </div>
+                                            </div>
                                             <div class="modal-footer">
                                                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                                 <!-- <button type="button" class="btn btn-primary">Save changes</button> -->

@@ -9,10 +9,6 @@ use Validator;
 
 class ServicesController extends Controller
 {
-    public function index(){
-        $serviceCategories = ServiceCategory::all();
-        return view('custom/services/services',['serviceCategories'=>$serviceCategories]);
-    }
     public function viewServices(Request $request){
         $serviceCategories = ServiceCategory::all();
         if(is_null($request->status) || $request->status == 'Active'){
@@ -84,11 +80,7 @@ class ServicesController extends Controller
 
         return redirect('/viewServices')->with('message', 'Service edited successfully!');
     }
-    public function ViewTrashedServices()
-    {
-        $services = Service::onlyTrashed()->get();
-        return view('custom/services/ViewTrashedServices',['services'=> $services]);
-    }
+    
     public function destroy($id)
     {
         $service = Service::find($id)->delete();

@@ -49,13 +49,7 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="alert alert-info" role="alert">
-                                                            {{ session()->get('message') }}
-                                                        </div>
-                                                    @endif
-                                                </div>
+                                                
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
                                                         @if($errors->has('lastName'))
@@ -67,21 +61,9 @@
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "{{$employee->lastName}}" name = "lastName">
                                                             <label for="floatingnameInput">Last Name</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('lastName'))
-                                                                {{ $errors->first('lastName') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="alert alert-info" role="alert">
-                                                            {{ session()->get('message') }}
-                                                        </div>
-                                                    @endif
-                                                </div>
+                                               
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
                                                         @if($errors->has('email'))
@@ -93,21 +75,9 @@
                                                             <input type="email" class="form-control" id="floatingnameInput" value = "{{$employee->email}}" name = "email">
                                                             <label for="floatingnameInput">Email Address</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('email'))
-                                                                {{ $errors->first('email') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="alert alert-info" role="alert">
-                                                            {{ session()->get('message') }}
-                                                        </div>
-                                                    @endif
-                                                </div>
+                                                
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
                                                         @if($errors->has('telephoneNumber'))
@@ -119,21 +89,9 @@
                                                             <input type="tel" class="form-control" id="floatingnameInput" value = "{{$employee->telephoneNumber}}" name = "telephoneNumber">
                                                             <label for="floatingnameInput">Telephone Number</label>
                                                         </div>
-
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('telephoneNumber'))
-                                                                {{ $errors->first('telephoneNumber') }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="alert alert-info" role="alert">
-                                                            {{ session()->get('message') }}
-                                                        </div>
-                                                    @endif
-                                                </div>
+                                                
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
                                                         @if($errors->has('IDNumber'))
@@ -147,13 +105,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    @if(session()->has('message'))
-                                                        <div class="alert alert-info" role="alert">
-                                                            {{ session()->get('message') }}
-                                                        </div>
-                                                    @endif
-                                                </div>
+                                                
                                                 <div class = "row">
                                                     <div class="col-md-12 pt-2">
                                                         @if($errors->has('positionID'))
@@ -168,11 +120,6 @@
                                                                 @endforeach
                                                             </select>
                                                             <label for="floatingSelectGrid">Select a position</label>
-                                                            <div class="invalid-feedback">
-                                                                @if($errors->has('positionID'))
-                                                                    {{ $errors->first('positionID') }}
-                                                                @endif
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

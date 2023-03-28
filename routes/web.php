@@ -33,16 +33,6 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
-//Update User Details
-Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
-Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
-
-// Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-
-//Language Translation
-Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
-
-
 Route::controller(UsersController::class)->group(function(){
     Route::get('/clients', 'index');
     Route::get('/login', 'login')->name('login');
@@ -106,7 +96,6 @@ Route::controller(BookedServicesController::class)->group(function(){
     Route::get('/bookService/{id}', 'index');
     Route::post('/bookService', 'store');
     Route::get('/viewBookedServices', 'viewBookedServices');
-    Route::get('/viewTrashedBookedServices', 'viewTrashedBookedServices');
     Route::get('/editBookedService/{id}', 'edit');
     Route::post('/updateBookedService/{id}', 'update');
     Route::get('/deleteBookedService/{id}', 'destroy');
@@ -148,10 +137,8 @@ Route::group([
 
     });
     Route::controller(ServicesController::class)->group(function(){
-        Route::get('/services', 'index');
         Route::get('/viewServices', 'viewServices');
         Route::get('/editService/{id}', 'edit');
-        Route::get('/viewTrashedServices', 'viewTrashedServices');
         Route::post('/services', 'store');
         Route::post('/updateService/{id}', 'update');
         Route::get('/deleteService/{id}', 'destroy');
@@ -159,13 +146,11 @@ Route::group([
         Route::get('/restoreServices', 'restoreServices');
     });
     Route::controller(ServiceCategoriesController::class)->group(function(){
-        Route::get('/serviceCategory', 'index');
         Route::post('/serviceCategories', 'store');
         Route::get('/editServiceCategory/{id}', 'edit');
         Route::post('/updateServiceCategory/{id}', 'update');
         Route::get('/deleteServiceCategory/{id}','destroy');
         Route::get('/viewServiceCategories','viewServiceCategories');
-        Route::get('/viewTrashedServiceCategories','viewTrashedServiceCategories');
         Route::get('/restoreServiceCategory/{id}','restoreServiceCategory');
         Route::get('/restoreServiceCategories','restoreServiceCategories');
     });
@@ -173,7 +158,6 @@ Route::group([
     Route::controller(FeedbackController::class)->group(function(){
         Route::get('/viewFeedback', 'viewFeedback');
         Route::get('/editFeedback/{id}', 'edit');
-        Route::get('/viewTrashedFeedback', 'viewTrashedFeedback');
         Route::post('/feedback', 'store');
         Route::post('/updateFeedback/{id}', 'update');
         Route::get('/deleteFeedback/{id}', 'destroy');
@@ -182,11 +166,9 @@ Route::group([
     });
 
     Route::controller(PositionsController::class)->group(function(){
-        Route::get('/positions', 'index');
         Route::post('/positions', 'store');
         Route::get('/viewPositions', 'viewPositions');
         Route::get('/editPosition/{id}', 'edit');
-        Route::get('/viewTrashedPositions', 'viewTrashedPositions');
         Route::post('/updatePosition/{id}', 'update');
         Route::get('/deletePosition/{id}', 'destroy');
         Route::get('/restorePosition/{id}', 'restorePosition');
@@ -200,7 +182,6 @@ Route::group([
         Route::get('/restoreEmployees', 'restoreEmployees');
         Route::get('/viewEmployees', 'viewEmployees');
         Route::get('/editEmployee/{id}', 'edit');
-        Route::get('/viewTrashedEmployees', 'viewTrashedEmployees');
     });
 
     Route::controller(BookingsController::class)->group(function(){
@@ -211,7 +192,6 @@ Route::group([
         Route::get('/deleteBooking/{id}', 'destroy');
         Route::get('/restoreBooking/{id}', 'restoreBooking');
         Route::get('/restoreBookings', 'restoreBookings');
-        Route::get('/viewTrashedBookings', 'viewTrashedBookings');
         Route::get('/bookings/{id}', 'booking');
     });
 
@@ -219,7 +199,6 @@ Route::group([
         Route::get('/deleteClient/{id}', 'destroy');
         Route::get('/restoreClient/{id}', 'restoreClient');
         Route::get('/restoreClients', 'restoreClients');
-        Route::get('/viewTrashedClients', 'viewTrashedClients');
         Route::get('/viewClients', 'viewClients');
     });
 
@@ -229,12 +208,10 @@ Route::group([
     });
 
     Route::controller(EmployeeServicesController::class)->group(function(){
-        Route::get('/employeeServices', 'assign');
         Route::post('/employeeServices', 'store');
         Route::get('/viewEmployeeServices', 'viewEmployeeServices');
         Route::get('/editEmployeeService/{id}', 'edit');
         Route::get('/viewEmployeeServices', 'viewEmployeeServices');
-        Route::get('/viewTrashedEmployeeServices', 'viewTrashedEmployeeServices');
         Route::post('/updateEmployeeService/{id}', 'update');
         Route::get('/deleteEmployeeService/{id}', 'destroy');
         Route::get('/restoreEmployeeService/{id}', 'restoreEmployeeService');
@@ -243,7 +220,6 @@ Route::group([
 
     Route::controller(PaypalPaymentController::class)->group(function(){
         Route::get('/deletePaypalPayment/{id}','destroy');
-        Route::get('/viewTrashedPaypalPayments','viewTrashedPaypalPayments');
         Route::get('/restorePaypalPayment/{id}','restorePaypalPayment');
         Route::get('/restorePaypalPayments','restorePaypalPayments');
         Route::get('/viewPaypalPayments','viewPaypalPayments');
@@ -251,7 +227,6 @@ Route::group([
 
     Route::controller(MpesaController::class)->group(function(){
         Route::get('/deleteMpesaPayment/{id}','destroy');
-        Route::get('/viewTrashedMpesaPayments','viewTrashedMpesaPayments');
         Route::get('/restoreMpesaPayment/{id}','restoreMpesaPayment');
         Route::get('/restoreMpesaPayments','restoreMpesaPayments');
         Route::get('/viewMpesaPayments','viewMpesaPayments');

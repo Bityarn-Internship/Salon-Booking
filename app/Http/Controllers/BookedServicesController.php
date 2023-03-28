@@ -117,10 +117,4 @@ class BookedServicesController extends Controller
         BookedService::onlyTrashed()->restore();
         return back();
     }
-    public function ViewTrashedBookedServices()
-    {
-        $bookedServices = BookedService::onlyTrashed()->get();
-        return view('custom/bookedServices/ViewTrashedBookedServices',['bookedServices'=> $bookedServices]);
-    }
-
 }

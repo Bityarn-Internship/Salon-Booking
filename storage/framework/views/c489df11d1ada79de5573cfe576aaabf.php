@@ -52,14 +52,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <?php if(session()->has('message')): ?>
-                                                        <div class="alert alert-info" role="alert">
-                                                            <?php echo e(session()->get('message')); ?>
-
-                                                        </div>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <div class="row">
                                                     <div class="col-md-12 pt-2">
                                                         <?php if($errors->has('lastName')): ?>
                                                             <div class="alert alert-danger" role="alert">
@@ -72,14 +64,6 @@
                                                             <label for="floatingnameInput">Last Name</label>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <?php if(session()->has('message')): ?>
-                                                        <div class="alert alert-info" role="alert">
-                                                            <?php echo e(session()->get('message')); ?>
-
-                                                        </div>
-                                                    <?php endif; ?>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
@@ -95,14 +79,6 @@
                                                         </div>
 
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <?php if(session()->has('message')): ?>
-                                                        <div class="alert alert-info" role="alert">
-                                                            <?php echo e(session()->get('message')); ?>
-
-                                                        </div>
-                                                    <?php endif; ?>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">

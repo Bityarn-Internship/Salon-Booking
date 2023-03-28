@@ -88,15 +88,32 @@
                                         </div>
 
                                         <div class="mt-4">
+                                            <div class="row">
+                                                @if(session()->has('message'))
+                                                    <div class="alert alert-info" role="alert">
+                                                        {{ session()->get('message') }}
+                                                    </div>
+                                                @endif
+                                            </div>
                                             <form action="{{url('/login')}}" method="POST">
                                                 @csrf
                                                 <div class="mb-3">
+                                                    @if($errors->has('email'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('email') }}
+                                                        </div>
+                                                    @endif
                                                     <label for="email" class="form-label">Email</label>
                                                     <input type="email" class="form-control" id="email" name="email"
                                                            placeholder="Enter Your Email">
                                                 </div>
 
                                                 <div class="mb-3">
+                                                    @if($errors->has('password'))
+                                                        <div class = "alert alert-danger" role = "alert">
+                                                            {{ $errors->first('password') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="float-end">
                                                         <a href="auth-recoverpw-2" class="text-muted">Forgot
                                                             password?</a>
@@ -152,7 +169,7 @@
                                             </form>
                                             <div class=" text-center">
                                                 <p>Don't have an account ? <a href="{{ URL::to('/clients') }}"
-                                                                              class="fw-medium text-primary"> Signup now </a> </p>
+                                                    class="fw-medium text-primary"> Signup now </a> </p>
                                             </div>
                                         </div>
                                     </div>

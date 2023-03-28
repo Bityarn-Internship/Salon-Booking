@@ -10,8 +10,10 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Booking Details
                         <span class="px-auto">
+                            @if($booking->status != 'Complete')
                             <a class="btn btn-outline-success btn-sm edit float-end" href="{{url('completePayment/'.$booking->id)}}" title="Complete Payment">
                             <i class="bx bx-dollar"></i></a>
+                            @endif
 
                             <i class="fas fa-pencil-alt btn btn-outline-primary btn-sm edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
                             
@@ -39,44 +41,41 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
+                                                    @if($errors->has('bookingID'))
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {{ $errors->first('bookingID') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <input type="text" class="form-control" id="floatingnameInput" value = "{{$booking->id}}" name = "bookingID" readonly>
                                                         <label for="floatingnameInput">Booking ID</label>
                                                     </div>
-
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('bookingID'))
-                                                            {{ $errors->first('bookingID') }}
-                                                        @endif
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
+                                                    @if($errors->has('date'))
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {{ $errors->first('date') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <input type="date" class="form-control" id="floatingnameInput" value = "{{$booking->date}}" name = "date">
                                                         <label for="floatingnameInput">Date</label>
                                                     </div>
-
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('date'))
-                                                            {{ $errors->first('date') }}
-                                                        @endif
-                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-md-12 pt-2">
+                                                    @if($errors->has('time'))
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {{ $errors->first('time') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="form-floating mb-3">
                                                         <input type="time" class="form-control" id="floatingnameInput" value = "{{$booking->time}}" name = "time">
                                                         <label for="floatingnameInput">Time</label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback">
-                                                        @if($errors->has('time'))
-                                                            {{ $errors->first('time') }}
-                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -123,8 +122,14 @@
                                 <th scope="row"> Status:</th>
                                 <td>{{$booking->status}}</td>
                             </tr>
+                            
                             </tbody>
-                        </table>
+                        </table><br>
+                        <center><a href = "{{url('/viewInvoice/'.$booking->id)}}" target = "_blank"><button type="button" class="btn btn-sm btn-primary">
+                            <b>Generate Invoice</b>
+                        </button></a></center>
+                    </span>
+
                     </div>
                 </div>
             </div>

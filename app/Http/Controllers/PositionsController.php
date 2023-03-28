@@ -8,9 +8,6 @@ use Validator;
 
 class PositionsController extends Controller
 {
-    public function index(){
-        return view('custom/positions/positions');
-    }
     public function viewPositions(Request $request){
         if(is_null($request->status) || $request->status == 'Active'){
             $positions = Position::all();
@@ -24,11 +21,7 @@ class PositionsController extends Controller
         $position = Position::find($id);
         return view('custom.positions.editPosition', ['position' => $position]);
     }
-    public function ViewTrashedPositions()
-    {
-        $positions = Position::onlyTrashed()->get();
-        return view('custom/positions/ViewTrashedPositions',['positions'=> $positions]);
-    }
+    
     public function store(Request $request){
         $input = $request->all();
 

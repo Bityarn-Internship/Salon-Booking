@@ -39,7 +39,7 @@
                                                 @csrf
                                                 <div class="row">
                                                     @if(session()->has('message'))
-                                                        <div class="valid-feedback">
+                                                        <div class = "alert alert-info" role = "alert">
                                                             {{ session()->get('message') }}
                                                         </div>
                                                     @endif
@@ -63,33 +63,28 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('amount'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('amount') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingnameInput" value = "{{ $cost }}" name = "amount" readonly>
                                                             <label for="floatingnameInput">Amount</label>
-                                                        </div>
-
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('amount'))
-                                                                <div class = "alert alert-danger" role = "alert">
-                                                                    {{ $errors->first('amount') }}
-                                                                </div>
-                                                            @endif
                                                         </div>
                                                     </div>
                                                     
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 pt-2">
+                                                        @if($errors->has('telephoneNumber'))
+                                                            <div class = "alert alert-danger" role = "alert">
+                                                                {{ $errors->first('telephoneNumber') }}
+                                                            </div>
+                                                        @endif
                                                         <div class="form-floating mb-3">
                                                             <input type="tel" class="form-control" id="floatingemailInput" placeholder="Enter your telephone number..." name = "telephoneNumber">
                                                             <label for="floatingemailInput">Telephone Number</label>
-                                                        </div>
-                                                        <div class="invalid-feedback">
-                                                            @if($errors->has('telephoneNumber'))
-                                                                <div class = "alert alert-danger" role = "alert">
-                                                                    {{ $errors->first('telephoneNumber') }}
-                                                                </div>
-                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

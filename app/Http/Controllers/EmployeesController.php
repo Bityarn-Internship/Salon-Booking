@@ -152,7 +152,7 @@ class EmployeesController extends Controller
             $employees = Employee::onlyTrashed()->get();
         }
 
-        return view('custom/auth/viewEmployees', ['employees' => $employees, 'positions'=>$positions]);
+        return view('custom/auth/viewEmployees', ['employees' => $employees, 'positions'=>$positions, 'status'=>$request->status]);
     }
 
     public function edit($id){

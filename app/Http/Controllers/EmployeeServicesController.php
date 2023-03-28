@@ -57,7 +57,7 @@ class EmployeeServicesController extends Controller
             $employeeServices = EmployeeService::onlyTrashed()->get();
         }
 
-        return view('custom/employeeServices/viewEmployeeServices',['employees'=>$employees,'services'=>$services,'employeeServices' => $employeeServices]);
+        return view('custom/employeeServices/viewEmployeeServices',['employees'=>$employees,'services'=>$services,'employeeServices' => $employeeServices, 'status'=>$request->status]);
     }
     public function edit($id){
         $employeeService = EmployeeService::find($id);

@@ -27,7 +27,14 @@
 
                     <div class="table-responsive">
                         <div class="d-flex gx-10">
-                            <div class="col"></div>
+                            <div class="col">
+                                @if($status == 'Inactive') 
+                                    <a href = "/restorePaypalPayments"><button type="button" class="btn btn-primary">
+                                        <b>Restore All</b>
+                                        <i class="fas fa-trash-restore"></i>
+                                    </button></a>
+                                @endif
+                            </div>
                             <div class="col-md-4">
                                 <form action = "{{url('/viewPaypalPayments')}}" method = "GET">
                                     @csrf
@@ -69,9 +76,15 @@
                                     <td>{{ $paypalpayment-> amount }}</td>
                                     <td>{{ $paypalpayment-> currency }}</td>
                                     <td>
+                                        @if($status != 'Inactive') 
                                         <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deletePaypalPayment/'.$paypalpayment->id) }}" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
+                                        @else
+                                            <a class="btn btn-outline-primary btn-sm edit" href="{{url ('restorePaypalPayment/'.$paypalpayment->id) }}" title="Restore">
+                                                <i class="fas fa-trash-restore"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

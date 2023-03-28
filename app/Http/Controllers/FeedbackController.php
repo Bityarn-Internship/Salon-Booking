@@ -17,7 +17,7 @@ class FeedbackController extends Controller
         }else{
             $feedbacks = Feedback::onlyTrashed()->get();
         }
-        return view('custom/home/viewFeedback',['feedbacks'=>$feedbacks]);
+        return view('custom/home/viewFeedback',['feedbacks'=>$feedbacks, 'status'=>$request->status]);
     }
     public function edit($id){
         $feedback = Feedback::find($id);

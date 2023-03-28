@@ -185,7 +185,7 @@ class UsersController extends Controller
         }else{
             $clients = User::onlyTrashed()->get();
         }
-        return view('custom/auth/viewClients', ['clients' => $clients]);
+        return view('custom/auth/viewClients', ['clients' => $clients, 'status'=>$request->status]);
     }
 
     public function edit($id){

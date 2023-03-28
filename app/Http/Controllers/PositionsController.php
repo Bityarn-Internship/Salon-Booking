@@ -18,7 +18,7 @@ class PositionsController extends Controller
             $positions = Position::onlyTrashed()->get();
         }
     
-        return view('custom/positions/viewPositions', ['positions' => $positions]);
+        return view('custom/positions/viewPositions', ['positions' => $positions, 'status'=>$request->status]);
     }
     public function edit($id){
         $position = Position::find($id);

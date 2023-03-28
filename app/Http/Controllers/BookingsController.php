@@ -114,7 +114,7 @@ class BookingsController extends Controller
             $bookings = Booking::onlyTrashed()->get();
         }
 
-        return view('custom/bookings/viewBookings', ['bookings' => $bookings]);
+        return view('custom/bookings/viewBookings', ['bookings' => $bookings, 'status'=>$request->status]);
     }
 
     //specific client bookings

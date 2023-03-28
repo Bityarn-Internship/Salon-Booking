@@ -164,7 +164,7 @@ class MpesaController extends Controller
             $mpesapayments = MpesaPayment::onlyTrashed()->get();
         }
         
-        return view('custom/payments/viewMpesaPayments',['mpesapayments'=> $mpesapayments]);
+        return view('custom/payments/viewMpesaPayments',['mpesapayments'=> $mpesapayments, 'status'=>$request->status]);
     }
     public function destroy($id){
         $mpesapayments = MpesaPayment::find($id)->delete();

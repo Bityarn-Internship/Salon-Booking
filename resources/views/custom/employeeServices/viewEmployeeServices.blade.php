@@ -29,9 +29,16 @@
                         <div class="d-flex gx-10">
                             <div class = "col">
                                 <span style="display: inline-block">
-                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <b>Add Employee Service</b>
-                                    </button>
+                                    @if($status != 'Inactive')
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <b>Add Employee Service</b>
+                                        </button>
+                                    @else
+                                        <a href = "/restoreEmployeeServices"><button type="button" class="btn btn-primary">
+                                            <b>Restore All</b>
+                                            <i class="fas fa-trash-restore"></i>
+                                    </button></a>
+                                    @endif
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -134,12 +141,18 @@
                                     <td>{{\App\Http\Controllers\EmployeesController::getEmployeeName($employeeService->employeeID)}}</td>
                                     <td>{{\App\Http\Controllers\ServicesController::getServiceName($employeeService->serviceID)}}</td>
                                     <td>
+                                        @if($status != 'Inactive')
                                         <a class="btn btn-outline-success btn-sm edit" href="{{url ('editEmployeeService/'.$employeeService->id) }}" title="Delete">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteEmployeeService/'.$employeeService->id) }}" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
+                                        @else
+                                            <a class="btn btn-outline-primary btn-sm edit" href="{{url ('restoreEmployeeService/'.$employeeService->id) }}" title="Restore">
+                                                <i class="fas fa-trash-restore"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

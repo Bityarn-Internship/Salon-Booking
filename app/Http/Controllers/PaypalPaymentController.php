@@ -126,7 +126,7 @@ class PaypalPaymentController extends Controller
             $paypalpayments = PaypalPayment::onlyTrashed()->get();
         }
         
-        return view('custom/payments/viewPaypalPayments',['paypalpayments'=> $paypalpayments]);
+        return view('custom/payments/viewPaypalPayments',['paypalpayments'=> $paypalpayments, 'status'=>$request->status]);
 
     }
     public function destroy($id){

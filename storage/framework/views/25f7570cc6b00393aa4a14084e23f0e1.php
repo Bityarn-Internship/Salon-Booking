@@ -28,7 +28,14 @@
 
                     <div class="table-responsive">
                         <div class="d-flex gx-10">
-                            <div class="col"></div>
+                            <div class="col">
+                                <?php if($status == 'Inactive'): ?> 
+                                    <a href = "/restoreFeedbacks"><button type="button" class="btn btn-primary">
+                                        <b>Restore All</b>
+                                        <i class="fas fa-trash-restore"></i>
+                                    </button></a>
+                                <?php endif; ?>
+                            </div>
                             <div class="col-md-4">
                                 <form action = "<?php echo e(url('/viewFeedback')); ?>" method = "GET">
                                     <?php echo csrf_field(); ?>
@@ -68,12 +75,19 @@
                                     <td><?php echo e($feedback->message); ?></td>
                                     <td><?php echo e($feedback->status); ?></td>
                                     <td>
+                                        <?php if($status != 'Inactive'): ?> 
                                         <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editFeedback/'.$feedback->id)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteFeedback/'.$feedback->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
+                                        <?php else: ?>
+                                            <a class="btn btn-outline-primary btn-sm edit" href="<?php echo e(url ('restoreFeedback/'.$feedback->id)); ?>" title="Restore">
+                                                <i class="fas fa-trash-restore"></i>
+                                            </a>
+                                        <?php endif; ?>
+
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

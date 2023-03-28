@@ -28,8 +28,15 @@
                     <div class="table-responsive">
                         <div class="d-flex gx-10">
                             <div class = "col">
+                                @if($status != 'Inactive')
                                 <span style="display: inline-block"><h3><a class="btn btn-primary" href="{{url('/viewClients') }}"><b>Add Booking</b>
                                     </a></h3></span>
+                                @else
+                                    <a href = "/restoreBookings"><button type="button" class="btn btn-primary">
+                                        <b>Restore All</b>
+                                        <i class="fas fa-trash-restore"></i>
+                                   </button></a>
+                                @endif
                             </div>
                             <div class="col-md-4">
                                 <form action = "{{url('/viewBookings')}}" method = "GET">
@@ -69,11 +76,18 @@
                                     <td>{{$booking->time}}</td>
                                     <td>{{$booking->cost}}</td>
                                     <td>{{$booking->status}}</td>
-
+                                    
                                     <td>
+                                        @if($status != 'Inactive')
                                         <span style="display: inline-block"><h3><a class="btn btn-primary" href="{{url('/viewBooking/'.$booking->id) }}"><b>View Booking</b>
                                         </a></h3></span>
+                                        @else
+                                            <a class="btn btn-outline-primary btn-sm edit" href="{{url ('restoreBooking/'.$booking->id) }}" title="Restore">
+                                                <i class="fas fa-trash-restore"></i>
+                                            </a>
+                                        @endif
                                     </td>
+                                    
                                 </tr>
                             @endforeach
 

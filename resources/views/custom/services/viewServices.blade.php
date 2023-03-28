@@ -36,6 +36,7 @@
                                    @else
                                    <a href = "/restoreServices"><button type="button" class="btn btn-primary">
                                         <b>Restore All</b>
+                                        <i class="fas fa-trash-restore"></i>
                                    </button></a>
                                    @endif
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -155,8 +156,8 @@
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         @else
-                                            <a class="btn btn-outline-success btn-sm edit" href="{{url ('restoreService/'.$service->id) }}" title="Restore">
-                                                <i class="fa fa-archive"></i>
+                                            <a class="btn btn-outline-primary btn-sm edit" href="{{url ('restoreService/'.$service->id) }}" title="Restore">
+                                                <i class="fas fa-trash-restore"></i>
                                             </a>
                                         @endif
                                     </td>

@@ -30,9 +30,17 @@
                         <div class="d-flex gx-10">
                             <div class = "col">
                                 <span style="display: inline-block">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <b>Add Client</b>
-                                    </button>
+                                    <?php if($status != 'Inactive'): ?>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <b>Add Client</b>
+                                        </button>
+                                    <?php else: ?>
+                                        <a href = "/restoreClients"><button type="button" class="btn btn-primary">
+                                            <b>Restore All</b>
+                                            <i class="fas fa-trash-restore"></i>
+                                        </button></a>
+                                    <?php endif; ?>
+                                
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -183,6 +191,7 @@
                                     <td><?php echo e($client->email); ?></td>
                                     <td><?php echo e($client->telephoneNumber); ?></td>
                                     <td>
+                                        <?php if($status != 'Inactive'): ?>
                                         <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editClient/'.$client->id)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
@@ -190,6 +199,11 @@
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         <a class="btn btn-success" href="<?php echo e(url ('/bookings/'.$client->id)); ?>">Make a booking</a>
+                                        <?php else: ?>
+                                        <a class="btn btn-outline-primary btn-sm edit" href="<?php echo e(url ('restoreClient/'.$client->id)); ?>" title="Restore">
+                                            <i class="fas fa-trash-restore"></i>
+                                        </a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

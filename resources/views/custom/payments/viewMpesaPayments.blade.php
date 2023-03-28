@@ -27,7 +27,14 @@
 
                     <div class="table-responsive">
                         <div class="d-flex gx-10">
-                            <div class="col"></div>
+                            <div class="col">
+                                @if($status == 'Inactive') 
+                                    <a href = "/restoreMpesaPayments"><button type="button" class="btn btn-primary">
+                                        <b>Restore All</b>
+                                        <i class="fas fa-trash-restore"></i>
+                                    </button></a>
+                                @endif
+                            </div>
                             <div class="col-md-4">
                                 <form action = "{{url('/viewMpesaPayments')}}" method = "GET">
                                     @csrf
@@ -67,9 +74,16 @@
                                     <td>{{ $mpesapayment-> currency }}</td>
                                     <td>{{ $mpesapayment-> telephoneNumber }}</td>
                                     <td>{{ $mpesapayment-> bookingID }}</td>
-                                    <td> <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteMpesaPayment/'.$mpesapayment->id) }}" title="Delete">
+                                    <td> 
+                                        @if($status != 'Inactive') 
+                                        <a class="btn btn-outline-danger btn-sm edit" href="{{url ('deleteMpesaPayment/'.$mpesapayment->id) }}" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
+                                        @else
+                                            <a class="btn btn-outline-primary btn-sm edit" href="{{url ('restoreMpesaPayment/'.$mpesaPayment->id) }}" title="Restore">
+                                                <i class="fas fa-trash-restore"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

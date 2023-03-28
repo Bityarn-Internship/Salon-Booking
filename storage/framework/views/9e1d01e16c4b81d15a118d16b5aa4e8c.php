@@ -27,7 +27,14 @@
 
                     <div class="table-responsive">
                         <div class="d-flex gx-10">
-                            <div class="col"></div>
+                            <div class="col">
+                                <?php if($status == 'Inactive'): ?> 
+                                    <a href = "/restoreMpesaPayments"><button type="button" class="btn btn-primary">
+                                        <b>Restore All</b>
+                                        <i class="fas fa-trash-restore"></i>
+                                    </button></a>
+                                <?php endif; ?>
+                            </div>
                             <div class="col-md-4">
                                 <form action = "<?php echo e(url('/viewMpesaPayments')); ?>" method = "GET">
                                     <?php echo csrf_field(); ?>
@@ -67,9 +74,16 @@
                                     <td><?php echo e($mpesapayment-> currency); ?></td>
                                     <td><?php echo e($mpesapayment-> telephoneNumber); ?></td>
                                     <td><?php echo e($mpesapayment-> bookingID); ?></td>
-                                    <td> <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteMpesaPayment/'.$mpesapayment->id)); ?>" title="Delete">
+                                    <td> 
+                                        <?php if($status != 'Inactive'): ?> 
+                                        <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deleteMpesaPayment/'.$mpesapayment->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
+                                        <?php else: ?>
+                                            <a class="btn btn-outline-primary btn-sm edit" href="<?php echo e(url ('restoreMpesaPayment/'.$mpesaPayment->id)); ?>" title="Restore">
+                                                <i class="fas fa-trash-restore"></i>
+                                            </a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

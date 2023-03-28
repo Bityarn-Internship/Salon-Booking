@@ -29,9 +29,17 @@
                         <div class="d-flex gx-10">
                             <div class = "col">
                                 <span style="display: inline-block">
+                                    
+                                    <?php if($status != 'Inactive'): ?>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <b>Add Position</b>
                                     </button>
+                                    <?php else: ?>
+                                        <a href = "/restorePositions"><button type="button" class="btn btn-primary">
+                                            <b>Restore All</b>
+                                            <i class="fas fa-trash-restore"></i>
+                                    </button></a>
+                                    <?php endif; ?>
 
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -132,12 +140,18 @@
                                     <td><?php echo e($position->name); ?></td>
                                     <td><?php echo e($position->description); ?></td>
                                     <td>
+                                        <?php if($status != 'Inactive'): ?>
                                         <a class="btn btn-outline-success btn-sm edit" href="<?php echo e(url ('editPosition/'.$position->id)); ?>" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <a class="btn btn-outline-danger btn-sm edit" href="<?php echo e(url ('deletePosition/'.$position->id)); ?>" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
+                                        <?php else: ?>
+                                            <a class="btn btn-outline-primary btn-sm edit" href="<?php echo e(url ('restorePosition/'.$position->id)); ?>" title="Restore">
+                                                <i class="fas fa-trash-restore"></i>
+                                            </a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

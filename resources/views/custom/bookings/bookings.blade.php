@@ -44,7 +44,16 @@
                                             </div>
 
                                             <div class="row">
-
+                                                <div class="col-md-12 pt-2">
+                                                    <form action="/bookings" method="GET">
+                                                        <label for="services" class="form-check-label">Filter by service category: </label>
+                                                        <br>
+                                                        @foreach($serviceCategories as $serviceCategory)
+                                                            <input class="form-check-input" type="checkbox" name="serviceCategory" value="{{$serviceCategory->id}}">
+                                                            <label class="form-check-label" for="flexCheckDefault">{{$serviceCategory->name}}</label>
+                                                        @endforeach
+                                                    </form>
+                                                </div>
                                                 <div class="col-md-12 pt-2">
                                                     @if($errors->has('services'))
                                                         <div class = "alert alert-danger" role = "alert">

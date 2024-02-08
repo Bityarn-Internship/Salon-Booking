@@ -65,7 +65,7 @@ class UsersController extends Controller
         $rules = [
             'firstName'=>'required',
             'lastName'=>'required',
-            'email'=>'required|email|unique:users',
+            'email'=>'required|email|unique:users,email|unique:employees,email',
             'telephoneNumber'=>'required',
             'password'=> [
                 'required',

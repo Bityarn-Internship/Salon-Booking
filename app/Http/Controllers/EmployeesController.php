@@ -16,7 +16,7 @@ class EmployeesController extends Controller
 {
     public function index(){
         $positions = Position::all();
-         $feedbacks = Feedback::all()->where('status','Good');
+        $feedbacks = Feedback::all()->where('status','Good');
         return view('custom/auth/employees',['positions'=>$positions,'feedbacks'=>$feedbacks]);
     }
     public function store(Request $request){
@@ -25,7 +25,7 @@ class EmployeesController extends Controller
         $rules = [
             'firstName'=>'required',
             'lastName'=>'required',
-            'email'=>'required|email|unique:employees',
+            'email'=>'required|email|unique:employees,email|unique:users,email',
             'telephoneNumber'=>'required',
             'IDNumber'=>'required',
             'positionID'=>'required',

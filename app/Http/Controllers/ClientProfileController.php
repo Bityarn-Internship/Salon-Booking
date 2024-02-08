@@ -8,17 +8,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Employee;
-use App\Models\Position;
-use App\Models\Booking;
 use Auth;
 use Session;
 
 class ClientProfileController extends Controller
 {
-
     public function index(){
-        $client = User::find('id');
+        $client = User::find(Auth::user()->id);
         $upcomingBookings = DB::table('bookings')->select('*', 'bookings.id as bookings_id', 'booked_services.id as bookedServiceID')->join('booked_services', 'bookings.id', '=', 'booked_services.bookingID')
                             ->where('clientID',Auth::user()->id)
                             ->where('status','Reserved')
